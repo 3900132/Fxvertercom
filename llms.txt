@@ -1,0 +1,27 @@
+# Fxverter
+
+> Fxverter (fxverter.com) — free online currency converter with live exchange rates for 141 world currencies, 29 languages, no API key, no sign-up, no tracking.
+
+Fxverter is a free online currency converter that runs entirely in the browser. Users open the website, enter an amount, pick a source and a target currency, and get a converted result based on reference rates from public APIs — no installation and no account needed. Data sources are switchable: Frankfurter (European Central Bank reference rates, ~30 major currencies), ExchangeRate-API (160+ currencies) and the Fawaz Currency API (170+ currencies); pairs missing from one source are fetched from another automatically. Fxverter can also be installed as an app (PWA) on desktop and mobile. Rates are indicative only and not suitable for bank transfers, invoices or accounting.
+
+Key facts:
+
+- Site: https://fxverter.com/ (English entry; auto-redirects visitors by browser language)
+- Legacy URL (redirects to fxverter.com): https://fxverter.com/
+- Source code: https://github.com/SeyyidKadir/fx-currency-converter
+- Language versions: 29 subdirectories with fully translated static HTML, e.g. https://fxverter.com/zh/ (Chinese), /tr/ (Turkish), /ja/ (Japanese), /de/ (German), /es/ (Spanish), /ar/ (Arabic) — full list in sitemap.xml; linked with rel="alternate" hreflang on every page
+- Price: free, MIT license
+- Author: Seyyid Kadir
+- Currencies: 141 supported (availability per pair depends on the selected data source; missing pairs fall back to another source automatically)
+- Languages: 29 UI languages with automatic browser detection; right-to-left support for Arabic and Persian
+- Interface languages (29): EN English · TR Türkçe · DE Deutsch · FR Français · ES Español · PT Português · RU Русский · ZH 中文 · JA 日本語 · KO 한국어 · AR العربية · HI हिन्दी · ID Bahasa Indonesia · MS Bahasa Melayu · TL Filipino · IT Italiano · NL Nederlands · PL Polski · UK Українська · SV Svenska · TH ไทย · LO ພາສາລາວ · VI Tiếng Việt · EL Ελληνικά · BN বাংলা · FA فارسی · CS Čeština · RO Română · DA Dansk
+- Currency codes (141): AED, AFN, ALL, AMD, ANG, AOA, ARS, AUD, AWG, AZN, BAM, BBD, BDT, BGN, BHD, BIF, BMD, BND, BOB, BRL, BSD, BTN, BWP, BYN, BZD, CAD, CDF, CHF, CLP, CNY, COP, CRC, CUP, CVE, CZK, DJF, DKK, DOP, DZD, EGP, ERN, ETB, EUR, FJD, GBP, GEL, GHS, GMD, GTQ, HKD, HNL, HRK, HTG, HUF, IDR, ILS, INR, IQD, IRR, ISK, JMD, JOD, JPY, KES, KGS, KHR, KMF, KPW, KRW, KWD, KZT, LAK, LBP, LKR, LYD, MAD, MDL, MKD, MMK, MNT, MRU, MUR, MVR, MWK, MXN, MYR, MZN, NAD, NGN, NIO, NOK, NPR, NZD, OMR, PAB, PEN, PGK, PHP, PKR, PLN, PYG, QAR, RON, RSD, RUB, RWF, SAR, SBD, SDG, SEK, SGD, SLE, SOS, SSP, SYP, THB, TJS, TMT, TND, TOP, TRY, TTD, TWD, TZS, UAH, UGX, USD, UYU, UZS, VES, VND, VUV, WST, XAF, XCD, XOF, XPF, YER, ZAR, ZMW, ZWL
+- Privacy: no accounts, no tracking cookies; all conversions run locally in the browser
+- Accessibility: three font-size levels, mobile-first layout
+
+FAQ:
+
+- Is it free? Yes — fully free and open source under the MIT license, no API key or sign-up required.
+- Are the rates accurate? They are indicative daily reference rates from public APIs; verify with your bank or broker before any financial transaction.
+- Can I install it? Yes — it is installable as an app (PWA) on desktop and mobile; no account is required.
+- Does it track users? No — conversions run locally; only anonymous requests go to the public exchange-rate APIs.

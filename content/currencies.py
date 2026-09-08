@@ -1,0 +1,95 @@
+# -*- coding: utf-8 -*-
+"""Currency metadata for the /currencies/ pages.
+
+Edit this file to add or update currency info — run
+`python build-lang-pages.py` afterwards and every currency page
+(regular HTML, sitemap, language-page links) regenerates automatically.
+
+Fields per currency (all optional except name):
+  name:    English display name
+  country: issuing country / region
+  symbol:  currency symbol
+  sub:     subunit description (e.g. "100 cents")
+  flag:    emoji flag for visual identification
+  about:   1-3 sentences of background text (English; static HTML,
+           so keep it here rather than relying on JS translation)
+"""
+
+CURRENCY_INFO = {
+    "USD": {"name": "US Dollar", "country": "United States", "symbol": "$", "sub": "100 cents", "flag": "🇺🇸",
+            "about": "The US Dollar is the world's primary reserve currency and the most traded currency on the foreign exchange market. It serves as the official benchmark for many international commodity prices, including oil and gold."},
+    "EUR": {"name": "Euro", "country": "Eurozone (20 countries)", "symbol": "€", "sub": "100 cents", "flag": "🇪🇺",
+            "about": "The Euro is the official currency of the Eurozone and the second most traded currency worldwide. It is managed by the European Central Bank (ECB), whose reference rates power this converter's default data source."},
+    "GBP": {"name": "British Pound", "country": "United Kingdom", "symbol": "£", "sub": "100 pence", "flag": "🇬🇧",
+            "about": "The British Pound Sterling is the oldest currency still in continuous use, with a history spanning more than 1,200 years. London remains one of the largest foreign exchange trading centres in the world."},
+    "JPY": {"name": "Japanese Yen", "country": "Japan", "symbol": "¥", "sub": "100 sen (rarely used)", "flag": "🇯🇵",
+            "about": "The Japanese Yen is the third most traded currency globally and a traditional safe-haven asset during periods of market stress. Japan is unusual in having low-denomination coins still in wide circulation."},
+    "TRY": {"name": "Turkish Lira", "country": "Türkiye", "symbol": "₺", "sub": "100 kuruş", "flag": "🇹🇷",
+            "about": "The Turkish Lira is the official currency of Türkiye. The symbol ₺ was introduced in 2012, combining the letters T and L. Exchange-rate awareness is a daily topic for many Turkish households and businesses."},
+    "CNY": {"name": "Chinese Yuan", "country": "China", "symbol": "¥", "sub": "10 jiao = 100 fen", "flag": "🇨🇳",
+            "about": "The Chinese Yuan (Renminbi, RMB) is managed by the People's Bank of China under a controlled floating regime. The CNY/USD rate is one of the most closely watched currency pairs in global trade."},
+    "CHF": {"name": "Swiss Franc", "country": "Switzerland / Liechtenstein", "symbol": "Fr", "sub": "100 rappen", "flag": "🇨🇭",
+            "about": "The Swiss Franc is considered a classic safe-haven currency, backed by Switzerland's long-standing political stability and low inflation. It is the only franc still issued in Europe."},
+    "INR": {"name": "Indian Rupee", "country": "India", "symbol": "₹", "sub": "100 paise", "flag": "🇮🇳",
+            "about": "The Indian Rupee serves the world's most populous country. India's remittance inflows are among the largest globally, making INR exchange rates especially relevant for millions of families."},
+    "KRW": {"name": "South Korean Won", "country": "South Korea", "symbol": "₩", "sub": "100 jeon (not used)", "flag": "🇰🇷",
+            "about": "The South Korean Won is a heavily traded Asian currency. South Korea's export-driven economy means the won's value is closely tied to global semiconductor, automotive and shipbuilding demand."},
+    "AUD": {"name": "Australian Dollar", "country": "Australia", "symbol": "A$", "sub": "100 cents", "flag": "🇦🇺",
+            "about": "The Australian Dollar is a commodity currency whose value often tracks iron ore, coal and gold prices. It is among the ten most traded currencies in the world."},
+    "CAD": {"name": "Canadian Dollar", "country": "Canada", "symbol": "C$", "sub": "100 cents", "flag": "🇨🇦",
+            "about": "The Canadian Dollar is a commodity-linked currency sensitive to oil price movements. Canada's energy exports make the USD/CAD pair a key reference for North American trade."},
+    "MXN": {"name": "Mexican Peso", "country": "Mexico", "symbol": "$", "sub": "100 centavos", "flag": "🇲🇽",
+            "about": "The Mexican Peso is the most traded currency in Latin America. Mexico's proximity to the US economy and large remittance flows keep USD/MEX rates in constant daily focus."},
+    "BRL": {"name": "Brazilian Real", "country": "Brazil", "symbol": "R$", "sub": "100 centavos", "flag": "🇧🇷",
+            "about": "The Brazilian Real is the strongest-trading currency in South America. Brazil's commodity exports — soy, iron ore and coffee — influence the real's swings against the dollar."},
+    "ZAR": {"name": "South African Rand", "country": "South Africa", "symbol": "R", "sub": "100 cents", "flag": "🇿🇦",
+            "about": "The South African Rand is Africa's most actively traded currency. Gold and platinum prices weigh heavily on its value, reflecting South Africa's mining heritage."},
+    "RUB": {"name": "Russian Ruble", "country": "Russia", "symbol": "₽", "sub": "100 kopeks", "flag": "🇷🇺",
+            "about": "The Russian Ruble is the official currency of the Russian Federation. Energy export revenues are the dominant driver of ruble supply and demand."},
+    "SAR": {"name": "Saudi Riyal", "country": "Saudi Arabia", "symbol": "﷼", "sub": "100 halalas", "flag": "🇸🇦",
+            "about": "The Saudi Riyal has been pegged to the US Dollar since 1986, keeping USD/SAR effectively fixed at 3.75. This makes it a stable reference point for Gulf commerce and travel budgets."},
+    "AED": {"name": "UAE Dirham", "country": "United Arab Emirates", "symbol": "د.إ", "sub": "100 fils", "flag": "🇦🇪",
+            "about": "The UAE Dirham is pegged to the US Dollar, providing rate stability for the Gulf region's trade and tourism hubs, including Dubai and Abu Dhabi."},
+    "SEK": {"name": "Swedish Krona", "country": "Sweden", "symbol": "kr", "sub": "100 öre", "flag": "🇸🇪",
+            "about": "The Swedish Krona is a Scandinavian benchmark currency. Sweden's EU membership without Euro adoption gives the krona an independent monetary policy under the Riksbank."},
+    "NOK": {"name": "Norwegian Krone", "country": "Norway", "symbol": "kr", "sub": "100 øre", "flag": "🇳🇴",
+            "about": "The Norwegian Krone is heavily influenced by oil and gas revenues from Norway's North Sea energy sector."},
+    "NZD": {"name": "New Zealand Dollar", "country": "New Zealand", "symbol": "NZ$", "sub": "100 cents", "flag": "🇳🇿",
+            "about": "The New Zealand Dollar is a commodity currency tied to dairy and agricultural exports. Together with the Australian Dollar it anchors Pacific-region FX trading."},
+    "SGD": {"name": "Singapore Dollar", "country": "Singapore", "symbol": "S$", "sub": "100 cents", "flag": "🇸🇬",
+            "about": "The Singapore Dollar is managed by the Monetary Authority of Singapore against a basket of currencies. Singapore's role as Asia's financial hub makes the SGD a major regional reserve choice."},
+    "HKD": {"name": "Hong Kong Dollar", "country": "Hong Kong", "symbol": "HK$", "sub": "100 cents", "flag": "🇭🇰",
+            "about": "The Hong Kong Dollar operates under a linked exchange rate system to the US Dollar since 1983, trading within a narrow band around 7.8 HKD per USD."},
+    "THB": {"name": "Thai Baht", "country": "Thailand", "symbol": "฿", "sub": "100 satang", "flag": "🇹🇭",
+            "about": "The Thai Baht is one of Southeast Asia's most used currencies for tourism and trade. Thailand's tourism sector makes THB rates a practical concern for millions of travellers."},
+    "IDR": {"name": "Indonesian Rupiah", "country": "Indonesia", "symbol": "Rp", "sub": "100 sen", "flag": "🇮🇩",
+            "about": "The Indonesian Rupiah serves the world's largest Muslim-majority nation. Its relatively large nominal unit values reflect historical inflation."},
+    "MYR": {"name": "Malaysian Ringgit", "country": "Malaysia", "symbol": "RM", "sub": "100 sen", "flag": "🇲🇾",
+            "about": "The Malaysian Ringgit is Southeast Asia's commodity-sensitive currency, influenced by palm oil, oil and gas exports."},
+    "PHP": {"name": "Philippine Peso", "country": "Philippines", "symbol": "₱", "sub": "100 centavos", "flag": "🇵🇭",
+            "about": "The Philippine Peso circulates in one of the world's largest remittance-receiving economies, with millions of overseas workers sending money home in PHP."},
+    "VND": {"name": "Vietnamese Dong", "country": "Vietnam", "symbol": "₫", "sub": "10 hào = 100 xu", "flag": "🇻🇳",
+            "about": "The Vietnamese Dong is one of the world's lowest unit-value currencies, reflecting Vietnam's historical inflation path alongside rapid modern economic growth."},
+    "LAK": {"name": "Lao Kip", "country": "Laos", "symbol": "₭", "sub": "100 att (not used)", "flag": "🇱🇦",
+            "about": "The Lao Kip is the official currency of Laos. It is not published by the European Central Bank, so this converter automatically falls back to alternative data sources for LAK rates."},
+    "PKR": {"name": "Pakistani Rupee", "country": "Pakistan", "symbol": "₨", "sub": "100 paisa", "flag": "🇵🇰",
+            "about": "The Pakistani Rupee serves the world's fifth most populous country. Remittances from overseas Pakistani workers are a key source of FX supply."},
+    "BDT": {"name": "Bangladeshi Taka", "country": "Bangladesh", "symbol": "৳", "sub": "100 poisha", "flag": "🇧🇩",
+            "about": "The Bangladeshi Taka circulates in one of the world's most remittance-dependent large economies, with garment exports also driving FX flows."},
+    "NGN": {"name": "Nigerian Naira", "country": "Nigeria", "symbol": "₦", "sub": "100 kobo", "flag": "🇳🇬",
+            "about": "The Nigerian Naira is Africa's most populous nation's currency. Oil export revenues dominate its external balance."},
+    "EGP": {"name": "Egyptian Pound", "country": "Egypt", "symbol": "E£", "sub": "100 piastres", "flag": "🇪🇬",
+            "about": "The Egyptian Pound serves the Arab world's most populous country, with tourism, Suez Canal revenues and remittances as its main FX sources."},
+    "UAH": {"name": "Ukrainian Hryvnia", "country": "Ukraine", "symbol": "₴", "sub": "100 kopiyok", "flag": "🇺🇦",
+            "about": "The Ukrainian Hryvnia is managed by the National Bank of Ukraine under a flexible exchange-rate regime."},
+    "PLN": {"name": "Polish Złoty", "country": "Poland", "symbol": "zł", "sub": "100 groszy", "flag": "🇵🇱",
+            "about": "The Polish Złoty is Central Europe's largest economy's currency. Poland's EU membership without Euro adoption keeps the złoty actively traded."},
+    "CZK": {"name": "Czech Koruna", "country": "Czech Republic", "symbol": "Kč", "sub": "100 haléřů", "flag": "🇨🇿",
+            "about": "The Czech Koruna remains the Czech Republic's currency despite EU membership. It is a actively traded Central European currency."},
+    "DKK": {"name": "Danish Krone", "country": "Denmark", "symbol": "kr", "sub": "100 øre", "flag": "🇩🇰",
+            "about": "The Danish Krone is pegged closely to the Euro through the ERM II mechanism, keeping EUR/DKK within narrow fluctuation bands."},
+    "ILS": {"name": "Israeli New Shekel", "country": "Israel", "symbol": "₪", "sub": "100 agorot", "flag": "🇮🇱",
+            "about": "The Israeli New Shekel is one of the more freely traded Middle Eastern currencies, supported by Israel's technology-driven export economy."},
+    "QAR": {"name": "Qatari Riyal", "country": "Qatar", "symbol": "﷼", "sub": "100 dirhams", "flag": "🇶🇦",
+            "about": "The Qatari Riyal is pegged to the US Dollar, anchored by Qatar's vast natural gas export revenues."},
+}

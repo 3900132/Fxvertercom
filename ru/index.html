@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<!--
+  Fxverter · © 2026 Seyyid Kadir
+  Official site: https://fxverter.com/
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Конвертер Валют – Актуальные Курсы Валют | Fxverter</title>
+<meta name="description" content="Fxverter — Бесплатный онлайн-конвертер валют с актуальными курсами более 140 валют. Без API-ключа, без регистрации, без отслеживания.">
+<link rel="canonical" href="https://fxverter.com/ru/">
+<link rel="alternate" hreflang="en" href="https://fxverter.com/">
+<link rel="alternate" hreflang="tr" href="https://fxverter.com/tr/">
+<link rel="alternate" hreflang="de" href="https://fxverter.com/de/">
+<link rel="alternate" hreflang="fr" href="https://fxverter.com/fr/">
+<link rel="alternate" hreflang="es" href="https://fxverter.com/es/">
+<link rel="alternate" hreflang="pt" href="https://fxverter.com/pt/">
+<link rel="alternate" hreflang="ru" href="https://fxverter.com/ru/">
+<link rel="alternate" hreflang="zh" href="https://fxverter.com/zh/">
+<link rel="alternate" hreflang="ja" href="https://fxverter.com/ja/">
+<link rel="alternate" hreflang="ko" href="https://fxverter.com/ko/">
+<link rel="alternate" hreflang="ar" href="https://fxverter.com/ar/">
+<link rel="alternate" hreflang="hi" href="https://fxverter.com/hi/">
+<link rel="alternate" hreflang="id" href="https://fxverter.com/id/">
+<link rel="alternate" hreflang="ms" href="https://fxverter.com/ms/">
+<link rel="alternate" hreflang="tl" href="https://fxverter.com/tl/">
+<link rel="alternate" hreflang="it" href="https://fxverter.com/it/">
+<link rel="alternate" hreflang="nl" href="https://fxverter.com/nl/">
+<link rel="alternate" hreflang="pl" href="https://fxverter.com/pl/">
+<link rel="alternate" hreflang="uk" href="https://fxverter.com/uk/">
+<link rel="alternate" hreflang="sv" href="https://fxverter.com/sv/">
+<link rel="alternate" hreflang="th" href="https://fxverter.com/th/">
+<link rel="alternate" hreflang="lo" href="https://fxverter.com/lo/">
+<link rel="alternate" hreflang="vi" href="https://fxverter.com/vi/">
+<link rel="alternate" hreflang="el" href="https://fxverter.com/el/">
+<link rel="alternate" hreflang="bn" href="https://fxverter.com/bn/">
+<link rel="alternate" hreflang="fa" href="https://fxverter.com/fa/">
+<link rel="alternate" hreflang="cs" href="https://fxverter.com/cs/">
+<link rel="alternate" hreflang="ro" href="https://fxverter.com/ro/">
+<link rel="alternate" hreflang="da" href="https://fxverter.com/da/">
+<link rel="alternate" hreflang="x-default" href="https://fxverter.com/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Seyyid Kadir">
+<meta name="theme-color" content="#0d0d14" id="metaTheme">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.frankfurter.dev">
+<link rel="preconnect" href="https://api.exchangerate-api.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fxverter">
+<meta property="og:url" content="https://fxverter.com/">
+<meta property="og:title" content="Конвертер Валют – Актуальные Курсы Валют | Fxverter">
+<meta property="og:description" content="Fxverter — Бесплатный онлайн-конвертер валют с актуальными курсами более 140 валют. Без API-ключа, без регистрации, без отслеживания.">
+<meta property="og:image" content="https://fxverter.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fxverter web app showing a live currency conversion">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:locale:alternate" content="ko_KR">
+<meta property="og:locale:alternate" content="ar_AR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Конвертер Валют – Актуальные Курсы Валют | Fxverter">
+<meta name="twitter:description" content="Fxverter — Бесплатный онлайн-конвертер валют с актуальными курсами более 140 валют. Без API-ключа, без регистрации, без отслеживания.">
+<meta name="twitter:image" content="https://fxverter.com/og-image.png">
+<!-- Analytics: Cloudflare Web Analytics — cookie-free, matches the privacy note below -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c616c0616b1341d6b1e4930665891a63"}'></script>
+
+<!-- Structured data: software app + FAQ (mirrors the visible FAQ section) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://fxverter.com/ru/#app",
+      "name": "Конвертер валют",
+      "url": "https://fxverter.com/ru/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any (web browser)",
+      "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
+      "description": "Fxverter — Бесплатный онлайн-конвертер валют с актуальными курсами более 140 валют. Без API-ключа, без регистрации, без отслеживания.",
+      "inLanguage": ["ru"],
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "featureList": [
+        "Live exchange rates for 140+ currencies",
+        "3 switchable data sources: Frankfurter (ECB), ExchangeRate-API, Fawaz Currency API",
+        "29 UI languages with automatic browser detection",
+        "Right-to-left support for Arabic and Persian",
+        "Smart per-session rate caching with manual refresh",
+        "Font-size accessibility control (3 levels)",
+        "Installable as an app (PWA) with offline support",
+        "No installation required — open the website and convert"
+      ],
+      "author": {"@type": "Person", "name": "Seyyid Kadir", "url": "https://github.com/SeyyidKadir"},
+      "license": "https://opensource.org/licenses/MIT",
+      "datePublished": "2026-04-09",
+      "dateModified": "2026-09-06",
+      "screenshot": "https://fxverter.com/og-image.png",
+      "keywords": "Fxverter, currency converter, exchange rates, money converter, live exchange rates, USD to EUR, foreign exchange, fx converter"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://fxverter.com/ru/#faq",
+      "mainEntity": [{"@type": "Question", "name": "Этот конвертер бесплатный?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Fxverter полностью бесплатен и открыт (лицензия MIT). Без API-ключа, без регистрации, без отслеживания."}}, {"@type": "Question", "name": "Насколько точны курсы?", "acceptedAnswer": {"@type": "Answer", "text": "Это индикативные референс-курсы из бесплатных открытых API (ЕЦБ через Frankfurter, ExchangeRate-API, Fawaz), обновляются ежедневно — отлично для быстрой справки; перед сделками сверяйтесь с банком."}}, {"@type": "Question", "name": "Какие валюты поддерживаются?", "acceptedAnswer": {"@type": "Answer", "text": "141 валюта, включая USD, EUR, GBP, JPY, CNY, TRY, INR и CHF. Доступность зависит от источника — недостающие пары автоматически берутся из другого."}}, {"@type": "Question", "name": "Нужно ли что-то устанавливать или создавать аккаунт?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Просто откройте сайт в любом современном браузере — на компьютере или телефоне — и конвертируйте сразу. Ничего устанавливать не нужно, аккаунт не требуется."}}, {"@type": "Question", "name": "Какие языки поддерживаются?", "acceptedAnswer": {"@type": "Answer", "text": "29 языков с автоопределением, включая поддержку справа налево для арабского и персидского."}}, {"@type": "Question", "name": "Отслеживаете ли вы мои данные?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Все конвертации выполняются локально в браузере — без аккаунтов и cookie для отслеживания, только анонимные запросы к открытым API курсов."}}]
+    }
+  ]
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d14;--surface:#16161f;--surface2:#1e1e2a;--surface3:#252535;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
+  --text:#eeeef5;--muted:#6868a0;--muted2:#9898c0;
+  --teal:#5ecfb0;--teal2:#3db898;--teal-glow:rgba(94,207,176,0.15);
+  --gold:#e8c97a;--gold2:#f5e0a0;
+  --rose:#e87a9a;--rose-bg:rgba(232,122,154,0.07);--rose-border:rgba(232,122,154,0.2);
+  --green-bg:rgba(94,207,176,0.07);--green-border:rgba(94,207,176,0.18);
+  --shadow:0 24px 60px rgba(0,0,0,0.45);
+  --syne:'Syne',sans-serif;--dm:'DM Sans',sans-serif;
+  --fs:1rem;--radius:14px;
+}
+/* ── LIGHT THEME (system-follow via prefers-color-scheme, or forced via html.theme-light) ── */
+html.theme-light body{
+  --bg:#f4f6fa;--surface:#ffffff;--surface2:#eef1f6;--surface3:#e2e7ef;
+  --border:rgba(13,13,20,0.10);--border2:rgba(13,13,20,0.18);
+  --text:#1a1c26;--muted:#6b7192;--muted2:#4a5170;
+  --teal:#14967a;--teal2:#0e7a64;--teal-glow:rgba(20,150,122,0.12);
+  --gold:#a4801f;--gold2:#8a6a1a;
+  --rose:#c74e70;--rose-bg:rgba(199,78,112,0.07);--rose-border:rgba(199,78,112,0.22);
+  --green-bg:rgba(20,150,122,0.07);--green-border:rgba(20,150,122,0.2);
+  --shadow:0 18px 44px rgba(13,20,40,0.14);
+}
+@media (prefers-color-scheme: light){
+  :root:not(.theme-force-dark){
+    --bg:#f4f6fa;--surface:#ffffff;--surface2:#eef1f6;--surface3:#e2e7ef;
+    --border:rgba(13,13,20,0.10);--border2:rgba(13,13,20,0.18);
+    --text:#1a1c26;--muted:#6b7192;--muted2:#4a5170;
+    --teal:#14967a;--teal2:#0e7a64;--teal-glow:rgba(20,150,122,0.12);
+    --gold:#a4801f;--gold2:#8a6a1a;
+    --rose:#c74e70;--rose-bg:rgba(199,78,112,0.07);--rose-border:rgba(199,78,112,0.22);
+    --green-bg:rgba(20,150,122,0.07);--green-border:rgba(20,150,122,0.2);
+    --shadow:0 18px 44px rgba(13,20,40,0.14);
+  }
+  :root:not(.theme-force-dark) .currency-select option,
+  :root:not(.theme-force-dark) .lang-select option,
+  :root:not(.theme-force-dark) .combo-option{background:#ffffff;color:#1a1c26}
+}
+html.theme-light .currency-select option,
+html.theme-light .lang-select option,
+html.theme-light .combo-option{background:#ffffff;color:#1a1c26}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);font-family:var(--dm);color:var(--text);
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;padding:1rem 1rem 3rem;
+  font-size:var(--fs);
+}
+
+/* ── FONT SIZE ── */
+body.fs-md{--fs:1.1rem}
+body.fs-lg{--fs:1.22rem}
+
+/* ── TOP BAR ── */
+.topbar{
+  width:100%;max-width:520px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;row-gap:0.4rem;
+  padding:0.6rem 0;margin-bottom:0.75rem;gap:0.5rem;
+}
+.topbar-left{display:flex;align-items:center;gap:0.4rem}
+.fs-controls{display:flex;gap:0.3rem}
+.fs-btn{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:0.3rem 0.55rem;
+  font-family:var(--dm);font-weight:500;color:var(--muted2);
+  cursor:pointer;transition:all 0.15s;line-height:1;
+}
+.fs-btn:hover{border-color:var(--border2);color:var(--text)}
+.fs-btn.active{background:var(--surface3);border-color:var(--teal);color:var(--teal)}
+.fs-label{font-size:0.65rem;color:var(--muted);font-family:var(--syne);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap}
+
+/* ── LANG SELECT ── */
+.lang-wrap{position:relative;flex-shrink:0}
+.lang-select{
+  appearance:none;
+  padding:0.32rem 1.7rem 0.32rem 0.7rem;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;font-family:var(--dm);font-size:0.72rem;font-weight:500;
+  color:var(--muted2);outline:none;cursor:pointer;transition:border-color 0.15s;
+  max-width:150px;
+}
+.lang-select:hover{border-color:var(--border2);color:var(--text)}
+.lang-select:focus{border-color:rgba(94,207,176,0.4)}
+.lang-select option{background:#1e1e2a;color:var(--text)}
+
+/* ── CARD ── */
+.card{
+  width:100%;max-width:520px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;overflow:visible;
+  box-shadow:0 24px 60px rgba(0,0,0,0.45);
+  animation:fadeUp 0.5s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* Header */
+.card-header{
+  padding:1.4rem 1.5rem 1.2rem;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(94,207,176,0.04) 0%,transparent 100%);
+  border-radius:19px 19px 0 0;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.brand{display:flex;align-items:center;gap:0.6rem}
+.brand-icon{
+  width:34px;height:34px;min-width:34px;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:0.95rem;box-shadow:0 4px 12px rgba(94,207,176,0.25);
+}
+.brand-text h1{font-family:var(--syne);font-size:1em;font-weight:700;color:var(--text);line-height:1.1}
+.brand-text span{font-size:0.7em;color:var(--muted);letter-spacing:0.04em}
+.live-badge{
+  display:flex;align-items:center;gap:0.3rem;flex-shrink:0;
+  background:rgba(94,207,176,0.08);border:1px solid rgba(94,207,176,0.2);
+  border-radius:100px;padding:0.28rem 0.65rem;
+  font-size:0.65em;color:var(--teal);font-family:var(--dm);font-weight:500;letter-spacing:0.04em;
+}
+.live-dot{width:5px;height:5px;background:var(--teal);border-radius:50%;animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* Body */
+.card-body{padding:1.4rem 1.5rem}
+
+/* API selector */
+.api-section{margin-bottom:1.2rem}
+.section-label{
+  font-size:0.65em;font-family:var(--syne);text-transform:uppercase;
+  letter-spacing:0.1em;color:var(--muted);margin-bottom:0.5rem;display:block;
+}
+.api-tabs{display:flex;gap:0.4rem;flex-wrap:wrap}
+.api-tab{
+  flex:1;min-width:0;
+  padding:0.55rem 0.4rem;text-align:center;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;font-family:var(--dm);font-size:0.75em;
+  font-weight:500;color:var(--muted2);cursor:pointer;transition:all 0.15s;
+}
+.api-tab:hover{border-color:var(--border2);color:var(--text)}
+.api-tab.active{background:var(--teal-glow);border-color:var(--teal);color:var(--teal)}
+
+/* Amount */
+.field{margin-bottom:1rem}
+.input-row{position:relative}
+.amount-input{
+  width:100%;padding:0.85rem 1rem;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--radius);font-family:var(--syne);
+  font-size:1.35em;font-weight:700;color:var(--text);
+  outline:none;transition:border-color 0.15s;appearance:none;
+}
+.amount-input:focus{border-color:rgba(94,207,176,0.4)}
+.amount-input::placeholder{color:var(--muted);font-weight:400;font-size:0.75em}
+
+/* Currency row */
+.currency-row{display:grid;grid-template-columns:1fr 40px 1fr;gap:0.5rem;align-items:end;margin-bottom:1.1rem}
+.select-wrap{position:relative}
+.select-wrap::after{
+  content:'▾';position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);
+  color:var(--muted);font-size:0.65em;pointer-events:none;
+}
+.currency-select{
+  width:100%;padding:0.7rem 2rem 0.7rem 0.85rem;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--radius);font-family:var(--dm);
+  font-size:0.85em;font-weight:500;color:var(--text);
+  outline:none;cursor:pointer;transition:border-color 0.15s;appearance:none;
+}
+.currency-select:focus{border-color:rgba(94,207,176,0.4)}
+.currency-select option{background:#1e1e2a}
+select[hidden]{display:none}
+
+/* ── SEARCHABLE DROPDOWN ── */
+.combo{position:relative}
+.combo-btn{width:100%;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.combo-panel{
+  display:none;position:absolute;top:calc(100% + 6px);left:0;z-index:60;
+  width:100%;min-width:210px;
+  background:var(--surface2);border:1px solid var(--border2);border-radius:12px;
+  box-shadow:0 18px 50px rgba(0,0,0,0.55);overflow:hidden;
+}
+.combo.open .combo-panel{display:block}
+.combo.combo-right .combo-panel{left:auto;right:0}
+.combo-search{
+  width:100%;padding:0.55rem 0.8rem;background:var(--surface);
+  border:none;border-bottom:1px solid var(--border);
+  color:var(--text);font-family:var(--dm);font-size:0.85em;outline:none;
+}
+.combo-options{max-height:280px;overflow-y:auto}
+.combo-option{
+  display:flex;justify-content:space-between;align-items:baseline;gap:0.6rem;
+  padding:0.45rem 0.8rem;cursor:pointer;font-size:0.8em;color:var(--text);
+}
+.combo-option b{font-weight:500;flex-shrink:0}
+.combo-option small{color:var(--muted);font-size:0.9em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.combo-option:hover,.combo-option.hl{background:var(--teal-glow)}
+.combo-option.hl b,.combo-option.sel b{color:var(--teal)}
+.combo-option.none{color:var(--muted);cursor:default;justify-content:center}
+
+.swap-btn{
+  width:40px;height:40px;background:var(--surface2);
+  border:1px solid var(--border);border-radius:var(--radius);
+  cursor:pointer;font-size:0.95rem;color:var(--muted2);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;
+}
+.swap-btn:hover{background:var(--teal-glow);border-color:var(--teal);color:var(--teal);transform:rotate(180deg)}
+
+/* Convert + Refresh */
+.action-row{display:flex;gap:0.5rem;margin-top:0.2rem}
+.convert-btn{
+  flex:1;padding:0.85rem;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  border:none;border-radius:var(--radius);
+  font-family:var(--syne);font-size:0.85em;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;color:#0a0a0f;
+  cursor:pointer;transition:all 0.18s;
+  box-shadow:0 6px 20px rgba(94,207,176,0.2);
+}
+.convert-btn:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(94,207,176,0.3)}
+.convert-btn:active{transform:translateY(0)}
+.convert-btn:disabled{opacity:0.45;cursor:not-allowed;transform:none;box-shadow:none}
+
+.refresh-btn{
+  width:48px;height:48px;flex-shrink:0;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--radius);cursor:pointer;
+  font-size:1rem;color:var(--muted2);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.18s;
+}
+.refresh-btn:hover{background:var(--teal-glow);border-color:var(--teal);color:var(--teal)}
+.refresh-btn.spinning svg{animation:spin 0.7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Status bar */
+.status-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:0.8rem;padding:0.6rem 0.75rem;
+  background:var(--surface2);border-radius:10px;
+  font-size:0.7em;font-family:var(--dm);
+}
+.status-left{color:var(--muted2);display:flex;align-items:center;gap:0.4rem}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);flex-shrink:0}
+.status-dot.ok{background:var(--teal)}
+.status-dot.err{background:var(--rose)}
+.status-dot.loading{background:var(--gold);animation:pulse 1s ease infinite}
+.status-right{color:var(--muted);font-size:0.95em}
+
+/* Result */
+.result{
+  display:none;margin-top:1rem;
+  background:var(--green-bg);border:1px solid var(--green-border);
+  border-radius:var(--radius);padding:1.1rem 1.3rem;
+  animation:popIn 0.25s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.result.show{display:block}
+@keyframes popIn{from{opacity:0;transform:scale(0.96)}to{opacity:1;transform:scale(1)}}
+.result-label{font-size:0.65em;font-family:var(--syne);text-transform:uppercase;letter-spacing:0.1em;color:var(--teal);margin-bottom:0.4rem}
+.result-amount{
+  font-family:var(--syne);font-size:1.9em;font-weight:800;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1.1;margin-bottom:0.35rem;
+}
+.result-rate{font-size:0.75em;color:var(--muted2)}
+.result-rate strong{color:var(--teal);font-weight:500}
+.result-row{display:flex;align-items:center;gap:0.5rem}
+.copy-btn{
+  background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+  width:30px;height:30px;min-width:30px;display:flex;align-items:center;justify-content:center;
+  color:var(--muted2);cursor:pointer;transition:all 0.15s;
+}
+.copy-btn:hover{border-color:var(--teal);color:var(--teal)}
+.copy-btn.ok{border-color:var(--teal);color:var(--teal)}
+.fb-panel{
+  display:none;width:100%;max-width:520px;margin:0 auto 1rem;
+  background:var(--surface);border:1px solid var(--border2);border-radius:14px;
+  padding:1rem;box-shadow:0 18px 44px rgba(0,0,0,0.35);
+}
+.fb-panel.open{display:block}
+.fb-panel input[type="text"],.fb-panel input[type="email"],.fb-panel textarea{
+  width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;
+  color:var(--text);font-family:var(--dm);font-size:0.85rem;padding:0.55rem 0.8rem;
+  margin-bottom:0.55rem;outline:none;
+}
+.fb-panel input:focus,.fb-panel textarea:focus{border-color:var(--teal)}
+.fb-panel textarea{resize:vertical;min-height:70px}
+.fb-err{display:none;color:var(--rose);font-size:0.78rem;margin-bottom:0.4rem}
+.fb-panel button[type="submit"]{
+  width:100%;background:var(--teal);border:none;border-radius:10px;color:#fff;
+  font-family:var(--syne);font-weight:700;font-size:0.85rem;padding:0.6rem;cursor:pointer;
+}
+.fb-panel button[type="submit"]:disabled{opacity:0.6;cursor:default}
+.fb-ok{display:none;text-align:center;color:var(--teal);font-family:var(--syne);font-weight:700;font-size:1rem;padding:0.8rem 0}
+.copy-btn.on{border-color:var(--gold);color:var(--gold)}
+.fav-bar{display:flex;flex-direction:column;gap:0.45rem;margin-bottom:1.1rem}
+.fav-label{font-size:0.62em;font-family:var(--syne);text-transform:uppercase;letter-spacing:0.1em;color:var(--gold)}
+.fav-pairs{display:flex;flex-wrap:wrap;gap:0.4rem}
+.fav-chip{
+  display:flex;align-items:center;gap:0.4rem;
+  background:var(--surface2);border:1px solid var(--border);border-radius:100px;
+  padding:0.32rem 0.8rem;font-family:var(--dm);font-size:0.72em;color:var(--muted2);
+  cursor:pointer;transition:all 0.15s;
+}
+.fav-chip:hover{border-color:var(--gold);color:var(--text)}
+.fav-chip b{color:var(--text);font-weight:500}
+.fav-chip .x{color:var(--muted);font-size:1.1em;line-height:1;padding:0 0 0 0.15rem}
+.fav-chip .x:hover{color:var(--rose)}
+
+/* Error */
+.error-box{
+  display:none;margin-top:1rem;
+  background:var(--rose-bg);border:1px solid var(--rose-border);
+  border-radius:var(--radius);padding:0.9rem 1.1rem;
+  font-size:0.82em;color:var(--rose);font-family:var(--dm);line-height:1.5;
+}
+.error-box.show{display:block}
+.error-suggestion{margin-top:0.4rem;font-size:0.92em;color:var(--muted2)}
+
+/* Footer */
+.footer{margin-top:1.2rem;text-align:center;font-size:0.68em;color:var(--muted);font-family:var(--dm)}
+.footer a{color:var(--muted2);text-decoration:none}
+.footer a:hover{color:var(--teal)}
+
+/* ── ABOUT / FAQ (static, crawlable) ── */
+.seo-section{
+  width:100%;max-width:520px;margin-top:2.4rem;
+  color:var(--muted2);font-size:0.78rem;line-height:1.65;
+}
+.seo-section h2{font-family:var(--syne);font-size:0.85rem;font-weight:700;color:var(--text);letter-spacing:0.03em;margin-bottom:0.6rem}
+.seo-section h3{font-family:var(--syne);font-size:0.75rem;font-weight:700;color:var(--text);letter-spacing:0.03em;margin:1.4rem 0 0.6rem}
+.seo-section p{margin-bottom:0.7rem}
+.seo-section a{color:var(--teal);text-decoration:none}
+.seo-section a:hover{text-decoration:underline}
+.seo-section details{border:1px solid var(--border);border-radius:10px;background:var(--surface);margin-bottom:0.45rem}
+.seo-section summary{
+  cursor:pointer;padding:0.55rem 0.8rem;font-weight:500;color:var(--text);
+  font-size:0.78rem;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:0.5rem;
+}
+.seo-section summary::-webkit-details-marker{display:none}
+.seo-section summary::after{content:'+';color:var(--muted);font-family:var(--syne);flex-shrink:0}
+.seo-section details[open] summary::after{content:'–'}
+.seo-section details p{padding:0 0.8rem 0.7rem;margin:0}
+.seo-disclaimer{font-size:0.7rem;color:var(--muted)}
+
+/* ── MOBILE ── */
+@media(max-width:400px){
+  .card-body{padding:1.1rem}
+  .card-header{padding:1.1rem}
+  .result-amount{font-size:1.6em}
+  .api-tab{font-size:0.7em;padding:0.5rem 0.3rem}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="fs-label" id="fsLabel">Размер шрифта</span>
+    <div class="fs-controls">
+      <button class="fs-btn" data-fs="fs-sm" onclick="setFs('fs-sm',this)">A</button>
+      <button class="fs-btn" data-fs="fs-md" onclick="setFs('fs-md',this)">A+</button>
+      <button class="fs-btn" data-fs="fs-lg" onclick="setFs('fs-lg',this)">A++</button>
+      <button class="fs-btn" id="themeBtn" onclick="cycleTheme()" title="Theme: auto">◐</button>
+      <button class="fs-btn" id="shareBtn" onclick="shareSite()" title="Share">⤴</button>
+      <button class="fs-btn" id="feedbackBtn" onclick="openFeedback()" title="Feedback">✎</button>
+      <button class="fs-btn" id="installBtn" onclick="installApp()" title="Install app" hidden>⤓</button>
+    </div>
+  </div>
+  <div class="select-wrap combo combo-right lang-wrap">
+    <button type="button" class="lang-select combo-btn" aria-haspopup="listbox" aria-label="Language"></button>
+    <div class="combo-panel">
+      <input class="combo-search" type="text" placeholder="🔎" autocomplete="off">
+      <div class="combo-options" role="listbox"></div>
+    </div>
+    <select id="langSelect" aria-hidden="true" tabindex="-1" onchange="langGo(this.value)" hidden></select>
+  </div>
+</div>
+
+<main class="card">
+  <div class="card-header">
+    <div class="brand">
+      <div class="brand-icon">💱</div>
+      <div class="brand-text">
+        <h1 id="appTitle">Конвертер валют</h1>
+        <span id="appSub">В реальном времени · Без ключа</span>
+      </div>
+    </div>
+    <div class="live-badge"><div class="live-dot"></div><span id="liveBadge">LIVE</span></div>
+  </div>
+
+  <div class="card-body">
+
+    <!-- API Selector -->
+    <div class="api-section">
+      <span class="section-label" id="labelApiSource">Источник данных</span>
+      <div class="api-tabs">
+        <button class="api-tab active" data-api="frankfurter" onclick="switchApi('frankfurter',this)">Frankfurter</button>
+        <button class="api-tab" data-api="exchangerate" onclick="switchApi('exchangerate',this)">ExchangeRate</button>
+        <button class="api-tab" data-api="fawaz" onclick="switchApi('fawaz',this)">Fawaz API</button>
+      </div>
+    </div>
+
+    <!-- Amount -->
+    <div class="field">
+      <span class="section-label" id="labelAmount">Сумма</span>
+      <div class="input-row">
+        <input class="amount-input" type="text" inputmode="decimal" id="amount" value="100" placeholder="0">
+      </div>
+    </div>
+
+    <!-- From / Swap / To -->
+    <div class="currency-row">
+      <div>
+        <span class="section-label" id="labelFrom">Из</span>
+        <div class="select-wrap combo">
+          <button type="button" class="currency-select combo-btn" aria-haspopup="listbox"></button>
+          <div class="combo-panel">
+            <input class="combo-search" type="text" placeholder="🔎" autocomplete="off">
+            <div class="combo-options" role="listbox"></div>
+          </div>
+          <select id="from" onchange="onFromChange()" hidden></select>
+        </div>
+      </div>
+      <button class="swap-btn" onclick="swapCurrencies()" title="Swap">⇄</button>
+      <div>
+        <span class="section-label" id="labelTo">В</span>
+        <div class="select-wrap combo combo-right">
+          <button type="button" class="currency-select combo-btn" aria-haspopup="listbox"></button>
+          <div class="combo-panel">
+            <input class="combo-search" type="text" placeholder="🔎" autocomplete="off">
+            <div class="combo-options" role="listbox"></div>
+          </div>
+          <select id="to" hidden></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="action-row">
+      <button class="convert-btn" id="convertBtn" onclick="convert()">
+        <span id="btnText">КОНВЕРТИРОВАТЬ</span>
+      </button>
+      <button class="refresh-btn" id="refreshBtn" onclick="refreshRates()" title="Refresh">
+        <svg id="refreshIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/>
+          <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Favorites quick bar -->
+    <div class="fav-bar" id="favBar" hidden>
+      <span class="fav-label" id="favLabel">★ Saved pairs</span>
+      <div class="fav-pairs" id="favPairs"></div>
+    </div>
+
+    <!-- Feedback panel -->
+    <div class="fb-panel" id="feedbackPanel">
+      <form id="fbForm" onsubmit="sendFeedback(); return false;">
+        <input type="text" id="fbName" name="name" maxlength="60" autocomplete="off" placeholder="Name">
+        <input type="email" id="fbEmail" name="email" maxlength="80" placeholder="Email (optional)">
+        <textarea id="fbMsg" name="message" rows="4" maxlength="1000" placeholder="Message"></textarea>
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+        <div class="fb-err" id="fbErr"></div>
+        <button type="submit" id="fbSend">Send</button>
+      </form>
+      <div class="fb-ok" id="fbOk" style="display:none">✓</div>
+    </div>
+
+    <!-- Status -->
+    <div class="status-bar">
+      <div class="status-left">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">—</span>
+      </div>
+      <span class="status-right" id="statusTime"></span>
+    </div>
+
+    <!-- Result -->
+    <div class="result" id="result">
+      <div class="result-label" id="resultLabel">Результат</div>
+      <div class="result-row">
+        <div class="result-amount" id="resultAmount">—</div>
+        <button class="copy-btn" id="favBtn" onclick="toggleFav()" title="Save this pair" style="margin-left:auto">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </button>
+        <button class="copy-btn" id="copyBtn" onclick="copyResult()" title="Copy result">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        </button>
+      </div>
+      <div class="result-rate" id="resultRate"></div>
+    </div>
+
+    <!-- Error -->
+    <div class="error-box" id="errorBox">
+      <div id="errorMsg"></div>
+      <div class="error-suggestion" id="errorSuggestion"></div>
+    </div>
+
+  </div>
+</div>
+
+<section class="seo-section" aria-labelledby="aboutTitle">
+  <h2 id="aboutTitle">О конвертере Fxverter</h2>
+  <p>Fxverter — бесплатный онлайн-конвертер валют с открытым кодом, работающий полностью в вашем браузере: актуальные курсы для 141 мировых валют, без API-ключа, без регистрации, без установки — просто откройте сайт в браузере и начинайте конвертировать.</p>
+  <p>Курсы поступают из трёх открытых источников, между которыми можно переключаться в любой момент: <a href="https://frankfurter.dev/" rel="noopener">Frankfurter</a> (референсные курсы ЕЦБ), <a href="https://www.exchangerate-api.com/" rel="noopener">ExchangeRate-API</a> и <a href="https://github.com/fawazahmed0/exchange-api" rel="noopener">Fawaz Currency API</a>. Курсы кэшируются на время сессии; 29 языков интерфейса определяются автоматически, включая поддержку письма справа налево для арабского и персидского.</p>
+
+  <h3>Языки и валюты</h3>
+  <p><a href="https://fxverter.com/ru/currencies/">Все валюты</a> · <a href="https://fxverter.com/ru/guides/">Руководства по курсам</a></p>
+  <p>Интерфейс доступен на 29 языках: <strong>EN</strong> English · <strong>TR</strong> Türkçe · <strong>DE</strong> Deutsch · <strong>FR</strong> Français · <strong>ES</strong> Español · <strong>PT</strong> Português · <strong>RU</strong> Русский · <strong>ZH</strong> 中文 · <strong>JA</strong> 日本語 · <strong>KO</strong> 한국어 · <strong>AR</strong> العربية · <strong>HI</strong> हिन्दी · <strong>ID</strong> Bahasa Indonesia · <strong>MS</strong> Bahasa Melayu · <strong>TL</strong> Filipino · <strong>IT</strong> Italiano · <strong>NL</strong> Nederlands · <strong>PL</strong> Polski · <strong>UK</strong> Українська · <strong>SV</strong> Svenska · <strong>TH</strong> ไทย · <strong>LO</strong> ພາສາລາວ · <strong>VI</strong> Tiếng Việt · <strong>EL</strong> Ελληνικά · <strong>BN</strong> বাংলা · <strong>FA</strong> فارسی · <strong>CS</strong> Čeština · <strong>RO</strong> Română · <strong>DA</strong> Dansk.</p>
+  <p>Курсы доступны для 141 валют, с поиском прямо в выпадающих списках. Доступность зависит от выбранного источника — недостающие пары автоматически берутся из другого источника:</p>
+  <details id="curList">
+    <summary>Показать полный список валют</summary>
+    <p><strong>A</strong> — AED — UAE Dirham · AFN — Afghan Afghani · ALL — Albanian Lek · AMD — Armenian Dram · ANG — NL Antillean Guilder · AOA — Angolan Kwanza · ARS — Argentine Peso · AUD — Australian Dollar · AWG — Aruban Florin · AZN — Azerbaijani Manat</p>
+    <p><strong>B</strong> — BAM — Bosnia Mark · BBD — Barbados Dollar · BDT — Bangladeshi Taka · BGN — Bulgarian Lev · BHD — Bahraini Dinar · BIF — Burundian Franc · BMD — Bermudian Dollar · BND — Brunei Dollar · BOB — Bolivian Boliviano · BRL — Brazilian Real · BSD — Bahamian Dollar · BTN — Bhutanese Ngultrum · BWP — Botswanan Pula · BYN — Belarusian Ruble · BZD — Belize Dollar</p>
+    <p><strong>C</strong> — CAD — Canadian Dollar · CDF — Congolese Franc · CHF — Swiss Franc · CLP — Chilean Peso · CNY — Chinese Yuan · COP — Colombian Peso · CRC — Costa Rican Colón · CUP — Cuban Peso · CVE — Cape Verdean Escudo · CZK — Czech Koruna</p>
+    <p><strong>D</strong> — DJF — Djiboutian Franc · DKK — Danish Krone · DOP — Dominican Peso · DZD — Algerian Dinar</p>
+    <p><strong>E</strong> — EGP — Egyptian Pound · ERN — Eritrean Nakfa · ETB — Ethiopian Birr · EUR — Euro</p>
+    <p><strong>F</strong> — FJD — Fijian Dollar</p>
+    <p><strong>G</strong> — GBP — British Pound · GEL — Georgian Lari · GHS — Ghanaian Cedi · GMD — Gambian Dalasi · GTQ — Guatemalan Quetzal</p>
+    <p><strong>H</strong> — HKD — Hong Kong Dollar · HNL — Honduran Lempira · HRK — Croatian Kuna · HTG — Haitian Gourde · HUF — Hungarian Forint</p>
+    <p><strong>I</strong> — IDR — Indonesian Rupiah · ILS — Israeli Shekel · INR — Indian Rupee · IQD — Iraqi Dinar · IRR — Iranian Rial · ISK — Icelandic Króna</p>
+    <p><strong>J</strong> — JMD — Jamaican Dollar · JOD — Jordanian Dinar · JPY — Japanese Yen</p>
+    <p><strong>K</strong> — KES — Kenyan Shilling · KGS — Kyrgyzstani Som · KHR — Cambodian Riel · KMF — Comorian Franc · KPW — North Korean Won · KRW — South Korean Won · KWD — Kuwaiti Dinar · KZT — Kazakhstani Tenge</p>
+    <p><strong>L</strong> — LAK — Laotian Kip · LBP — Lebanese Pound · LKR — Sri Lankan Rupee · LYD — Libyan Dinar</p>
+    <p><strong>M</strong> — MAD — Moroccan Dirham · MDL — Moldovan Leu · MKD — Macedonian Denar · MMK — Myanmar Kyat · MNT — Mongolian Tögrög · MRU — Mauritanian Ouguiya · MUR — Mauritian Rupee · MVR — Maldivian Rufiyaa · MWK — Malawian Kwacha · MXN — Mexican Peso · MYR — Malaysian Ringgit · MZN — Mozambican Metical</p>
+    <p><strong>N</strong> — NAD — Namibian Dollar · NGN — Nigerian Naira · NIO — Nicaraguan Córdoba · NOK — Norwegian Krone · NPR — Nepalese Rupee · NZD — New Zealand Dollar</p>
+    <p><strong>O</strong> — OMR — Omani Rial</p>
+    <p><strong>P</strong> — PAB — Panamanian Balboa · PEN — Peruvian Sol · PGK — Papua New Guinean Kina · PHP — Philippine Peso · PKR — Pakistani Rupee · PLN — Polish Złoty · PYG — Paraguayan Guaraní</p>
+    <p><strong>Q</strong> — QAR — Qatari Riyal</p>
+    <p><strong>R</strong> — RON — Romanian Leu · RSD — Serbian Dinar · RUB — Russian Ruble · RWF — Rwandan Franc</p>
+    <p><strong>S</strong> — SAR — Saudi Riyal · SBD — Solomon Islands Dollar · SDG — Sudanese Pound · SEK — Swedish Krona · SGD — Singapore Dollar · SLE — Sierra Leonean Leone · SOS — Somali Shilling · SSP — South Sudanese Pound · SYP — Syrian Pound</p>
+    <p><strong>T</strong> — THB — Thai Baht · TJS — Tajikistani Somoni · TMT — Turkmenistani Manat · TND — Tunisian Dinar · TOP — Tongan Paʻanga · TRY — Turkish Lira · TTD — Trinidad &amp; Tobago Dollar · TWD — New Taiwan Dollar · TZS — Tanzanian Shilling</p>
+    <p><strong>U</strong> — UAH — Ukrainian Hryvnia · UGX — Ugandan Shilling · USD — US Dollar · UYU — Uruguayan Peso · UZS — Uzbekistani Som</p>
+    <p><strong>V</strong> — VES — Venezuelan Bolívar · VND — Vietnamese Dong · VUV — Vanuatu Vatu</p>
+    <p><strong>W</strong> — WST — Samoan Tala</p>
+    <p><strong>X</strong> — XAF — Central African CFA · XCD — East Caribbean Dollar · XOF — West African CFA · XPF — CFP Franc</p>
+    <p><strong>Y</strong> — YER — Yemeni Rial</p>
+    <p><strong>Z</strong> — ZAR — South African Rand · ZMW — Zambian Kwacha · ZWL — Zimbabwean Dollar</p>
+  </details>
+
+  <h3 id="faqTitle">Частые вопросы</h3>
+  <details>
+    <summary>Этот конвертер бесплатный?</summary>
+    <p>Да. Fxverter полностью бесплатен и открыт (лицензия MIT). Без API-ключа, без регистрации, без отслеживания.</p>
+  </details>
+  <details>
+    <summary>Насколько точны курсы?</summary>
+    <p>Это индикативные референс-курсы из бесплатных открытых API (ЕЦБ через Frankfurter, ExchangeRate-API, Fawaz), обновляются ежедневно — отлично для быстрой справки; перед сделками сверяйтесь с банком.</p>
+  </details>
+  <details>
+    <summary>Какие валюты поддерживаются?</summary>
+    <p>141 валюта, включая USD, EUR, GBP, JPY, CNY, TRY, INR и CHF. Доступность зависит от источника — недостающие пары автоматически берутся из другого.</p>
+  </details>
+  <details>
+    <summary>Нужно ли что-то устанавливать или создавать аккаунт?</summary>
+    <p>Нет. Просто откройте сайт в любом современном браузере — на компьютере или телефоне — и конвертируйте сразу. Ничего устанавливать не нужно, аккаунт не требуется.</p>
+  </details>
+  <details>
+    <summary>Какие языки поддерживаются?</summary>
+    <p>29 языков с автоопределением, включая поддержку справа налево для арабского и персидского.</p>
+  </details>
+  <details>
+    <summary>Отслеживаете ли вы мои данные?</summary>
+    <p>Нет. Все конвертации выполняются локально в браузере — без аккаунтов и cookie для отслеживания, только анонимные запросы к открытым API курсов.</p>
+  </details>
+
+  <p class="seo-disclaimer">Дисклеймер: все курсы носят ориентировочный характер и не предназначены для банковских переводов, официальных счетов или бухгалтерии. Перед операциями сверяйтесь с банком. © 2026 Seyyid Kadir · Лицензия MIT.</p>
+  <p class="seo-disclaimer" id="privacyNote">Конфиденциальность: этот сайт не использует файлы cookie и не собирает персональные данные. Для улучшения инструмента могут собираться анонимные статистики посещений без cookie (просмотры страниц и страна).</p>
+</section>
+</main>
+
+<noscript>
+  <p style="max-width:520px;margin-top:1rem;color:#6868a0;font-size:0.75rem;text-align:center;">JavaScript is disabled — the converter needs JavaScript to fetch live exchange rates. The description and FAQ above still apply.</p>
+</noscript>
+
+<div class="footer" id="footerText">Без ключа API · Открытые API · Курсы ориентировочны</div>
+<div class="footer"><a id="supportLink" href="https://fxverter.com/ru/support/">♥ <span id="supportLabel">Поддержать</span></a> · <a id="feedbackLink" href="#" onclick="openFeedback(); return false;"><span id="feedbackLabel">Feedback</span></a></div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// TRANSLATIONS  (29 languages)
+// ═══════════════════════════════════════════════════════
+const UI_STR = window.UI_STR = {"en":{"privacy":"Privacy: this website uses no cookies and collects no personal data. Anonymous, cookie-free visit statistics (page views and country) may be collected to improve the tool.","favLabel":"★ Saved pairs","save":"Save this pair","saved":"Saved","copy":"Copy result","copied":"Copied!","themeAuto":"Theme: auto","themeLight":"Theme: light","themeDark":"Theme: dark","supportLabel":"Support","supportTitle":"Support Fxverter","share":"Share","shared":"Link copied!","feedback":"Feedback","fbPlaceholder":"Your message…","fbSend":"Send feedback","fbOk":"✓ Feedback sent — thank you!","fbEmpty":"Please write a message first.","fbFail":"Sending failed — please try again or email us directly.","curLink":"Browse all currencies","guideLink":"Exchange-rate guides","install":"Install app"},"tr":{"privacy":"Gizlilik: bu web sitesi çerez kullanmaz ve kişisel veri toplamaz. Aracı geliştirmek için anonim, çerezsiz ziyaret istatistikleri (sayfa görüntüleme ve ülke) toplanabilir.","favLabel":"★ Kayıtlı çiftler","save":"Bu çifti kaydet","saved":"Kaydedildi","copy":"Sonucu kopyala","copied":"Kopyalandı!","themeAuto":"Tema: otomatik","themeLight":"Tema: açık","themeDark":"Tema: koyu","supportLabel":"Destek","supportTitle":"Fxverter'i destekle","share":"Paylaş","shared":"Bağlantı kopyalandı!","feedback":"Geri bildirim","fbPlaceholder":"Mesajınız…","fbSend":"Geri bildirim gönder","fbOk":"✓ Geri bildirim gönderildi — teşekkürler!","fbEmpty":"Lütfen önce bir mesaj yazın.","fbFail":"Gönderilemedi — lütfen tekrar deneyin veya doğrudan e-posta gönderin.","curLink":"Tüm para birimlerine göz at","guideLink":"Döviz kuru rehberleri","install":"Uygulamayı yükle"},"de":{"privacy":"Datenschutz: Diese Website verwendet keine Cookies und erhebt keine personenbezogenen Daten. Zur Verbesserung des Tools können anonyme, cookiefreie Besuchsstatistiken (Seitenaufrufe und Land) erhoben werden.","favLabel":"★ Gespeicherte Paare","save":"Dieses Paar speichern","saved":"Gespeichert","copy":"Ergebnis kopieren","copied":"Kopiert!","themeAuto":"Design: automatisch","themeLight":"Design: hell","themeDark":"Design: dunkel","supportLabel":"Unterstützen","supportTitle":"Fxverter unterstützen","share":"Teilen","shared":"Link kopiert!","feedback":"Feedback","fbPlaceholder":"Ihre Nachricht…","fbSend":"Feedback senden","fbOk":"✓ Feedback gesendet — vielen Dank!","fbEmpty":"Bitte zuerst eine Nachricht schreiben.","fbFail":"Senden fehlgeschlagen — bitte erneut versuchen oder direkt eine E-Mail schreiben.","curLink":"Alle Währungen ansehen","guideLink":"Wechselkurs-Ratgeber","install":"App installieren"},"fr":{"privacy":"Confidentialité : ce site n'utilise aucun cookie et ne collecte aucune donnée personnelle. Des statistiques de visite anonymes, sans cookie (pages vues et pays), peuvent être collectées pour améliorer l'outil.","favLabel":"★ Paires enregistrées","save":"Enregistrer cette paire","saved":"Enregistré","copy":"Copier le résultat","copied":"Copié !","themeAuto":"Thème : auto","themeLight":"Thème : clair","themeDark":"Thème : sombre","supportLabel":"Soutenir","supportTitle":"Soutenir Fxverter","share":"Partager","shared":"Lien copié !","feedback":"Commentaires","fbPlaceholder":"Votre message…","fbSend":"Envoyer le commentaire","fbOk":"✓ Commentaire envoyé — merci !","fbEmpty":"Veuillez d'abord écrire un message.","fbFail":"Échec de l'envoi — réessayez ou écrivez-nous directement.","curLink":"Parcourir toutes les devises","guideLink":"Guides sur les taux de change","install":"Installer l'application"},"es":{"privacy":"Privacidad: este sitio web no usa cookies ni recoge datos personales. Para mejorar la herramienta pueden recogerse estadísticas de visita anónimas y sin cookies (páginas vistas y país).","favLabel":"★ Pares guardados","save":"Guardar este par","saved":"Guardado","copy":"Copiar resultado","copied":"¡Copiado!","themeAuto":"Tema: automático","themeLight":"Tema: claro","themeDark":"Tema: oscuro","supportLabel":"Apoyar","supportTitle":"Apoyar a Fxverter","share":"Compartir","shared":"¡Enlace copiado!","feedback":"Comentarios","fbPlaceholder":"Tu mensaje…","fbSend":"Enviar comentarios","fbOk":"✓ Comentarios enviados — ¡gracias!","fbEmpty":"Escribe un mensaje primero.","fbFail":"Error al enviar — inténtalo de nuevo o escríbenos por correo.","curLink":"Ver todas las divisas","guideLink":"Guías de tipos de cambio","install":"Instalar aplicación"},"pt":{"privacy":"Privacidade: este site não usa cookies e não coleta dados pessoais. Estatísticas de visita anônimas, sem cookies (visualizações de página e país), podem ser coletadas para melhorar a ferramenta.","favLabel":"★ Pares salvos","save":"Salvar este par","saved":"Salvo","copy":"Copiar resultado","copied":"Copiado!","themeAuto":"Tema: automático","themeLight":"Tema: claro","themeDark":"Tema: escuro","supportLabel":"Apoiar","supportTitle":"Apoiar o Fxverter","share":"Compartilhar","shared":"Link copiado!","feedback":"Feedback","fbPlaceholder":"Sua mensagem…","fbSend":"Enviar feedback","fbOk":"✓ Feedback enviado — obrigado!","fbEmpty":"Escreva uma mensagem primeiro.","fbFail":"Falha no envio — tente novamente ou envie um e-mail diretamente.","curLink":"Ver todas as moedas","guideLink":"Guias de câmbio","install":"Instalar aplicativo"},"ru":{"privacy":"Конфиденциальность: этот сайт не использует файлы cookie и не собирает персональные данные. Для улучшения инструмента могут собираться анонимные статистики посещений без cookie (просмотры страниц и страна).","favLabel":"★ Сохранённые пары","save":"Сохранить эту пару","saved":"Сохранено","copy":"Копировать результат","copied":"Скопировано!","themeAuto":"Тема: авто","themeLight":"Тема: светлая","themeDark":"Тема: тёмная","supportLabel":"Поддержать","supportTitle":"Поддержать Fxverter","share":"Поделиться","shared":"Ссылка скопирована!","feedback":"Обратная связь","fbPlaceholder":"Ваше сообщение…","fbSend":"Отправить отзыв","fbOk":"✓ Отзыв отправлен — спасибо!","fbEmpty":"Сначала напишите сообщение.","fbFail":"Не удалось отправить — попробуйте ещё раз или напишите напрямую.","curLink":"Все валюты","guideLink":"Руководства по курсам","install":"Установить приложение"},"zh":{"privacy":"隐私：本网站不使用 Cookie、不收集个人数据。仅可能收集匿名的无 Cookie 访问统计（页面浏览量与国家/地区），用于改进工具。","favLabel":"★ 已收藏币种对","save":"收藏此币种对","saved":"已收藏","copy":"复制结果","copied":"已复制！","themeAuto":"主题：跟随系统","themeLight":"主题：浅色","themeDark":"主题：深色","supportLabel":"支持","supportTitle":"支持 Fxverter","share":"分享","shared":"链接已复制！","feedback":"意见反馈","fbPlaceholder":"写下你的反馈…","fbSend":"发送反馈","fbOk":"✓ 反馈已发送——感谢！","fbEmpty":"请先写下反馈内容。","fbFail":"发送失败——请重试或直接发邮件给我们。","curLink":"浏览全部币种","guideLink":"汇率指南","install":"安装应用"},"ja":{"privacy":"プライバシー：当サイトはクッキーを使用せず、個人データを収集しません。ツール改善のため、クッキーなしの匿名アクセス統計（ページビューと国）を収集する場合があります。","favLabel":"★ 保存した通貨ペア","save":"このペアを保存","saved":"保存しました","copy":"結果をコピー","copied":"コピーしました！","themeAuto":"テーマ：自動","themeLight":"テーマ：ライト","themeDark":"テーマ：ダーク","supportLabel":"支援する","supportTitle":"Fxverterを支援する","share":"共有","shared":"リンクをコピーしました！","feedback":"フィードバック","fbPlaceholder":"メッセージを入力…","fbSend":"フィードバックを送信","fbOk":"✓ フィードバックを送信しました — ありがとうございます！","fbEmpty":"先にメッセージを入力してください。","fbFail":"送信に失敗しました — 再試行するか、直接メールでお問い合わせください。","curLink":"すべての通貨を見る","guideLink":"為替レートガイド","install":"アプリをインストール"},"ko":{"privacy":"개인정보: 이 웹사이트는 쿠키를 사용하지 않으며 개인 데이터를 수집하지 않습니다. 도구 개선을 위해 익명의 쿠키 없는 방문 통계(페이지뷰 및 국가)가 수집될 수 있습니다.","favLabel":"★ 저장된 통화 쌍","save":"이 쌍 저장","saved":"저장됨","copy":"결과 복사","copied":"복사됨!","themeAuto":"테마: 자동","themeLight":"테마: 밝게","themeDark":"테마: 어둡게","supportLabel":"支持","supportTitle":"Fxverter 지원하기","share":"공유","shared":"링크 복사됨!","feedback":"피드백","fbPlaceholder":"메시지를 입력…","fbSend":"피드백 보내기","fbOk":"✓ 피드백이 전송되었습니다 — 감사합니다!","fbEmpty":"먼저 메시지를 입력하세요.","fbFail":"전송에 실패했습니다 — 다시 시도하거나 직접 이메일을 보내주세요.","curLink":"모든 통화 보기","guideLink":"환율 가이드","install":"앱 설치"},"ar":{"privacy":"الخصوصية: لا يستخدم هذا الموقع ملفات تعريف الارتباط ولا يجمع بيانات شخصية. قد تُجمع إحصاءات زيارة مجهولة بدون كوكيز (مشاهدات الصفحة والبلد) لتحسين الأداة.","favLabel":"★ الأزواج المحفوظة","save":"احفظ هذا الزوج","saved":"محفوظ","copy":"نسخ النتيجة","copied":"تم النسخ!","themeAuto":"المظهر: تلقائي","themeLight":"المظهر: فاتح","themeDark":"المظهر: داكن","supportLabel":"ادعم","supportTitle":"ادعم Fxverter","share":"مشاركة","shared":"تم نسخ الرابط!","feedback":"ملاحظات","fbPlaceholder":"رسالتك…","fbSend":"إرسال الملاحظات","fbOk":"✓ تم إرسال الملاحظات — شكرًا لك!","fbEmpty":"يرجى كتابة رسالة أولاً.","fbFail":"فشل الإرسال — حاول مرة أخرى أو راسلنا مباشرة.","curLink":"تصفح جميع العملات","guideLink":"أدلة أسعار الصرف","install":"تثبيت التطبيق"},"hi":{"privacy":"गोपनीयता: यह वेबसाइट कुकीज़ का उपयोग नहीं करती और कोई व्यक्तिगत डेटा एकत्र नहीं करती। टूल को बेहतर बनाने के लिए गुमनाम, कुकी-मुक्त विज़िट आंकड़े (पेज व्यू और देश) एकत्र किए जा सकते हैं।","favLabel":"★ सहेजे गए जोड़े","save":"यह जोड़ा सहेजें","saved":"सहेजा गया","copy":"परिणाम कॉपी करें","copied":"कॉपी हो गया!","themeAuto":"थीम: स्वतः","themeLight":"थीम: हल्की","themeDark":"थीम: गहरी","supportLabel":"सहयोग करें","supportTitle":"Fxverter का समर्थन करें","share":"साझा करें","shared":"लिंक कॉपी हो गया!","feedback":"प्रतिक्रिया","fbPlaceholder":"आपका संदेश…","fbSend":"प्रतिक्रिया भेजें","fbOk":"✓ प्रतिक्रिया भेजी गई — धन्यवाद!","fbEmpty":"पहले एक संदेश लिखें।","fbFail":"भेजना विफल — फिर से प्रयास करें या सीधे हमें ईमेल करें।","curLink":"सभी मुद्राएँ देखें","guideLink":"विनिमय दर गाइड","install":"ऐप इंस्टॉल करें"},"id":{"privacy":"Privasi: situs ini tidak menggunakan cookie dan tidak mengumpulkan data pribadi. Statistik kunjungan anonim tanpa cookie (jumlah tayangan halaman dan negara) dapat dikumpulkan untuk memperbaiki alat ini.","favLabel":"★ Pasangan tersimpan","save":"Simpan pasangan ini","saved":"Tersimpan","copy":"Salin hasil","copied":"Tersalin!","themeAuto":"Tema: otomatis","themeLight":"Tema: terang","themeDark":"Tema: gelap","supportLabel":"Dukung","supportTitle":"Dukung Fxverter","share":"Bagikan","shared":"Tautan disalin!","feedback":"Umpan balik","fbPlaceholder":"Pesan Anda…","fbSend":"Kirim masukan","fbOk":"✓ Masukan terkirim — terima kasih!","fbEmpty":"Tulis pesan terlebih dahulu.","fbFail":"Gagal mengirim — coba lagi atau kirim email langsung kepada kami.","curLink":"Lihat semua mata uang","guideLink":"Panduan kurs","install":"Instal aplikasi"},"ms":{"privacy":"Privasi: laman web ini tidak menggunakan kuki dan tidak mengumpulkan data peribadi. Statistik lawatan tanpa nama tanpa kuki (paparan halaman dan negara) mungkin dikumpulkan untuk menambah baik alat ini.","favLabel":"★ Pasangan disimpan","save":"Simpan pasangan ini","saved":"Disimpan","copy":"Salin hasil","copied":"Disalin!","themeAuto":"Tema: automatik","themeLight":"Tema: cerah","themeDark":"Tema: gelap","supportLabel":"Sokong","supportTitle":"Sokong Fxverter","share":"Kongsi","shared":"Pautan disalin!","feedback":"Maklum balas","fbPlaceholder":"Mesej anda…","fbSend":"Hantar maklum balas","fbOk":"✓ Maklum balas dihantar — terima kasih!","fbEmpty":"Tulis mesej dahulu.","fbFail":"Hantar gagal — cuba lagi atau emel terus kepada kami.","curLink":"Lihat semua mata wang","guideLink":"Panduan kadar pertukaran","install":"Pasang aplikasi"},"tl":{"privacy":"Privacy: hindi gumagamit ng cookies ang website na ito at hindi nagkokolekta ng personal na data. Maaaring mangolekta ng anonymous, cookie-free na visit statistics (page views at bansa) para pagbutihin ang tool.","favLabel":"★ Na-save na pares","save":"I-save ang pares na ito","saved":"Na-save","copy":"I-copy ang resulta","copied":"Nakopya!","themeAuto":"Tema: auto","themeLight":"Tema: maliwanag","themeDark":"Tema: madilim","supportLabel":"Suportahan","supportTitle":"Suportahan ang Fxverter","share":"I-share","shared":"Nakopya ang link!","feedback":"Feedback","fbPlaceholder":"Ang mensahe mo…","fbSend":"Ipadala ang feedback","fbOk":"✓ Naipadala ang feedback — salamat!","fbEmpty":"Magsulat muna ng mensahe.","fbFail":"Hindi naipadala — subukan mulan o direktang mag-email sa amin.","curLink":"Tingnan ang lahat ng pera","guideLink":"Mga gabay sa exchange rate","install":"I-install ang app"},"it":{"privacy":"Privacy: questo sito non usa cookie e non raccoglie dati personali. Statistiche di visita anonime senza cookie (visualizzazioni di pagina e paese) possono essere raccolte per migliorare lo strumento.","favLabel":"★ Coppie salvate","save":"Salva questa coppia","saved":"Salvata","copy":"Copia risultato","copied":"Copiato!","themeAuto":"Tema: automatico","themeLight":"Tema: chiaro","themeDark":"Tema: scuro","supportLabel":"Supporta","supportTitle":"Sostieni Fxverter","share":"Condividi","shared":"Link copiato!","feedback":"Feedback","fbPlaceholder":"Il tuo messaggio…","fbSend":"Invia feedback","fbOk":"✓ Feedback inviato — grazie!","fbEmpty":"Scrivi prima un messaggio.","fbFail":"Invio non riuscito — riprova o scrivici direttamente.","curLink":"Vedi tutte le valute","guideLink":"Guide sui tassi di cambio","install":"Installa l'app"},"nl":{"privacy":"Privacy: deze website gebruikt geen cookies en verzamelt geen persoonsgegevens. Anonieme, cookievrije bezochtsstatistieken (paginaweergaven en land) kunnen worden verzameld om de tool te verbeteren.","favLabel":"★ Bewaarde paren","save":"Dit paar bewaren","saved":"Bewaard","copy":"Resultaat kopiëren","copied":"Gekopieerd!","themeAuto":"Thema: automatisch","themeLight":"Thema: licht","themeDark":"Thema: donker","supportLabel":"Steun","supportTitle":"Steun Fxverter","share":"Delen","shared":"Link gekopieerd!","feedback":"Feedback","fbPlaceholder":"Uw bericht…","fbSend":"Feedback verzenden","fbOk":"✓ Feedback verzonden — bedankt!","fbEmpty":"Schrijf eerst een bericht.","fbFail":"Verzenden mislukt — probeer het opnieuw of mail ons direct.","curLink":"Alle valuta's bekijken","guideLink":"Wisselkoersgidsen","install":"App installeren"},"pl":{"privacy":"Prywatność: ta strona nie używa plików cookie i nie zbiera danych osobowych. W celu ulepszenia narzędzia mogą być zbierane anonimowe statystyki wizyt bez plików cookie (wyświetlenia stron i kraj).","favLabel":"★ Zapisane pary","save":"Zapisz tę parę","saved":"Zapisano","copy":"Skopiuj wynik","copied":"Skopiowano!","themeAuto":"Motyw: automatycznie","themeLight":"Motyw: jasny","themeDark":"Motyw: ciemny","supportLabel":"Wesprzyj","supportTitle":"Wesprzyj Fxverter","share":"Udostępnij","shared":"Link skopiowano!","feedback":"Opinia","fbPlaceholder":"Twoja wiadomość…","fbSend":"Wyślij opinię","fbOk":"✓ Opinia wysłana — dziękujemy!","fbEmpty":"Najpierw napisz wiadomość.","fbFail":"Wysyłanie nie powiodło się — spróbuj ponownie lub napisz do nas bezpośrednio.","curLink":"Zobacz wszystkie waluty","guideLink":"Poradniki kursów","install":"Zainstaluj aplikację"},"uk":{"privacy":"Приватність: цей сайт не використовує cookie та не збирає персональні дані. Для покращення інструменту можуть збиратися анонімні статистики відвідувань без cookie (перегляди сторінок і країна).","favLabel":"★ Збережені пари","save":"Зберегти цю пару","saved":"Збережено","copy":"Копіювати результат","copied":"Скопійовано!","themeAuto":"Тема: авто","themeLight":"Тема: світла","themeDark":"Тема: темна","supportLabel":"Підтримати","supportTitle":"Підтримати Fxverter","share":"Поділитися","shared":"Посилання скопійовано!","feedback":"Зворотний зв'язок","fbPlaceholder":"Ваше повідомлення…","fbSend":"Надіслати відгук","fbOk":"✓ Відгук надіслано — дякуємо!","fbEmpty":"Спочатку напишіть повідомлення.","fbFail":"Не вдалося надіслати — спробуйте ще раз або напишіть нам напряму.","curLink":"Усі валюти","guideLink":"Посібники з курсів","install":"Встановити застосунок"},"sv":{"privacy":"Integritet: denna webbplats använder inga cookies och samlar inte in personuppgifter. Anonyma besöksstatistik utan cookies (sidvisningar och land) kan samlas in för att förbättra verktyget.","favLabel":"★ Sparade par","save":"Spara detta par","saved":"Sparat","copy":"Kopiera resultat","copied":"Kopierat!","themeAuto":"Tema: automatiskt","themeLight":"Tema: ljust","themeDark":"Tema: mörkt","supportLabel":"Stöd","supportTitle":"Stöd Fxverter","share":"Dela","shared":"Länk kopierad!","feedback":"Feedback","fbPlaceholder":"Ditt meddelande…","fbSend":"Skicka feedback","fbOk":"✓ Feedback skickad — tack!","fbEmpty":"Skriv ett meddelande först.","fbFail":"Kunde inte skicka — försök igen eller mejla oss direkt.","curLink":"Se alla valutor","guideLink":"Växelkursguider","install":"Installera appen"},"th":{"privacy":"ความเป็นส่วนตัว: เว็บไซต์นี้ไม่ใช้คุกกี้และไม่เก็บข้อมูลส่วนบุคคล อาจมีการเก็บสถิติการเข้าชมแบบไม่ระบุตัวตนโดยไม่ใช้คุกกี้ (ยอดเข้าชมหน้าเว็บและประเทศ) เพื่อปรับปรุงเครื่องมือ","favLabel":"★ คู่ที่บันทึกไว้","save":"บันทึกคู่นี้","saved":"บันทึกแล้ว","copy":"คัดลอกผลลัพธ์","copied":"คัดลอกแล้ว!","themeAuto":"ธีม: อัตโนมัติ","themeLight":"ธีม: สว่าง","themeDark":"ธีม: มืด","supportLabel":"สนับสนุน","supportTitle":"สนับสนุน Fxverter","share":"แชร์","shared":"คัดลอกลิงก์แล้ว!","feedback":"ส่งความคิดเห็น","fbPlaceholder":"ข้อความของคุณ…","fbSend":"ส่งความคิดเห็น","fbOk":"✓ ส่งความคิดเห็นแล้ว — ขอบคุณ!","fbEmpty":"กรุณาเขียนข้อความก่อน","fbFail":"ส่งไม่สำเร็จ — ลองอีกครั้งหรือส่งอีเมลถึงเราโดยตรง","curLink":"ดูสกุลเงินทั้งหมด","guideLink":"คู่มืออัตราแลกเปลี่ยน","install":"ติดตั้งแอป"},"lo":{"privacy":"ຄວາມເປັນສ່ວນຕົວ: ເວັບໄຊນ໌ນີ້ບໍ່ໃຊ້ຄຸກກີ ແລະ ບໍ່ເກັບຂໍ້ມູນສ່ວນຕົວ. ອາດເກັບສະຖິตິກການເຂົ້າຊົມແບບນິລະນາມ ໂດຍບໍ່ໃຊ້ຄຸກກີ (ຈຳນວນເຂົ້າຊົມ ແລະ ປະເທດ) ເພື່ອປັບປຸງເຄື່ອງມື.","favLabel":"★ ຄູ່ທີ່ບັນທຶກໄວ້","save":"ບັນທຶກຄູ່ນີ້","saved":"ບັນທຶກແລ້ວ","copy":"ສຳເນົາຜົນການ","copied":"ສຳເນົາແລ້ວ!","themeAuto":"ຮູບແບບ: ອັດຕະໂນມັດ","themeLight":"ຮູບແບບ: ສະຫວ່າງ","themeDark":"ຮູບແບບ: ມືດ","supportLabel":"ສະໜັບສະໜູນ","supportTitle":"ສະໜັບສະໜູນ Fxverter","share":"ແບ່ງປັນ","shared":"ສຳເນົາລິ້ງແລ້ວ!","feedback":"ຄຳຄິດເຫັນ","fbPlaceholder":"ຂໍ້ຄວາມຂອງເຈົ້າ…","fbSend":"ສົ່ງຄຳຄິດເຫັນ","fbOk":"✓ ສົ່ງຄຳຄິດເຫັນແລ້ວ — ຂອບໃຈ!","fbEmpty":"ກະລຸນາຂຽນຂໍ້ຄວາມກ່ອນ.","fbFail":"ສົ່ງບໍ່ສຳເລັດ — ລອງໃໝ່ ຫຼື ສົ່ງອີເມວມາຫາເຮົາໂດຍກົງ.","curLink":"ເບິ່ງສະກຸນເງິນທັງໝົດ","guideLink":"ຄູ່ມືອັດຕາແລກປ່ຽນ","install":"ຕິດຕັ້ງແອັບ"},"vi":{"privacy":"Quyền riêng tư: trang web này không sử dụng cookie và không thu thập dữ liệu cá nhân. Thống kê truy cập ẩn danh, không cookie (lượt xem trang và quốc gia) có thể được thu thập để cải thiện công cụ.","favLabel":"★ Cặp đã lưu","save":"Lưu cặp này","saved":"Đã lưu","copy":"Sao chép kết quả","copied":"Đã sao chép!","themeAuto":"Chủ đề: tự động","themeLight":"Chủ đề: sáng","themeDark":"Chủ đề: tối","supportLabel":"Ủng hộ","supportTitle":"Ủng hộ Fxverter","share":"Chia sẻ","shared":"Đã sao chép liên kết!","feedback":"Phản hồi","fbPlaceholder":"Tin nhắn của bạn…","fbSend":"Gửi phản hồi","fbOk":"✓ Đã gửi phản hồi — cảm ơn bạn!","fbEmpty":"Vui lòng viết tin nhắn trước.","fbFail":"Gửi thất bại — thử lại hoặc gửi email trực tiếp cho chúng tôi.","curLink":"Xem tất cả tiền tệ","guideLink":"Cẩm nang tỷ giá","install":"Cài đặt ứng dụng"},"el":{"privacy":"Απορρήτου: αυτός ο ιστότοπος δεν χρησιμοποιεί cookie και δεν συλλέγει προσωπικά δεδομένα. Ανώνυμα στατιστικά επισκεψιμότητας χωρίς cookie (εμφανίσεις σελίδας και χώρα) ενδέχεται να συλλέγονται για τη βελτίωση του εργαλείου.","favLabel":"★ Αποθηκευμένα ζεύγη","save":"Αποθήκευση ζεύγους","saved":"Αποθηκεύτηκε","copy":"Αντιγραφή αποτελέσματος","copied":"Αντιγράφηκε!","themeAuto":"Θέμα: αυτόματο","themeLight":"Θέμα: φωτεινό","themeDark":"Θέμα: σκούρο","supportLabel":"Υποστήριξη","supportTitle":"Υποστηρίξτε το Fxverter","share":"Κοινοποίηση","shared":"Ο σύνδεσμος αντιγράφηκε!","feedback":"Σχόλια","fbPlaceholder":"Το μήνυμά σας…","fbSend":"Αποστολή σχολίων","fbOk":"✓ Τα σχόλια στάλθηκαν — ευχαριστούμε!","fbEmpty":"Γράψτε πρώτα ένα μήνυμα.","fbFail":"Η αποστολή απέτυχε — δοκιμάστε ξανά ή στείλτε μας email.","curLink":"Όλα τα νομίσματα","guideLink":"Οδηγοί ισοτιμιών","install":"Εγκατάσταση εφαρμογής"},"bn":{"privacy":"গোপনীয়তা: এই ওয়েবসাইট কুকি ব্যবহার করে না এবং কোনো ব্যক্তিগত তথ্য সংগ্রহ করে না। টুল উন্নত করতে নাম-গোপন কুকি-মুক্ত ভিজিট পরিসংখ্যান (পেজ ভিউ ও দেশ) সংগ্রহ করা হতে পারে।","favLabel":"★ সংরক্ষিত জোড়া","save":"এই জোড়া সংরক্ষণ","saved":"সংরক্ষিত","copy":"ফলাফল কপি","copied":"কপি হয়েছে!","themeAuto":"থিম: স্বয়ংক্রিয়","themeLight":"থিম: হালকা","themeDark":"থিম: গাঢ়","supportLabel":"সমর্থন","supportTitle":"Fxverter-কে সমর্থন করুন","share":"শেয়ার","shared":"লিংক কপি হয়েছে!","feedback":"মতামত","fbPlaceholder":"আপনার বার্তা…","fbSend":"মতামত পাঠান","fbOk":"✓ মতামত পাঠানো হয়েছে — ধন্যবাদ!","fbEmpty":"প্রথমে একটি বার্তা লিখুন।","fbFail":"পাঠানো ব্যর্থ — আবার চেষ্টা করুন বা সরাসরি ইমেইল করুন।","curLink":"সব মুদ্রা দেখুন","guideLink":"বিনিময় হার গাইড","install":"অ্যাপ ইনস্টল করুন"},"fa":{"privacy":"حریم خصوصی: این وب‌سایت از کوکی استفاده نمی‌کند و داده‌های شخصی جمع نمی‌کند. برای بهبود ابزار ممکن است آمار بازدید ناشناس و بدون کوکی (بازدید صفحه و کشور) جمع‌آوری شود.","favLabel":"★ جفت‌های ذخیره‌شده","save":"ذخیره این جفت","saved":"ذخیره شد","copy":"کپی نتیجه","copied":"کپی شد!","themeAuto":"پوسته: خودکار","themeLight":"پوسته: روشن","themeDark":"پوسته: تاریک","supportLabel":"حمایت","supportTitle":"حمایت از Fxverter","share":"اشتراک‌گذاری","shared":"لینک کپی شد!","feedback":"بازخورد","fbPlaceholder":"پیام شما…","fbSend":"ارسال بازخورد","fbOk":"✓ بازخورد ارسال شد — متشکرم!","fbEmpty":"لطفاً ابتدا پیامی بنویسید.","fbFail":"ارسال ناموفق بود — دوباره تلاش کنید یا مستقیماً ایمیل بزنید.","curLink":"همه ارزها","guideLink":"راهنمای نرخ ارز","install":"نصب برنامه"},"cs":{"privacy":"Soukromí: tento web nepoužívá soubory cookie a nesbírá osobní údaje. Anonymní statistiky návštěv bez cookies (zobrazené stránky a země) mohou být sbírány ke zlepšení nástroje.","favLabel":"★ Uložené páry","save":"Uložit tento pár","saved":"Uloženo","copy":"Zkopírovat výsledek","copied":"Zkopírováno!","themeAuto":"Motiv: automaticky","themeLight":"Motiv: světlý","themeDark":"Motiv: tmavý","supportLabel":"Podpořit","supportTitle":"Podpořte Fxverter","share":"Sdílet","shared":"Odkaz zkopírován!","feedback":"Zpětná vazba","fbPlaceholder":"Vaše zpráva…","fbSend":"Odeslat zpětnou vazbu","fbOk":"✓ Zpětná vazba odeslána — děkujeme!","fbEmpty":"Nejprve napište zprávu.","fbFail":"Odeslání selhalo — zkuste to znovu nebo nám napište přímo.","curLink":"Všechny měny","guideLink":"Průvodci kurzy","install":"Nainstalovat aplikaci"},"ro":{"privacy":"Confidențialitate: acest site nu folosește cookie-uri și nu colectează date personale. Statistici de vizită anonime, fără cookie-uri (vizualizări de pagină și țară), pot fi colectate pentru a îmbunătăți instrumentul.","favLabel":"★ Perechi salvate","save":"Salvează această pereche","saved":"Salvat","copy":"Copiază rezultatul","copied":"Copiat!","themeAuto":"Temă: automat","themeLight":"Temă: deschis","themeDark":"Temă: întunecat","supportLabel":"Susține","supportTitle":"Susține Fxverter","share":"Partajează","shared":"Link copiat!","feedback":"Feedback","fbPlaceholder":"Mesajul tău…","fbSend":"Trimite feedback","fbOk":"✓ Feedback trimis — mulțumim!","fbEmpty":"Scrie mai întâi un mesaj.","fbFail":"Trimiterea a eșuat — încearcă din nou sau scrie-ne direct.","curLink":"Toate valutele","guideLink":"Ghiduri de curs valutar","install":"Instalează aplicația"},"da":{"privacy":"Privatliv: denne hjemmeside bruger ikke cookies og indsamler ikke persondata. Anonyme, cookiefri besøgsstatistikker (sidevisninger og land) kan indsamles for at forbedre værktøjet.","favLabel":"★ Gemte par","save":"Gem dette par","saved":"Gemt","copy":"Kopiér resultat","copied":"Kopieret!","themeAuto":"Tema: automatisk","themeLight":"Tema: lys","themeDark":"Tema: mørk","supportLabel":"Støt","supportTitle":"Støt Fxverter","share":"Del","shared":"Link kopieret!","feedback":"Feedback","fbPlaceholder":"Din besked…","fbSend":"Send feedback","fbOk":"✓ Feedback sendt — tak!","fbEmpty":"Skriv først en besked.","fbFail":"Kunne ikke sende — prøv igen eller skriv direkte til os.","curLink":"Se alle valutaer","guideLink":"Vekselkursguider","install":"Installér appen"}};
+const LANGS = {
+  en:{name:'EN',dir:'ltr',appTitle:'Currency Converter',appSub:'Real-time · No API key',liveBadge:'LIVE',labelApiSource:'Data Source',labelAmount:'Amount',labelFrom:'From',labelTo:'To',btnText:'CONVERT',resultLabel:'Result',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'No API key · Open source APIs · Rates are indicative',statusFetching:'Fetching rates…',statusOk:(src,n)=>`${src} · ${n} currencies`,statusErr:'Failed to fetch',lastUpdate:'Updated',errGeneric:'Could not fetch rates.',errSuggestion:(cur)=>`This API may not support ${cur} or is temporarily unavailable. Try switching to another data source — <strong>Frankfurter</strong> is usually the most reliable.`,fsLabel:'Font Size'},
+  tr:{name:'TR',dir:'ltr',appTitle:'Döviz Çevirici',appSub:'Anlık · API anahtarı yok',liveBadge:'CANLI',labelApiSource:'Veri Kaynağı',labelAmount:'Miktar',labelFrom:'Kaynak',labelTo:'Hedef',btnText:'ÇEVİR',resultLabel:'Sonuç',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'API anahtarı yok · Açık kaynak · Kurlar tahminidir',statusFetching:'Kurlar alınıyor…',statusOk:(src,n)=>`${src} · ${n} para birimi`,statusErr:'Bağlantı başarısız',lastUpdate:'Güncellendi',errGeneric:'Kurlar alınamadı.',errSuggestion:(cur)=>`Bu API ${cur} birimini desteklemiyor olabilir veya geçici olarak erişilemiyor. Farklı bir veri kaynağı deneyin — genellikle en kararlı seçenek <strong>Frankfurter</strong>'dır.`,fsLabel:'Yazı Boyutu'},
+  de:{name:'DE',dir:'ltr',appTitle:'Währungsrechner',appSub:'Echtzeit · Kein API-Schlüssel',liveBadge:'LIVE',labelApiSource:'Datenquelle',labelAmount:'Betrag',labelFrom:'Von',labelTo:'Nach',btnText:'UMRECHNEN',resultLabel:'Ergebnis',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Kein API-Schlüssel · Open-Source-APIs · Kurse sind indikativ',statusFetching:'Kurse werden abgerufen…',statusOk:(src,n)=>`${src} · ${n} Währungen`,statusErr:'Abruf fehlgeschlagen',lastUpdate:'Aktualisiert',errGeneric:'Kurse konnten nicht abgerufen werden.',errSuggestion:(cur)=>`Diese API unterstützt möglicherweise ${cur} nicht. Versuchen Sie eine andere Quelle — <strong>Frankfurter</strong> ist meistens am zuverlässigsten.`,fsLabel:'Schriftgröße'},
+  fr:{name:'FR',dir:'ltr',appTitle:'Convertisseur',appSub:'Temps réel · Sans clé API',liveBadge:'EN DIRECT',labelApiSource:'Source de données',labelAmount:'Montant',labelFrom:'De',labelTo:'Vers',btnText:'CONVERTIR',resultLabel:'Résultat',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Sans clé API · APIs open source · Taux indicatifs',statusFetching:'Récupération des taux…',statusOk:(src,n)=>`${src} · ${n} devises`,statusErr:'Échec de la connexion',lastUpdate:'Mis à jour',errGeneric:'Impossible de récupérer les taux.',errSuggestion:(cur)=>`Cette API ne prend peut-être pas en charge ${cur}. Essayez une autre source — <strong>Frankfurter</strong> est généralement la plus fiable.`,fsLabel:'Taille de police'},
+  es:{name:'ES',dir:'ltr',appTitle:'Conversor de Divisas',appSub:'Tiempo real · Sin clave API',liveBadge:'EN VIVO',labelApiSource:'Fuente de datos',labelAmount:'Cantidad',labelFrom:'De',labelTo:'A',btnText:'CONVERTIR',resultLabel:'Resultado',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Sin clave API · APIs abiertas · Tipos indicativos',statusFetching:'Obteniendo tipos…',statusOk:(src,n)=>`${src} · ${n} divisas`,statusErr:'Error de conexión',lastUpdate:'Actualizado',errGeneric:'No se pudieron obtener los tipos.',errSuggestion:(cur)=>`Esta API puede no admitir ${cur}. Pruebe otra fuente — <strong>Frankfurter</strong> suele ser la más fiable.`,fsLabel:'Tamaño de fuente'},
+  pt:{name:'PT',dir:'ltr',appTitle:'Conversor de Moeda',appSub:'Tempo real · Sem chave API',liveBadge:'AO VIVO',labelApiSource:'Fonte de dados',labelAmount:'Valor',labelFrom:'De',labelTo:'Para',btnText:'CONVERTER',resultLabel:'Resultado',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Sem chave API · APIs abertas · Taxas indicativas',statusFetching:'Buscando taxas…',statusOk:(src,n)=>`${src} · ${n} moedas`,statusErr:'Falha na conexão',lastUpdate:'Atualizado',errGeneric:'Não foi possível obter as taxas.',errSuggestion:(cur)=>`Esta API pode não suportar ${cur}. Tente outra fonte — <strong>Frankfurter</strong> costuma ser a mais confiável.`,fsLabel:'Tamanho da fonte'},
+  ru:{name:'RU',dir:'ltr',appTitle:'Конвертер валют',appSub:'В реальном времени · Без ключа',liveBadge:'LIVE',labelApiSource:'Источник данных',labelAmount:'Сумма',labelFrom:'Из',labelTo:'В',btnText:'КОНВЕРТИРОВАТЬ',resultLabel:'Результат',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Без ключа API · Открытые API · Курсы ориентировочны',statusFetching:'Загрузка курсов…',statusOk:(src,n)=>`${src} · ${n} валют`,statusErr:'Ошибка подключения',lastUpdate:'Обновлено',errGeneric:'Не удалось получить курсы.',errSuggestion:(cur)=>`Этот API может не поддерживать ${cur}. Попробуйте другой источник — <strong>Frankfurter</strong> обычно самый надёжный.`,fsLabel:'Размер шрифта'},
+  zh:{name:'ZH',dir:'ltr',appTitle:'货币换算器',appSub:'实时 · 无需API密钥',liveBadge:'实时',labelApiSource:'数据来源',labelAmount:'金额',labelFrom:'从',labelTo:'到',btnText:'换算',resultLabel:'结果',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'无需API密钥 · 开源API · 汇率仅供参考',statusFetching:'正在获取汇率…',statusOk:(src,n)=>`${src} · ${n}种货币`,statusErr:'连接失败',lastUpdate:'更新于',errGeneric:'无法获取汇率。',errSuggestion:(cur)=>`此API可能不支持${cur}。请尝试其他数据源——<strong>Frankfurter</strong>通常最为稳定。`,fsLabel:'字体大小'},
+  ja:{name:'JA',dir:'ltr',appTitle:'通貨コンバーター',appSub:'リアルタイム · APIキー不要',liveBadge:'ライブ',labelApiSource:'データソース',labelAmount:'金額',labelFrom:'変換元',labelTo:'変換先',btnText:'変換する',resultLabel:'結果',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'APIキー不要 · オープンソースAPI · レートは参考値',statusFetching:'レートを取得中…',statusOk:(src,n)=>`${src} · ${n}通貨`,statusErr:'接続に失敗',lastUpdate:'更新',errGeneric:'レートを取得できませんでした。',errSuggestion:(cur)=>`このAPIは${cur}をサポートしていない可能性があります。別のソースをお試しください。<strong>Frankfurter</strong>が通常最も安定しています。`,fsLabel:'フォントサイズ'},
+  ko:{name:'KO',dir:'ltr',appTitle:'환율 계산기',appSub:'실시간 · API 키 불필요',liveBadge:'실시간',labelApiSource:'데이터 소스',labelAmount:'금액',labelFrom:'기준 통화',labelTo:'환산 통화',btnText:'환산하기',resultLabel:'결과',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'API 키 불필요 · 오픈소스 API · 환율은 참고용',statusFetching:'환율 조회 중…',statusOk:(src,n)=>`${src} · ${n}개 통화`,statusErr:'연결 실패',lastUpdate:'업데이트됨',errGeneric:'환율을 가져오지 못했습니다.',errSuggestion:(cur)=>`이 API는 ${cur}을(를) 지원하지 않을 수 있습니다. 다른 소스를 사용해보세요. <strong>Frankfurter</strong>가 가장 안정적입니다.`,fsLabel:'글꼴 크기'},
+  ar:{name:'AR',dir:'rtl',appTitle:'محول العملات',appSub:'فوري · بدون مفتاح API',liveBadge:'مباشر',labelApiSource:'مصدر البيانات',labelAmount:'المبلغ',labelFrom:'من',labelTo:'إلى',btnText:'تحويل',resultLabel:'النتيجة',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'بدون مفتاح API · واجهات مفتوحة · الأسعار استرشادية',statusFetching:'جارٍ جلب الأسعار…',statusOk:(src,n)=>`${src} · ${n} عملة`,statusErr:'فشل الاتصال',lastUpdate:'تم التحديث',errGeneric:'تعذّر الحصول على الأسعار.',errSuggestion:(cur)=>`قد لا تدعم هذه الواجهة ${cur}. جرّب مصدرًا آخر — <strong>Frankfurter</strong> هو الأكثر موثوقية عادةً.`,fsLabel:'حجم الخط'},
+  hi:{name:'HI',dir:'ltr',appTitle:'मुद्रा परिवर्तक',appSub:'रियल-टाइम · API कुंजी नहीं',liveBadge:'लाइव',labelApiSource:'डेटा स्रोत',labelAmount:'राशि',labelFrom:'से',labelTo:'तक',btnText:'बदलें',resultLabel:'परिणाम',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'API कुंजी नहीं · खुले स्रोत API · दरें सांकेतिक',statusFetching:'दरें प्राप्त हो रही हैं…',statusOk:(src,n)=>`${src} · ${n} मुद्राएं`,statusErr:'कनेक्शन विफल',lastUpdate:'अपडेट किया',errGeneric:'दरें प्राप्त नहीं हो सकीं।',errSuggestion:(cur)=>`यह API ${cur} का समर्थन नहीं कर सकता। दूसरा स्रोत आज़माएं — <strong>Frankfurter</strong> सबसे विश्वसनीय है।`,fsLabel:'फ़ॉन्ट आकार'},
+  id:{name:'ID',dir:'ltr',appTitle:'Konverter Mata Uang',appSub:'Real-time · Tanpa kunci API',liveBadge:'LANGSUNG',labelApiSource:'Sumber Data',labelAmount:'Jumlah',labelFrom:'Dari',labelTo:'Ke',btnText:'KONVERSI',resultLabel:'Hasil',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Tanpa kunci API · API terbuka · Kurs bersifat indikatif',statusFetching:'Mengambil kurs…',statusOk:(src,n)=>`${src} · ${n} mata uang`,statusErr:'Koneksi gagal',lastUpdate:'Diperbarui',errGeneric:'Kurs tidak dapat diambil.',errSuggestion:(cur)=>`API ini mungkin tidak mendukung ${cur}. Coba sumber lain — <strong>Frankfurter</strong> biasanya paling andal.`,fsLabel:'Ukuran Font'},
+  ms:{name:'MS',dir:'ltr',appTitle:'Penukar Mata Wang',appSub:'Masa nyata · Tanpa kunci API',liveBadge:'LANGSUNG',labelApiSource:'Sumber Data',labelAmount:'Jumlah',labelFrom:'Dari',labelTo:'Kepada',btnText:'TUKAR',resultLabel:'Keputusan',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Tanpa kunci API · API sumber terbuka · Kadar hanya indikatif',statusFetching:'Sedang mendapatkan kadar…',statusOk:(src,n)=>`${src} · ${n} mata wang`,statusErr:'Sambungan gagal',lastUpdate:'Dikemas kini',errGeneric:'Tidak dapat mendapatkan kadar.',errSuggestion:(cur)=>`API ini mungkin tidak menyokong ${cur} atau tiada buat sementara waktu. Cuba sumber data lain — <strong>Frankfurter</strong> biasanya paling boleh dipercayai.`,fsLabel:'Saiz Fon'},
+  tl:{name:'TL',dir:'ltr',appTitle:'Tagapagpalit ng Pera',appSub:'Real-time · Walang API key',liveBadge:'LIVE',labelApiSource:'Pinagmulan ng Data',labelAmount:'Halaga',labelFrom:'Mula sa',labelTo:'Patungo sa',btnText:'I-CONVERT',resultLabel:'Resulta',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Walang API key · Mga open-source API · Mga rate ay sanggunian lamang',statusFetching:'Kinukuha ang mga rate…',statusOk:(src,n)=>`${src} · ${n} na pera`,statusErr:'Nabigo ang koneksyon',lastUpdate:'Na-update',errGeneric:'Hindi makakuha ng mga rate.',errSuggestion:(cur)=>`Posibleng hindi suportado ng API na ito ang ${cur} o pansamantalang hindi available. Sumubok ng ibang pinagmulan ng data — karaniwang pinaka-maaasahan ang <strong>Frankfurter</strong>.`,fsLabel:'Laki ng Font'},
+  it:{name:'IT',dir:'ltr',appTitle:'Convertitore Valute',appSub:'Tempo reale · Nessuna chiave API',liveBadge:'LIVE',labelApiSource:'Fonte dati',labelAmount:'Importo',labelFrom:'Da',labelTo:'A',btnText:'CONVERTI',resultLabel:'Risultato',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Nessuna chiave API · API aperte · Tassi indicativi',statusFetching:'Recupero tassi…',statusOk:(src,n)=>`${src} · ${n} valute`,statusErr:'Connessione fallita',lastUpdate:'Aggiornato',errGeneric:'Impossibile recuperare i tassi.',errSuggestion:(cur)=>`Questa API potrebbe non supportare ${cur}. Prova un\'altra fonte — <strong>Frankfurter</strong> è solitamente la più affidabile.`,fsLabel:'Dimensione font'},
+  nl:{name:'NL',dir:'ltr',appTitle:'Valutaomrekener',appSub:'Realtime · Geen API-sleutel',liveBadge:'LIVE',labelApiSource:'Gegevensbron',labelAmount:'Bedrag',labelFrom:'Van',labelTo:'Naar',btnText:'OMREKENEN',resultLabel:'Resultaat',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Geen API-sleutel · Open API\'s · Koersen zijn indicatief',statusFetching:'Koersen ophalen…',statusOk:(src,n)=>`${src} · ${n} valuta's`,statusErr:'Verbinding mislukt',lastUpdate:'Bijgewerkt',errGeneric:'Koersen konden niet worden opgehaald.',errSuggestion:(cur)=>`Deze API ondersteunt ${cur} mogelijk niet. Probeer een andere bron — <strong>Frankfurter</strong> is doorgaans het meest betrouwbaar.`,fsLabel:'Lettergrootte'},
+  pl:{name:'PL',dir:'ltr',appTitle:'Przelicznik Walut',appSub:'Czas rzeczywisty · Bez klucza API',liveBadge:'NA ŻYWO',labelApiSource:'Źródło danych',labelAmount:'Kwota',labelFrom:'Z',labelTo:'Na',btnText:'PRZELICZ',resultLabel:'Wynik',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Bez klucza API · Otwarte API · Kursy orientacyjne',statusFetching:'Pobieranie kursów…',statusOk:(src,n)=>`${src} · ${n} walut`,statusErr:'Błąd połączenia',lastUpdate:'Zaktualizowano',errGeneric:'Nie udało się pobrać kursów.',errSuggestion:(cur)=>`To API może nie obsługiwać ${cur}. Wypróbuj inne źródło — <strong>Frankfurter</strong> jest zazwyczaj najbardziej niezawodny.`,fsLabel:'Rozmiar czcionki'},
+  uk:{name:'UK',dir:'ltr',appTitle:'Конвертер валют',appSub:'В реальному часі · Без ключа',liveBadge:'LIVE',labelApiSource:'Джерело даних',labelAmount:'Сума',labelFrom:'З',labelTo:'В',btnText:'КОНВЕРТУВАТИ',resultLabel:'Результат',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Без ключа API · Відкриті API · Курси орієнтовні',statusFetching:'Завантаження курсів…',statusOk:(src,n)=>`${src} · ${n} валют`,statusErr:'Помилка з\'єднання',lastUpdate:'Оновлено',errGeneric:'Не вдалося отримати курси.',errSuggestion:(cur)=>`Цей API може не підтримувати ${cur}. Спробуйте інше джерело — <strong>Frankfurter</strong> зазвичай найнадійніший.`,fsLabel:'Розмір шрифту'},
+  sv:{name:'SV',dir:'ltr',appTitle:'Valutaomvandlare',appSub:'Realtid · Ingen API-nyckel',liveBadge:'LIVE',labelApiSource:'Datakälla',labelAmount:'Belopp',labelFrom:'Från',labelTo:'Till',btnText:'OMVANDLA',resultLabel:'Resultat',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Ingen API-nyckel · Öppna API:er · Kurser är vägledande',statusFetching:'Hämtar kurser…',statusOk:(src,n)=>`${src} · ${n} valutor`,statusErr:'Anslutning misslyckades',lastUpdate:'Uppdaterad',errGeneric:'Det gick inte att hämta kurser.',errSuggestion:(cur)=>`Detta API kanske inte stöder ${cur}. Försök med en annan källa — <strong>Frankfurter</strong> är vanligtvis mest tillförlitlig.`,fsLabel:'Teckenstorlek'},
+  th:{name:'TH',dir:'ltr',appTitle:'แปลงสกุลเงิน',appSub:'เรียลไทม์ · ไม่ต้องใช้ API Key',liveBadge:'สด',labelApiSource:'แหล่งข้อมูล',labelAmount:'จำนวน',labelFrom:'จาก',labelTo:'เป็น',btnText:'แปลง',resultLabel:'ผลลัพธ์',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'ไม่ต้องใช้ API Key · API โอเพนซอร์ส · อัตราเป็นข้อมูลอ้างอิง',statusFetching:'กำลังดึงอัตราแลกเปลี่ยน…',statusOk:(src,n)=>`${src} · ${n} สกุลเงิน`,statusErr:'การเชื่อมต่อล้มเหลว',lastUpdate:'อัปเดตแล้ว',errGeneric:'ไม่สามารถดึงอัตราแลกเปลี่ยนได้',errSuggestion:(cur)=>`API นี้อาจไม่รองรับ ${cur} ลองเปลี่ยนแหล่งข้อมูล — <strong>Frankfurter</strong> มักเสถียรที่สุด`,fsLabel:'ขนาดตัวอักษร'},
+  lo:{name:'LO',dir:'ltr',appTitle:'ຕົວປ່ຽນສະກຸນເງິນ',appSub:'ທັນທີ · ບໍ່ຕ້ອງໃຊ້ API key',liveBadge:'ສົດ',labelApiSource:'ແຫຼ່ງຂໍ້ມູນ',labelAmount:'ຈຳນວນ',labelFrom:'ຈາກ',labelTo:'ໄປທີ່',btnText:'ປ່ຽນ',resultLabel:'ຜົນການປ່ຽນ',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'ບໍ່ຕ້ອງໃຊ້ API key · API ໂອເພນຊອສ · ອັດຕາແລກປ່ຽນສຳລັບອ້າງອີງເທົ່ານັ້ນ',statusFetching:'ກຳລັງດຶງອັດຕາແລກປ່ຽນ…',statusOk:(src,n)=>`${src} · ${n} ສະກຸນເງິນ`,statusErr:'ການເຊື່ອມຕໍ່ລົ້ມເຫຼວ',lastUpdate:'ອັບເດດແລ້ວ',errGeneric:'ບໍ່ສາມາດດຶງອັດຕາແລກປ່ຽນໄດ້.',errSuggestion:(cur)=>`API ນີ້ອາດຈະບໍ່ຮອງຮັບ ${cur} ຫຼື ບໍ່ສາມາດໃຊ້ງານໄດ້ຊົ່ວຄາວ. ລອງປ່ຽນໄປໃຊ້ແຫຼ່ງຂໍ້ມູນອື່ນ — <strong>Frankfurter</strong> ໂດຍທົ່ວໄປແລ້ວໝັ້ນຄົງທີ່ສຸດ.`,fsLabel:'ຂະໜາດຕົວອັກສອນ'},
+  vi:{name:'VI',dir:'ltr',appTitle:'Chuyển Đổi Tiền Tệ',appSub:'Thời gian thực · Không cần API key',liveBadge:'TRỰC TIẾP',labelApiSource:'Nguồn dữ liệu',labelAmount:'Số tiền',labelFrom:'Từ',labelTo:'Sang',btnText:'CHUYỂN ĐỔI',resultLabel:'Kết quả',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Không cần API key · API mã nguồn mở · Tỷ giá tham khảo',statusFetching:'Đang lấy tỷ giá…',statusOk:(src,n)=>`${src} · ${n} loại tiền`,statusErr:'Kết nối thất bại',lastUpdate:'Đã cập nhật',errGeneric:'Không thể lấy tỷ giá.',errSuggestion:(cur)=>`API này có thể không hỗ trợ ${cur}. Hãy thử nguồn khác — <strong>Frankfurter</strong> thường đáng tin cậy nhất.`,fsLabel:'Cỡ chữ'},
+  el:{name:'EL',dir:'ltr',appTitle:'Μετατροπέας Νομισμάτων',appSub:'Σε πραγματικό χρόνο · Χωρίς κλειδί API',liveBadge:'ΖΩΝΤΑΝΑ',labelApiSource:'Πηγή δεδομένων',labelAmount:'Ποσό',labelFrom:'Από',labelTo:'Προς',btnText:'ΜΕΤΑΤΡΟΠΗ',resultLabel:'Αποτέλεσμα',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Χωρίς κλειδί API · Ανοιχτά API · Ισοτιμίες ενδεικτικές',statusFetching:'Λήψη ισοτιμιών…',statusOk:(src,n)=>`${src} · ${n} νομίσματα`,statusErr:'Αποτυχία σύνδεσης',lastUpdate:'Ενημερώθηκε',errGeneric:'Δεν ήταν δυνατή η λήψη ισοτιμιών.',errSuggestion:(cur)=>`Αυτό το API ενδέχεται να μην υποστηρίζει ${cur}. Δοκιμάστε άλλη πηγή — το <strong>Frankfurter</strong> είναι συνήθως το πιο αξιόπιστο.`,fsLabel:'Μέγεθος γραμματοσειράς'},
+  bn:{name:'BN',dir:'ltr',appTitle:'মুদ্রা রূপান্তরকারী',appSub:'রিয়েল-টাইম · API কী প্রয়োজন নেই',liveBadge:'লাইভ',labelApiSource:'ডেটা উৎস',labelAmount:'পরিমাণ',labelFrom:'থেকে',labelTo:'তে',btnText:'রূপান্তর করুন',resultLabel:'ফলাফল',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'API কী নেই · ওপেন সোর্স API · হার আনুমানিক',statusFetching:'হার আনা হচ্ছে…',statusOk:(src,n)=>`${src} · ${n}টি মুদ্রা`,statusErr:'সংযোগ ব্যর্থ',lastUpdate:'আপডেট হয়েছে',errGeneric:'হার আনা সম্ভব হয়নি।',errSuggestion:(cur)=>`এই API ${cur} সমর্থন নাও করতে পারে। অন্য উৎস ব্যবহার করুন — <strong>Frankfurter</strong> সাধারণত সবচেয়ে নির্ভরযোগ্য।`,fsLabel:'ফন্ট আকার'},
+  fa:{name:'FA',dir:'rtl',appTitle:'تبدیل ارز',appSub:'آنی · بدون کلید API',liveBadge:'زنده',labelApiSource:'منبع داده',labelAmount:'مقدار',labelFrom:'از',labelTo:'به',btnText:'تبدیل',resultLabel:'نتیجه',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'بدون کلید API · APIهای آزاد · نرخ‌ها تقریبی هستند',statusFetching:'در حال دریافت نرخ‌ها…',statusOk:(src,n)=>`${src} · ${n} ارز`,statusErr:'اتصال ناموفق',lastUpdate:'به‌روزرسانی شد',errGeneric:'دریافت نرخ‌ها ممکن نشد.',errSuggestion:(cur)=>`این API ممکن است ${cur} را پشتیبانی نکند. منبع دیگری را امتحان کنید — <strong>Frankfurter</strong> معمولاً قابل‌اطمینان‌ترین است.`,fsLabel:'اندازه قلم'},
+  cs:{name:'CS',dir:'ltr',appTitle:'Převodník měn',appSub:'Reálný čas · Bez API klíče',liveBadge:'LIVE',labelApiSource:'Zdroj dat',labelAmount:'Částka',labelFrom:'Z',labelTo:'Na',btnText:'PŘEVÉST',resultLabel:'Výsledek',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Bez API klíče · Otevřená API · Kurzy jsou orientační',statusFetching:'Načítám kurzy…',statusOk:(src,n)=>`${src} · ${n} měn`,statusErr:'Připojení selhalo',lastUpdate:'Aktualizováno',errGeneric:'Kurzy se nepodařilo načíst.',errSuggestion:(cur)=>`Toto API nemusí podporovat ${cur}. Zkuste jiný zdroj — <strong>Frankfurter</strong> je obvykle nejspolehlivější.`,fsLabel:'Velikost písma'},
+  ro:{name:'RO',dir:'ltr',appTitle:'Convertor Valutar',appSub:'Timp real · Fără cheie API',liveBadge:'LIVE',labelApiSource:'Sursă de date',labelAmount:'Sumă',labelFrom:'Din',labelTo:'În',btnText:'CONVERTEȘTE',resultLabel:'Rezultat',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Fără cheie API · API-uri deschise · Cursuri orientative',statusFetching:'Se preiau cursurile…',statusOk:(src,n)=>`${src} · ${n} valute`,statusErr:'Conexiune eșuată',lastUpdate:'Actualizat',errGeneric:'Cursurile nu au putut fi preluate.',errSuggestion:(cur)=>`Acest API s-ar putea să nu suporte ${cur}. Încearcă altă sursă — <strong>Frankfurter</strong> este de obicei cel mai fiabil.`,fsLabel:'Dimensiunea fontului'},
+  da:{name:'DA',dir:'ltr',appTitle:'Valutaomregner',appSub:'Realtid · Ingen API-nøgle',liveBadge:'LIVE',labelApiSource:'Datakilde',labelAmount:'Beløb',labelFrom:'Fra',labelTo:'Til',btnText:'OMREGN',resultLabel:'Resultat',resultRate:(a,f,r,t)=>`${a} ${f} = <strong>${r} ${t}</strong>`,footer:'Ingen API-nøgle · Åbne API\'er · Kurser er vejledende',statusFetching:'Henter kurser…',statusOk:(src,n)=>`${src} · ${n} valutaer`,statusErr:'Forbindelse mislykkedes',lastUpdate:'Opdateret',errGeneric:'Kurser kunne ikke hentes.',errSuggestion:(cur)=>`Denne API understøtter muligvis ikke ${cur}. Prøv en anden kilde — <strong>Frankfurter</strong> er normalt mest pålidelig.`,fsLabel:'Skriftstørrelse'},
+};
+
+// ═══════════════════════════════════════════════════════
+// CURRENCIES
+// ═══════════════════════════════════════════════════════
+const CURRENCIES=[
+  {code:'AED',name:'UAE Dirham'},{code:'AFN',name:'Afghan Afghani'},{code:'ALL',name:'Albanian Lek'},
+  {code:'AMD',name:'Armenian Dram'},{code:'ANG',name:'NL Antillean Guilder'},{code:'AOA',name:'Angolan Kwanza'},
+  {code:'ARS',name:'Argentine Peso'},{code:'AUD',name:'Australian Dollar'},{code:'AWG',name:'Aruban Florin'},
+  {code:'AZN',name:'Azerbaijani Manat'},{code:'BAM',name:'Bosnia Mark'},{code:'BBD',name:'Barbados Dollar'},
+  {code:'BDT',name:'Bangladeshi Taka'},{code:'BGN',name:'Bulgarian Lev'},{code:'BHD',name:'Bahraini Dinar'},
+  {code:'BIF',name:'Burundian Franc'},{code:'BMD',name:'Bermudian Dollar'},{code:'BND',name:'Brunei Dollar'},
+  {code:'BOB',name:'Bolivian Boliviano'},{code:'BRL',name:'Brazilian Real'},{code:'BSD',name:'Bahamian Dollar'},
+  {code:'BTN',name:'Bhutanese Ngultrum'},{code:'BWP',name:'Botswanan Pula'},{code:'BYN',name:'Belarusian Ruble'},
+  {code:'BZD',name:'Belize Dollar'},{code:'CAD',name:'Canadian Dollar'},{code:'CDF',name:'Congolese Franc'},
+  {code:'CHF',name:'Swiss Franc'},{code:'CLP',name:'Chilean Peso'},{code:'CNY',name:'Chinese Yuan'},
+  {code:'COP',name:'Colombian Peso'},{code:'CRC',name:'Costa Rican Colón'},{code:'CUP',name:'Cuban Peso'},
+  {code:'CVE',name:'Cape Verdean Escudo'},{code:'CZK',name:'Czech Koruna'},{code:'DJF',name:'Djiboutian Franc'},
+  {code:'DKK',name:'Danish Krone'},{code:'DOP',name:'Dominican Peso'},{code:'DZD',name:'Algerian Dinar'},
+  {code:'EGP',name:'Egyptian Pound'},{code:'ERN',name:'Eritrean Nakfa'},{code:'ETB',name:'Ethiopian Birr'},
+  {code:'EUR',name:'Euro'},{code:'FJD',name:'Fijian Dollar'},{code:'GBP',name:'British Pound'},
+  {code:'GEL',name:'Georgian Lari'},{code:'GHS',name:'Ghanaian Cedi'},{code:'GMD',name:'Gambian Dalasi'},
+  {code:'GTQ',name:'Guatemalan Quetzal'},{code:'HKD',name:'Hong Kong Dollar'},{code:'HNL',name:'Honduran Lempira'},
+  {code:'HRK',name:'Croatian Kuna'},{code:'HTG',name:'Haitian Gourde'},{code:'HUF',name:'Hungarian Forint'},
+  {code:'IDR',name:'Indonesian Rupiah'},{code:'ILS',name:'Israeli Shekel'},{code:'INR',name:'Indian Rupee'},
+  {code:'IQD',name:'Iraqi Dinar'},{code:'IRR',name:'Iranian Rial'},{code:'ISK',name:'Icelandic Króna'},
+  {code:'JMD',name:'Jamaican Dollar'},{code:'JOD',name:'Jordanian Dinar'},{code:'JPY',name:'Japanese Yen'},
+  {code:'KES',name:'Kenyan Shilling'},{code:'KGS',name:'Kyrgyzstani Som'},{code:'KHR',name:'Cambodian Riel'},{code:'KMF',name:'Comorian Franc'},
+  {code:'KPW',name:'North Korean Won'},{code:'KRW',name:'South Korean Won'},{code:'KWD',name:'Kuwaiti Dinar'},
+  {code:'KZT',name:'Kazakhstani Tenge'},{code:'LAK',name:'Laotian Kip'},{code:'LBP',name:'Lebanese Pound'},
+  {code:'LKR',name:'Sri Lankan Rupee'},{code:'LYD',name:'Libyan Dinar'},{code:'MAD',name:'Moroccan Dirham'},
+  {code:'MDL',name:'Moldovan Leu'},{code:'MKD',name:'Macedonian Denar'},{code:'MMK',name:'Myanmar Kyat'},
+  {code:'MNT',name:'Mongolian Tögrög'},{code:'MRU',name:'Mauritanian Ouguiya'},{code:'MUR',name:'Mauritian Rupee'},{code:'MVR',name:'Maldivian Rufiyaa'},
+  {code:'MWK',name:'Malawian Kwacha'},{code:'MXN',name:'Mexican Peso'},{code:'MYR',name:'Malaysian Ringgit'},
+  {code:'MZN',name:'Mozambican Metical'},{code:'NAD',name:'Namibian Dollar'},{code:'NGN',name:'Nigerian Naira'},
+  {code:'NIO',name:'Nicaraguan Córdoba'},{code:'NOK',name:'Norwegian Krone'},{code:'NPR',name:'Nepalese Rupee'},
+  {code:'NZD',name:'New Zealand Dollar'},{code:'OMR',name:'Omani Rial'},{code:'PAB',name:'Panamanian Balboa'},
+  {code:'PEN',name:'Peruvian Sol'},{code:'PGK',name:'Papua New Guinean Kina'},{code:'PHP',name:'Philippine Peso'},
+  {code:'PKR',name:'Pakistani Rupee'},{code:'PLN',name:'Polish Złoty'},{code:'PYG',name:'Paraguayan Guaraní'},
+  {code:'QAR',name:'Qatari Riyal'},{code:'RON',name:'Romanian Leu'},{code:'RSD',name:'Serbian Dinar'},
+  {code:'RUB',name:'Russian Ruble'},{code:'RWF',name:'Rwandan Franc'},{code:'SAR',name:'Saudi Riyal'},{code:'SBD',name:'Solomon Islands Dollar'},
+  {code:'SDG',name:'Sudanese Pound'},{code:'SEK',name:'Swedish Krona'},{code:'SGD',name:'Singapore Dollar'},{code:'SLE',name:'Sierra Leonean Leone'},
+  {code:'SOS',name:'Somali Shilling'},{code:'SSP',name:'South Sudanese Pound'},{code:'SYP',name:'Syrian Pound'},{code:'THB',name:'Thai Baht'},
+  {code:'TJS',name:'Tajikistani Somoni'},{code:'TMT',name:'Turkmenistani Manat'},{code:'TND',name:'Tunisian Dinar'},{code:'TOP',name:'Tongan Paʻanga'},
+  {code:'TRY',name:'Turkish Lira'},{code:'TTD',name:'Trinidad & Tobago Dollar'},{code:'TWD',name:'New Taiwan Dollar'},
+  {code:'TZS',name:'Tanzanian Shilling'},{code:'UAH',name:'Ukrainian Hryvnia'},{code:'UGX',name:'Ugandan Shilling'},
+  {code:'USD',name:'US Dollar'},{code:'UYU',name:'Uruguayan Peso'},{code:'UZS',name:'Uzbekistani Som'},
+  {code:'VES',name:'Venezuelan Bolívar'},{code:'VND',name:'Vietnamese Dong'},{code:'VUV',name:'Vanuatu Vatu'},{code:'WST',name:'Samoan Tala'},{code:'XAF',name:'Central African CFA'},{code:'XCD',name:'East Caribbean Dollar'},
+  {code:'XOF',name:'West African CFA'},{code:'XPF',name:'CFP Franc'},{code:'YER',name:'Yemeni Rial'},{code:'ZAR',name:'South African Rand'},
+  {code:'ZMW',name:'Zambian Kwacha'},{code:'ZWL',name:'Zimbabwean Dollar'},
+];
+
+// ═══════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════
+let currentLang = 'en';
+let currentApi  = 'frankfurter';
+let ratesCache  = {};   // { from: { rates:{}, timestamp:'' } }
+
+// ═══════════════════════════════════════════════════════
+// FONT SIZE
+// ═══════════════════════════════════════════════════════
+function setFs(cls, btn) {
+  document.body.classList.remove('fs-md','fs-lg');
+  if (cls !== 'fs-sm') document.body.classList.add(cls);
+  document.querySelectorAll('.fs-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════════
+// LANG
+// ═══════════════════════════════════════════════════════
+function detectLang() {
+  try {
+    const saved = sessionStorage.getItem('fxLangUI');
+    if (saved && LANGS[saved]) return saved; // sticky: user picked a language via the dropdown
+  } catch (e) {}
+  const raw = (navigator.language||'en').split('-')[0].toLowerCase();
+  const code = raw === 'fil' ? 'tl' : raw; // modern browsers report Filipino as fil-PH
+  return LANGS[code] ? code : 'en';
+}
+function applyLang(lang) {
+  currentLang = lang;
+  const t = LANGS[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = t.dir;
+  document.getElementById('appTitle').textContent     = t.appTitle;
+  document.getElementById('appSub').textContent       = t.appSub;
+  document.getElementById('liveBadge').textContent    = t.liveBadge;
+  document.getElementById('labelApiSource').textContent = t.labelApiSource;
+  document.getElementById('labelAmount').textContent  = t.labelAmount;
+  document.getElementById('labelFrom').textContent    = t.labelFrom;
+  document.getElementById('labelTo').textContent      = t.labelTo;
+  document.getElementById('btnText').textContent      = t.btnText;
+  document.getElementById('resultLabel').textContent  = t.resultLabel;
+  document.getElementById('footerText').textContent   = t.footer;
+  document.getElementById('fsLabel').textContent      = t.fsLabel;
+  document.getElementById('langSelect').value = lang;
+  syncCombo('langSelect');
+  localizeSelects();
+  // new UI strings (theme / favorites / copy / privacy)
+  const u = UI_STR[lang] || UI_STR.en;
+  document.getElementById('favLabel').textContent    = u.favLabel;
+  document.getElementById('favBtn').title            = isFav(document.getElementById('from').value, document.getElementById('to').value) ? u.saved : u.save;
+  document.getElementById('copyBtn').title            = u.copy;
+  document.getElementById('copyBtn').removeAttribute('data-copied');
+  const tb = document.getElementById('themeBtn');
+  if (tb) tb.title = (window.__fxTheme || 'auto') === 'light' ? u.themeLight : (window.__fxTheme || 'auto') === 'dark' ? u.themeDark : u.themeAuto;
+  const pv = document.getElementById('privacyNote');
+  if (pv) pv.textContent = u.privacy;
+  const sl = document.getElementById('supportLabel');
+  if (sl) sl.textContent = u.supportLabel;
+  const fl = document.getElementById('feedbackLabel');
+  if (fl) fl.textContent = u.feedback;
+  const shb = document.getElementById('shareBtn');
+  if (shb) shb.title = u.share;
+  const fb = document.getElementById('feedbackBtn');
+  if (fb) fb.title = u.feedback;
+  const cnl = document.getElementById('curNavLink');
+  if (cnl) cnl.textContent = u.curLink;
+  const gnl = document.getElementById('guideNavLink');
+  if (gnl) gnl.textContent = u.guideLink;
+  document.documentElement.dataset.uilang = lang;
+  // Re-render status if we have cache
+  const from = document.getElementById('from').value;
+  const entry = ratesCache[currentApi + ':' + from] || Object.values(ratesCache).find(e => e.from === from);
+  if (entry) updateStatusOk(entry.api, entry.from);
+}
+const NATIVE_NAMES = {
+  en:'English',tr:'Türkçe',de:'Deutsch',fr:'Français',es:'Español',pt:'Português',
+  ru:'Русский',zh:'中文',ja:'日本語',ko:'한국어',ar:'العربية',hi:'हिन्दी',
+  id:'Bahasa Indonesia',ms:'Bahasa Melayu',tl:'Filipino',it:'Italiano',nl:'Nederlands',pl:'Polski',uk:'Українська',
+  sv:'Svenska',th:'ไทย',lo:'ພາສາລາວ',vi:'Tiếng Việt',el:'Ελληνικά',bn:'বাংলা',fa:'فارسی',
+  cs:'Čeština',ro:'Română',da:'Dansk'
+};
+function buildLangBar() {
+  const sel = document.getElementById('langSelect');
+  Object.keys(LANGS).forEach(code => {
+    const opt = document.createElement('option');
+    opt.value = code;
+    opt.textContent = NATIVE_NAMES[code] || code.toUpperCase();
+    sel.appendChild(opt);
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// SELECTS
+// ═══════════════════════════════════════════════════════
+function buildSelects() {
+  ['from','to'].forEach(id => {
+    const sel = document.getElementById(id);
+    CURRENCIES.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c.code; opt.textContent = `${c.code} — ${c.name}`;
+      sel.appendChild(opt);
+    });
+  });
+  document.getElementById('from').value = 'USD';
+  document.getElementById('to').value   = 'TRY';
+}
+
+// ═══════════════════════════════════════════════════════
+// SEARCHABLE DROPDOWNS
+// ═══════════════════════════════════════════════════════
+const COMBOS = {};
+function makeCombo(selectId) {
+  const sel   = document.getElementById(selectId);
+  const wrap  = sel.closest('.combo');
+  const btn   = wrap.querySelector('.combo-btn');
+  const search = wrap.querySelector('.combo-search');
+  const list  = wrap.querySelector('.combo-options');
+  let hl = 0;
+
+  function sync() {
+    const o = sel.selectedOptions[0];
+    btn.textContent = o ? o.textContent : '';
+  }
+  function render(q) {
+    q = q.trim().toLowerCase();
+    const items = [...sel.options].filter(o => !q || o.textContent.toLowerCase().includes(q));
+    list.innerHTML = '';
+    if (!items.length) {
+      const empty = document.createElement('div');
+      empty.className = 'combo-option none';
+      empty.textContent = '—';
+      list.appendChild(empty);
+      return;
+    }
+    hl = Math.min(hl, items.length - 1);
+    items.forEach((o, i) => {
+      const row = document.createElement('div');
+      row.className = 'combo-option' + (i === hl ? ' hl' : '') + (o.value === sel.value ? ' sel' : '');
+      row.dataset.value = o.value;
+      const sep = o.textContent.indexOf(' — ');
+      row.innerHTML = '<b></b><small></small>';
+      row.querySelector('b').textContent = sep > 0 ? o.textContent.slice(0, sep) : o.textContent;
+      row.querySelector('small').textContent = sep > 0 ? o.textContent.slice(sep + 3) : '';
+      row.onclick = () => choose(o.value);
+      list.appendChild(row);
+    });
+  }
+  function choose(v) {
+    if (sel.value !== v) {
+      sel.value = v;
+      sel.dispatchEvent(new Event('change'));
+    }
+    sync();
+    close();
+  }
+  function open() {
+    hl = 0; search.value = ''; render('');
+    wrap.classList.add('open');
+    search.focus();
+  }
+  function close() { wrap.classList.remove('open'); }
+
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    wrap.classList.contains('open') ? close() : open();
+  });
+  search.addEventListener('input', () => { hl = 0; render(search.value); });
+  search.addEventListener('keydown', e => {
+    const rows = [...list.querySelectorAll('.combo-option:not(.none)')];
+    if (!rows.length) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      hl = e.key === 'ArrowDown' ? Math.min(hl + 1, rows.length - 1) : Math.max(hl - 1, 0);
+      rows.forEach((r, i) => r.classList.toggle('hl', i === hl));
+      rows[hl].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      choose(rows[hl].dataset.value);
+    } else if (e.key === 'Escape') {
+      close();
+    }
+  });
+  document.addEventListener('click', e => { if (!wrap.contains(e.target)) close(); });
+  sync();
+  COMBOS[selectId] = { sync, close };
+}
+function syncCombo(id) { COMBOS[id] && COMBOS[id].sync(); }
+
+// Localized currency names via the browser's built-in CLDR data (Intl.DisplayNames)
+let CURDN = null;
+function setCurDN() {
+  try { CURDN = new Intl.DisplayNames([currentLang], {type: 'currency', fallback: 'code'}); }
+  catch (e) { CURDN = null; }
+}
+function curName(code, enName) {
+  try { const n = CURDN && CURDN.of(code); if (n && n !== code) return n; } catch (e) {}
+  return enName;
+}
+function localizeSelects() {
+  setCurDN();
+  ['from', 'to'].forEach(id => {
+    const sel = document.getElementById(id);
+    const cur = sel.value;
+    [...sel.options].forEach(o => {
+      const c = CURRENCIES.find(x => x.code === o.value);
+      if (c) o.textContent = `${c.code} — ${curName(c.code, c.name)}`;
+    });
+    sel.value = cur;
+  });
+  renderCurList();
+  syncCombo('from'); syncCombo('to');
+}
+function renderCurList() {
+  // humans get the list in the page language; crawlers see the static English version
+  const details = document.getElementById('curList');
+  if (!details) return;
+  [...details.querySelectorAll(':scope > p')].forEach(p => p.remove());
+  let box = details.querySelector('.cur-groups');
+  if (!box) {
+    box = document.createElement('div');
+    box.className = 'cur-groups';
+    details.appendChild(box);
+  }
+  const groups = {};
+  CURRENCIES.forEach(c => {
+    const L = c.code[0];
+    (groups[L] = groups[L] || []).push(`${c.code} — ${curName(c.code, c.name)}`);
+  });
+  box.innerHTML = Object.keys(groups).sort().map(L =>
+    `<p><strong>${L}</strong> — ${groups[L].join(' · ')}</p>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+// API FETCH
+// ═══════════════════════════════════════════════════════
+const API_ORDER = ['frankfurter', 'exchangerate', 'fawaz'];
+const API_LABEL = {frankfurter:'Frankfurter',exchangerate:'ExchangeRate-API',fawaz:'Fawaz API'};
+
+async function fetchRates(api, from) {
+  setStatus('loading', LANGS[currentLang].statusFetching, '');
+  try {
+    let rates = {};
+    if (api === 'frankfurter') {
+      const r = await fetch(`https://api.frankfurter.dev/v1/latest?from=${from}`);
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d = await r.json();
+      rates = d.rates || {};
+      rates[from] = 1;
+    } else if (api === 'exchangerate') {
+      const r = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d = await r.json();
+      rates = d.rates || {};
+    } else if (api === 'fawaz') {
+      const fromLower = from.toLowerCase();
+      const r = await fetch(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${fromLower}.json`);
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d = await r.json();
+      const raw = d[fromLower] || {};
+      // normalize keys to uppercase
+      Object.keys(raw).forEach(k => { rates[k.toUpperCase()] = raw[k]; });
+      rates[from] = 1;
+    }
+    ratesCache[api + ':' + from] = { rates, timestamp: new Date(), api, from };
+    updateStatusOk(api, from);
+    return rates;
+  } catch(e) {
+    setStatus('err', LANGS[currentLang].statusErr, '');
+    throw e;
+  }
+}
+
+
+function updateStatusOk(api, from) {
+  const t = LANGS[currentLang];
+  const cache = ratesCache[api + ':' + from];
+  if (!cache) return;
+  const n = Object.keys(cache.rates).length;
+  const time = cache.timestamp.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'});
+  setStatus('ok', t.statusOk(API_LABEL[api], n), `${t.lastUpdate} ${time}`);
+}
+
+function setStatus(type, text, time) {
+  const dot  = document.getElementById('statusDot');
+  const txt  = document.getElementById('statusText');
+  const tEl  = document.getElementById('statusTime');
+  dot.className  = 'status-dot ' + (type==='loading'?'loading':type==='ok'?'ok':'err');
+  txt.textContent = text;
+  tEl.textContent = time;
+}
+
+// ═══════════════════════════════════════════════════════
+// EVENTS
+// ═══════════════════════════════════════════════════════
+function switchApi(api, btn) {
+  currentApi = api;
+  document.querySelectorAll('.api-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ratesCache = {};
+  clearResult();
+  const from = document.getElementById('from').value;
+  fetchRates(currentApi, from);
+}
+
+function onFromChange() {
+  ratesCache = {};
+  clearResult();
+  const from = document.getElementById('from').value;
+  fetchRates(currentApi, from);
+}
+
+async function refreshRates() {
+  const from = document.getElementById('from').value;
+  ratesCache = {};
+  clearResult();
+  const btn = document.getElementById('refreshBtn');
+  btn.classList.add('spinning');
+  try { await fetchRates(currentApi, from); } finally { btn.classList.remove('spinning'); }
+}
+
+function swapCurrencies() {
+  const f = document.getElementById('from'), t = document.getElementById('to');
+  const tmp = f.value; f.value = t.value; t.value = tmp;
+  syncCombo('from'); syncCombo('to');
+  onFromChange();
+}
+
+// ═══════════════════════════════════════════════════════
+// CONVERT
+// ═══════════════════════════════════════════════════════
+async function convert() {
+  const raw = document.getElementById('amount').value.replace(/[^0-9.,]/g, '');
+  const normalized = raw.replace(/,/g, '.');
+  const amount = parseFloat(normalized.replace(/\.(?=.*\.)/g, ''));
+  const from   = document.getElementById('from').value;
+  const to     = document.getElementById('to').value;
+  const t      = LANGS[currentLang];
+
+  if (!amount || isNaN(amount) || amount <= 0) {
+    clearResult(); showError(t.errGeneric, ''); return;
+  }
+
+  clearResult();
+  document.getElementById('convertBtn').disabled = true;
+
+  try {
+    let rate;
+
+    // 1) cached rates of the selected source
+    const key = currentApi + ':' + from;
+    if (ratesCache[key] && ratesCache[key].rates[to] !== undefined) {
+      rate = ratesCache[key].rates[to];
+    }
+
+    // 2) selected source
+    if (!rate) {
+      try { rate = (await fetchRates(currentApi, from))[to]; } catch (e) {}
+    }
+
+    // 3) fallback: some pairs are missing per source (e.g. LAK on Frankfurter) — try the others
+    if (!rate) {
+      for (const alt of API_ORDER.filter(a => a !== currentApi)) {
+        try {
+          const r = (await fetchRates(alt, from))[to];
+          if (r) { rate = r; break; }
+        } catch (e) {}
+      }
+    }
+
+    if (!rate) throw new Error(`Rate for ${to} not available from any source.`);
+
+    const converted = amount * rate;
+    document.getElementById('resultAmount').textContent = fmt(converted) + ' ' + to;
+    document.getElementById('resultRate').innerHTML = t.resultRate(fmt(amount), from, fmt(rate), to);
+    document.getElementById('result').className = 'result show';
+    syncFavBtn();
+
+  } catch(e) {
+    showError(t.errGeneric, t.errSuggestion(to));
+    setStatus('err', LANGS[currentLang].statusErr, '');
+  } finally {
+    document.getElementById('convertBtn').disabled = false;
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// UI HELPERS
+// ═══════════════════════════════════════════════════════
+function clearResult() {
+  document.getElementById('result').className  = 'result';
+  document.getElementById('errorBox').className = 'error-box';
+}
+function showError(msg, suggestion) {
+  document.getElementById('errorMsg').textContent        = msg;
+  document.getElementById('errorSuggestion').innerHTML   = suggestion || '';
+  document.getElementById('errorBox').className          = 'error-box show';
+}
+// ═══════════════════════════════════════════════════════
+// FAVORITES (localStorage — stays in the user's browser)
+// ═══════════════════════════════════════════════════════
+function getFavs() {
+  try { return JSON.parse(localStorage.getItem('fxFavs') || '[]'); } catch (e) { return []; }
+}
+function setFavs(f) {
+  try { localStorage.setItem('fxFavs', JSON.stringify(f)); } catch (e) {}
+  renderFavs();
+}
+function favKey(f, t) { return f + '→' + t; }
+function toggleFav() {
+  const f = document.getElementById('from').value, t = document.getElementById('to').value;
+  const favs = getFavs();
+  const i = favs.findIndex(p => p.f === f && p.t === t);
+  const u = UI_STR[document.documentElement.dataset.uilang || 'en'] || UI_STR.en;
+  if (i > -1) favs.splice(i, 1); else favs.push({f, t});
+  setFavs(favs);
+  document.getElementById('favBtn').title = (i === -1) ? u.saved : u.save;
+}
+function isFav(f, t) { return getFavs().some(p => p.f === f && p.t === t); }
+function syncFavBtn() {
+  const f = document.getElementById('from').value, t = document.getElementById('to').value;
+  const on = isFav(f, t);
+  document.getElementById('favBtn').classList.toggle('on', on);
+  const u = UI_STR[document.documentElement.dataset.uilang || 'en'] || UI_STR.en;
+  document.getElementById('favBtn').title = on ? u.saved : u.save;
+}
+function renderFavs() {
+  const favs = getFavs();
+  const bar = document.getElementById('favBar');
+  const box = document.getElementById('favPairs');
+  bar.hidden = favs.length === 0;
+  box.innerHTML = '';
+  favs.slice(-8).reverse().forEach((p, idx) => {
+    const realIdx = favs.length - 1 - Math.min(idx, 7);
+    const chip = document.createElement('button');
+    chip.className = 'fav-chip';
+    chip.innerHTML = `<b>${p.f}</b>→<b>${p.t}</b><span class="x" data-i="${favs.indexOf(p)}">×</span>`;
+    chip.onclick = (e) => {
+      if (e.target.classList.contains('x')) {
+        const favs2 = getFavs(); favs2.splice(+e.target.dataset.i, 1); setFavs(favs2); syncFavBtn(); return;
+      }
+      document.getElementById('from').value = p.f;
+      document.getElementById('to').value = p.t;
+      syncCombo('from'); syncCombo('to');
+      onFromChange();
+      convert();
+    };
+    box.appendChild(chip);
+  });
+}
+
+function shareSite() {
+  const u = UI_STR[document.documentElement.dataset.uilang || 'en'] || UI_STR.en;
+  const url = location.href.split('#')[0];
+  const done = () => { const b = document.getElementById('shareBtn'); b.classList.add('ok'); b.title = u.shared; setTimeout(() => { b.classList.remove('ok'); b.title = u.share; }, 1400); };
+  const shareData = { title: document.title, url };
+  if (navigator.share) { navigator.share(shareData).catch(() => {}); return; }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(done).catch(() => fallbackCopy(url, done));
+  } else { fallbackCopy(url, done); }
+}
+function openFeedback() {
+  const u = UI_STR[document.documentElement.dataset.uilang || 'en'] || UI_STR.en;
+  const panel = document.getElementById('feedbackPanel');
+  panel.classList.toggle('open');
+  const b = document.getElementById('feedbackBtn'); if (b) b.title = u.feedback;
+  if (panel.classList.contains('open')) {
+    document.getElementById('fbName').focus();
+    const msg = document.getElementById('fbMsg');
+    msg.placeholder = u.fbPlaceholder;
+    document.getElementById('fbSend').textContent = u.fbSend;
+    document.getElementById('fbOk').textContent = u.fbOk;
+  }
+}
+function sendFeedback() {
+  const u = UI_STR[document.documentElement.dataset.uilang || 'en'] || UI_STR.en;
+  const name = document.getElementById('fbName').value.trim();
+  const email = document.getElementById('fbEmail').value.trim();
+  const message = document.getElementById('fbMsg').value.trim();
+  const err = document.getElementById('fbErr');
+  if (!message) { err.style.display = 'block'; err.textContent = u.fbEmpty; return; }
+  err.style.display = 'none';
+  const btn = document.getElementById('fbSend');
+  btn.disabled = true; btn.textContent = u.fbSending;
+  fetch('https://splitforms.com/api/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      access_key: '99f9b5e09c4b43b3a7eef1f22ff09722',
+      subject: 'Fxverter feedback',
+      name: name || 'anonymous',
+      email: email || '',
+      message
+    })
+  }).then(r => {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    document.getElementById('fbForm').style.display = 'none';
+    document.getElementById('fbOk').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('feedbackPanel').classList.remove('open');
+      document.getElementById('fbForm').style.display = '';
+      document.getElementById('fbOk').style.display = 'none';
+      document.getElementById('fbMsg').value = '';
+    }, 2500);
+  }).catch(() => {
+    err.style.display = 'block'; err.textContent = u.fbFail;
+  }).finally(() => { btn.disabled = false; btn.textContent = u.fbSend; });
+}
+
+function copyResult() {
+  const text = document.getElementById('resultAmount').textContent.trim();
+  if (!text || text === '—') return;
+  const btn = document.getElementById('copyBtn');
+  const u = UI_STR[document.documentElement.dataset.uilang || 'en'] || UI_STR.en;
+  const done = () => { btn.classList.add('ok'); btn.title = u.copied; setTimeout(() => { btn.classList.remove('ok'); btn.title = u.copy; }, 1200); };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else { fallbackCopy(text, done); }
+}
+function fallbackCopy(text, done) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); done(); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+function fmt(n) {
+  const num = Number(n);
+  if (isNaN(num)) return "0";
+  // For very large numbers reduce decimals, for small numbers show more
+  const decimals = num >= 1000 ? 2 : num >= 1 ? 4 : 6;
+  return num.toLocaleString(undefined, {maximumFractionDigits: decimals});
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+buildLangBar();
+buildSelects();
+makeCombo('from');
+makeCombo('to');
+makeCombo('langSelect');
+renderFavs();
+applyLang('ru');
+fetchRates(currentApi, 'USD');
+
+document.getElementById('amount').addEventListener('keydown', e => {
+  if (e.key === 'Enter') convert();
+});
+</script>
+<script id="langGo" data-base="../">
+function langGo(c){
+  if (c === currentLang) return;
+  try { sessionStorage.setItem('fxLangUI', c); } catch (e) {} // remember explicit choice
+  if (location.protocol.indexOf('http') === 0) {
+    var b = document.getElementById('langGo').dataset.base;
+    location.assign(c === 'en' ? b : b + c + '/');
+  } else { applyLang(c); } // offline single-file use: switch in place
+}
+</script>
+<script id="swReg" data-base="../">
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    var b = document.getElementById('swReg').dataset.base;
+    navigator.serviceWorker.register(b + 'sw.js').catch(function () {});
+  });
+}
+</script>
+<script id="pwa-install">
+(function () {
+  // PWA install: only offered by the browser in a secure context (https / localhost),
+  // never on file:// — the button stays hidden there.
+  if (location.protocol.indexOf('http') !== 0) return;
+  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) return;
+  var deferred = null;
+  var btn = document.getElementById('installBtn');
+  function uiLabel() {
+    var lang = document.documentElement.dataset.uilang || document.documentElement.lang || 'en';
+    var u = window.UI_STR && (UI_STR[lang] || UI_STR.en) || {};
+    return u.install || 'Install app';
+  }
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+    if (btn) { btn.hidden = false; btn.title = uiLabel(); }
+  });
+  window.installApp = function () {
+    if (!deferred) return;
+    deferred.prompt();
+    deferred.userChoice.then(function () { deferred = null; if (btn) btn.hidden = true; });
+  };
+  window.addEventListener('appinstalled', function () {
+    deferred = null;
+    if (btn) btn.hidden = true;
+  });
+})();
+</script>
+<script id="theme-init">
+(function () {
+  // apply saved theme before first paint to avoid a flash of the wrong palette
+  var mode = 'auto';
+  try { mode = localStorage.getItem('fxTheme') || 'auto'; } catch (e) {}
+  if (mode === 'light') document.documentElement.classList.add('theme-light');
+  if (mode === 'dark')  document.documentElement.classList.add('theme-force-dark');
+  window.__fxTheme = mode;
+  function syncMeta() {
+    var m = document.getElementById('metaTheme');
+    if (!m) return;
+    var light = mode === 'light' ||
+      (mode === 'auto' && window.matchMedia('(prefers-color-scheme: light)').matches);
+    m.setAttribute('content', light ? '#f4f6fa' : '#0d0d14');
+  }
+  syncMeta();
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function () {
+    if ((window.__fxTheme || 'auto') === 'auto') syncMeta();
+  });
+})();
+</script>
+<script>
+function cycleTheme() {
+  var order = ['auto', 'light', 'dark'];
+  var next = order[(order.indexOf(window.__fxTheme || 'auto') + 1) % 3];
+  window.__fxTheme = next;
+  try { localStorage.setItem('fxTheme', next); } catch (e) {}
+  var root = document.documentElement;
+  root.classList.remove('theme-light', 'theme-force-dark');
+  if (next === 'light') root.classList.add('theme-light');
+  if (next === 'dark')  root.classList.add('theme-force-dark');
+  var btn = document.getElementById('themeBtn');
+  if (btn) {
+    btn.textContent = next === 'light' ? '☀' : next === 'dark' ? '☾' : '◐';
+    var ul = window.UI_STR && (UI_STR[document.documentElement.lang] || UI_STR.en) || {};
+    btn.title = next === 'light' ? (ul.themeLight || 'Theme: light') : next === 'dark' ? (ul.themeDark || 'Theme: dark') : (ul.themeAuto || 'Theme: auto');
+  }
+  var m = document.getElementById('metaTheme');
+  if (m) {
+    var light = next === 'light' ||
+      (next === 'auto' && window.matchMedia('(prefers-color-scheme: light)').matches);
+    m.setAttribute('content', light ? '#f4f6fa' : '#0d0d14');
+  }
+}
+(function () {
+  var btn = document.getElementById('themeBtn');
+  if (btn) {
+    var t = window.__fxTheme || 'auto';
+    btn.textContent = t === 'light' ? '☀' : t === 'dark' ? '☾' : '◐';
+    var u = window.UI_STR && (UI_STR[document.documentElement.lang] || UI_STR.en) || {};
+    btn.title = t === 'light' ? (u.themeLight || 'Theme: light') : t === 'dark' ? (u.themeDark || 'Theme: dark') : (u.themeAuto || 'Theme: auto');
+  }
+})();
+</script>
+</body>
+</html>

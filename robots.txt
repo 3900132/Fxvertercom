@@ -1,0 +1,5 @@
+# Fxverter — all crawlers welcome, including AI / answer-engine crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended)
+User-agent: *
+Allow: /
+
+Sitemap: https://fxverter.com/sitemap.xml
