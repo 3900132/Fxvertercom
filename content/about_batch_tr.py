@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+ABOUT_BATCH = {
+ "tr": {
+  "USD": "Amerikan doları, ABD Merkez Bankası (Fed) tarafından basılır; dünyanın ana rezerv parasıdır.",
+  "EUR": "Euro, Avrupa Merkez Bankası tarafından basılır; 20 ülkenin ortak para birimidir.",
+  "GBP": "Sterlin, İngiltere Merkez Bankası tarafından basılır; dünyanın en eski dövizlerindendir.",
+  "JPY": "Japon yeni, Japonya Merkez Bankası tarafından basılır; en işlek dövizlerden üçüncüsüdür.",
+  "TRY": "Türk lirası, Türkiye Cumhuriyet Merkez Bankası tarafından basılır; yüksek enflasyon bozar.",
+  "CNY": "Çin yuanı, Çin Halk Bankası tarafından yönetilir; döviz kuru iyi izlenir.",
+  "CHF": "İsviçre frangı, İsviçre Ulusal Bankası tarafından basılır; güvenli liman sayılır.",
+  "INR": "Hint rupisi, Hindistan Rezerv Bankası tarafından basılır; Güney Asya'da önemlidir.",
+  "KRW": "Kore wonu, Kore Merkez Bankası tarafından basılır; yarı iletken ihracatı etken firandır.",
+  "AUD": "Avustralya doları, Avustralya Merkez Bankası tarafından basılır; madencilik ülkesinin parasıdır.",
+  "CAD": "Kanada doları, Kanada Merkez Bankası tarafından basılır; petrol fiyatlarına duyarlıdır.",
+  "MXN": "Meksika pesosu, Meksika Bankası tarafından basılır; Latin Amerika'da işlek parasır.",
+  "BRL": "Brezilya reali, Brezilya Merkez Bankası tarafından basılır; büyük bölge ekonomisinin parasıdır.",
+  "ZAR": "Güney Afrika randı, Güney Afrika Rezerv Bankası tarafından basılır; altınla bağlıdır.",
+  "RUB": "Rus rublesi, Rusya Merkez Bankası tarafından basılır; gaz ticaretine bağlıdır.",
+  "SAR": "Suudi riyali, Suudi Merkez Bankası tarafından basılır; dolara sabit parasıdır.",
+  "AED": "BAE dirhemi, BAE Merkez Bankası tarafından basılır; dolara sabittir.",
+  "SEK": "İsveç kronu, eski merkez bankası Riksbank tarafından basılır.",
+  "NOK": "Norveç kronu, Norveç Merkez Bankası tarafından basılır; petrole bağımlıdır.",
+  "NZD": "Yeni Zelanda doları, merkez bankası tarafından basılır; süt ürünleri ihraçtır.",
+  "SGD": "Singapur doları, MAS tarafından basılır; Asya finans merkezinin eşyasıdır.",
+  "HKD": "Hong Kong doları, HKMA tarafından denetlenir; dolara 7,8 bandında bağlıdır.",
+  "THB": "Tayland bahtı, Tayland Merkez Bank birimli tarafından basılır; turizm parasctir.",
+  "IDR": "Rupiah, Endonezya Merkez Bank tarafından basılır; büyük adalar parasov.",
+  "MYR": "Malezya ringgiti, merkeze banka tarafından basılır; yağa bağlı para mıdır?",
+  "PHP": "Filipin pesosu, merkez bankası tarafından basılır; işçi döviz önemlidir.",
+  "VND": "Viyetnam dong, Vietnam Devlet Bankası tarafından basılır; kalkınma parasıdır.",
+  "LAK": "Lao kipi, Lao merkez bankası tarafından basılır; Lao'nun parasıdır.",
+  "PKR": "Pakistan rupisi, devlet bankası tarafından basılır; Pakistan'ın parasıdır.",
+  "BDT": "Taka, Bangladeş Bankası tarafından basılır; giyim ihracatına bağlıdır.",
+  "NGN": "Nayra, Nijerya Merkez Bankası tarafından basılır; Afrika'daki en kalabalık PAR nitelik.",
+  "EGP": "Mısır lirası, Mısır Merkez Bankası tarafından basılır; turizm bölgesinde dövizidir.",
+  "UAH": "Hryvnia, Ukrayna Merkez Bankası tarafından basılır; deval produkf kırım fır."
+ }
+}

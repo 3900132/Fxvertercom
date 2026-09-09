@@ -107,6 +107,11 @@ html.theme-light .chg.up{color:#c74e70}html.theme-light .chg.down{color:#14967a}
 .spark .ln{fill:none;stroke:var(--teal);stroke-width:2}
 .spark .area{fill:var(--teal);opacity:0.10;stroke:none}
 .spark text{fill:var(--muted);font-size:9px;font-family:'DM Sans',sans-serif}
+.rng{display:flex;gap:0.25rem;flex-shrink:0}
+.rngbtn{background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:0.14rem 0.5rem;font-family:var(--dm);font-size:0.65rem;color:var(--muted2);cursor:pointer;line-height:1.2}
+.rngbtn:hover{border-color:var(--teal);color:var(--teal)}
+.rngbtn.active{background:var(--teal);border-color:var(--teal);color:#fff}
+.trend-none{color:var(--muted);font-size:0.78rem;margin:0 0 1rem}
 .fxtheme{position:fixed;top:0.8rem;right:0.9rem;z-index:50;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.3rem 0.55rem;color:var(--muted2);cursor:pointer;font-size:0.85rem;line-height:1}
 .fxtheme:hover{border-color:var(--teal);color:var(--teal)}
 @media(max-width:480px){.facts{grid-template-columns:1fr}}
@@ -261,7 +266,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
   <div class="facts"><div class="fact"><div class="k">ISO</div><div class="v">EGP</div></div><div class="fact"><div class="k">♦</div><div class="v">E£</div></div><div class="fact"><div class="k">🌍</div><div class="v">Egypt</div></div><div class="fact"><div class="k">¢</div><div class="v">100 piastres</div></div></div>
-  <p class="about" itemprop="description" lang="en">The Egyptian Pound serves the Arab world's most populous country, with tourism, Suez Canal revenues and remittances as its main FX sources.</p>
+  <p class="about" itemprop="description">الجنيه المصري عملة مصر، يصدره البنك المركزي المصري، وهو عملة أساسية في الشرق الأوسط.</p>
   <h2>تحويل EGP</h2>
   <div class="ratebox">
     <input type="text" inputmode="decimal" id="amt" placeholder="المبلغ بـ EGP" oninput="calc(this.value)">
@@ -274,10 +279,15 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="chart-head">
       <span class="t">1 EGP → USD · 30 يومًا</span>
       <span class="chg" id="chg"></span>
+      <span class="rng">
+        <button type="button" class="rngbtn active" data-days="30" onclick="drawChart(30)">30D</button>
+        <button type="button" class="rngbtn" data-days="90" onclick="drawChart(90)">90D</button>
+      </span>
     </div>
-    <svg class="spark" id="spark" viewBox="0 0 500 110" preserveAspectRatio="none" role="img" aria-label="EGP to USD 30-day trend"></svg>
+    <svg class="spark" id="spark" viewBox="0 0 500 110" preserveAspectRatio="none" role="img" aria-label="EGP في العملات الرئيسية trend"></svg>
     <div class="d" id="chartRange"></div>
   </div>
+  <div class="trend-none" id="trendNone" hidden>لا توجد بيانات اتجاه لهذه العملة بعد — تغطي الرسوم البيانية نحو 30 عملة ضمن المرجع للبنك المركزي الأوروبي.</div>
   <table aria-label="EGP في العملات الرئيسية">
     <thead><tr><th>EGP</th><th class="r">جميع العملات</th></tr></thead>
     <tbody id="rt"></tbody>
@@ -288,6 +298,39 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 <script>
 const CODE = "EGP";
 const SYMBOL = "E\u00a3";
+// localize the currency name in the heading via the browser's built-in CLDR
+// data — the static English markup stays for crawlers
+(function () {
+  try {
+    var lang = document.documentElement.lang || 'en';
+    var DN = new Intl.DisplayNames([lang], {type: 'currency', fallback: 'code'});
+    var n = DN.of(CODE);
+    var h1 = document.querySelector('.cur-head h1');
+    if (n && n !== CODE && h1) h1.textContent = n + ' (' + CODE + ')';
+    // swap the English name inside the localized intro for the localized one
+    var ab = document.querySelector('.about[data-en-name]');
+    if (ab && n && n !== CODE) {
+      var en = ab.getAttribute('data-en-name');
+      ab.textContent = ab.textContent.split(en).join(n);
+    }
+    // localize the country fact via the flag emoji → ISO region code
+    var flagEl = document.querySelector('.cur-flag');
+    var flag = flagEl ? flagEl.textContent.trim() : '';
+    // Array.from merges UTF-16 surrogate pairs — raw map.call would split them
+    var offs = Array.from(flag).map(function (c) { return c.codePointAt(0) - 127462; });
+    if (offs.length === 2 && offs[0] >= 0 && offs[0] <= 25 && offs[1] >= 0 && offs[1] <= 25) {
+      var region = String.fromCharCode(65 + offs[0], 65 + offs[1]);
+      var RD = new Intl.DisplayNames([lang], {type: 'region', fallback: 'code'});
+      var rn = RD.of(region);
+      if (rn && rn !== region) {
+        document.querySelectorAll('.fact').forEach(function (f) {
+          var k = f.querySelector('.k'), v = f.querySelector('.v');
+          if (k && v && k.textContent.indexOf('\uD83C\uDF0D') > -1) v.textContent = rn;
+        });
+      }
+    }
+  } catch (e) {}
+})();
 async function rates(){
   try {
     const r = await fetch('https://api.frankfurter.dev/v1/latest?from=' + CODE);
@@ -325,17 +368,28 @@ function calc(v){
   out.textContent = (amt * r).toLocaleString(undefined, {maximumFractionDigits:2}) + ' ' + to + (SYMBOL ? ' (' + SYMBOL + ')' : '');
 }
 (async () => {
-  // 30-day trend: 1 CODE -> USD (inverse of USD->CODE series)
-  try {
-    if (CODE === 'USD') return;
-    const end = new Date(), start = new Date(Date.now() - 30 * 864e5);
-    const iso = d => d.toISOString().slice(0, 10);
-    const r = await fetch('https://api.frankfurter.dev/v1/' + iso(start) + '..' + iso(end) + '?from=' + CODE + '&to=USD');
-    if (!r.ok) return;
-    const d = await r.json();
-    const keys = Object.keys(d.rates || {}).sort();
-    if (keys.length < 3) return;
-    const pts = keys.map(k => ({date: k, v: d.rates[k].USD}));
+  // trend chart: 1 CODE → QUOTE (USD pages chart against EUR), 30/90-day toggle
+  const QUOTE = CODE === 'USD' ? 'EUR' : 'USD';
+  const seriesCache = {};
+  function noTrend() {
+    var el = document.getElementById('trendNone');
+    if (el) el.hidden = false;
+  }
+  window.drawChart = async function (days) {
+    try {
+      if (seriesCache[days]) return renderChart(seriesCache[days], days);
+      const end = new Date(), start = new Date(Date.now() - days * 864e5);
+      const iso = d => d.toISOString().slice(0, 10);
+      const r = await fetch('https://api.frankfurter.dev/v1/' + iso(start) + '..' + iso(end) + '?from=' + CODE + '&to=' + QUOTE);
+      if (!r.ok) return noTrend();
+      const d = await r.json();
+      const keys = Object.keys(d.rates || {}).sort();
+      if (keys.length < 3) return noTrend();
+      seriesCache[days] = keys.map(k => ({date: k, v: d.rates[k][QUOTE]}));
+      renderChart(seriesCache[days], days);
+    } catch (e) { noTrend(); }
+  };
+  function renderChart(pts, days) {
     const W = 500, H = 110, PAD = 8;
     const vs = pts.map(p => p.v);
     const min = Math.min(...vs), max = Math.max(...vs), span = (max - min) || 1;
@@ -352,8 +406,10 @@ function calc(v){
     const el = document.getElementById('chg');
     el.textContent = (chg >= 0 ? '▲ +' : '▼ ') + chg.toFixed(2) + '%';
     el.classList.add(chg >= 0 ? 'up' : 'down');
-    document.getElementById('chartRange').textContent = pts[0].date + ' → ' + pts[pts.length - 1].date + ' · ECB reference rates';
-  } catch (e) {}
+    document.getElementById('chartRange').textContent = pts[0].date + ' → ' + pts[pts.length - 1].date + ' · ' + days + '-day trend · ECB reference rates';
+    document.querySelectorAll('.rngbtn').forEach(b => b.classList.toggle('active', +b.dataset.days === days));
+  }
+  drawChart(30);
 })();
 </script>
 </body>

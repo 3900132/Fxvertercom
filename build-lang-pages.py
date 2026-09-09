@@ -17,6 +17,8 @@ from content.ui_strings import UI, SUPPORT_LABEL
 from content.content_ui import CONTENT_UI
 from content.supporters import SUPPORTERS
 from content.currencies import CURRENCY_INFO
+from content.about_l10n import ABOUT_L10N
+from content.sub_l10n import SUB_L10N
 
 BASE = "https://fxverter.com/"
 
@@ -268,8 +270,8 @@ for code, t in langs.items():
                         f'<a id="supportLink" href="{BASE}{code}/support/">♥ <span id="supportLabel">{sup_label}</span></a>', 1)
     # feedback link + about-section nav links: localize text, fix depth
     fb_label = UI[code]["feedback"]
-    page = page.replace('<a id="feedbackLink" href="https://splitforms.com/f/fxverter" target="_blank" rel="noopener"><span id="feedbackLabel">Feedback</span></a>',
-                        f'<a id="feedbackLink" href="https://splitforms.com/f/fxverter" target="_blank" rel="noopener"><span id="feedbackLabel">{fb_label}</span></a>', 1)
+    page = page.replace('<a id="feedbackLink" href="#" onclick="openFeedback(); return false;"><span id="feedbackLabel">Feedback</span></a>',
+                        f'<a id="feedbackLink" href="#" onclick="openFeedback(); return false;"><span id="feedbackLabel">{fb_label}</span></a>', 1)
     page = page.replace('<a href="currencies/" id="curNavLink">Browse all currencies</a>',
                         f'<a href="{BASE}{code}/currencies/" id="curNavLink">{UI[code]["curLink"]}</a>', 1)
     page = page.replace('<a href="guides/" id="guideNavLink">Exchange-rate guides</a>',
@@ -338,6 +340,11 @@ html.theme-light .chg.up{color:#c74e70}html.theme-light .chg.down{color:#14967a}
 .spark .ln{fill:none;stroke:var(--teal);stroke-width:2}
 .spark .area{fill:var(--teal);opacity:0.10;stroke:none}
 .spark text{fill:var(--muted);font-size:9px;font-family:'DM Sans',sans-serif}
+.rng{display:flex;gap:0.25rem;flex-shrink:0}
+.rngbtn{background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:0.14rem 0.5rem;font-family:var(--dm);font-size:0.65rem;color:var(--muted2);cursor:pointer;line-height:1.2}
+.rngbtn:hover{border-color:var(--teal);color:var(--teal)}
+.rngbtn.active{background:var(--teal);border-color:var(--teal);color:#fff}
+.trend-none{color:var(--muted);font-size:0.78rem;margin:0 0 1rem}
 .fxtheme{position:fixed;top:0.8rem;right:0.9rem;z-index:50;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.3rem 0.55rem;color:var(--muted2);cursor:pointer;font-size:0.85rem;line-height:1}
 .fxtheme:hover{border-color:var(--teal);color:var(--teal)}
 @media(max-width:480px){.facts{grid-template-columns:1fr}}
@@ -395,6 +402,39 @@ function fxToggleTheme() {
 CUR_PAGE_JS = """<script>
 const CODE = "{code}";
 const SYMBOL = {sym_js};
+// localize the currency name in the heading via the browser's built-in CLDR
+// data — the static English markup stays for crawlers
+(function () {
+  try {
+    var lang = document.documentElement.lang || 'en';
+    var DN = new Intl.DisplayNames([lang], {type: 'currency', fallback: 'code'});
+    var n = DN.of(CODE);
+    var h1 = document.querySelector('.cur-head h1');
+    if (n && n !== CODE && h1) h1.textContent = n + ' (' + CODE + ')';
+    // swap the English name inside the localized intro for the localized one
+    var ab = document.querySelector('.about[data-en-name]');
+    if (ab && n && n !== CODE) {
+      var en = ab.getAttribute('data-en-name');
+      ab.textContent = ab.textContent.split(en).join(n);
+    }
+    // localize the country fact via the flag emoji → ISO region code
+    var flagEl = document.querySelector('.cur-flag');
+    var flag = flagEl ? flagEl.textContent.trim() : '';
+    // Array.from merges UTF-16 surrogate pairs — raw map.call would split them
+    var offs = Array.from(flag).map(function (c) { return c.codePointAt(0) - 127462; });
+    if (offs.length === 2 && offs[0] >= 0 && offs[0] <= 25 && offs[1] >= 0 && offs[1] <= 25) {
+      var region = String.fromCharCode(65 + offs[0], 65 + offs[1]);
+      var RD = new Intl.DisplayNames([lang], {type: 'region', fallback: 'code'});
+      var rn = RD.of(region);
+      if (rn && rn !== region) {
+        document.querySelectorAll('.fact').forEach(function (f) {
+          var k = f.querySelector('.k'), v = f.querySelector('.v');
+          if (k && v && k.textContent.indexOf('\\uD83C\\uDF0D') > -1) v.textContent = rn;
+        });
+      }
+    }
+  } catch (e) {}
+})();
 async function rates(){
   try {
     const r = await fetch('https://api.frankfurter.dev/v1/latest?from=' + CODE);
@@ -432,17 +472,28 @@ function calc(v){
   out.textContent = (amt * r).toLocaleString(undefined, {maximumFractionDigits:2}) + ' ' + to + (SYMBOL ? ' (' + SYMBOL + ')' : '');
 }
 (async () => {
-  // 30-day trend: 1 CODE -> USD (inverse of USD->CODE series)
-  try {
-    if (CODE === 'USD') return;
-    const end = new Date(), start = new Date(Date.now() - 30 * 864e5);
-    const iso = d => d.toISOString().slice(0, 10);
-    const r = await fetch('https://api.frankfurter.dev/v1/' + iso(start) + '..' + iso(end) + '?from=' + CODE + '&to=USD');
-    if (!r.ok) return;
-    const d = await r.json();
-    const keys = Object.keys(d.rates || {}).sort();
-    if (keys.length < 3) return;
-    const pts = keys.map(k => ({date: k, v: d.rates[k].USD}));
+  // trend chart: 1 CODE → QUOTE (USD pages chart against EUR), 30/90-day toggle
+  const QUOTE = CODE === 'USD' ? 'EUR' : 'USD';
+  const seriesCache = {};
+  function noTrend() {
+    var el = document.getElementById('trendNone');
+    if (el) el.hidden = false;
+  }
+  window.drawChart = async function (days) {
+    try {
+      if (seriesCache[days]) return renderChart(seriesCache[days], days);
+      const end = new Date(), start = new Date(Date.now() - days * 864e5);
+      const iso = d => d.toISOString().slice(0, 10);
+      const r = await fetch('https://api.frankfurter.dev/v1/' + iso(start) + '..' + iso(end) + '?from=' + CODE + '&to=' + QUOTE);
+      if (!r.ok) return noTrend();
+      const d = await r.json();
+      const keys = Object.keys(d.rates || {}).sort();
+      if (keys.length < 3) return noTrend();
+      seriesCache[days] = keys.map(k => ({date: k, v: d.rates[k][QUOTE]}));
+      renderChart(seriesCache[days], days);
+    } catch (e) { noTrend(); }
+  };
+  function renderChart(pts, days) {
     const W = 500, H = 110, PAD = 8;
     const vs = pts.map(p => p.v);
     const min = Math.min(...vs), max = Math.max(...vs), span = (max - min) || 1;
@@ -459,8 +510,10 @@ function calc(v){
     const el = document.getElementById('chg');
     el.textContent = (chg >= 0 ? '▲ +' : '▼ ') + chg.toFixed(2) + '%';
     el.classList.add(chg >= 0 ? 'up' : 'down');
-    document.getElementById('chartRange').textContent = pts[0].date + ' → ' + pts[pts.length - 1].date + ' · ECB reference rates';
-  } catch (e) {}
+    document.getElementById('chartRange').textContent = pts[0].date + ' → ' + pts[pts.length - 1].date + ' · ' + days + '-day trend · ECB reference rates';
+    document.querySelectorAll('.rngbtn').forEach(b => b.classList.toggle('active', +b.dataset.days === days));
+  }
+  drawChart(30);
 })();
 </script>"""
 
@@ -620,6 +673,17 @@ def build_currency_page(code, en_name, lang="en"):
     # language-aware paths: /currencies/try/ (en) vs /zh/currencies/try/
     at_root = (lang == "en")
     dirpart = "" if at_root else f"{lang}/"
+    # about section: English pages keep the hand-written blurb (for crawlers
+    # and English readers); every other language uses its per-currency intro
+    # when one exists (ABOUT_L10N), otherwise a localized generic template with
+    # the English currency name baked in, swapped to the localized name at runtime
+    if at_root:
+        about_html = f'<p class="about" itemprop="description">{about}</p>'
+    elif ABOUT_L10N.get(lang, {}).get(code):
+        about_html = f'<p class="about" itemprop="description">{ABOUT_L10N[lang][code]}</p>'
+    else:
+        about_txt = C["curAbout"].replace("{name}", name)
+        about_html = f'<p class="about" itemprop="description" data-en-name="{name}">{about_txt}</p>'
     # "All currencies" nav: one up from /currencies/try/ or two up from /zh/currencies/try/
     up = "../" if at_root else "../../"
     home = BASE if at_root else BASE + f"{lang}/"
@@ -629,7 +693,10 @@ def build_currency_page(code, en_name, lang="en"):
         for l in CONTENT_UI)
     hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}currencies/{code.lower()}/">'
 
-    fact_defs = [("ISO", code), ("♦", symbol or "—"), ("🌍", country or "—"), ("¢", sub or "—")]
+    # minor-unit fact: per-language translation when available (SUB_L10N),
+    # otherwise the original English value
+    sub_display = SUB_L10N.get(code, {}).get(lang, sub)
+    fact_defs = [("ISO", code), ("♦", symbol or "—"), ("🌍", country or "—"), ("¢", sub_display or "—")]
     facts = "".join(
         f'<div class="fact"><div class="k">{k}</div><div class="v">{v}</div></div>'
         for k, v in fact_defs if v and v != "—")
@@ -643,6 +710,10 @@ def build_currency_page(code, en_name, lang="en"):
     # relative path back to the site root (for sw.js registration)
     root_up = "../../" if at_root else "../../../"
     tools = tools_bar(lang, f"currencies/{code.lower()}/", root_up)
+    # USD pages chart "1 USD → EUR" instead of the default "1 {code} → USD"
+    chart_label = C["chartHead"].replace("{code}", code)
+    if code == "USD":
+        chart_label = chart_label.replace("→ USD", "→ EUR", 1)
 
     page = f"""<!DOCTYPE html>
 <html lang="{lang}"{' dir="rtl"' if lang in ('ar', 'fa') else ''}>
@@ -693,7 +764,7 @@ def build_currency_page(code, en_name, lang="en"):
     </div>
   </div>
   <div class="facts">{facts}</div>
-  <p class="about" itemprop="description" lang="en">{about}</p>
+  {about_html}
   <h2>{C["convert"]} {code}</h2>
   <div class="ratebox">
     <input type="text" inputmode="decimal" id="amt" placeholder="{C["calcPlaceholder"]} {code}" oninput="calc(this.value)">
@@ -704,12 +775,17 @@ def build_currency_page(code, en_name, lang="en"):
   <h2>1 {code} {C["rateHead"]}</h2>
   <div class="chart-box" id="chartBox" hidden>
     <div class="chart-head">
-      <span class="t">{C["chartHead"].replace("{code}", code)}</span>
+      <span class="t">{chart_label}</span>
       <span class="chg" id="chg"></span>
+      <span class="rng">
+        <button type="button" class="rngbtn active" data-days="30" onclick="drawChart(30)">30D</button>
+        <button type="button" class="rngbtn" data-days="90" onclick="drawChart(90)">90D</button>
+      </span>
     </div>
-    <svg class="spark" id="spark" viewBox="0 0 500 110" preserveAspectRatio="none" role="img" aria-label="{code} to USD 30-day trend"></svg>
+    <svg class="spark" id="spark" viewBox="0 0 500 110" preserveAspectRatio="none" role="img" aria-label="{code} {C["rateHead"]} trend"></svg>
     <div class="d" id="chartRange"></div>
   </div>
+  <div class="trend-none" id="trendNone" hidden>{C["noTrend"]}</div>
   <table aria-label="{code} {C["rateHead"]}">
     <thead><tr><th>{code}</th><th class="r">{C["allCurrencies"]}</th></tr></thead>
     <tbody id="rt"></tbody>
@@ -763,8 +839,24 @@ def build_cur_index(lang="en"):
 {idx_items}
 </ul>
 </main>
-</body>
-</html>"""
+<script>
+// localize currency names via the browser's built-in CLDR data — the static
+// English list stays for crawlers
+(function () {{
+  try {{
+    var DN = new Intl.DisplayNames([document.documentElement.lang || 'en'], {{type: 'currency', fallback: 'code'}});
+    document.querySelectorAll('main ul li a').forEach(function (a) {{
+      var i = a.textContent.indexOf(' — ');
+      if (i < 0) return;
+      var code = a.textContent.slice(0, i);
+      var loc = DN.of(code);
+      if (loc && loc !== code) a.textContent = code + ' — ' + loc;
+    }});
+     }} catch (e) {{}}
+  }})();
+ </script>
+ </body>
+ </html>"""
 
 for _lang in CONTENT_UI:
     ld = cur_dir if _lang == "en" else os.path.join(_lang, "currencies")
@@ -894,6 +986,53 @@ if guide_entries or True:
     with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(gi)
 
+# localized guides indexes: /{lang}/guides/ — the language home pages link here.
+# Page chrome is localized (CONTENT_UI); guide articles stay English (lang="en").
+def build_guides_index(lang):
+    C = CONTENT_UI.get(lang, CONTENT_UI["en"])
+    home = BASE if lang == "en" else BASE + f"{lang}/"
+    items = "".join(
+        f'<li><a href="{BASE}guides/{s}/" lang="en">{t}</a><br>'
+        f'<span style="color:var(--muted);font-size:0.75rem" lang="en">{de[:110]}</span></li>'
+        for s, t, de in guide_entries) or f'<li style="color:var(--muted)">{C["guidesEmpty"]}</li>'
+    hreflangs = "\n".join(
+        f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}guides/">'
+        for l in CONTENT_UI)
+    hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}guides/">'
+    return f"""<!DOCTYPE html>
+<html lang="{lang}"{' dir="rtl"' if lang in ('ar', 'fa') else ''}>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{C["allGuides"]} | Fxverter</title>
+<meta name="description" content="{C["guidesIntro"]}">
+<link rel="canonical" href="{BASE}{"" if lang == "en" else lang + "/"}guides/">
+{hreflangs}
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0d0d14">
+{CUR_PAGE_CSS}
+{THEME_HELPERS}
+{CF_BEACON}
+</head>
+<body>
+{tools_bar(lang, "guides/", "../" if lang == "en" else "../../")}
+<div class="home"><a href="{home}">{C["backHome"]}</a></div>
+<main class="cur-card">
+<h1>{C["allGuides"]}</h1>
+<p class="about">{C["guidesIntro"]}</p>
+<ul style="padding-left:1.2rem;font-size:0.88rem;line-height:2.2">
+{items}
+</ul>
+</main>
+</body>
+</html>"""
+
+for _lang in CONTENT_UI:
+    gd = "guides" if _lang == "en" else os.path.join(_lang, "guides")
+    os.makedirs(gd, exist_ok=True)
+    with open(os.path.join(gd, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(build_guides_index(_lang))
+
 # ═══════════════════════════════════════════════════════
 # SUPPORT PAGE (/support/) — Creem.io checkout tiers + supporters wall.
 # ═══════════════════════════════════════════════════════
@@ -987,6 +1126,9 @@ add_beacon("currencies")
 for slug, _t, _d in guide_entries:
     add_beacon(os.path.join("guides", slug))
 add_beacon("guides")
+for _lang in CONTENT_UI:
+    if _lang != "en":
+        add_beacon(os.path.join(_lang, "guides"))
 
 # sitemap: root + languages + currencies + guides + support
 lastmod = datetime.date.today().isoformat()
@@ -1034,6 +1176,16 @@ for l in CONTENT_UI:
     <lastmod>{lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>""")
+# localized guides indexes: /{lang}/guides/
+for l in CONTENT_UI:
+    if l == "en":
+        continue
+    urls.append(f"""  <url>
+    <loc>{BASE}{l}/guides/</loc>
+    <lastmod>{lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>""")
 for slug, _t, _d in guide_entries:
     urls.append(f"""  <url>

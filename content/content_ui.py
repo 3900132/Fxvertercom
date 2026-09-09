@@ -26,6 +26,8 @@ CONTENT_UI = {
         "guidesIntro":"Plain-language explanations of how exchange rates work, by the Fxverter team.",
         "guidesEmpty":"Guides are coming soon.",
         "curLangIntro":"Fxverter shows live reference exchange rates for 141 world currencies. Each currency has its own page with rates, quick facts and a calculator:",
+        "noTrend":"No trend data for this currency yet — trend charts cover the ~30 currencies in the ECB reference-rate set.",
+        "curAbout":"{name} is one of the 141 world currencies supported by Fxverter, the free online currency converter. Fxverter shows live reference exchange rates for {name} and 140 other currencies, sourced from public central-bank data.",
  },
  "tr": {
         "backHome":"← Fxverter — Döviz Çevirici",
@@ -49,6 +51,8 @@ CONTENT_UI = {
         "guidesIntro":"Döviz kurlarının nasıl çalıştığına dair sade anlatımlar, Fxverter ekibinden.",
         "guidesEmpty":"Rehberler çok yakında.",
         "curLangIntro":"Fxverter, 141 dünya para birimi için canlı referans kurları gösterir. Her para biriminin kendi sayfası vardır:",
+        "noTrend":"Bu para birimi için henüz trend verisi yok — trend grafikleri ECB referans kapsamındaki ~30 para birimini kapsar.",
+        "curAbout":"{name}, ücretsiz çevrimiçi döviz çevirici Fxverter'in desteklediği 141 dünya para biriminden biridir. Fxverter; {name} ve 140'tan fazla diğer para birimi için, kamu merkez bankası verilerine dayalı canlı referans kurlar gösterir.",
  },
  "zh": {
         "backHome":"← Fxverter — 货币换算器",
@@ -72,6 +76,8 @@ CONTENT_UI = {
         "guidesIntro":"用通俗的语言讲解汇率的运作方式，来自 Fxverter 团队。",
         "guidesEmpty":"指南即将上线。",
         "curLangIntro":"Fxverter 提供 141 种世界货币的实时参考汇率。每种货币都有专属页面（汇率、档案与换算器）：",
+        "noTrend":"该币种暂无走势数据——走势图仅覆盖欧洲央行参考汇率的约30种货币。",
+        "curAbout":"{name}是 Fxverter 免费在线货币换算工具支持的 141 种世界货币之一。Fxverter 提供{name}及 140 多种其他货币的实时参考汇率，数据来自各国央行公开数据。",
  },
  "ja": {
         "backHome":"← Fxverter — 通貨コンバーター",
@@ -95,6 +101,8 @@ CONTENT_UI = {
         "guidesIntro":"為替レートの仕組みをわかりやすく解説する Fxverter チームのガイド。",
         "guidesEmpty":"ガイドは近日公開予定です。",
         "curLangIntro":"Fxverterは141の通貨のリアルタイム参照レートを提供します。各通貨には専用ページがあります：",
+        "noTrend":"この通貨のトレンドデータはまだありません — トレンドグラフはECB参照レートの約30通貨を対象とします。",
+        "curAbout":"{name}は、無料のオンライン通貨コンバーター「Fxverter」が対応する141の世界通貨の1つです。Fxverterは、各国中央銀行の公開データに基づき、{name}と140以上の通貨のリアルタイム参照レートを表示します。",
  },
  "de": {
         "backHome":"← Fxverter — Währungsrechner",
@@ -118,6 +126,8 @@ CONTENT_UI = {
         "guidesIntro":"Verständliche Erklärungen zu Wechselkursen vom Fxverter-Team.",
         "guidesEmpty":"Ratgeber folgen in Kürze.",
         "curLangIntro":"Fxverter zeigt Referenzkurse für 141 Weltwährungen. Jede Währung hat eine eigene Seite:",
+        "noTrend":"Noch keine Trenddaten für diese Währung — Trendgrafiken decken die ~30 Währungen des EZB-Referenzsatzes ab.",
+        "curAbout":"{name} ist eine der 141 Weltwährungen, die Fxverter — der kostenlose Online-Währungsrechner — unterstützt. Fxverter zeigt Referenzkurse für {name} und 140 weitere Währungen in Echtzeit, basierend auf öffentlichen Zentralbankdaten.",
  },
  "fr": {
         "backHome":"← Fxverter — Convertisseur",
@@ -141,6 +151,8 @@ CONTENT_UI = {
         "guidesIntro":"Des explications claires sur les taux de change, par l'équipe Fxverter.",
         "guidesEmpty":"Guides bientôt disponibles.",
         "curLangIntro":"Fxverter affiche les taux de référence de 141 devises. Chaque devise a sa page dédiée :",
+        "noTrend":"Pas encore de données de tendance pour cette devise — les graphiques couvrent les ~30 devises de la référence BCE.",
+        "curAbout":"{name} est l'une des 141 devises prises en charge par Fxverter, le convertisseur de devises en ligne gratuit. Fxverter affiche les taux de change de référence de {name} et de 140 autres devises, à partir de données publiques de banques centrales.",
  },
  "es": {
         "backHome":"← Fxverter — Conversor",
@@ -164,6 +176,8 @@ CONTENT_UI = {
         "guidesIntro":"Explicaciones claras sobre los tipos de cambio, del equipo de Fxverter.",
         "guidesEmpty":"Guías muy pronto.",
         "curLangIntro":"Fxverter muestra tipos de referencia de 141 divisas. Cada divisa tiene su propia página:",
+        "noTrend":"Aún sin datos de tendencia para esta divisa — los gráficos cubren las ~30 divisas de la referencia del BCE.",
+        "curAbout":"{name} es una de las 141 divisas que admite Fxverter, el conversor de divisas online gratuito. Fxverter muestra tipos de cambio de referencia de {name} y 140 divisas más, a partir de datos públicos de bancos centrales.",
  },
  "pt": {
         "backHome":"← Fxverter — Conversor",
@@ -187,6 +201,8 @@ CONTENT_UI = {
         "guidesIntro":"Explicações simples sobre taxas de câmbio, pela equipe Fxverter.",
         "guidesEmpty":"Guias em breve.",
         "curLangIntro":"O Fxverter mostra taxas de referência de 141 moedas. Cada moeda tem sua própria página:",
+        "noTrend":"Ainda sem dados de tendência para esta moeda — os gráficos cobrem as ~30 moedas da referência do BCE.",
+        "curAbout":"{name} é uma das 141 moedas apoiadas pela Fxverter, o conversor de moedas online gratuito. A Fxverter mostra taxas de câmbio de referência de {name} e de outras 140 moedas, com base em dados públicos de bancos centrais.",
  },
  "ru": {
         "backHome":"← Fxverter — Конвертер",
@@ -210,6 +226,8 @@ CONTENT_UI = {
         "guidesIntro":"Понятные объяснения о курсах валют от команды Fxverter.",
         "guidesEmpty":"Руководства скоро появятся.",
         "curLangIntro":"Fxverter показывает справочные курсы 141 валюты. У каждой валюты своя страница:",
+        "noTrend":"Пока нет данных о тренде для этой валюты — графики охватывают ~30 валют из референсных ставок ЕЦБ.",
+        "curAbout":"{name} — одна из 141 мировых валют, поддерживаемых Fxverter — бесплатным онлайн-конвертером валют. Fxverter показывает справочные курсы {name} и ещё 140 валют на основе публичных данных центральных банков.",
  },
  "ar": {
         "backHome":"← Fxverter — محول العملات",
@@ -233,6 +251,8 @@ CONTENT_UI = {
         "guidesIntro":"شرح مبسّط لأسعار الصرف من فريق Fxverter.",
         "guidesEmpty":"الأدلة قريبًا.",
         "curLangIntro":"يعرض Fxverter أسعار مرجعية لـ 131 عملة عالمية. لكل عملة صفحة خاصة:",
+        "noTrend":"لا توجد بيانات اتجاه لهذه العملة بعد — تغطي الرسوم البيانية نحو 30 عملة ضمن المرجع للبنك المركزي الأوروبي.",
+        "curAbout":"{name} هي إحدى 141 عملة عالمية يدعمها Fxverter، محوّل العملات المجاني عبر الإنترنت. يعرض Fxverter أسعار صرف مرجعية مباشرة لـ{name} وأكثر من 140 عملة أخرى، استنادًا إلى بيانات البنوك المركزية العامة.",
  },
  "hi": {
         "backHome":"← Fxverter — करेंसी कनवर्टर",
@@ -256,6 +276,8 @@ CONTENT_UI = {
         "guidesIntro":"विनिमय दरों की सरल व्याख्या, Fxverter टीम से।",
         "guidesEmpty":"गाइड जल्द आ रहे हैं।",
         "curLangIntro":"Fxverter 141 मुद्राओं की लाइव दरें दिखाता है। प्रत्येक मुद्रा का अपना पृष्ठ है:",
+        "noTrend":"इस मुद्रा के लिए अभी कोई ट्रेंड डेटा नहीं — ट्रेंड चार्ट ECB संदर्भ दरों की ~30 मुद्राओं को कवर करते हैं।",
+        "curAbout":"{name}, मुफ़्त ऑनलाइन करेंसी कनवर्टर Fxverter द्वारा समर्थित 141 विश्व मुद्राओं में से एक है। Fxverter सार्वजनिक केंद्रीय बैंक डेटा के आधार पर {name} और 140 अन्य मुद्राओं की लाइव संदर्भ दरें दिखाता है।",
  },
  "id": {
         "backHome":"← Fxverter — Konverter",
@@ -279,6 +301,8 @@ CONTENT_UI = {
         "guidesIntro":"Penjelasan sederhana tentang kurs dari tim Fxverter.",
         "guidesEmpty":"Panduan segera hadir.",
         "curLangIntro":"Fxverter menampilkan kurs referensi untuk 141 mata uang. Setiap mata uang punya halamannya sendiri:",
+        "noTrend":"Belum ada data tren untuk mata uang ini — grafik tren mencakup ~30 mata uang dalam acuan ECB.",
+        "curAbout":"{name} adalah salah satu dari 141 mata uang dunia yang didukung Fxverter, konverter mata uang online gratis. Fxverter menampilkan kurs referensi langsung untuk {name} dan 140 mata uang lainnya, berdasarkan data publik bank sentral.",
  },
  "ms": {
         "backHome":"← Fxverter — Penukar",
@@ -302,6 +326,8 @@ CONTENT_UI = {
         "guidesIntro":"Penjelasan ringkas tentang kadar pertukaran daripada pasukan Fxverter.",
         "guidesEmpty":"Panduan akan datang tidak lama lagi.",
         "curLangIntro":"Fxverter memaparkan kadar rujukan untuk 141 mata wang. Setiap mata wang mempunyai halaman sendiri:",
+        "noTrend":"Tiada data trend untuk mata wang ini lagi — carta trend meliputi ~30 mata wang dalam rujukan ECB.",
+        "curAbout":"{name} ialah salah satu daripada 141 mata wang dunia yang disokong oleh Fxverter, penukar mata wang dalam talian percuma. Fxverter memaparkan kadar rujukan semasa untuk {name} dan 140 mata wang lain, berdasarkan data awam bank pusat.",
  },
  "ko": {
         "backHome":"← Fxverter — 환율 계산기",
@@ -325,6 +351,8 @@ CONTENT_UI = {
         "guidesIntro":"환율 작동 방식에 대한 쉬운 설명, Fxverter 팀.",
         "guidesEmpty":"가이드가 곧 공개됩니다.",
         "curLangIntro":"Fxverter는 141개 통화의 실시간 참조 환율을 제공합니다. 각 통화마다 전용 페이지가 있습니다:",
+        "noTrend":"이 통화에 대한 추세 데이터가 아직 없습니다 — 추세 차트는 ECB 기준 환율의 약 30개 통화를 대상으로 합니다.",
+        "curAbout":"{name}은(는) 무료 온라인 환율 계산기 Fxverter가 지원하는 141개 세계 통화 중 하나입니다. Fxverter는 공개 중앙은행 데이터를 기반으로 {name}을(를) 포함한 140개 이상 통화의 실시간 참조 환율을 제공합니다.",
  },
  "vi": {
         "backHome":"← Fxverter — Chuyển đổi tiền tệ",
@@ -348,6 +376,8 @@ CONTENT_UI = {
         "guidesIntro":"Giải thích dễ hiểu về tỷ giá, từ đội ngũ Fxverter.",
         "guidesEmpty":"Cẩm nang sắp ra mắt.",
         "curLangIntro":"Fxverter hiển thị tỷ giá tham chiếu của 141 tiền tệ. Mỗi tiền tệ có trang riêng:",
+        "noTrend":"Chưa có dữ liệu xu hướng cho đồng tiền này — biểu đồ bao gồm ~30 đồng tiền trong tỷ giá tham chiếu ECB.",
+        "curAbout":"{name} là một trong 141 đồng tiền thế giới mà Fxverter — công cụ đổi tiền trực tuyến miễn phí — hỗ trợ. Fxverter hiển thị tỷ giá tham chiếu trực tiếp của {name} và 140 đồng tiền khác, dựa trên dữ liệu công khai của các ngân hàng trung ương.",
  },
  "th": {
         "backHome":"← Fxverter — ตัวแปลงสกุลเงิน",
@@ -371,6 +401,8 @@ CONTENT_UI = {
         "guidesIntro":"คำอธิบายง่าย ๆ เกี่ยวกับอัตราแลกเปลี่ยน จากทีม Fxverter",
         "guidesEmpty":"คู่มือมาเร็ว ๆ นี้",
         "curLangIntro":"Fxverter แสดงอัตราอ้างอิงของ 141 สกุลเงิน แต่ละสกุลเงินมีหน้าของตัวเอง:",
+        "noTrend":"ยังไม่มีข้อมูลแนวโน้มสำหรับสกุลเงินนี้ — แผนภูมิครอบคลุม ~30 สกุลเงินในอัตราอ้างอิงของ ECB",
+        "curAbout":"{name} เป็นหนึ่งใน 141 สกุลเงินที่ Fxverter เครื่องแปลงสกุลเงินออนไลน์ฟรี รองรับ โดย Fxverter แสดงอัตราแลกเปลี่ยนอ้างอิงล่าสุดของ {name} และอีก 140 สกุลเงิน จากข้อมูลสาธารณะของธนาคารกลาง",
  },
  "fa": {
         "backHome":"← Fxverter — مبدل ارز",
@@ -394,6 +426,8 @@ CONTENT_UI = {
         "guidesIntro":"توضیح ساده درباره نرخ ارز، از تیم Fxverter.",
         "guidesEmpty":"راهنماها به‌زودی.",
         "curLangIntro":"Fxverter نرخ مرجع 141 ارز را نمایش می‌دهد. هر ارز صفحه مخصوص خود را دارد:",
+        "noTrend":"هنوز داده روند برای این ارز موجود نیست — نمودارها ~۳۰ ارز نرخ مرجع ECB را پوشش می‌دهد.",
+        "curAbout":"{name} یکی از ۱۴۱ ارز جهانی است که Fxverter — مبدل آنلاین رایگان ارز — پشتیبانی می‌کند. Fxverter نرخ‌های مرجع لحظه‌ای {name} و ۱۴۰ ارز دیگر را بر اساس داده‌های عمومی بانک‌های مرکزی نشان می‌دهد.",
  },
  "uk": {
         "backHome":"← Fxverter — Конвертер",
@@ -417,6 +451,8 @@ CONTENT_UI = {
         "guidesIntro":"Зрозумілі пояснення про курси валют від команди Fxverter.",
         "guidesEmpty":"Посібники незабаром.",
         "curLangIntro":"Fxverter показує довідкові курси 141 валюти. Кожна валюта має власну сторінку:",
+        "noTrend":"Поки немає даних тренду для цієї валюти — графіки охоплюють ~30 валют із референсних курсів ЄЦБ.",
+        "curAbout":"{name} — одна зі 141 світових валют, які підтримує Fxverter — безкоштовний онлайн-конвертер валют. Fxverter показує довідкові курси {name} та ще 140 валют на основі публічних даних центральних банків.",
  },
  "el": {
         "backHome":"← Fxverter — Μετατροπέας",
@@ -440,6 +476,8 @@ CONTENT_UI = {
         "guidesIntro":"Απλές εξηγήσεις για τις ισοτιμίες, από την ομάδα του Fxverter.",
         "guidesEmpty":"Οι οδηγοί έρχονται σύντομα.",
         "curLangIntro":"Το Fxverter δείχνει ισοτιμίες αναφοράς για 141 νομίσματα. Κάθε νόμισμα έχει τη δική του σελίδα:",
+        "noTrend":"Δεν υπάρχουν ακόμη δεδομένα τάσης για αυτό το νόμισμα — τα γραφήματα καλύπτουν ~30 νομίσματα των τιμών αναφοράς ΕΚΤ.",
+        "curAbout":"Το {name} είναι ένα από τα 141 νομίσματα που υποστηρίζει το Fxverter, ο δωρεάν online μετατροπέας νομισμάτων. Το Fxverter εμφανίζει ζωντανές τιμές αναφοράς για το {name} και άλλα 140 νομίσματα, βασισμένες σε δημόσια δεδομένα κεντρικών τραπεζών.",
  },
  "bn": {
         "backHome":"← Fxverter — কারেন্সি কনভার্টার",
@@ -463,6 +501,8 @@ CONTENT_UI = {
         "guidesIntro":"বিনিময় হার নিয়ে সহজ ব্যাখ্যা, Fxverter টিম থেকে।",
         "guidesEmpty":"গাইড শীঘ্রই আসছে।",
         "curLangIntro":"Fxverter 141টি মুদ্রার লাইভ রেফারেন্স রেট দেখায়। প্রতিটি মুদ্রার নিজস্ব পৃষ্ঠা রয়েছে:",
+        "noTrend":"এই মুদ্রার জন্য এখনও কোনো ট্রেন্ড ডেটা নেই — ট্রেন্ড চার্ট ECB রেফারেন্স হারের ~৩০টি মুদ্রা কভার করে।",
+        "curAbout":"{name} হলো Fxverter — বিনামূল্যের অনলাইন কারেন্সি কনভার্টার — সমর্থিত ১৪১টি বিশ্ব মুদ্রার একটি। Fxverter সরকারি কেন্দ্রীয় ব্যাংকের ডেটার ভিত্তিতে {name} এবং আরও ১৪০টি মুদ্রার লাইভ রেফারেন্স রেট দেখায়।",
  },
  "pl": {
         "backHome":"← Fxverter — Przelicznik",
@@ -486,6 +526,8 @@ CONTENT_UI = {
         "guidesIntro":"Proste wyjaśnienia kursów walut od zespołu Fxverter.",
         "guidesEmpty":"Poradniki wkrótce.",
         "curLangIntro":"Fxverter pokazuje kursy referencyjne 141 walut. Każda waluta ma własną stronę:",
+        "noTrend":"Brak danych trendu dla tej waluty — wykresy obejmują ~30 walut z kursów referencyjnych EBC.",
+        "curAbout":"{name} to jedna ze 141 walut świata obsługiwanych przez Fxverter — darmowy przelicznik walut online. Fxverter pokazuje bieżące kursy referencyjne {name} i 140 innych walut na podstawie publicznych danych banków centralnych.",
  },
  "nl": {
         "backHome":"← Fxverter — Omrekenner",
@@ -509,6 +551,8 @@ CONTENT_UI = {
         "guidesIntro":"Begrijpelijke uitleg over wisselkoersen, van het Fxverter-team.",
         "guidesEmpty":"Gidsen volgen binnenkort.",
         "curLangIntro":"Fxverter toont referentiekoersen van 141 valuta. Elke valuta heeft een eigen pagina:",
+        "noTrend":"Nog geen trendgegevens voor deze valuta — trendgrafieken dekken de ~30 valuta's van de ECB-referentiecursen.",
+        "curAbout":"{name} is een van de 141 valuta's die worden ondersteund door Fxverter, de gratis online valutaomrekenaar. Fxverter toont actuele referentiekoersen voor {name} en 140 andere valuta's, op basis van openbare centrale-bankgegevens.",
  },
  "it": {
         "backHome":"← Fxverter — Convertitore",
@@ -532,6 +576,8 @@ CONTENT_UI = {
         "guidesIntro":"Spiegazioni semplici sui tassi di cambio, dal team Fxverter.",
         "guidesEmpty":"Guide in arrivo.",
         "curLangIntro":"Fxverter mostra tassi di riferimento per 141 valute. Ogni valuta ha una pagina dedicata:",
+        "noTrend":"Nessun dato di tendenza per questa valuta — i grafici coprono le ~30 valute dei tassi di riferimento BCE.",
+        "curAbout":"{name} è una delle 141 valute supportate da Fxverter, il convertitore di valute online gratuito. Fxverter mostra i tassi di cambio di riferimento in tempo reale per {name} e altre 140 valute, basati su dati pubblici delle banche centrali.",
  },
  "ro": {
         "backHome":"← Fxverter — Convertor",
@@ -555,6 +601,8 @@ CONTENT_UI = {
         "guidesIntro":"Explicații simple despre cursurile valutare, de la echipa Fxverter.",
         "guidesEmpty":"Ghiduri în curând.",
         "curLangIntro":"Fxverter afișează cursuri de referință pentru 141 valute. Fiecare valută are propria pagină:",
+        "noTrend":"Nu există încă date de trend pentru această monedă — graficele acoperă ~30 de valute din cursurile de referință BCE.",
+        "curAbout":"{name} este una dintre cele 141 de valute din lume acceptate de Fxverter — convertorul valutar online gratuit. Fxverter afișează cursuri de referință în timp real pentru {name} și alte 140 de valute, pe baza datelor publice ale băncilor centrale.",
  },
  "cs": {
         "backHome":"← Fxverter — Převodník",
@@ -578,6 +626,8 @@ CONTENT_UI = {
         "guidesIntro":"Srozumitelná vysvětlení kurzů od týmu Fxverter.",
         "guidesEmpty":"Průvodci brzy.",
         "curLangIntro":"Fxverter zobrazuje referenční kurzy 141 měn. Každá měna má vlastní stránku:",
+        "noTrend":"Zatím žádná data trendu pro tuto měnu — grafy pokrývají ~30 měn referenčních kurzů ECB.",
+        "curAbout":"{name} je jednou ze 141 světových měn podporovaných Fxverterem — bezplatným online převodníkem měn. Fxverter zobrazuje aktuální referenční kurzy {name} a 140 dalších měn na základě veřejných dat centrálních bank.",
  },
  "da": {
         "backHome":"← Fxverter — Valutaomregner",
@@ -601,6 +651,8 @@ CONTENT_UI = {
         "guidesIntro":"Klare forklaringer på valutakurser fra Fxverter-teamet.",
         "guidesEmpty":"Guider kommer snart.",
         "curLangIntro":"Fxverter viser referenzkurser for 141 valutaer. Hver valuta har sin egen side:",
+        "noTrend":"Ingen trenddata for denne valuta endnu — trendgrafer dækker ~30 valuter i ECB's referenskurser.",
+        "curAbout":"{name} er en af de 141 verdensvaluter, der understøttes af Fxverter — den gratis online valutaomregner. Fxverter viser aktuelle referenskurser for {name} og 140 andre valutor, baseret på offentlige centralbankdata.",
  },
  "sv": {
         "backHome":"← Fxverter — Valutaomvandlare",
@@ -624,6 +676,8 @@ CONTENT_UI = {
         "guidesIntro":"Klara förklaringar om växelkurser från Fxverter-teamet.",
         "guidesEmpty":"Guider kommer snart.",
         "curLangIntro":"Fxverter visar referenskurser för 141 valutor. Varje valuta har en egen sida:",
+        "noTrend":"Inga trenddata för denna valuta ännu — trenddiagram täcker ~30 valutor i ECB:s referenskurser.",
+        "curAbout":"{name} är en av de 141 världsvalutorna som stöds av Fxverter, den kostnadsfria online-valutaomvandlaren. Fxverter visar aktuella referenskurser för {name} och 140 andra valutor, baserat på offentliga centralbanksdata.",
  },
  "lo": {
         "backHome":"← Fxverter — ຕົວແປງສະກຸນເງິນ",
@@ -647,6 +701,8 @@ CONTENT_UI = {
         "guidesIntro":"ຄຳອະທິບາຍງ່າຍໆກ່ຽວກັບອັດຕາແລກປ່ຽນ ຈາກທີມ Fxverter.",
         "guidesEmpty":"ຄູ່ມືມາໃໝ່ໃນເວລາອັນໃກ້ນີ້.",
         "curLangIntro":"Fxverter ສະແດງອັດຕາອ້າງອີງຂອງ 141 ສະກຸນເງິນ. ແຕ່ລະສະກຸນເງິນມີໜ້າຂອງຕົນເອງ:",
+        "noTrend":"ຍັງບໍ່ມີຂໍ້ມູນແນວໂນ້ມສຳລັບສະກຸນເງິນນີ້ — ແຜນພູມຄຸມຸມ ~30 ສະກຸນເງິນໃນອັດຕາອ້າງອີງ ECB.",
+        "curAbout":"{name} ເປັນໜຶ່ງໃນ 141 ສະກຸນເງິນທີ່ Fxverter ເຄື່ອງແປງສະກຸນເງິນອອນລາຍຟຣີ ຮອງຮັບ. Fxverter ສະແດງອັດຕາແລກປ່ຽນອ້າງອີງສົດຂອງ {name} ແລະ ອີກ 140 ສະກຸນເງິນ ຈາກຂໍ້ມູນສາທາລະນະຂອງທະນາຄານກາງ.",
  },
  "tl": {
         "backHome":"← Fxverter — Tagapagpalit",
@@ -670,5 +726,7 @@ CONTENT_UI = {
         "guidesIntro":"Malinaw na paliwanag tungkol sa exchange rates, mula sa Fxverter team.",
         "guidesEmpty":"Paparating na ang mga gabay.",
         "curLangIntro":"Nagpapakita ang Fxverter ng reference rates para sa 141 pera. May sariling page ang bawat pera:",
+        "noTrend":"Wala pang trend data para sa perang ito — saklaw ng trend charts ang ~30 pera sa ECB reference rates.",
+        "curAbout":"Ang {name} ay isa sa 141 world currencies na sinusuportahan ng Fxverter, ang libreng online currency converter. Nagpapakita ang Fxverter ng live reference exchange rates para sa {name} at 140 iba pang pera, mula sa pampublikong central bank data.",
  },
 }

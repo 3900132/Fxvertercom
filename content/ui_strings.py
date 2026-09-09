@@ -33,6 +33,8 @@ UI = {
         "curLink":"Browse all currencies",
         "guideLink":"Exchange-rate guides",
         "install":"Install app",
+        "nearHigh":"Rate near {days}-day high",
+        "nearLow":"Rate near {days}-day low",
  },
  "tr": {
         "privacy":"Gizlilik: bu web sitesi çerez kullanmaz ve kişisel veri toplamaz. Aracı geliştirmek için anonim, çerezsiz ziyaret istatistikleri (sayfa görüntüleme ve ülke) toplanabilir.",
@@ -57,6 +59,8 @@ UI = {
         "curLink":"Tüm para birimlerine göz at",
         "guideLink":"Döviz kuru rehberleri",
         "install":"Uygulamayı yükle",
+        "nearHigh":"Kur {days} günlük zirveye yakın",
+        "nearLow":"Kur {days} günlük dipe yakın",
  },
  "de": {
         "privacy":"Datenschutz: Diese Website verwendet keine Cookies und erhebt keine personenbezogenen Daten. Zur Verbesserung des Tools können anonyme, cookiefreie Besuchsstatistiken (Seitenaufrufe und Land) erhoben werden.",
@@ -81,6 +85,8 @@ UI = {
         "curLink":"Alle Währungen ansehen",
         "guideLink":"Wechselkurs-Ratgeber",
         "install":"App installieren",
+        "nearHigh":"Kurs nahe {days}-Tage-Hoch",
+        "nearLow":"Kurs nahe {days}-Tage-Tief",
  },
  "fr": {
         "privacy":"Confidentialité : ce site n'utilise aucun cookie et ne collecte aucune donnée personnelle. Des statistiques de visite anonymes, sans cookie (pages vues et pays), peuvent être collectées pour améliorer l'outil.",
@@ -105,6 +111,8 @@ UI = {
         "curLink":"Parcourir toutes les devises",
         "guideLink":"Guides sur les taux de change",
         "install":"Installer l'application",
+        "nearHigh":"Taux proche du plus haut sur {days} jours",
+        "nearLow":"Taux proche du plus bas sur {days} jours",
  },
  "es": {
         "privacy":"Privacidad: este sitio web no usa cookies ni recoge datos personales. Para mejorar la herramienta pueden recogerse estadísticas de visita anónimas y sin cookies (páginas vistas y país).",
@@ -129,6 +137,8 @@ UI = {
         "curLink":"Ver todas las divisas",
         "guideLink":"Guías de tipos de cambio",
         "install":"Instalar aplicación",
+        "nearHigh":"Tipo cerca del máximo de {days} días",
+        "nearLow":"Tipo cerca del mínimo de {days} días",
  },
  "pt": {
         "privacy":"Privacidade: este site não usa cookies e não coleta dados pessoais. Estatísticas de visita anônimas, sem cookies (visualizações de página e país), podem ser coletadas para melhorar a ferramenta.",
@@ -153,6 +163,8 @@ UI = {
         "curLink":"Ver todas as moedas",
         "guideLink":"Guias de câmbio",
         "install":"Instalar aplicativo",
+        "nearHigh":"Taxa perto da máxima de {days} dias",
+        "nearLow":"Taxa perto da mínima de {days} dias",
  },
  "ru": {
         "privacy":"Конфиденциальность: этот сайт не использует файлы cookie и не собирает персональные данные. Для улучшения инструмента могут собираться анонимные статистики посещений без cookie (просмотры страниц и страна).",
@@ -177,6 +189,8 @@ UI = {
         "curLink":"Все валюты",
         "guideLink":"Руководства по курсам",
         "install":"Установить приложение",
+        "nearHigh":"Курс близок к максимуму за {days} дней",
+        "nearLow":"Курс близок к минимуму за {days} дней",
  },
  "zh": {
         "privacy":"隐私：本网站不使用 Cookie、不收集个人数据。仅可能收集匿名的无 Cookie 访问统计（页面浏览量与国家/地区），用于改进工具。",
@@ -201,6 +215,8 @@ UI = {
         "curLink":"浏览全部币种",
         "guideLink":"汇率指南",
         "install":"安装应用",
+        "nearHigh":"汇率接近{days}天高点",
+        "nearLow":"汇率接近{days}天低点",
  },
  "ja": {
         "privacy":"プライバシー：当サイトはクッキーを使用せず、個人データを収集しません。ツール改善のため、クッキーなしの匿名アクセス統計（ページビューと国）を収集する場合があります。",
@@ -225,6 +241,8 @@ UI = {
         "curLink":"すべての通貨を見る",
         "guideLink":"為替レートガイド",
         "install":"アプリをインストール",
+        "nearHigh":"レートは{days}日の高値付近",
+        "nearLow":"レートは{days}日の安値付近",
  },
  "ko": {
         "privacy":"개인정보: 이 웹사이트는 쿠키를 사용하지 않으며 개인 데이터를 수집하지 않습니다. 도구 개선을 위해 익명의 쿠키 없는 방문 통계(페이지뷰 및 국가)가 수집될 수 있습니다.",
@@ -249,6 +267,8 @@ UI = {
         "curLink":"모든 통화 보기",
         "guideLink":"환율 가이드",
         "install":"앱 설치",
+        "nearHigh":"환율 {days}일 최고점 부근",
+        "nearLow":"환율 {days}일 최저점 부근",
  },
  "ar": {
         "privacy":"الخصوصية: لا يستخدم هذا الموقع ملفات تعريف الارتباط ولا يجمع بيانات شخصية. قد تُجمع إحصاءات زيارة مجهولة بدون كوكيز (مشاهدات الصفحة والبلد) لتحسين الأداة.",
@@ -273,6 +293,8 @@ UI = {
         "curLink":"تصفح جميع العملات",
         "guideLink":"أدلة أسعار الصرف",
         "install":"تثبيت التطبيق",
+        "nearHigh":"السعر قريب من أعلى مستوى خلال {days} يومًا",
+        "nearLow":"السعر قريب من أدنى مستوى خلال {days} يومًا",
  },
  "hi": {
         "privacy":"गोपनीयता: यह वेबसाइट कुकीज़ का उपयोग नहीं करती और कोई व्यक्तिगत डेटा एकत्र नहीं करती। टूल को बेहतर बनाने के लिए गुमनाम, कुकी-मुक्त विज़िट आंकड़े (पेज व्यू और देश) एकत्र किए जा सकते हैं।",
@@ -297,6 +319,8 @@ UI = {
         "curLink":"सभी मुद्राएँ देखें",
         "guideLink":"विनिमय दर गाइड",
         "install":"ऐप इंस्टॉल करें",
+        "nearHigh":"दर {days} दिन के उच्चतम स्तर के पास",
+        "nearLow":"दर {days} दिन के निम्नतम स्तर के पास",
  },
  "id": {
         "privacy":"Privasi: situs ini tidak menggunakan cookie dan tidak mengumpulkan data pribadi. Statistik kunjungan anonim tanpa cookie (jumlah tayangan halaman dan negara) dapat dikumpulkan untuk memperbaiki alat ini.",
@@ -321,6 +345,8 @@ UI = {
         "curLink":"Lihat semua mata uang",
         "guideLink":"Panduan kurs",
         "install":"Instal aplikasi",
+        "nearHigh":"Kurs dekat titik tertinggi {days} hari",
+        "nearLow":"Kurs dekat titik terendah {days} hari",
  },
  "ms": {
         "privacy":"Privasi: laman web ini tidak menggunakan kuki dan tidak mengumpulkan data peribadi. Statistik lawatan tanpa nama tanpa kuki (paparan halaman dan negara) mungkin dikumpulkan untuk menambah baik alat ini.",
@@ -345,6 +371,8 @@ UI = {
         "curLink":"Lihat semua mata wang",
         "guideLink":"Panduan kadar pertukaran",
         "install":"Pasang aplikasi",
+        "nearHigh":"Kadar hampir titik tertinggi {days} hari",
+        "nearLow":"Kadar hampir titik terendah {days} hari",
  },
  "tl": {
         "privacy":"Privacy: hindi gumagamit ng cookies ang website na ito at hindi nagkokolekta ng personal na data. Maaaring mangolekta ng anonymous, cookie-free na visit statistics (page views at bansa) para pagbutihin ang tool.",
@@ -369,6 +397,8 @@ UI = {
         "curLink":"Tingnan ang lahat ng pera",
         "guideLink":"Mga gabay sa exchange rate",
         "install":"I-install ang app",
+        "nearHigh":"Malapit sa {days}-day high ang rate",
+        "nearLow":"Malapit sa {days}-day low ang rate",
  },
  "it": {
         "privacy":"Privacy: questo sito non usa cookie e non raccoglie dati personali. Statistiche di visita anonime senza cookie (visualizzazioni di pagina e paese) possono essere raccolte per migliorare lo strumento.",
@@ -393,6 +423,8 @@ UI = {
         "curLink":"Vedi tutte le valute",
         "guideLink":"Guide sui tassi di cambio",
         "install":"Installa l'app",
+        "nearHigh":"Tasso vicino al massimo di {days} giorni",
+        "nearLow":"Tasso vicino al minimo di {days} giorni",
  },
  "nl": {
         "privacy":"Privacy: deze website gebruikt geen cookies en verzamelt geen persoonsgegevens. Anonieme, cookievrije bezochtsstatistieken (paginaweergaven en land) kunnen worden verzameld om de tool te verbeteren.",
@@ -417,6 +449,8 @@ UI = {
         "curLink":"Alle valuta's bekijken",
         "guideLink":"Wisselkoersgidsen",
         "install":"App installeren",
+        "nearHigh":"Koers nabij {days}-dagen hoogtepunt",
+        "nearLow":"Koers nabij {days}-dagen dieptepunt",
  },
  "pl": {
         "privacy":"Prywatność: ta strona nie używa plików cookie i nie zbiera danych osobowych. W celu ulepszenia narzędzia mogą być zbierane anonimowe statystyki wizyt bez plików cookie (wyświetlenia stron i kraj).",
@@ -441,6 +475,8 @@ UI = {
         "curLink":"Zobacz wszystkie waluty",
         "guideLink":"Poradniki kursów",
         "install":"Zainstaluj aplikację",
+        "nearHigh":"Kurs blisko maksimum {days} dni",
+        "nearLow":"Kurs blisko minimum {days} dni",
  },
  "uk": {
         "privacy":"Приватність: цей сайт не використовує cookie та не збирає персональні дані. Для покращення інструменту можуть збиратися анонімні статистики відвідувань без cookie (перегляди сторінок і країна).",
@@ -465,6 +501,8 @@ UI = {
         "curLink":"Усі валюти",
         "guideLink":"Посібники з курсів",
         "install":"Встановити застосунок",
+        "nearHigh":"Курс біля максимуму за {days} днів",
+        "nearLow":"Курс біля мінімуму за {days} днів",
  },
  "sv": {
         "privacy":"Integritet: denna webbplats använder inga cookies och samlar inte in personuppgifter. Anonyma besöksstatistik utan cookies (sidvisningar och land) kan samlas in för att förbättra verktyget.",
@@ -489,6 +527,8 @@ UI = {
         "curLink":"Se alla valutor",
         "guideLink":"Växelkursguider",
         "install":"Installera appen",
+        "nearHigh":"Kursen nära högsta på {days} dagar",
+        "nearLow":"Kursen nära lägsta på {days} dagar",
  },
  "th": {
         "privacy":"ความเป็นส่วนตัว: เว็บไซต์นี้ไม่ใช้คุกกี้และไม่เก็บข้อมูลส่วนบุคคล อาจมีการเก็บสถิติการเข้าชมแบบไม่ระบุตัวตนโดยไม่ใช้คุกกี้ (ยอดเข้าชมหน้าเว็บและประเทศ) เพื่อปรับปรุงเครื่องมือ",
@@ -513,6 +553,8 @@ UI = {
         "curLink":"ดูสกุลเงินทั้งหมด",
         "guideLink":"คู่มืออัตราแลกเปลี่ยน",
         "install":"ติดตั้งแอป",
+        "nearHigh":"อัตราใกล้จุดสูงสุด {days} วัน",
+        "nearLow":"อัตราใกล้จุดต่ำสุด {days} วัน",
  },
  "lo": {
         "privacy":"ຄວາມເປັນສ່ວນຕົວ: ເວັບໄຊນ໌ນີ້ບໍ່ໃຊ້ຄຸກກີ ແລະ ບໍ່ເກັບຂໍ້ມູນສ່ວນຕົວ. ອາດເກັບສະຖິตິກການເຂົ້າຊົມແບບນິລະນາມ ໂດຍບໍ່ໃຊ້ຄຸກກີ (ຈຳນວນເຂົ້າຊົມ ແລະ ປະເທດ) ເພື່ອປັບປຸງເຄື່ອງມື.",
@@ -537,6 +579,8 @@ UI = {
         "curLink":"ເບິ່ງສະກຸນເງິນທັງໝົດ",
         "guideLink":"ຄູ່ມືອັດຕາແລກປ່ຽນ",
         "install":"ຕິດຕັ້ງແອັບ",
+        "nearHigh":"ອັດຕາໃກ້ຈຸດສູງສຸດ {days} ວັນ",
+        "nearLow":"ອັດຕາໃກ້ຈຸດຕ່ຳສຸດ {days} ວັນ",
  },
  "vi": {
         "privacy":"Quyền riêng tư: trang web này không sử dụng cookie và không thu thập dữ liệu cá nhân. Thống kê truy cập ẩn danh, không cookie (lượt xem trang và quốc gia) có thể được thu thập để cải thiện công cụ.",
@@ -561,6 +605,8 @@ UI = {
         "curLink":"Xem tất cả tiền tệ",
         "guideLink":"Cẩm nang tỷ giá",
         "install":"Cài đặt ứng dụng",
+        "nearHigh":"Tỷ giá gần mức cao nhất {days} ngày",
+        "nearLow":"Tỷ giá gần mức thấp nhất {days} ngày",
  },
  "el": {
         "privacy":"Απορρήτου: αυτός ο ιστότοπος δεν χρησιμοποιεί cookie και δεν συλλέγει προσωπικά δεδομένα. Ανώνυμα στατιστικά επισκεψιμότητας χωρίς cookie (εμφανίσεις σελίδας και χώρα) ενδέχεται να συλλέγονται για τη βελτίωση του εργαλείου.",
@@ -585,6 +631,8 @@ UI = {
         "curLink":"Όλα τα νομίσματα",
         "guideLink":"Οδηγοί ισοτιμιών",
         "install":"Εγκατάσταση εφαρμογής",
+        "nearHigh":"Η ισοτιμία κοντά στο μέγιστο {days} ημερών",
+        "nearLow":"Η ισοτιμία κοντά στο ελάχιστο {days} ημερών",
  },
  "bn": {
         "privacy":"গোপনীয়তা: এই ওয়েবসাইট কুকি ব্যবহার করে না এবং কোনো ব্যক্তিগত তথ্য সংগ্রহ করে না। টুল উন্নত করতে নাম-গোপন কুকি-মুক্ত ভিজিট পরিসংখ্যান (পেজ ভিউ ও দেশ) সংগ্রহ করা হতে পারে।",
@@ -609,6 +657,8 @@ UI = {
         "curLink":"সব মুদ্রা দেখুন",
         "guideLink":"বিনিময় হার গাইড",
         "install":"অ্যাপ ইনস্টল করুন",
+        "nearHigh":"হার {days} দিনের সর্বোচ্চের কাছে",
+        "nearLow":"হার {days} দিনের সর্বনিম্নের কাছে",
  },
  "fa": {
         "privacy":"حریم خصوصی: این وب‌سایت از کوکی استفاده نمی‌کند و داده‌های شخصی جمع نمی‌کند. برای بهبود ابزار ممکن است آمار بازدید ناشناس و بدون کوکی (بازدید صفحه و کشور) جمع‌آوری شود.",
@@ -633,6 +683,8 @@ UI = {
         "curLink":"همه ارزها",
         "guideLink":"راهنمای نرخ ارز",
         "install":"نصب برنامه",
+        "nearHigh":"نرخ نزدیک بیشینه {days} روزه",
+        "nearLow":"نرخ نزدیک کمینه {days} روزه",
  },
  "cs": {
         "privacy":"Soukromí: tento web nepoužívá soubory cookie a nesbírá osobní údaje. Anonymní statistiky návštěv bez cookies (zobrazené stránky a země) mohou být sbírány ke zlepšení nástroje.",
@@ -657,6 +709,8 @@ UI = {
         "curLink":"Všechny měny",
         "guideLink":"Průvodci kurzy",
         "install":"Nainstalovat aplikaci",
+        "nearHigh":"Kurz blisko maxima za {days} dní",
+        "nearLow":"Kurz blisko minima za {days} dní",
  },
  "ro": {
         "privacy":"Confidențialitate: acest site nu folosește cookie-uri și nu colectează date personale. Statistici de vizită anonime, fără cookie-uri (vizualizări de pagină și țară), pot fi colectate pentru a îmbunătăți instrumentul.",
@@ -681,6 +735,8 @@ UI = {
         "curLink":"Toate valutele",
         "guideLink":"Ghiduri de curs valutar",
         "install":"Instalează aplicația",
+        "nearHigh":"Cursul aproape de maximul de {days} zile",
+        "nearLow":"Cursul aproape de minimul de {days} zile",
  },
  "da": {
         "privacy":"Privatliv: denne hjemmeside bruger ikke cookies og indsamler ikke persondata. Anonyme, cookiefri besøgsstatistikker (sidevisninger og land) kan indsamles for at forbedre værktøjet.",
@@ -705,5 +761,7 @@ UI = {
         "curLink":"Se alle valutaer",
         "guideLink":"Vekselkursguider",
         "install":"Installér appen",
+        "nearHigh":"Kursen nær {days}-dages top",
+        "nearLow":"Kursen nær {days}-dages bund",
  },
 }
