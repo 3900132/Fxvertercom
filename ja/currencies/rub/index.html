@@ -132,9 +132,28 @@ html.theme-light .lang-sel option{background:#ffffff;color:#1a1c26}
 .fb-panel input:focus,.fb-panel textarea:focus{border-color:var(--teal)}
 .fb-panel textarea{resize:vertical;min-height:70px}
 .fb-err{display:none;color:#e87a9a;font-size:0.78rem;margin-bottom:0.4rem}
+.fb-err a{color:#e87a9a;font-weight:600}
 .fb-panel button[type="submit"]{width:100%;background:var(--teal);border:none;border-radius:10px;color:#fff;font-family:var(--syne);font-weight:700;font-size:0.85rem;padding:0.6rem;cursor:pointer}
 .fb-panel button[type="submit"]:disabled{opacity:0.6;cursor:default}
 .fb-ok{display:none;text-align:center;color:var(--teal);font-family:var(--syne);font-weight:700;font-size:1rem;padding:0.8rem 0}
+.inst-banner{position:fixed;left:50%;bottom:1.1rem;transform:translate(-50%,130%);width:min(94vw,430px);display:flex;align-items:center;gap:0.9rem;background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:0.9rem 1rem;box-shadow:0 18px 44px rgba(0,0,0,0.35);z-index:80;transition:transform 0.35s ease,opacity 0.35s ease;opacity:0}
+html.theme-light .inst-banner{box-shadow:0 18px 44px rgba(13,20,40,0.14)}
+@media(prefers-color-scheme:light){:root:not(.theme-force-dark) .inst-banner{box-shadow:0 18px 44px rgba(13,20,40,0.14)}}
+.inst-banner.show{transform:translate(-50%,0);opacity:1}
+.inst-icon{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--teal),#2e8f78);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.inst-body{flex:1;min-width:0}
+.inst-title{font-family:var(--syne);font-weight:700;font-size:0.85rem;color:var(--text)}
+.inst-desc{color:var(--muted2);font-size:0.72rem;line-height:1.4;margin-top:0.15rem}
+.inst-actions{flex-shrink:0;display:flex;flex-direction:column;gap:0.4rem;align-items:stretch}
+.inst-go{background:var(--teal);border:none;border-radius:9px;padding:0.42rem 0.9rem;font-family:var(--syne);font-weight:700;font-size:0.72rem;color:#fff;cursor:pointer;white-space:nowrap}
+.inst-go:hover{filter:brightness(1.08)}
+.inst-go:disabled{opacity:0.6;cursor:default}
+.inst-later{background:none;border:none;padding:0.1rem;font-family:var(--dm);font-size:0.68rem;color:var(--muted);cursor:pointer}
+.inst-later:hover{color:var(--muted2)}
+.inst-ios{display:none;margin-top:0.45rem;color:var(--muted2);font-size:0.72rem;line-height:1.5}
+.inst-ios.show{display:block}
+.inst-ios .ios-tap{color:var(--teal);font-weight:600}
+@media(max-width:400px){.inst-icon{width:38px;height:38px;font-size:1.2rem}}
 </style>
 <script>
 (function () {
@@ -163,8 +182,10 @@ function fxToggleTheme() {
 <body>
 <div class="tools-bar"><div class="tools-left"><button type="button" class="tool-btn" id="fxThemeBtn" onclick="fxToggleTheme()" title="Theme">◐</button><button type="button" class="tool-btn" id="shareBtn" onclick="fxShare()" title="共有">⤴</button><button type="button" class="tool-btn" id="feedbackBtn" onclick="fxOpenFeedback()" title="フィードバック">✎</button><button type="button" class="tool-btn" id="installBtn" onclick="fxInstall()" title="アプリをインストール" hidden>⤓</button></div><select class="lang-sel" id="langSel" onchange="fxLangGo(this.value)" aria-label="Language"><option value="en">English</option><option value="tr">Türkçe</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="pt">Português</option><option value="ru">Русский</option><option value="zh">中文</option><option value="ja" selected>日本語</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="tl">Filipino</option><option value="it">Italiano</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="uk">Українська</option><option value="sv">Svenska</option><option value="th">ไทย</option><option value="lo">ພາສາລາວ</option><option value="vi">Tiếng Việt</option><option value="el">Ελληνικά</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="da">Dansk</option></select></div>
 <div class="fb-panel" id="fbPanel"><form id="fbForm" onsubmit="fxSendFeedback(); return false;"><input type="text" id="fbName" maxlength="60" autocomplete="off" placeholder="Name"><input type="email" id="fbEmail" maxlength="80" placeholder="Email (optional)"><textarea id="fbMsg" rows="4" maxlength="1000" placeholder="メッセージを入力…"></textarea><input type="checkbox" style="display:none" tabindex="-1" autocomplete="off"><div class="fb-err" id="fbErr"></div><button type="submit" id="fbSendBtn">フィードバックを送信</button></form><div class="fb-ok" id="fbOk" style="display:none">✓ フィードバックを送信しました — ありがとうございます！</div></div>
+<div class="inst-banner" id="instBanner" role="dialog" aria-labelledby="instTitleText" aria-describedby="instDescText" hidden><div class="inst-icon" aria-hidden="true">💱</div><div class="inst-body"><div class="inst-title" id="instTitleText">Fxverter をインストール</div><div class="inst-desc" id="instDescText">ホーム画面に追加して素早くアクセス——オフラインでも使えます。</div><div class="inst-ios" id="instIosHint">共有ボタンをタップして、「ホーム画面に追加」を選んでください。</div></div><div class="inst-actions"><button class="inst-go" id="instGoBtn" type="button" onclick="instGo()">インストール</button><button class="inst-later" id="instLaterBtn" type="button" onclick="fxInstLater()">後で</button></div></div>
 <script>const FX_PAGE = {"cur": "ja", "sub": "currencies/rub/", "base": "https://fxverter.com/", "root": "../../../"};
-const FX_T = {"share": "共有", "shared": "リンクをコピーしました！", "feedback": "フィードバック", "fbPlaceholder": "メッセージを入力…", "fbSend": "フィードバックを送信", "fbOk": "✓ フィードバックを送信しました — ありがとうございます！", "fbEmpty": "先にメッセージを入力してください。", "fbFail": "送信に失敗しました — 再試行するか、直接メールでお問い合わせください。", "install": "アプリをインストール"};
+const FX_T = {"share": "共有", "shared": "リンクをコピーしました！", "feedback": "フィードバック", "fbPlaceholder": "メッセージを入力…", "fbSend": "フィードバックを送信", "fbOk": "✓ フィードバックを送信しました — ありがとうございます！", "fbEmpty": "先にメッセージを入力してください。", "fbFail": "送信に失敗しました — 再試行するか、直接メールでお問い合わせください。", "install": "アプリをインストール", "instTitle": "Fxverter をインストール", "instDesc": "ホーム画面に追加して素早くアクセス——オフラインでも使えます。", "instBtn": "インストール", "instLater": "後で", "instIos": "共有ボタンをタップして、「ホーム画面に追加」を選んでください。"};
+const FX_MAIL = {u: "hello", d: "fxverter.com"};
 function fxShare() {
   const url = location.href.split('#')[0];
   const done = () => { const b = document.getElementById('shareBtn'); if (!b) return; b.classList.add('ok'); b.title = FX_T.shared; setTimeout(() => { b.classList.remove('ok'); b.title = FX_T.share; }, 1400); };
@@ -218,7 +239,15 @@ function fxSendFeedback() {
       document.getElementById('fbMsg').value = '';
     }, 2500);
   }).catch(() => {
-    err.style.display = 'block'; err.textContent = FX_T.fbFail;
+    err.style.display = 'block';
+    // plain-text message + a JS-assembled mailto (keeps the address out of static HTML)
+    var m = document.createElement('span');
+    var a = document.createElement('a');
+    a.href = 'mailto:' + FX_MAIL.u + '@' + FX_MAIL.d;
+    a.textContent = FX_MAIL.u + '@' + FX_MAIL.d;
+    m.textContent = FX_T.fbFail + ' ';
+    err.textContent = '';
+    err.appendChild(m); err.appendChild(a);
   }).finally(() => { btn.disabled = false; });
 }
 function fxLangGo(c) {
@@ -230,22 +259,100 @@ function fxLangGo(c) {
   location.assign(location.origin + '/' + (c === 'en' ? '' : c + '/') + (FX_PAGE.sub || ''));
 }
 (function () {
-  // PWA install: browser offers it only in a secure context (https / localhost)
+  // PWA install banner: shown on a 12h cycle for visitors who haven't
+  // installed the app. Browsers only fire beforeinstallprompt on their own
+  // heuristics (and iOS never fires it), so the banner is shown by us.
   if (location.protocol.indexOf('http') !== 0) return;
-  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) return;
+  var LS_KEY = 'fxInstLast', INTERVAL = 12 * 60 * 60 * 1000;
+  function isStandalone() {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  }
   var deferred = null;
   var btn = document.getElementById('installBtn');
+  var banner = document.getElementById('instBanner');
+  var iosShow = /iphone|ipad|ipod/i.test(navigator.userAgent) &&
+                /applewebkit/i.test(navigator.userAgent) && !/crios|fxios|edgios|opr[//]/i.test(navigator.userAgent);
   window.addEventListener('beforeinstallprompt', function (e) {
     e.preventDefault();
     deferred = e;
     if (btn) { btn.hidden = false; btn.title = FX_T.install; }
   });
-  window.fxInstall = function () {
-    if (!deferred) return;
-    deferred.prompt();
-    deferred.userChoice.then(function () { deferred = null; if (btn) btn.hidden = true; });
+  function applyTexts() {
+    if (!banner) return;
+    banner.querySelector('#instTitleText').textContent = FX_T.instTitle;
+    banner.querySelector('#instDescText').textContent = FX_T.instDesc;
+    banner.querySelector('#instGoBtn').textContent = FX_T.instBtn;
+    banner.querySelector('#instLaterBtn').textContent = FX_T.instLater;
+    var h = banner.querySelector('#instIosHint');
+    h.textContent = '';
+    var i = FX_T.instIos.indexOf('Share');
+    if (i < 0) { h.textContent = FX_T.instIos; }
+    else {
+      h.appendChild(document.createTextNode(FX_T.instIos.slice(0, i)));
+      var s = document.createElement('span'); s.className = 'ios-tap'; s.textContent = 'Share';
+      h.appendChild(s);
+      h.appendChild(document.createTextNode(FX_T.instIos.slice(i + 5)));
+    }
+  }
+  function markShown() {
+    try { localStorage.setItem(LS_KEY, String(Date.now())); } catch (e) {}
+  }
+  function due() {
+    try { return Date.now() - Number(localStorage.getItem(LS_KEY) || 0) >= INTERVAL; } catch (e) { return false; }
+  }
+  function showBanner() {
+    if (!banner) return;
+    applyTexts();
+    banner.hidden = false;
+    requestAnimationFrame(function () { banner.classList.add('show'); });
+  }
+  window.fxHideInst = function () {
+    if (!banner) return;
+    banner.classList.remove('show');
+    setTimeout(function () { banner.hidden = true; }, 400);
   };
-  window.addEventListener('appinstalled', function () { deferred = null; if (btn) btn.hidden = true; });
+  window.fxInstLater = function () { window.fxHideInst(); markShown(); };
+  window.fxInstall = function () {
+    if (!deferred && !banner) return; // non-installable browser, nothing to offer
+    if (deferred) { showBanner(); return; } // native prompt available: open the banner
+    markShown();
+    showBanner();
+  };
+  window.instGo = function () {
+    markShown();
+    if (deferred) {
+      deferred.prompt();
+      deferred.userChoice.then(function (c) { deferred = null; if (c && c.outcome !== 'accepted') window.fxHideInst(); });
+      return;
+    }
+    if (iosShow) { var h = banner.querySelector('#instIosHint'); if (h) h.classList.add('show'); return; }
+    // no native prompt yet (e.g. fresh visit): wait briefly for beforeinstallprompt
+    var go = banner.querySelector('#instGoBtn');
+    if (go) { go.disabled = true; go.dataset.label = go.textContent; go.textContent = '…'; }
+    var t = setTimeout(function () { if (go) { go.disabled = false; go.textContent = go.dataset.label || '…'; } window.fxHideInst(); }, 8000);
+    var onEvt = function (e) {
+      clearTimeout(t); window.removeEventListener('beforeinstallprompt', onEvt);
+      e.preventDefault(); deferred = e;
+      if (go) { go.disabled = false; go.textContent = go.dataset.label || '…'; }
+      deferred.prompt();
+      deferred.userChoice.then(function () { deferred = null; });
+    };
+    window.addEventListener('beforeinstallprompt', onEvt);
+  };
+  window.addEventListener('appinstalled', function () {
+    deferred = null;
+    if (btn) btn.hidden = true;
+    window.fxHideInst();
+    try { localStorage.setItem(LS_KEY, 'installed'); } catch (e) {}
+  });
+  if (isStandalone()) return;
+  if (iosShow) { var h = banner && banner.querySelector('#instIosHint'); if (h) h.classList.add('show'); }
+  if (due()) {
+    setTimeout(function () {
+      if (deferred && !btn) return; // browser's own install UI is already available
+      showBanner(); markShown();
+    }, 4000);
+  }
 })();
 if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   window.addEventListener('load', function () {

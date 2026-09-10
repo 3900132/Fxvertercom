@@ -44,6 +44,10 @@ About/FAQ 区块的翻译（h2 标题、两段简介、FAQ 问答、免责声明
 
 主题按钮、收藏、复制、分享、反馈、支持、页脚链接等 UI 文案（29 语言 × 16 字段）。同上，按键改文本。`SUPPORT_LABEL` 单独一行管理页脚"♥ 支持"的各语言说法。
 
+**邮箱 hello@fxverter.com 出现的两处**（均为 JS 拼接，静态 HTML 里不出现完整地址，防爬虫收割）：
+- `/support/` 及 29 个语言版支持页的联系区块——标题在 `content/content_ui.py` 的 `contactTitle` 键（29 语言），地址在 `build-lang-pages.py` 的 `build_support_page()` 模板里（`data-u`/`data-d` 拆开存）
+- 反馈面板发送失败提示（根页 `index.html` 的 `sendFeedback` catch；二级页在 `build-lang-pages.py` 的 `TOOLS_JS_BODY`，常量 `FX_MAIL`）——失败文案 `fbFail` 后面追加可点击的 mailto
+
 ### 4. `content/currencies.py` — 币种档案数据
 
 141 个币种里 38 个主要币种有手写介绍（国旗、国家、符号、辅币单位、about 介绍段）。想充实某个币种页，照格式加一段即可；没写 `about` 的币种自动用模板生成的通用介绍。
@@ -191,16 +195,23 @@ ABOUT_BATCH = {
 
 ---
 
-## 五、PWA 说明（安装后才"看得见"）
+## 五、PWA 说明（安装横幅 + 原生安装入口）
 
-PWA 没有界面上可见的按钮，它的表现是：
+**安装横幅（所有页面底部）**：未安装访客每 **12 小时**自动弹一次底部安装横幅（进入页面约 4 秒后滑入）。点"暂不/Not now"关闭后 12 小时内不再弹；点"安装"时：
+
+- **Android / 桌面 Chrome/Edge**：直接调起浏览器原生安装弹窗（`beforeinstallprompt`）
+- **iOS Safari**：iOS 不支持原生安装提示，横幅改为常驻显示"点按分享按钮 → 添加到主屏幕"的操作引导
+- 已安装（standalone 模式）或 `appinstalled` 事件触发后横幅永久隐藏（localStorage 记 `installed`）
+- 时间戳存 localStorage 键 `fxInstLast`，改横幅文案/逻辑去 `content/ui_strings.py` 的 `inst*` 五个键（29 语言）+ `index.html` 的 `#pwa-install` 脚本，然后重跑构建
+
+**浏览器原生入口**（仍然并存）：
 
 - **桌面 Chrome/Edge**：地址栏右侧出现"安装"图标（⊕ 或显示器图标），点击后 Fxverter 变成独立窗口应用
 - **手机**：浏览器菜单里出现"添加到主屏幕/安装应用"，安装后桌面出现 Fxverter 图标（青色渐变 💱）
 - **离线能力**：装过之后断网也能打开最近访问过的页面，汇率显示最后一次缓存的数据
 - 开发者工具验证：F12 → Application → Manifest 可看到应用配置；Service Workers 面板可见已注册的 `sw.js`
 
-本地 `file://` 打开单个 HTML 时不加载 PWA（属预期行为，保持单文件可用性）。
+本地 `file://` 打开单个 HTML 时不加载 PWA（属预期行为，保持单文件可用性）；本地测横幅需 `http://localhost` 并把 localStorage 的 `fxInstLast` 清零或设为 12 小时前。
 
 ---
 

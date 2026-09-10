@@ -276,6 +276,22 @@ for code, t in langs.items():
                         f'<a href="{BASE}{code}/currencies/" id="curNavLink">{UI[code]["curLink"]}</a>', 1)
     page = page.replace('<a href="guides/" id="guideNavLink">Exchange-rate guides</a>',
                         f'<a href="{BASE}{code}/guides/" id="guideNavLink">{UI[code]["guideLink"]}</a>', 1)
+    # install banner: localize the built-in English texts, insert after the footer
+    page = page.replace(
+        '<div class="inst-banner" id="instBanner" role="dialog" aria-labelledby="instTitleText" aria-describedby="instDescText" hidden>',
+        '<div class="inst-banner" id="instBanner" role="dialog" aria-labelledby="instTitleText" aria-describedby="instDescText" hidden>', 1)
+    tstr = UI[code]
+    page = page.replace('<div class="inst-title" id="instTitleText">Install Fxverter</div>',
+                        f'<div class="inst-title" id="instTitleText">{tstr["instTitle"]}</div>', 1)
+    page = page.replace('<div class="inst-desc" id="instDescText">Add to home screen for quick access — works offline.</div>',
+                        f'<div class="inst-desc" id="instDescText">{tstr["instDesc"]}</div>', 1)
+    page = page.replace('<div class="inst-ios" id="instIosHint">Tap the <span class="ios-tap">Share</span> button, then choose “Add to Home Screen”.</div>',
+                        f'<div class="inst-ios" id="instIosHint">{tstr["instIos"]}</div>', 1)
+    page = page.replace('<button class="inst-go" id="instGoBtn" type="button" onclick="instGo()">Install</button>',
+                        f'<button class="inst-go" id="instGoBtn" type="button" onclick="instGo()">{tstr["instBtn"]}</button>', 1)
+    page = page.replace('<button class="inst-later" id="instLaterBtn" type="button" onclick="instLater()">Not now</button>',
+                        f'<button class="inst-later" id="instLaterBtn" type="button" onclick="instLater()">{tstr["instLater"]}</button>', 1)
+
     # Explore-more lead text lives in the localized section built from CONTENT; the root
     # paragraph is replaced wholesale by build_section, so patch the nav links there instead.
 
@@ -369,9 +385,28 @@ html.theme-light .lang-sel option{background:#ffffff;color:#1a1c26}
 .fb-panel input:focus,.fb-panel textarea:focus{border-color:var(--teal)}
 .fb-panel textarea{resize:vertical;min-height:70px}
 .fb-err{display:none;color:#e87a9a;font-size:0.78rem;margin-bottom:0.4rem}
+.fb-err a{color:#e87a9a;font-weight:600}
 .fb-panel button[type="submit"]{width:100%;background:var(--teal);border:none;border-radius:10px;color:#fff;font-family:var(--syne);font-weight:700;font-size:0.85rem;padding:0.6rem;cursor:pointer}
 .fb-panel button[type="submit"]:disabled{opacity:0.6;cursor:default}
 .fb-ok{display:none;text-align:center;color:var(--teal);font-family:var(--syne);font-weight:700;font-size:1rem;padding:0.8rem 0}
+.inst-banner{position:fixed;left:50%;bottom:1.1rem;transform:translate(-50%,130%);width:min(94vw,430px);display:flex;align-items:center;gap:0.9rem;background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:0.9rem 1rem;box-shadow:0 18px 44px rgba(0,0,0,0.35);z-index:80;transition:transform 0.35s ease,opacity 0.35s ease;opacity:0}
+html.theme-light .inst-banner{box-shadow:0 18px 44px rgba(13,20,40,0.14)}
+@media(prefers-color-scheme:light){:root:not(.theme-force-dark) .inst-banner{box-shadow:0 18px 44px rgba(13,20,40,0.14)}}
+.inst-banner.show{transform:translate(-50%,0);opacity:1}
+.inst-icon{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--teal),#2e8f78);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.inst-body{flex:1;min-width:0}
+.inst-title{font-family:var(--syne);font-weight:700;font-size:0.85rem;color:var(--text)}
+.inst-desc{color:var(--muted2);font-size:0.72rem;line-height:1.4;margin-top:0.15rem}
+.inst-actions{flex-shrink:0;display:flex;flex-direction:column;gap:0.4rem;align-items:stretch}
+.inst-go{background:var(--teal);border:none;border-radius:9px;padding:0.42rem 0.9rem;font-family:var(--syne);font-weight:700;font-size:0.72rem;color:#fff;cursor:pointer;white-space:nowrap}
+.inst-go:hover{filter:brightness(1.08)}
+.inst-go:disabled{opacity:0.6;cursor:default}
+.inst-later{background:none;border:none;padding:0.1rem;font-family:var(--dm);font-size:0.68rem;color:var(--muted);cursor:pointer}
+.inst-later:hover{color:var(--muted2)}
+.inst-ios{display:none;margin-top:0.45rem;color:var(--muted2);font-size:0.72rem;line-height:1.5}
+.inst-ios.show{display:block}
+.inst-ios .ios-tap{color:var(--teal);font-weight:600}
+@media(max-width:400px){.inst-icon{width:38px;height:38px;font-size:1.2rem}}
 </style>"""
 CUR_PAGE_CSS = CUR_PAGE_CSS + TOOLS_CSS
 
@@ -524,6 +559,7 @@ function calc(v){
 # ═══════════════════════════════════════════════════════
 TOOLS_JS_BODY = """const FX_PAGE = __FX_PAGE__;
 const FX_T = __FX_T__;
+const FX_MAIL = {u: "hello", d: "fxverter.com"};
 function fxShare() {
   const url = location.href.split('#')[0];
   const done = () => { const b = document.getElementById('shareBtn'); if (!b) return; b.classList.add('ok'); b.title = FX_T.shared; setTimeout(() => { b.classList.remove('ok'); b.title = FX_T.share; }, 1400); };
@@ -577,7 +613,15 @@ function fxSendFeedback() {
       document.getElementById('fbMsg').value = '';
     }, 2500);
   }).catch(() => {
-    err.style.display = 'block'; err.textContent = FX_T.fbFail;
+    err.style.display = 'block';
+    // plain-text message + a JS-assembled mailto (keeps the address out of static HTML)
+    var m = document.createElement('span');
+    var a = document.createElement('a');
+    a.href = 'mailto:' + FX_MAIL.u + '@' + FX_MAIL.d;
+    a.textContent = FX_MAIL.u + '@' + FX_MAIL.d;
+    m.textContent = FX_T.fbFail + ' ';
+    err.textContent = '';
+    err.appendChild(m); err.appendChild(a);
   }).finally(() => { btn.disabled = false; });
 }
 function fxLangGo(c) {
@@ -589,22 +633,100 @@ function fxLangGo(c) {
   location.assign(location.origin + '/' + (c === 'en' ? '' : c + '/') + (FX_PAGE.sub || ''));
 }
 (function () {
-  // PWA install: browser offers it only in a secure context (https / localhost)
+  // PWA install banner: shown on a 12h cycle for visitors who haven't
+  // installed the app. Browsers only fire beforeinstallprompt on their own
+  // heuristics (and iOS never fires it), so the banner is shown by us.
   if (location.protocol.indexOf('http') !== 0) return;
-  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) return;
+  var LS_KEY = 'fxInstLast', INTERVAL = 12 * 60 * 60 * 1000;
+  function isStandalone() {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  }
   var deferred = null;
   var btn = document.getElementById('installBtn');
+  var banner = document.getElementById('instBanner');
+  var iosShow = /iphone|ipad|ipod/i.test(navigator.userAgent) &&
+                /applewebkit/i.test(navigator.userAgent) && !/crios|fxios|edgios|opr[//]/i.test(navigator.userAgent);
   window.addEventListener('beforeinstallprompt', function (e) {
     e.preventDefault();
     deferred = e;
     if (btn) { btn.hidden = false; btn.title = FX_T.install; }
   });
-  window.fxInstall = function () {
-    if (!deferred) return;
-    deferred.prompt();
-    deferred.userChoice.then(function () { deferred = null; if (btn) btn.hidden = true; });
+  function applyTexts() {
+    if (!banner) return;
+    banner.querySelector('#instTitleText').textContent = FX_T.instTitle;
+    banner.querySelector('#instDescText').textContent = FX_T.instDesc;
+    banner.querySelector('#instGoBtn').textContent = FX_T.instBtn;
+    banner.querySelector('#instLaterBtn').textContent = FX_T.instLater;
+    var h = banner.querySelector('#instIosHint');
+    h.textContent = '';
+    var i = FX_T.instIos.indexOf('Share');
+    if (i < 0) { h.textContent = FX_T.instIos; }
+    else {
+      h.appendChild(document.createTextNode(FX_T.instIos.slice(0, i)));
+      var s = document.createElement('span'); s.className = 'ios-tap'; s.textContent = 'Share';
+      h.appendChild(s);
+      h.appendChild(document.createTextNode(FX_T.instIos.slice(i + 5)));
+    }
+  }
+  function markShown() {
+    try { localStorage.setItem(LS_KEY, String(Date.now())); } catch (e) {}
+  }
+  function due() {
+    try { return Date.now() - Number(localStorage.getItem(LS_KEY) || 0) >= INTERVAL; } catch (e) { return false; }
+  }
+  function showBanner() {
+    if (!banner) return;
+    applyTexts();
+    banner.hidden = false;
+    requestAnimationFrame(function () { banner.classList.add('show'); });
+  }
+  window.fxHideInst = function () {
+    if (!banner) return;
+    banner.classList.remove('show');
+    setTimeout(function () { banner.hidden = true; }, 400);
   };
-  window.addEventListener('appinstalled', function () { deferred = null; if (btn) btn.hidden = true; });
+  window.fxInstLater = function () { window.fxHideInst(); markShown(); };
+  window.fxInstall = function () {
+    if (!deferred && !banner) return; // non-installable browser, nothing to offer
+    if (deferred) { showBanner(); return; } // native prompt available: open the banner
+    markShown();
+    showBanner();
+  };
+  window.instGo = function () {
+    markShown();
+    if (deferred) {
+      deferred.prompt();
+      deferred.userChoice.then(function (c) { deferred = null; if (c && c.outcome !== 'accepted') window.fxHideInst(); });
+      return;
+    }
+    if (iosShow) { var h = banner.querySelector('#instIosHint'); if (h) h.classList.add('show'); return; }
+    // no native prompt yet (e.g. fresh visit): wait briefly for beforeinstallprompt
+    var go = banner.querySelector('#instGoBtn');
+    if (go) { go.disabled = true; go.dataset.label = go.textContent; go.textContent = '…'; }
+    var t = setTimeout(function () { if (go) { go.disabled = false; go.textContent = go.dataset.label || '…'; } window.fxHideInst(); }, 8000);
+    var onEvt = function (e) {
+      clearTimeout(t); window.removeEventListener('beforeinstallprompt', onEvt);
+      e.preventDefault(); deferred = e;
+      if (go) { go.disabled = false; go.textContent = go.dataset.label || '…'; }
+      deferred.prompt();
+      deferred.userChoice.then(function () { deferred = null; });
+    };
+    window.addEventListener('beforeinstallprompt', onEvt);
+  };
+  window.addEventListener('appinstalled', function () {
+    deferred = null;
+    if (btn) btn.hidden = true;
+    window.fxHideInst();
+    try { localStorage.setItem(LS_KEY, 'installed'); } catch (e) {}
+  });
+  if (isStandalone()) return;
+  if (iosShow) { var h = banner && banner.querySelector('#instIosHint'); if (h) h.classList.add('show'); }
+  if (due()) {
+    setTimeout(function () {
+      if (deferred && !btn) return; // browser's own install UI is already available
+      showBanner(); markShown();
+    }, 4000);
+  }
 })();
 if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   window.addEventListener('load', function () {
@@ -628,6 +750,8 @@ def tools_bar(lang, sub, root):
         "share": C["share"], "shared": C["shared"], "feedback": C["feedback"],
         "fbPlaceholder": C["fbPlaceholder"], "fbSend": C["fbSend"], "fbOk": C["fbOk"],
         "fbEmpty": C["fbEmpty"], "fbFail": C["fbFail"], "install": C["install"],
+        "instTitle": C["instTitle"], "instDesc": C["instDesc"], "instBtn": C["instBtn"],
+        "instLater": C["instLater"], "instIos": C["instIos"],
     }, ensure_ascii=False)
     fx_page = json.dumps({"cur": lang, "sub": sub, "base": BASE, "root": root})
     return (
@@ -650,6 +774,18 @@ def tools_bar(lang, sub, root):
         f'<button type="submit" id="fbSendBtn">{C["fbSend"]}</button>'
         '</form>'
         f'<div class="fb-ok" id="fbOk" style="display:none">{C["fbOk"]}</div>'
+        '</div>\n'
+        '<div class="inst-banner" id="instBanner" role="dialog" aria-labelledby="instTitleText" aria-describedby="instDescText" hidden>'
+        '<div class="inst-icon" aria-hidden="true">💱</div>'
+        '<div class="inst-body">'
+        f'<div class="inst-title" id="instTitleText">{C["instTitle"]}</div>'
+        f'<div class="inst-desc" id="instDescText">{C["instDesc"]}</div>'
+        f'<div class="inst-ios" id="instIosHint">{C["instIos"]}</div>'
+        '</div>'
+        '<div class="inst-actions">'
+        f'<button class="inst-go" id="instGoBtn" type="button" onclick="instGo()">{C["instBtn"]}</button>'
+        f'<button class="inst-later" id="instLaterBtn" type="button" onclick="fxInstLater()">{C["instLater"]}</button>'
+        '</div>'
         '</div>\n'
         '<script>' + TOOLS_JS_BODY.replace("__FX_PAGE__", fx_page).replace("__FX_T__", fx_t) + '</script>'
     )
@@ -1085,6 +1221,9 @@ h2{{font-family:var(--syne);font-size:1rem;font-weight:700;margin:1.4rem 0 0.6re
 .sup-card b{{color:var(--text)}}
 .tier-tag{{margin-left:0.5rem;color:var(--teal);font-size:0.72rem}}
 .sup-msg{{margin-top:0.35rem;color:var(--muted2);font-style:italic}}
+.contact{{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:0.9rem 1.1rem;margin-top:0.55rem;font-size:0.85rem;color:var(--muted2)}}
+.contact a{{color:var(--teal);font-family:var(--syne);font-weight:700;text-decoration:none;word-break:break-all}}
+.contact a:hover{{text-decoration:underline}}
 @media(max-width:480px){{.sup-wall{{grid-template-columns:1fr}}}}
 </style>
 {THEME_HELPERS}
@@ -1099,6 +1238,11 @@ h2{{font-family:var(--syne);font-size:1rem;font-weight:700;margin:1.4rem 0 0.6re
 <h2>{C["supportChoose"]}</h2>
 {tiers_html}
 {wall_html}
+<h2>{C["contactTitle"]}</h2>
+<div class="contact">
+  <a id="fxMail" href="#" data-u="hello" data-d="fxverter.com" rel="noopener"></a>
+  <script>document.getElementById('fxMail').href='mailto:'+document.getElementById('fxMail').dataset.u+'@'+document.getElementById('fxMail').dataset.d;document.getElementById('fxMail').textContent=document.getElementById('fxMail').dataset.u+'@'+document.getElementById('fxMail').dataset.d;</script>
+</div>
 <p class="disc" style="margin-top:1.2rem">{C["supportPrivacyNote"]}</p>
 </main>
 </body>
