@@ -7,8 +7,7 @@ Fxverter is a free online currency converter that runs entirely in the browser. 
 Key facts:
 
 - Site: https://fxverter.com/ (English entry; auto-redirects visitors by browser language)
-- Legacy URL (redirects to fxverter.com): https://fxverter.com/
-- Source code: https://github.com/SeyyidKadir/fx-currency-converter
+- Contact: hello@fxverter.com
 - Language versions: 29 subdirectories with fully translated static HTML, e.g. https://fxverter.com/zh/ (Chinese), /tr/ (Turkish), /ja/ (Japanese), /de/ (German), /es/ (Spanish), /ar/ (Arabic) — full list in sitemap.xml; linked with rel="alternate" hreflang on every page
 - Price: free, MIT license
 - Author: Seyyid Kadir

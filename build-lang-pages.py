@@ -19,6 +19,11 @@ from content.supporters import SUPPORTERS
 from content.currencies import CURRENCY_INFO
 from content.about_l10n import ABOUT_L10N
 from content.sub_l10n import SUB_L10N
+from content.page_meta import PAGE_META
+
+# per-language <title>/<meta description> templates for secondary pages
+for _l, _m in PAGE_META.items():
+    CONTENT_UI.setdefault(_l, {}).update(_m)
 
 BASE = "https://fxverter.com/"
 
@@ -795,6 +800,10 @@ def build_currency_page(code, en_name, lang="en"):
     C = CONTENT_UI.get(lang, CONTENT_UI["en"])
     info = CURRENCY_INFO.get(code, {})
     name = info.get("name", en_name)
+    # localized <title>/<meta description>; the English name stays in the
+    # static HTML and is swapped to the localized one at runtime via CLDR
+    cur_title = C.get("curTitle", CONTENT_UI["en"]["curTitle"]).replace("{name}", name).replace("{code}", code)
+    cur_desc = C.get("curDesc", CONTENT_UI["en"]["curDesc"]).replace("{name}", name).replace("{code}", code)
     country = info.get("country", "")
     symbol = info.get("symbol", "")
     sub = info.get("sub", "")
@@ -856,8 +865,8 @@ def build_currency_page(code, en_name, lang="en"):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{name} ({code}) — Live Exchange Rates &amp; Currency Converter | Fxverter</title>
-<meta name="description" content="{name} ({code}) live exchange rates: convert {code} to USD, EUR, GBP and 140 other currencies with the free Fxverter currency converter. Rates, facts and calculator.">
+<title>{cur_title}</title>
+<meta name="description" content="{cur_desc}">
 <link rel="canonical" href="{canon}">
 {hreflangs}
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -867,8 +876,8 @@ def build_currency_page(code, en_name, lang="en"):
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Fxverter">
 <meta property="og:url" content="{canon}">
-<meta property="og:title" content="{name} ({code}) — Live Exchange Rates | Fxverter">
-<meta property="og:description" content="Convert {code} to USD, EUR and 140+ currencies. Live reference rates, quick facts and calculator for the {name}.">
+<meta property="og:title" content="{cur_title}">
+<meta property="og:description" content="{cur_desc}">
 <meta property="og:image" content="{BASE}og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
@@ -877,8 +886,8 @@ def build_currency_page(code, en_name, lang="en"):
   "@type": "WebPage",
   "@id": "{canon}#page",
   "url": "{canon}",
-  "name": "{name} ({code}) — Live Exchange Rates | Fxverter",
-  "description": "Convert {code} to USD, EUR and 140+ currencies with live reference rates, quick facts and a calculator.",
+  "name": "{cur_title}",
+  "description": "{cur_desc}",
   "inLanguage": "{lang}",
   "isPartOf": {{"@type": "WebSite", "name": "Fxverter", "url": "{BASE}"}},
   "about": {{"@type": "Thing", "name": "{name}"}}
@@ -956,7 +965,7 @@ def build_cur_index(lang="en"):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{C["allCurrencies"]} (141) | Fxverter</title>
-<meta name="description" content="Fxverter supports 141 world currencies — US Dollar, Euro, Turkish Lira, Japanese Yen and more. Live reference rates and a dedicated page for each currency.">
+<meta name="description" content="{C.get("curIdxDesc", CONTENT_UI["en"]["curIdxDesc"])}">
 <link rel="canonical" href="{BASE}{"" if at_root else lang + "/"}currencies/">
 {hreflangs}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
@@ -1201,13 +1210,13 @@ def build_support_page(lang="en"):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{C["supportPrivacyNote"].split("©")[0].strip()} | Fxverter</title>
-<meta name="description" content="Fxverter is free, with no ads and no tracking. If you find it useful, support its development — every contribution keeps it free for everyone.">
+<meta name="description" content="{C.get("supportDesc", CONTENT_UI["en"]["supportDesc"])}">
 <link rel="canonical" href="{canon}">
 {hreflangs}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d0d14">
 <meta property="og:title" content="Support Fxverter">
-<meta property="og:description" content="Fxverter is free, with no ads and no tracking. Support its development if you find it useful.">
+<meta property="og:description" content="{C.get("supportDesc", CONTENT_UI["en"]["supportDesc"])}">
 <meta property="og:image" content="{BASE}og-image.png">
 {CUR_PAGE_CSS}
 <style>

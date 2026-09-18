@@ -1,281 +1,202 @@
 # 💱 Fxverter
 
-> **[🌐 Live Demo → seyyidkadir.github.io/fx-currency-converter](https://seyyidkadir.github.io/fx-currency-converter)** · No API key · No backend · Just open and use
+> **[🌐 fxverter.com](https://fxverter.com)** · No API key · No sign-up · No tracking · 141 currencies · 29 languages | [🇨🇳 中文说明](#-中文版)
+
+A free, multilingual online currency converter that runs entirely in your browser. No server, no account, no tracking — open the website and convert, or install it as an app (PWA).
 
 ---
 
-## 🇬🇧 English
+## ✨ Features
 
-### What is this?
-A free, multilingual online currency converter that runs entirely in your browser. No server, no API key, no tracking — open the website and convert, or install it as an app (PWA).
-
-### Features
-- 🌍 **29 languages** with automatic browser language detection
-- 💱 **140+ currencies** from every corner of the world
-- 🔄 **3 data sources** you can switch between:
-  - [Frankfurter](https://frankfurter.app) — most stable, ~33 major currencies
-  - [ExchangeRate-API](https://exchangerate-api.com) — 160+ currencies, free tier
+- 💱 **141 currencies** from every corner of the world
+- 🌍 **29 languages** with automatic browser-language detection, full RTL support for Arabic and Persian
+- 🔄 **3 switchable data sources**:
+  - [Frankfurter](https://frankfurter.dev) — ECB reference rates, most stable, ~30 major currencies
+  - [ExchangeRate-API](https://www.exchangerate-api.com) — 160+ currencies, free tier
   - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) — 170+ currencies, CDN-hosted, zero CORS
-- ⚡ **Smart caching** — rates are fetched once per session per base currency, no redundant requests
-- 🔁 **Manual refresh** button with last-updated timestamp
-- 🔤 **Font size control** — 3 sizes (A / A+ / A++) for accessibility
-- 📱 **Mobile-first** design, works on all screen sizes
-- ↔️ **RTL support** for Arabic and Persian
+- ⚡ **Smart caching** — rates are fetched once per session per base currency; missing pairs fall back to another source automatically
+- 📲 **Installable app (PWA)** with a guided install banner — offered once every 12 hours until installed or dismissed (with native install prompt on Android/desktop and "Add to Home Screen" guidance on iOS); works offline after install with the last known rates
+- 📊 **Per-currency pages** (e.g. [USD](https://fxverter.com/currencies/usd/)) with 30/90-day trend charts, quick facts and a calculator — available in all 29 languages
+- 📚 **Plain-language exchange-rate guides** (e.g. [how exchange rates work](https://fxverter.com/guides/))
+- 🌓 Light / dark / auto **theme**, 3-level **font-size control** (A / A+ / A++) for accessibility
+- 🔖 Saved currency pairs, share button, in-page feedback form
+- ♥ Optional supporter tiers and a contact address (hello@fxverter.com) on the [support page](https://fxverter.com/support/)
+- 🔒 **Privacy-first** — no cookies, no accounts, no tracking; conversions run locally in your browser
 
-### Who is it for?
-Travelers, freelancers, students, e-commerce sellers, investors — anyone who needs a quick and reliable currency reference.
+## 🚀 How to use
 
-### Who should NOT rely on it for?
-Bank transfers, official invoices, accounting records, or any financial transaction requiring exact rates. All rates are **indicative** — always verify with your bank or broker before transacting.
+1. **Online:** visit **[fxverter.com](https://fxverter.com)** — the root page auto-redirects to your language
+2. **Install as an app:** open the site in Chrome/Edge/Safari and accept the install banner (or use the browser's "Install app" / "Add to Home Screen") — it then works like a native app, even offline
+3. **Self-host:** the site is 100% static HTML — clone the repo and serve it from any static host (GitHub Pages, Cloudflare Pages, …)
 
-### How to use
-1. **Online:** Visit **[seyyidkadir.github.io/fx-currency-converter](https://seyyidkadir.github.io/fx-currency-converter)**
-2. **Install as an app:** Open the site in Chrome/Edge/Safari and choose "Install" — it then works like a native app (PWA).
+## 🛠️ Development
 
-### Language versions
-Each language has its own directory (`/tr/`, `/zh/`, `/ja/`, …, 29 in total) with fully translated static HTML, linked via `rel="alternate" hreflang` — the SEO/GEO-friendly setup for search engines and AI crawlers. The root page auto-redirects visitors by browser language and defaults to English. After editing `index.html`, regenerate the language pages with:
+Five source files generate the whole site (175+ static pages); after editing any of them, run the build once:
 
 ```bash
 python build-lang-pages.py
 ```
 
-### Supported languages & currencies
+| Source file | What it controls |
+|---|---|
+| `index.html` | Main template: UI, styles, converter logic, head meta. All 29 language pages are generated from it |
+| `page_content.py` | About/FAQ translations (28 languages) |
+| `content/ui_strings.py` | UI strings — buttons, banners, install prompt (29 languages) |
+| `content/content_ui.py` | Secondary-page chrome: currency pages, guides, support page |
+| `content/currencies.py` | Currency profiles: flag, country, symbol, minor unit, about text |
+| `guides/*.md` | Exchange-rate guide articles |
 
-**29 interface languages** — auto-detected on first visit, switchable in the header:
+See `DEVELOPMENT.md` for the full workflow (build, deploy to GitHub Pages with the `fxverter.com` CNAME, PWA notes, checklist).
+
+## 🌐 Language versions
+
+Each language has its own directory (`/tr/`, `/zh/`, `/ja/`, …, 29 in total) with fully translated static HTML, linked via `rel="alternate" hreflang` — the SEO/GEO-friendly setup for search engines and AI crawlers.
 
 **EN** English · **TR** Türkçe · **DE** Deutsch · **FR** Français · **ES** Español · **PT** Português · **RU** Русский · **ZH** 中文 · **JA** 日本語 · **KO** 한국어 · **AR** العربية · **HI** हिन्दी · **ID** Bahasa Indonesia · **MS** Bahasa Melayu · **TL** Filipino · **IT** Italiano · **NL** Nederlands · **PL** Polski · **UK** Українська · **SV** Svenska · **TH** ไทย · **LO** ພາສາລາວ · **VI** Tiếng Việt · **EL** Ελληνικά · **BN** বাংলা · **FA** فارسی · **CS** Čeština · **RO** Română · **DA** Dansk
 
-**141 currencies** — searchable in the app's dropdowns (per-request availability depends on the selected data source: Frankfurter ~30 majors, ExchangeRate-API 160+, Fawaz API 170+; missing pairs fall back to another source automatically):
+## ⚠️ Disclaimer
 
-<details>
-<summary>Full currency list</summary>
+All exchange rates are **indicative only** and sourced from free, open APIs. Do not use for financial transactions, bank transfers, or official accounting. Always verify rates with your bank or financial institution.
 
-**A** — AED — UAE Dirham · AFN — Afghan Afghani · ALL — Albanian Lek · AMD — Armenian Dram · ANG — NL Antillean Guilder · AOA — Angolan Kwanza · ARS — Argentine Peso · AUD — Australian Dollar · AWG — Aruban Florin · AZN — Azerbaijani Manat
+---
 
-**B** — BAM — Bosnia Mark · BBD — Barbados Dollar · BDT — Bangladeshi Taka · BGN — Bulgarian Lev · BHD — Bahraini Dinar · BIF — Burundian Franc · BMD — Bermudian Dollar · BND — Brunei Dollar · BOB — Bolivian Boliviano · BRL — Brazilian Real · BSD — Bahamian Dollar · BTN — Bhutanese Ngultrum · BWP — Botswanan Pula · BYN — Belarusian Ruble · BZD — Belize Dollar
+## 🇨🇳 中文版
 
-**C** — CAD — Canadian Dollar · CDF — Congolese Franc · CHF — Swiss Franc · CLP — Chilean Peso · CNY — Chinese Yuan · COP — Colombian Peso · CRC — Costa Rican Colón · CUP — Cuban Peso · CVE — Cape Verdean Escudo · CZK — Czech Koruna
+免费的在线货币换算器，完全在浏览器中运行。无需服务器、无需注册、无追踪——打开网站即可换算，也可以安装为应用（PWA）。
 
-**D** — DJF — Djiboutian Franc · DKK — Danish Krone · DOP — Dominican Peso · DZD — Algerian Dinar
+### ✨ 功能
 
-**E** — EGP — Egyptian Pound · ERN — Eritrean Nakfa · ETB — Ethiopian Birr · EUR — Euro
+- 💱 **141 种货币**，覆盖全球
+- 🌍 **29 种界面语言**，自动检测浏览器语言；阿拉伯语和波斯语完整支持从右到左（RTL）
+- 🔄 **3 个可切换的数据源**：
+  - [Frankfurter](https://frankfurter.dev) — 欧洲央行参考汇率，最稳定，约 30 种主要货币
+  - [ExchangeRate-API](https://www.exchangerate-api.com) — 160+ 种货币，免费额度
+  - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) — 170+ 种货币，CDN 分发，零 CORS 限制
+- ⚡ **智能缓存** — 每个会话每种基准货币只请求一次；某数据源缺少的货币对会自动切换到其他源获取
+- 📲 **可安装应用（PWA）** — 带引导式安装横幅，未安装时每 12 小时提醒一次（可关闭）；Android/桌面调起浏览器原生安装弹窗，iOS 显示"添加到主屏幕"引导；安装后离线可用，显示最后一次缓存的汇率
+- 📊 **币种详情页**（如 [人民币 CNY](https://fxverter.com/zh/currencies/cny/)）：30/90 天趋势图、币种资料、汇率计算器——29 种语言各自独立
+- 📚 **汇率科普指南**（如[汇率是怎么定出来的](https://fxverter.com/zh/guides/)）
+- 🌓 浅色/深色/跟随系统**主题**，三档**字号调节**（A / A+ / A++）
+- 🔖 收藏常用货币对、分享按钮、页面内反馈表单
+- ♥ 支持者等级与联系邮箱（hello@fxverter.com）见[支持页](https://fxverter.com/zh/support/)
+- 🔒 **隐私优先** — 无 Cookie、无账号、无追踪；换算全部在本地浏览器完成
 
-**F** — FJD — Fijian Dollar
+### 🚀 如何使用
 
-**G** — GBP — British Pound · GEL — Georgian Lari · GHS — Ghanaian Cedi · GMD — Gambian Dalasi · GTQ — Guatemalan Quetzal
+1. **在线：** 访问 **[fxverter.com](https://fxverter.com)** — 首页会按浏览器语言自动跳转
+2. **安装为应用：** 在 Chrome/Edge/Safari 中打开网站，接受安装横幅（或用浏览器的"安装应用 / 添加到主屏幕"）——之后像原生应用一样使用，离线也能打开
+3. **自托管：** 本站是 100% 静态 HTML — 克隆仓库后可部署到任意静态托管（GitHub Pages、Cloudflare Pages 等）
 
-**H** — HKD — Hong Kong Dollar · HNL — Honduran Lempira · HRK — Croatian Kuna · HTG — Haitian Gourde · HUF — Hungarian Forint
+### 🛠️ 开发说明
 
-**I** — IDR — Indonesian Rupiah · ILS — Israeli Shekel · INR — Indian Rupee · IQD — Iraqi Dinar · IRR — Iranian Rial · ISK — Icelandic Króna
+六个源文件生成整站（175+ 静态页面）；改完任意源文件后跑一次构建：
 
-**J** — JMD — Jamaican Dollar · JOD — Jordanian Dinar · JPY — Japanese Yen
+```bash
+python build-lang-pages.py
+```
 
-**K** — KES — Kenyan Shilling · KGS — Kyrgyzstani Som · KHR — Cambodian Riel · KMF — Comorian Franc · KPW — North Korean Won · KRW — South Korean Won · KWD — Kuwaiti Dinar · KZT — Kazakhstani Tenge
+| 源文件 | 管什么 |
+|---|---|
+| `index.html` | 主模板：界面、样式、换算逻辑、head 元信息。29 个语言页都由它生成 |
+| `page_content.py` | About/FAQ 正文翻译（28 种语言） |
+| `content/ui_strings.py` | UI 文案——按钮、横幅、安装提示（29 种语言） |
+| `content/content_ui.py` | 二级页面框架：币种页、指南页、支持页 |
+| `content/currencies.py` | 币种档案：国旗、国家、符号、辅币单位、介绍 |
+| `guides/*.md` | 汇率指南文章 |
 
-**L** — LAK — Laotian Kip · LBP — Lebanese Pound · LKR — Sri Lankan Rupee · LYD — Libyan Dinar
+完整流程（构建、GitHub Pages 部署绑定 fxverter.com、PWA 说明、检查清单）见 `DEVELOPMENT.md`。
 
-**M** — MAD — Moroccan Dirham · MDL — Moldovan Leu · MKD — Macedonian Denar · MMK — Myanmar Kyat · MNT — Mongolian Tögrög · MRU — Mauritanian Ouguiya · MUR — Mauritian Rupee · MVR — Maldivian Rufiyaa · MWK — Malawian Kwacha · MXN — Mexican Peso · MYR — Malaysian Ringgit · MZN — Mozambican Metical
+### ⚠️ 免责声明
 
-**N** — NAD — Namibian Dollar · NGN — Nigerian Naira · NIO — Nicaraguan Córdoba · NOK — Norwegian Krone · NPR — Nepalese Rupee · NZD — New Zealand Dollar
+所有汇率均为**仅供参考**的参考汇率，来自免费公开 API。请勿用于金融交易、银行汇款或正式记账——进行任何交易前请与银行或金融机构核实。
 
-**O** — OMR — Omani Riyal
+### 📄 许可证
 
-**P** — PAB — Panamanian Balboa · PEN — Peruvian Sol · PGK — Papua New Guinean Kina · PHP — Philippine Peso · PKR — Pakistani Rupee · PLN — Polish Złoty · PYG — Paraguayan Guaraní
-
-**Q** — QAR — Qatari Riyal
-
-**R** — RON — Romanian Leu · RSD — Serbian Dinar · RUB — Russian Ruble · RWF — Rwandan Franc
-
-**S** — SAR — Saudi Riyal · SBD — Solomon Islands Dollar · SDG — Sudanese Pound · SEK — Swedish Krona · SGD — Singapore Dollar · SLE — Sierra Leonean Leone · SOS — Somali Shilling · SSP — South Sudanese Pound · SYP — Syrian Pound
-
-**T** — THB — Thai Baht · TJS — Tajikistani Somoni · TMT — Turkmenistani Manat · TND — Tunisian Dinar · TOP — Tongan Paʻanga · TRY — Turkish Lira · TTD — Trinidad & Tobago Dollar · TWD — New Taiwan Dollar · TZS — Tanzanian Shilling
-
-**U** — UAH — Ukrainian Hryvnia · UGX — Ugandan Shilling · USD — US Dollar · UYU — Uruguayan Peso · UZS — Uzbekistani Som
-
-**V** — VES — Venezuelan Bolívar · VND — Vietnamese Dong · VUV — Vanuatu Vatu
-
-**W** — WST — Samoan Tala
-
-**X** — XAF — Central African CFA · XCD — East Caribbean Dollar · XOF — West African CFA · XPF — CFP Franc
-
-**Y** — YER — Yemeni Rial
-
-**Z** — ZAR — South African Rand · ZMW — Zambian Kwacha · ZWL — Zimbabwean Dollar
-
-</details>
+MIT — 可自由使用、修改和分发。
 
 ---
 
 ## 🇹🇷 Türkçe
 
-### Bu nedir?
-Tamamen tarayıcıda çalışan, hafif ve çok dilli bir döviz çevirici. Sunucu yok, API anahtarı yok, takip yok — sadece tek bir HTML dosyası.
+Tarayıcıda tamamen çalışan, ücretsiz ve çok dilli bir döviz çevirici. Sunucu yok, hesap gerekmez, takip yok — siteyi açın ve çevirin, ya da uygulama (PWA) olarak kurun.
 
-### Özellikler
-- 🌍 Tarayıcı diline göre otomatik algılama ile **29 dil** desteği
-- 💱 Dünyanın her köşesinden **140+ para birimi**
-- 🔄 Aralarında geçiş yapabileceğiniz **3 veri kaynağı:**
-  - [Frankfurter](https://frankfurter.app) — en kararlı, ~33 ana para birimi
-  - [ExchangeRate-API](https://exchangerate-api.com) — 160+ para birimi, ücretsiz
-  - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) — 170+ para birimi, CDN, sıfır CORS
-- ⚡ **Akıllı önbellekleme** — kurlar oturum başına bir kez çekilir, gereksiz istek yok
-- 🔁 Son güncelleme saatiyle birlikte **manuel yenileme** butonu
-- 🔤 Erişilebilirlik için **yazı boyutu kontrolü** — 3 kademe (A / A+ / A++)
-- 📱 Tüm ekran boyutlarında çalışan **mobil öncelikli** tasarım
-- ↔️ Arapça ve Farsça için **RTL desteği**
+**Öne çıkanlar:** 141 para birimi · 29 dil (otomatik algılama) · 3 veri kaynağı: [Frankfurter](https://frankfurter.dev) (ECB, ~30 ana para birimi), [ExchangeRate-API](https://www.exchangerate-api.com) (160+), [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) (170+) · akıllı önbellekleme, eksik parlar otomatik yedek kaynağa düşer · 12 saatlik döngüyle kurulum bildirimi gösteren, kurulumdan sonra çevrimdışı çalışan **PWA** · para başına trend grafiği ve hesap makinesi olan 141 ayrı sayfa · açıklayıcı döviz kuru rehberleri · açık/koyu/otomatik tema · 3 kademeli yazı boyutu (A / A+ / A++) · kayıtlı çiftler, paylaşım, geri bildirim formu · [destek sayfası](https://fxverter.com/tr/support/) ve hello@fxverter.com iletişim adresi · çerez yok, hesap yok, takip yok.
 
-### Kimler kullanmalı?
-Gezginler, freelancer'lar, öğrenciler, e-ticaret satıcıları, yatırımcılar — hızlı ve güvenilir bir kur referansına ihtiyaç duyan herkes.
+**Kullanım:** [fxverter.com](https://fxverter.com) adresini ziyaret edin; tarayıcı Chrome/Edge/Safari ise "Yükle / Ana ekrana ekle" ile uygulamayı kurun (kurulumdan sonra çevrimdışı çalışır). Site 100% statiktir — repoyu klonlayıp herhangi bir statik barındırıcıda çalıştırabilirsiniz.
 
-### Kimler için uygun değil?
-Banka transferleri, resmi faturalar, muhasebe kayıtları veya kesin kur gerektiren finansal işlemler. Tüm kurlar **gösterge niteliğindedir** — işlem yapmadan önce bankanızla doğrulayın.
+**Geliştirme:** Kaynak dosyaları düzenledikten sonra tüm siteyi (175+ sayfa) yeniden üretmek için bir kez çalıştırın: `python build-lang-pages.py`. Ayrıntılar için `DEVELOPMENT.md`.
 
-### Nasıl kullanılır?
-1. **Online:** **[seyyidkadir.github.io/fx-currency-converter](https://seyyidkadir.github.io/fx-currency-converter)** adresini ziyaret edin
-2. **Offline:** `index.html` dosyasını indirin, herhangi bir tarayıcıda açın — kurulum yok, sunucu yok.
+**Yasal uyarı:** Tüm kurlar yalnızca **gösterge niteliğindedir** ve ücretsiz, açık API'lerden alınır. Finansal işlemler, banka transferleri veya resmi muhasebe için kullanmayın; bankanızla doğrulayın.
 
 ---
 
 ## 🇩🇪 Deutsch
 
-### Was ist das?
-Ein leichtgewichtiger, mehrsprachiger Währungsrechner, der vollständig im Browser läuft. Kein Server, kein API-Schlüssel, kein Tracking — nur eine einzige HTML-Datei.
+Ein kostenloser, mehrsprachiger Währungsrechner, der vollständig im Browser läuft. Kein Server, keine Anmeldung, kein Tracking — Website öffnen und umrechnen, oder als App (PWA) installieren.
 
-### Funktionen
-- 🌍 **29 Sprachen** mit automatischer Browserspracherkennung
-- 💱 **140+ Währungen** aus aller Welt
-- 🔄 **3 Datenquellen** zum Umschalten:
-  - [Frankfurter](https://frankfurter.app) — zuverlässigste Option, ~33 Hauptwährungen
-  - [ExchangeRate-API](https://exchangerate-api.com) — 160+ Währungen, kostenlos
-  - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) — 170+ Währungen, CDN, kein CORS
-- ⚡ **Intelligentes Caching** — Kurse werden einmal pro Sitzung abgerufen
-- 🔤 **Schriftgrößensteuerung** für Barrierefreiheit (A / A+ / A++)
-- 📱 **Mobile-first** Design
+**Highlights:** 141 Währungen · 29 Sprachen (automatische Erkennung) · 3 Datenquellen: [Frankfurter](https://frankfurter.dev) (EZB, ~30 Hauptwährungen), [ExchangeRate-API](https://www.exchangerate-api.com) (160+), [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) (170+) · intelligentes Caching, fehlende Paare weichen automatisch auf eine andere Quelle aus · **PWA** mit Installationsbanner im 12-Stunden-Rhythmus, nach der Installation offline nutzbar · 141 einzelne Währungsseiten mit Trendchart und Rechner · verständliche Wechselkurs-Ratgeber · Hell-/Dunkel-/Auto-Design · 3 Schriftgrößen (A / A+ / A++) · gespeicherte Paare, Teilen, Feedback-Formular · [Support-Seite](https://fxverter.com/de/support/) und Kontakt hello@fxverter.com · keine Cookies, keine Konten, kein Tracking.
 
-### Für wen?
-Reisende, Freelancer, Studenten, Online-Händler, Investoren — alle, die schnell einen zuverlässigen Währungsüberblick benötigen.
+**Nutzung:** [fxverter.com](https://fxverter.com) besuchen; in Chrome/Edge/Safari über „Installieren / Zum Startbildschirm hinzufügen" als App installieren (danach offline nutzbar). Die Seite ist 100 % statisch — Repository klonen und auf jedem statischen Hoster betreiben.
 
-### Wie benutzen?
-1. **Online:** **[seyyidkadir.github.io/fx-currency-converter](https://seyyidkadir.github.io/fx-currency-converter)** besuchen
-2. **Offline:** `index.html` herunterladen und im Browser öffnen.
+**Entwicklung:** Nach dem Bearbeiten der Quelldateien einmal `python build-lang-pages.py` ausführen, um die gesamte Website (175+ Seiten) neu zu erzeugen. Details in `DEVELOPMENT.md`.
+
+**Haftungsausschluss:** Alle Kurse sind **nur Richtwerte** aus freien, offenen APIs. Nicht für Finanztransaktionen, Banküberweisungen oder offizielle Buchhaltung verwenden — mit deiner Bank abstimmen.
 
 ---
 
 ## 🇫🇷 Français
 
-### C'est quoi ?
-Un convertisseur de devises léger et multilingue qui fonctionne entièrement dans votre navigateur. Pas de serveur, pas de clé API, pas de tracking — un seul fichier HTML.
+Un convertisseur de devises gratuit et multilingue qui fonctionne entièrement dans votre navigateur. Pas de serveur, pas de compte, pas de suivi — ouvrez le site et convertissez, ou installez-le comme application (PWA).
 
-### Fonctionnalités
-- 🌍 **29 langues** avec détection automatique de la langue du navigateur
-- 💱 **140+ devises** du monde entier
-- 🔄 **3 sources de données** commutables :
-  - [Frankfurter](https://frankfurter.app) — plus stable, ~33 devises principales
-  - [ExchangeRate-API](https://exchangerate-api.com) — 160+ devises, gratuit
-  - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) — 170+ devises, CDN, zéro CORS
-- ⚡ **Mise en cache intelligente** — les taux sont récupérés une fois par session
-- 🔤 **Contrôle de la taille de police** pour l'accessibilité (A / A+ / A++)
-- 📱 Design **mobile-first**
+**Points forts :** 141 devises · 29 langues (détection automatique) · 3 sources de données : [Frankfurter](https://frankfurter.dev) (BCE, ~30 devises principales), [ExchangeRate-API](https://www.exchangerate-api.com) (160+), [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) (170+) · cache intelligent, les paires manquantes basculent automatiquement vers une autre source · **PWA** avec bannière d'installation au rythme de 12 heures, utilisable hors ligne après installation · 141 pages de devises avec graphique de tendance et calculatrice · guides clairs sur les taux de change · thème clair/sombre/auto · 3 tailles de police (A / A+ / A++) · paires enregistrées, partage, formulaire de retour · [page de soutien](https://fxverter.com/fr/support/) et contact hello@fxverter.com · pas de cookies, pas de comptes, pas de suivi.
 
-### Comment utiliser ?
-1. **En ligne :** Visiter **[seyyidkadir.github.io/fx-currency-converter](https://seyyidkadir.github.io/fx-currency-converter)**
-2. **Hors ligne :** Télécharger `index.html` et l'ouvrir dans n'importe quel navigateur.
+**Utilisation :** visitez [fxverter.com](https://fxverter.com) ; dans Chrome/Edge/Safari, installez l'application via « Installer / Ajouter à l'écran d'accueil » (fonctionne ensuite hors ligne). Le site est 100 % statique — clonez le dépôt et hébergez-le où vous voulez.
+
+**Développement :** après avoir modifié les fichiers sources, exécutez une fois `python build-lang-pages.py` pour régénérer tout le site (175+ pages). Détails dans `DEVELOPMENT.md`.
+
+**Avertissement :** tous les taux sont **indicatifs** et proviennent d'API publiques gratuites. À ne pas utiliser pour des transactions financières, virements bancaires ou comptabilité officielle — vérifiez avec votre banque.
 
 ---
 
 ## 🇪🇸 Español
 
-### ¿Qué es esto?
-Un conversor de divisas ligero y multilingüe que funciona completamente en tu navegador. Sin servidor, sin clave API, sin rastreo — solo un archivo HTML.
+Un conversor de divisas gratuito y multilingüe que funciona completamente en tu navegador. Sin servidor, sin cuenta, sin rastreo — abre la web y convierte, o instálalo como app (PWA).
 
-### Características
-- 🌍 **29 idiomas** con detección automática del idioma del navegador
-- 💱 **140+ divisas** de todo el mundo
-- 🔄 **3 fuentes de datos** intercambiables:
-  - [Frankfurter](https://frankfurter.app) — más estable, ~33 divisas principales
-  - [ExchangeRate-API](https://exchangerate-api.com) — 160+ divisas, gratis
-  - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) — 170+ divisas, CDN, sin CORS
-- ⚡ **Caché inteligente** — los tipos se obtienen una vez por sesión
-- 🔤 **Control del tamaño de fuente** para accesibilidad (A / A+ / A++)
-- 📱 Diseño **mobile-first**
+**Lo destacado:** 141 divisas · 29 idiomas (detección automática) · 3 fuentes de datos: [Frankfurter](https://frankfurter.dev) (BCE, ~30 divisas principales), [ExchangeRate-API](https://www.exchangerate-api.com) (160+), [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) (170+) · caché inteligente, los pares que faltan pasan automáticamente a otra fuente · **PWA** con banner de instalación cada 12 horas, funciona sin conexión tras instalarla · 141 páginas por divisa con gráfico de tendencia y calculadora · guías claras sobre tipos de cambio · tema claro/oscuro/auto · 3 tamaños de fuente (A / A+ / A++) · pares guardados, botón de compartir, formulario de feedback · [página de apoyo](https://fxverter.com/es/support/) y contacto hello@fxverter.com · sin cookies, sin cuentas, sin rastreo.
 
-### ¿Cómo usar?
-1. **Online:** Visitar **[seyyidkadir.github.io/fx-currency-converter](https://seyyidkadir.github.io/fx-currency-converter)**
-2. **Offline:** Descargar `index.html` y abrirlo en cualquier navegador.
+**Uso:** visita [fxverter.com](https://fxverter.com); en Chrome/Edge/Safari instala la app con «Instalar / Añadir a pantalla de inicio» (después funciona sin conexión). El sitio es 100 % estático — clona el repositorio y hazlo funcionar en cualquier alojamiento estático.
 
----
+**Desarrollo:** tras editar los archivos fuente, ejecuta una vez `python build-lang-pages.py` para regenerar todo el sitio (175+ páginas). Detalles en `DEVELOPMENT.md`.
 
-## 🇨🇳 中文
-
-### 这是什么？
-一个轻量级多语言货币换算器，完全在浏览器中运行。无需服务器、无需 API 密钥、无追踪——只需一个 HTML 文件。
-
-### 功能
-- 🌍 **29种语言**，自动检测浏览器语言
-- 💱 来自全球的 **140+种货币**
-- 🔄 可切换的 **3个数据源**：
-  - [Frankfurter](https://frankfurter.app) — 最稳定，约33种主要货币
-  - [ExchangeRate-API](https://exchangerate-api.com) — 160+种货币，免费
-  - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) — 170+种货币，CDN，零CORS
-- ⚡ **智能缓存** — 每次会话只获取一次汇率
-- 🔤 **字体大小控制**，提高可访问性（A / A+ / A++）
-- 📱 **移动优先**设计
-
-### 如何使用？
-1. **在线：** 访问 **[seyyidkadir.github.io/fx-currency-converter](https://seyyidkadir.github.io/fx-currency-converter)**
-2. **离线：** 下载 `index.html`，在任意浏览器中打开。
+**Aviso legal:** todos los tipos de cambio son **solo orientativos** y provienen de APIs públicas gratuitas. No los uses para transacciones financieras, transferencias bancarias ni contabilidad oficial — verifica con tu banco.
 
 ---
 
 ## 🇯🇵 日本語
 
-### これは何ですか？
-ブラウザだけで動作する軽量な多言語通貨コンバーター。サーバー不要、APIキー不要、追跡なし — HTMLファイル1つだけ。
+ブラウザだけで動作する、無料の多言語通貨コンバーター。サーバー不要・アカウント不要・追跡なし——サイトを開いて換算するか、アプリ（PWA）としてインストールできます。
 
-### 機能
-- 🌍 ブラウザ言語自動検出付き **29言語**対応
-- 💱 世界中の **140以上の通貨**
-- 🔄 切り替え可能な **3つのデータソース**：
-  - [Frankfurter](https://frankfurter.app) — 最も安定、約33の主要通貨
-  - [ExchangeRate-API](https://exchangerate-api.com) — 160以上の通貨、無料
-  - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) — 170以上の通貨、CDN、CORSなし
-- ⚡ **スマートキャッシュ** — レートはセッションごとに1回のみ取得
-- 🔤 アクセシビリティのための**フォントサイズ調整**（A / A+ / A++）
-- 📱 **モバイルファースト**デザイン
+**主な機能：** 141 通貨 · 29 言語（自動検出）· 3 つのデータソース：[Frankfurter](https://frankfurter.dev)（ECB、約 30 の主要通貨）、[ExchangeRate-API](https://www.exchangerate-api.com)（160+）、[Fawaz Currency API](https://github.com/fawazahmed0/exchange-api)（170+）·スマートキャッシュ、欠けたペアは自動で別ソースに切替 · **PWA** は 12 時間ごとのインストール案内バナー付き、インストール後はオフラインで動作 · 通貨ごとの 141 ページ（トレンドチャート・計算機付き）·わかりやすい為替ガイド · ライト/ダーク/自動テーマ · 3 段階の文字サイズ（A / A+ / A++）· 通貨ペアの保存、共有、フィードバックフォーム · [サポートページ](https://fxverter.com/ja/support/)と連絡先 hello@fxverter.com · クッキーなし・アカウントなし・追跡なし。
 
-### 使い方
-1. **オンライン：** **[seyyidkadir.github.io/fx-currency-converter](https://seyyidkadir.github.io/fx-currency-converter)** にアクセス
-2. **オフライン：** `index.html` をダウンロードしてブラウザで開く。
+**使い方：** [fxverter.com](https://fxverter.com) にアクセス。Chrome/Edge/Safari なら「インストール / ホーム画面に追加」でアプリとして導入できます（導入後はオフラインで動作）。サイトは 100% 静的 — リポジトリをクローンして任意の静的ホスティングで運用できます。
+
+**開発：** ソースファイルを編集したら `python build-lang-pages.py` を一度実行してサイト全体（175+ ページ）を再生成。詳細は `DEVELOPMENT.md`。
+
+**免責事項：** 表示されるレートは**参考値**であり、無料の公開 API からのものです。金融取引・銀行送金・正式な会計には使用しないでください。取引の前に銀行で確認してください。
 
 ---
 
 ## 🇧🇷 Português
 
-### O que é isso?
-Um conversor de moedas leve e multilíngue que funciona inteiramente no seu navegador. Sem servidor, sem chave API, sem rastreamento — apenas um arquivo HTML.
+Um conversor de moedas gratuito e multilíngue que funciona inteiramente no seu navegador. Sem servidor, sem conta, sem rastreamento — abra o site e converta, ou instale como aplicativo (PWA).
 
-### Recursos
-- 🌍 **29 idiomas** com detecção automática do idioma do navegador
-- 💱 **140+ moedas** de todo o mundo
-- 🔄 **3 fontes de dados** alternáveis:
-  - [Frankfurter](https://frankfurter.app) — mais estável, ~33 moedas principais
-  - [ExchangeRate-API](https://exchangerate-api.com) — 160+ moedas, gratuito
-  - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) — 170+ moedas, CDN, zero CORS
-- ⚡ **Cache inteligente** — taxas buscadas uma vez por sessão
-- 🔤 **Controle de tamanho de fonte** para acessibilidade (A / A+ / A++)
-- 📱 Design **mobile-first**
+**Destaques:** 141 moedas · 29 idiomas (detecção automática) · 3 fontes de dados: [Frankfurter](https://frankfurter.dev) (BCE, ~30 moedas principais), [ExchangeRate-API](https://www.exchangerate-api.com) (160+), [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) (170+) · cache inteligente, pares ausentes caem automaticamente para outra fonte · **PWA** com banner de instalação a cada 12 horas, funciona offline após instalar · 141 páginas por moeda com gráfico de tendência e calculadora · guias claros sobre câmbio · tema claro/escuro/automático · 3 tamanhos de fonte (A / A+ / A++) · pares salvos, compartilhar, formulário de feedback · [página de apoio](https://fxverter.com/pt/support/) e contato hello@fxverter.com · sem cookies, sem contas, sem rastreamento.
 
-### Como usar?
-1. **Online:** Acessar **[seyyidkadir.github.io/fx-currency-converter](https://seyyidkadir.github.io/fx-currency-converter)**
-2. **Offline:** Baixar `index.html` e abrir em qualquer navegador.
+**Como usar:** visite [fxverter.com](https://fxverter.com); no Chrome/Edge/Safari, instale o app via «Instalar / Adicionar à Tela de Início» (depois funciona offline). O site é 100% estático — clone o repositório e hospede onde quiser.
 
----
+**Desenvolvimento:** depois de editar os arquivos-fonte, execute uma vez `python build-lang-pages.py` para regenerar todo o site (175+ páginas). Detalhes em `DEVELOPMENT.md`.
 
-## ⚠️ Disclaimer / Yasal Uyarı
-
-> All exchange rates are **indicative only** and sourced from free, open APIs. Do not use for financial transactions, bank transfers, or official accounting. Always verify rates with your bank or financial institution.
-
-> Tüm döviz kurları yalnızca **gösterge niteliğindedir** ve ücretsiz, açık API'lerden alınmaktadır. Finansal işlemler, banka transferleri veya resmi muhasebe için kullanmayın. Kurları bankanız veya finansal kuruluşunuzla doğrulayın.
+**Aviso legal:** todas as taxas são **apenas indicativas**, de APIs públicas gratuitas. Não use para transações financeiras, transferências bancárias ou contabilidade oficial — confirme com seu banco.
 
 ---
 
@@ -283,11 +204,9 @@ Um conversor de moedas leve e multilíngue que funciona inteiramente no seu nave
 
 MIT — free to use, modify, and distribute.
 
----
-
 ## 🙏 Credits
 
-- [Frankfurter API](https://frankfurter.app)
-- [ExchangeRate-API](https://exchangerate-api.com)
+- [Frankfurter API](https://frankfurter.dev) — ECB reference rates
+- [ExchangeRate-API](https://www.exchangerate-api.com)
 - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) by @fawazahmed0
-- Built with ❤️ and [Claude](https://claude.ai)
+- Built with ❤️ — [source code on GitHub](https://github.com/SeyyidKadir/fx-currency-converter)
