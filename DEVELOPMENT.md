@@ -1,19 +1,27 @@
 # Fxverter — 开发与内容维护指南
 
-Fxverter 是一个纯静态多语言换汇工具站：首页（29 语言页）+ 141 个币种页 + 指南区 + 支持页，共 175 个页面。**你日常只编辑 5 个源文件，其余 170+ 个页面全部由构建脚本自动生成。**
+> **当前状态（2026-09）**：本站曾被 Google AdSense 以"低价值内容"拒绝。已完成整改并通过 9 项终检：
+> 收录收缩（7 语言 en/zh/de/fr/es/pt/ja × 40 币种进搜索引擎，其余 noindex）、84 篇币种深度文章（12 旗舰币种 × 7 语言）、
+> 9 篇指南、35 个信任页（关于/隐私/条款/联系/反馈 × 7 语言）、支持页"赞助可乐"+ Creem 方案（creem-worker.js）、
+> llms.txt（GEO）、Service Worker v7。
+> **下一步**：① 部署上线（git push）→ ② 等 2–4 周重新抓取 → ③ 重新申请 AdSense → ④ 过审后加 ads.txt、补 28 个非旗舰币种文章、指南翻译。
+> ⚠️ 大改动记得把 `sw.js` 缓存版本号 +1。改任何源文件后跑 `python build-lang-pages.py`。
+
+Fxverter 是一个纯静态多语言换汇工具站：首页（29 语言页，其中 7 种收录进搜索引擎）+ 141 个币种页（40 个收录，12 个旗舰币种有深度文章 × 7 语言）+ 9 篇指南 + 35 个信任页（关于/隐私/条款/联系/反馈 × 7 语言）+ 支持页，共 4200+ 个页面。**你日常只编辑 10 个源文件，其余页面全部由构建脚本自动生成。**
 
 ---
 
 ## 一、核心工作流（最重要的一张表）
 
 ```
-你编辑的源文件                         生成的页面（不要手动碰）
-────────────────────────────          ─────────────────────────────
-index.html          ─┐                /  +  tr/ zh/ ja/ … 28 个语言页
-page_content.py      ├─ python        currencies/ ×141 + 索引页
-content/ui_strings.py│  build-        guides/ 文章页 + 索引
-content/currencies.py│  lang-         support/ 支持页
-guides/*.md          ─┘  pages.py     sitemap.xml
+你编辑的源文件                              生成的页面（不要手动碰）
+────────────────────────────                ─────────────────────────────
+index.html              ─┐                  /  +  tr/ zh/ ja/ … 28 个语言页
+page_content.py          ├─ python         currencies/ ×141 + 索引页（收录规则见 site_config.py）
+content/ui_strings.py    │  build-         guides/ 文章页 + 索引
+content/currencies.py    │  lang-          support/ 支持页（文案覆盖在 trust_l10n.py）
+content/currency_*.py    │  pages.py       about/ privacy/ terms/ contact/ feedback/ ×7 语言
+guides/*.md             ─┘                 sitemap.xml（只含收录页）
 ```
 
 **唯一要记住的命令**（在本目录下运行）：
@@ -22,7 +30,7 @@ guides/*.md          ─┘  pages.py     sitemap.xml
 python build-lang-pages.py
 ```
 
-改完任何源文件后跑一次，然后提交/推送全部文件。没有服务器端代码——Python 只在你电脑上跑，GitHub Pages 只托管生成的 HTML。
+改完任何源文件后跑一次，然后提交/推送全部文件。大改动（新页面类型/新语言/内容大改）记得把 `sw.js` 里的缓存版本号 +1。没有服务器端代码——Python 只在你电脑上跑，GitHub Pages 只托管生成的 HTML。
 
 ---
 
@@ -75,6 +83,22 @@ description: 一句话摘要             ← meta description
 **加粗**        → 变成 <strong>
 普通段落        → 变成 <p>
 ```
+
+### 6. `content/site_config.py` — 收录策略（谁进搜索引擎）
+
+控制哪些页面允许被搜索引擎收录：`INDEXED_LANGS`（收录语言，当前 7 种：en/zh/de/fr/es/pt/ja）、`INDEXED_CURRENCIES`（收录币种，当前 40 个）、`ECB_SET`（有趋势图数据的币种）、`TRUST_PAGES`（信任页）。**不在清单里的页面照常生成、照常可访问，但会被加上 `noindex, follow` 并且不进 sitemap.xml。** 过审后扩语言/转正币种，只需往这两个清单里加代码再重新构建；hreflang、robots meta、sitemap 全部自动跟着变。改配置后构建脚本会校验币种代码是否存在，写错会直接报错退出。
+
+### 7. `content/trust_l10n.py` — 信任页内容（About/隐私/条款/联系）
+
+四个信任页 × 7 种收录语言的正文，以及两个覆盖文案：`privacyNote`（页脚隐私注记，含广告披露和隐私政策链接）和 `supportIntro`/`supportDesc`（支持页开头与描述——去掉了过时的"无广告"说法）。给新增收录语言写信任页内容时，照现有语言的 dict 结构补一个语言键即可；没写的语言构建时自动跳过。
+
+### 8. `content/currency_articles.py` — 币种深度文章
+
+旗舰币种页的长文（简史/驱动因素/实用场景/热门兑换对 + 3 条 FAQ，FAQ 同时输出 FAQPage 结构化数据）。**英文原文写在这里**（12 个币种：USD、EUR、GBP、JPY、CNY、CHF、CAD、AUD、TRY、INR、MXN、BRL）。给新币种写文章照 USD 的结构抄即可；只做英文、暂不做翻译时，不用动构建脚本。
+
+### 9. `content/currency_articles_l10n.py` — 币种文章翻译
+
+`ARTICLES_L10N[lang][code]` 镜像英文条目的结构（sections + faq）。构建脚本在某个语言的币种页上**只要找到对应翻译就渲染**，没有翻译就保持该语言原有的简短简介——所以翻译可以一种语言或一个币种地逐步加，不用动构建逻辑。已收录语言：zh（12 个币种全）。注意：内容字符串里的内嵌引号用中文弯引号“”，不要用 ASCII `"`（会破坏 Python 字符串）。
 
 保存 → 跑 `python build-lang-pages.py` → 文章自动出现在 /guides/ 索引和 sitemap。删除 .md 文件即删除文章（记得重跑构建并删除已生成的对应目录，或直接留着也无害，但建议删干净）。
 
@@ -212,6 +236,112 @@ ABOUT_BATCH = {
 - 开发者工具验证：F12 → Application → Manifest 可看到应用配置；Service Workers 面板可见已注册的 `sw.js`
 
 本地 `file://` 打开单个 HTML 时不加载 PWA（属预期行为，保持单文件可用性）；本地测横幅需 `http://localhost` 并把 localStorage 的 `fxInstLast` 清零或设为 12 小时前。
+
+---
+
+## 五+、支持页（赞助可乐）+ Creem 收款配置教程
+
+支持页由 `build_support_page()`（build-lang-pages.py）生成。**所有文案、档位、认领表单标签都在 `content/trust_l10n.py` 的 `TRUST_OVERRIDES["support"]` 里（7 种收录语言各一份）**，不在 `content_ui.py` 里改。
+
+### 0. 合规前提（为什么是"名单产品"而不是"捐赠"）
+
+Creem 是 **Merchant of Record（记录商户）**：它作为转售方为每笔交易开票、代缴税费，因此**每笔收款必须对应一个交付了价值的产品，纯捐赠/打赏不符合其模式**（Lemon Squeezy、Paddle 等同类 MoR 平台同样禁止 donation）。
+
+本站做法：把"支持"做成**数字商品，交付物 = 买家名字登上支持页的支持者名单**（可附一句话、可匿名）。文案已明确写出（"这不是捐款，而是一份数字谢礼……"），档位只是商品命名风格。支持页现已预置三档文案与"收款链接配置中"过渡提示，只等贴入链接。
+
+### 1. Creem 创建三个产品（约 10 分钟）
+
+1. 注册/登录 [creem.io](https://www.creem.io) Dashboard
+2. 左侧 **Products → New Product**，依次创建三个**一次性（one-time）**产品：
+   | 产品名（可自定） | 价格 | 说明（可自定） |
+   |---|---|---|
+   | A can of Coke / 一罐可乐 | **$2** | Your name on the Fxverter supporters wall |
+   | A six-pack / 六罐装 | **$9** | 同上 |
+   | A whole crate / 一整箱 | **$29** | 同上 |
+3. 每个产品创建后进入详情页，复制 **Checkout Link**（形如 `https://www.creem.io/checkout/prod_xxxxxx`）
+4. 打开 `content/trust_l10n.py`，找到 `TRUST_OVERRIDES["support"]`，把链接填进**每种语言**的 `tiers` 第三个元素：
+   ```python
+   "tiers": [("一罐可乐", "$2", "https://www.creem.io/checkout/prod_xxx"),
+             ("六罐装",    "$9", "https://www.creem.io/checkout/prod_yyy"),
+             ("一整箱",    "$29", "https://www.creem.io/checkout/prod_zzz")],
+   ```
+   （链接三个语言目录里是同一组，直接全部替换即可；也可以按语言用不同价位）
+5. 重新构建后：档位行自动变成可点击的 Creem 结账按钮，"收款链接正在配置中"提示**自动消失**
+
+> 只想先上线、暂时不做自动化？到这里就完成了，跳到第 6 节手动维护名单。
+
+### 2. Creem 配置 Webhook（自动化名单的前置）
+
+1. Dashboard → **Developers → Webhooks → Create Webhook**
+2. **URL** 先填占位（下一步部署完 Worker 再回来改成真实地址）：`https://暂定.workers.dev/creem-webhook`
+3. 订阅事件：勾选 **payment.succeeded**、**checkout.completed**（名称以界面实际为准，含"支付成功"语义的事件都勾上）
+4. 创建后**复制 Webhook Signing Secret**（`whsec_...`），第 3 步要用
+5. 记下界面标注的**签名校验方式**（header 名称/算法），部署 Worker 后按它补校验代码
+
+### 3. 部署 Cloudflare Worker（约 15 分钟，免费额度够用）
+
+1. 登录 [dash.cloudflare.com](https://dash.cloudflare.com) → **Workers & Pages → Create → Create Worker**，名字随意（如 `fxverter-creem`）→ Deploy
+2. 点 **Edit code**，把仓库根目录 **`creem-worker.js`** 的全部内容粘贴进去 → **Deploy**
+3. 绑定 KV：Worker → **Settings → Bindings → Add → KV Namespace**；先去 **Storage & Databases → KV → Create Namespace** 建一个（如 `fxverter-creem`），然后绑定，**Variable name 必须填 `KV`**
+4. 加环境变量：**Settings → Variables and Secrets → Add**：
+   | 变量名 | 值 | 说明 |
+   |---|---|---|
+   | `CREEM_WEBHOOK_SECRET` | 第 2 步复制的 `whsec_...` | webhook 签名密钥 |
+   | `ALLOWED_ORIGIN` | `https://fxverter.com` | CORS 白名单（本地调试可临时加 `http://127.0.0.1:8437`）|
+5. 回到 Worker 概览页记下地址（形如 `https://fxverter-creem.<你的子域>.workers.dev`）
+6. **回填 Creem Webhook URL**：把第 2 步的占位改成 `https://fxverter-creem.<子域>.workers.dev/creem-webhook`，保存。Creem 后台一般有 **Send test** 按钮，点了之后去 Worker → Logs 应能看到一条请求
+7. **补签名校验（上线前必做）**：`creem-worker.js` 里标了 `TODO` 的位置，按第 2 步记录的签名方式验证 `x-creem-signature`（或实际 header），验证不过返回 401。没有这一步，任何知道地址的人都能伪造"已付款"记录
+
+### 4. 站点侧接线（1 分钟）
+
+`build-lang-pages.py` 顶部：
+
+```python
+SUPPORTERS_API = "https://fxverter-creem.<你的子域>.workers.dev/supporters"
+```
+
+重新构建。此时支持页（7 种收录语言）自动出现两样东西：
+
+- **名单墙从 API 实时渲染**：`/supporters` 返回的 JSON 会替换静态兜底名单（`content/supporters.py` 的内容仍留在 HTML 里作 SEO/无 JS 兜底）
+- **"已经支持了？认领你的名单"表单**：买家填**支付邮箱 + 展示名（可匿名）**提交 → Worker 核对该邮箱 30 天内确有 Creem 支付记录 → 名字进入名单 → 刷新页面即可见。不配置 `SUPPORTERS_API` 时这两样都不会出现，页面保持纯静态
+
+### 5. 端到端测试清单
+
+1. Creem 后台若有 **Test Mode**，先开测试模式走一遍真实结账
+2. 支付成功 → Worker **Logs** 应出现一条 `/creem-webhook` 请求（200）
+3. 打开线上支持页 → 认领表单填**支付时用的邮箱** + 展示名 → 提交显示 ✓
+4. 刷新页面 → 名单墙出现该名字（`/supporters` 有 5 分钟 `Cache-Control`，本地验证可加 `?t=` 参数绕过）
+5. 负路径：随便填一个没付过款的邮箱 → 应提示"暂未找到匹配的支付记录"
+
+### 6. 手动维护名单（不用 Worker 的兜底）
+
+支持者名字维护在 `content/supporters.py`：
+
+```python
+SUPPORTERS = [
+    {"name": "Ada", "tier": "Hero", "message": "Great tool!"},
+    # 仅收录本人同意的名字；tier 是档位标签，message 可省略
+]
+```
+
+改完重新构建即可。注意：若已配置 `SUPPORTERS_API`，运行时 API 名单会覆盖静态名单，历史名单要迁进 Worker 的 KV（把 `content/supporters.py` 里的条目手工 `PUT` 到 KV 的 `supporters` 键，格式 `[{name, message, tier, ts}]`）。
+
+### 7. 常见问题排查
+
+| 现象 | 原因与处理 |
+|---|---|
+| 付款了但 Worker Logs 没有请求 | Webhook URL 填错 / 事件没订阅 / Creem 侧未保存，回第 2 步检查 |
+| Worker 收到请求但名单没更新 | 事件类型不匹配（脚本用 `succeeded|completed|paid` 正则过滤），看日志里的实际 `eventType` 调整 |
+| 认领提示"暂未找到支付记录" | 认领邮箱与支付邮箱不一致；或 KV `paid:` 记录已过 30 天 |
+| 浏览器控制台 CORS 报错 | Worker 的 `ALLOWED_ORIGIN` 没包含当前站点域名 |
+| 名单更新了但页面没变 | `/supporters` 有 5 分钟缓存；或页面是旧缓存（大改动记得 `sw.js` 版本号 +1） |
+| 想临时下线自动化 | 把 `SUPPORTERS_API` 置空重新构建，页面回到纯静态名单 |
+
+### 8. 反馈表单（splitforms）
+
+- 独立页 `/feedback/`（7 种收录语言）：表单直接铺在页面上，提交到 `https://splitforms.com/api/submit`（access_key 已内置），后台登录 splitforms.com 查看收件
+- 首页/二级页工具栏的 ✎ 按钮是内嵌面板，提交地址相同
+- 相关文案位置：反馈页在 `trust_l10n.py` 的 `FEEDBACK`；联系页"更快的方式"段落指向 `/feedback/`
 
 ---
 

@@ -17,9 +17,13 @@ from content.ui_strings import UI, SUPPORT_LABEL
 from content.content_ui import CONTENT_UI
 from content.supporters import SUPPORTERS
 from content.currencies import CURRENCY_INFO
+from content.currency_articles import CURRENCY_ARTICLES
+from content.currency_articles_l10n import ARTICLES_L10N
 from content.about_l10n import ABOUT_L10N
 from content.sub_l10n import SUB_L10N
 from content.page_meta import PAGE_META
+from content.site_config import INDEXED_LANGS, INDEXED_CURRENCIES, ECB_SET, TRUST_PAGES
+from content.trust_l10n import TRUST, TRUST_LABELS, TRUST_OVERRIDES
 
 # per-language <title>/<meta description> templates for secondary pages
 for _l, _m in PAGE_META.items():
@@ -31,12 +35,20 @@ CF_BEACON = ('<script type="module" src="https://static.cloudflareinsights.com/b
              "data-cf-beacon='{\"token\": \"c616c0616b1341d6b1e4930665891a63\"}'></script>")
 
 # Support page: create products in your Creem.io dashboard, paste the checkout
-# links here, and re-run this script. Leave empty to show a "coming soon" note.
+# links into content/trust_l10n.py (TRUST_OVERRIDES["support"][lang]["tiers"]),
+# and re-run this script. Leave empty to show a "coming soon" note.
 SUPPORT_TIERS = [
     # ("Buy me a coffee", "$3", "https://www.creem.io/checkout/your-product-1"),
     # ("Supporter", "$10", "https://www.creem.io/checkout/your-product-2"),
     # ("Hero", "$25", "https://www.creem.io/checkout/your-product-3"),
 ]
+
+# Optional: public JSON endpoint listing supporters — deploy creem-worker.js
+# (repo root) to Cloudflare Workers and put its /supporters URL here. When set,
+# the supporters wall renders from this API at runtime (payments show up
+# automatically after the buyer claims their listing) and a claim form appears
+# on the support page. Leave empty to keep the static wall from supporters.py.
+SUPPORTERS_API = ""
 
 # Localized <title> / <meta description> per language.
 META = {
@@ -171,12 +183,10 @@ def build_section(code):
         f'  <p>{p2}</p>\n'
         f'\n  <h3>{c["lh"]}</h3>\n'
         f'  <p><a href="{BASE}{code}/currencies/">{UI[code]["curLink"]}</a> · <a href="{BASE}{code}/guides/">{UI[code]["guideLink"]}</a></p>\n'
-        f'  <p>{c["lang_intro"]} {LANG_LIST}.</p>\n'
         f'  <p>{c["cur_intro"]}</p>\n'
         f'  <details id="curList">\n    <summary>{c["cur_summary"]}</summary>{CUR_HTML}\n  </details>\n'
         f'\n  <h3 id="faqTitle">{c["faq_h"]}</h3>{faq_items}\n'
-        f'\n  <p class="seo-disclaimer">{c["disc"]}</p>\n'
-        f'  <p class="seo-disclaimer" lang="en">Privacy: this website uses no cookies and collects no personal data. Anonymous, cookie-free visit statistics (page views and country) may be collected to improve the tool.</p>\n</section>'
+        "</section>"
     )
 langs, order = {}, []
 for part in re.split(r"\n  (?=[a-z]{2}:\{)", block):
@@ -192,9 +202,36 @@ for part in re.split(r"\n  (?=[a-z]{2}:\{)", block):
 
 LANG_LIST = " · ".join(f"<strong>{c.upper()}</strong> {NATIVE[c]}" for c in order if c in NATIVE)
 
+def trust_links_html(lang, prefix=""):
+    """Localized About/Privacy/Terms/Contact/Feedback/Support chips."""
+    if lang not in TRUST_LABELS:
+        return ""
+    L = TRUST_LABELS[lang]
+    dirpart = "" if lang == "en" else f"{lang}/"
+    sup = UI.get(lang, {}).get("supportLabel", "Support")
+    items = "".join(
+        f'<a href="{BASE}{dirpart}{page}/">{L[page]}</a>' for page in TRUST_PAGES)
+    return f'\n  <p class="trust-links">{items}<a href="{BASE}{dirpart}support/">♥ {sup}</a></p>'
+
+
+def trust_foot_html(lang, dirpart=""):
+    """Centered footer trust-links chips for secondary pages."""
+    if lang not in TRUST_LABELS:
+        return ""
+    TL = TRUST_LABELS[lang]
+    sup = UI.get(lang, {}).get("supportLabel", "Support")
+    items = "".join(f'<a href="{BASE}{dirpart}{p}/">{TL[p]}</a>' for p in TRUST_PAGES)
+    return f'<p class="trust-links">{items}<a href="{BASE}{dirpart}support/">♥ {sup}</a></p>'
+
+
+def robots_meta(indexed):
+    return ('<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">'
+            if indexed else '<meta name="robots" content="noindex, follow">')
+
+
 def hreflang_block():
     lines = [f'<link rel="alternate" hreflang="en" href="{BASE}">']
-    for c in order:
+    for c in INDEXED_LANGS:
         if c != "en":
             lines.append(f'<link rel="alternate" hreflang="{c}" href="{BASE}{c}/">')
     lines.append(f'<link rel="alternate" hreflang="x-default" href="{BASE}">')
@@ -228,11 +265,14 @@ for code, t in langs.items():
     page = sub1(page, r'("description": ")[^"]*(",\n      "inLanguage")', lambda m: m.group(1) + desc + m.group(2))
     page = sub1(page, r'"inLanguage": \[[^\]]*\]', f'"inLanguage": ["{code}"]')
 
-    # canonical + full hreflang set (strip any inherited hreflang lines first)
+    # canonical + hreflang set (indexed languages only); non-indexed
+    # languages are noindexed and declare no alternates
     page = re.sub(r'<link rel="alternate" hreflang="[^"]*" href="[^"]*">\n?', "", page)
+    indexed = code in INDEXED_LANGS
     canon = f'<link rel="canonical" href="{BASE}{code}/">'
     page = sub1(page, r'<link rel="canonical" href="[^"]*">',
-                canon + "\n" + hreflang_block())
+                canon + ("\n" + hreflang_block() if indexed else ""))
+    page = sub1(page, r'<meta name="robots" content="[^"]*">', robots_meta(indexed))
 
     # bake translated UI strings into the static HTML
     page = sub1(page, r'(<h1 id="appTitle">).*?(</h1>)', lambda m: m.group(1) + t["appTitle"] + m.group(2))
@@ -260,6 +300,13 @@ for code, t in langs.items():
     page = page.replace(
         '  <p class="seo-disclaimer" lang="en">Privacy: this website uses no cookies and collects no personal data. Anonymous, cookie-free visit statistics (page views and country) may be collected to improve the tool.</p>',
         f'  <p class="seo-disclaimer" id="privacyNote">{UI[code]["privacy"]}</p>', 1)
+    # indexed languages get the advertising-aware privacy note linking to the
+    # full Privacy Policy page
+    if indexed and code in TRUST_OVERRIDES["privacyNote"]:
+        note = TRUST_OVERRIDES["privacyNote"][code].replace("{base}", BASE)
+        page = re.sub(r'<p class="seo-disclaimer" id="privacyNote">.*?</p>',
+                      lambda m: f'<p class="seo-disclaimer" id="privacyNote">{note}</p>',
+                      page, count=1, flags=re.S)
     mainentity = '"mainEntity": ' + json.dumps(
         [{"@type": "Question", "name": q,
           "acceptedAnswer": {"@type": "Answer", "text": a}}
@@ -271,6 +318,11 @@ for code, t in langs.items():
 
     # footer support link: localized label + depth-correct href
     sup_label = SUPPORT_LABEL.get(code, "Support")
+    # trust chips: localized for indexed languages (EN fallback keeps static)
+    if code in TRUST_LABELS:
+        page = re.sub(r'<p id="trustNavLinks" class="trust-links">.*?</p>',
+                      lambda m: trust_foot_html(code, "" if code == "en" else code + "/").replace('<p class="trust-links">', '<p id="trustNavLinks" class="trust-links">'),
+                      page, count=1, flags=re.S)
     page = page.replace('<a id="supportLink" href="support/">♥ <span id="supportLabel">Support</span></a>',
                         f'<a id="supportLink" href="{BASE}{code}/support/">♥ <span id="supportLabel">{sup_label}</span></a>', 1)
     # feedback link + about-section nav links: localize text, fix depth
@@ -349,6 +401,17 @@ td.r,th.r{text-align:right}
 .links a{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.28rem 0.75rem;font-size:0.72rem;color:var(--muted2)}
 .links a:hover{border-color:var(--teal);color:var(--teal);text-decoration:none}
 .disc{color:var(--muted);font-size:0.68rem;margin-top:1.4rem;max-width:560px;text-align:center}
+.trust-links{display:flex;flex-wrap:wrap;gap:0.3rem;justify-content:center;margin:1.1rem auto 0;max-width:560px;padding:0}
+.trust-links a{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.28rem 0.65rem;font-size:0.7rem;color:var(--muted2);text-decoration:none}
+.trust-links a:hover{border-color:var(--teal);color:var(--teal);text-decoration:none}
+.cur-article{margin-top:1.6rem;border-top:1px solid var(--border);padding-top:1.2rem;text-align:left}
+.cur-article p{color:var(--muted2);font-size:0.85rem;line-height:1.75;margin-bottom:0.7rem}
+.cur-article ul{padding-left:1.15rem;margin:0 0 0.8rem}
+.cur-article li{color:var(--muted2);font-size:0.84rem;line-height:1.8}
+.cur-article details{border:1px solid var(--border);border-radius:10px;background:var(--surface2);margin-bottom:0.45rem}
+.cur-article summary{cursor:pointer;padding:0.55rem 0.8rem;font-weight:500;color:var(--text);font-size:0.82rem;list-style:none}
+.cur-article summary::-webkit-details-marker{display:none}
+.cur-article details p{padding:0 0.8rem 0.7rem;margin:0}
 .chart-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem;margin-bottom:1.2rem}
 .chart-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem}
 .chart-head .t{font-family:var(--syne);font-size:0.8rem;font-weight:700}
@@ -442,6 +505,7 @@ function fxToggleTheme() {
 CUR_PAGE_JS = """<script>
 const CODE = "{code}";
 const SYMBOL = {sym_js};
+const HAS_CHART = {has_chart};
 // localize the currency name in the heading via the browser's built-in CLDR
 // data — the static English markup stays for crawlers
 (function () {
@@ -513,6 +577,7 @@ function calc(v){
 }
 (async () => {
   // trend chart: 1 CODE → QUOTE (USD pages chart against EUR), 30/90-day toggle
+  if (!HAS_CHART) return; // no ECB reference history for this currency
   const QUOTE = CODE === 'USD' ? 'EUR' : 'USD';
   const seriesCache = {};
   function noTrend() {
@@ -745,12 +810,16 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
 LANG_ORDER = list(NATIVE.keys())
 
-def tools_bar(lang, sub, root):
-    """Toolbar HTML for secondary pages: theme, share, feedback, install, language."""
+def tools_bar(lang, sub, root, lang_filter=None):
+    """Toolbar HTML for secondary pages: theme, share, feedback, install, language.
+
+    lang_filter: restrict the language dropdown to languages that actually
+    have this page type (trust pages exist for indexed languages only)."""
     C = UI.get(lang, UI["en"])
+    langs = lang_filter if lang_filter is not None else LANG_ORDER
     options = "".join(
         f'<option value="{c}"{" selected" if c == lang else ""}>{NATIVE.get(c, c.upper())}</option>'
-        for c in LANG_ORDER)
+        for c in langs if c in NATIVE or c == lang)
     fx_t = json.dumps({
         "share": C["share"], "shared": C["shared"], "feedback": C["feedback"],
         "fbPlaceholder": C["fbPlaceholder"], "fbSend": C["fbSend"], "fbOk": C["fbOk"],
@@ -818,6 +887,9 @@ def build_currency_page(code, en_name, lang="en"):
     # language-aware paths: /currencies/try/ (en) vs /zh/currencies/try/
     at_root = (lang == "en")
     dirpart = "" if at_root else f"{lang}/"
+    # indexation: only the promoted languages × promoted currencies are
+    # crawlable; everything else stays online but noindexed
+    indexed = lang in INDEXED_LANGS and code in INDEXED_CURRENCIES
     # about section: English pages keep the hand-written blurb (for crawlers
     # and English readers); every other language uses its per-currency intro
     # when one exists (ABOUT_L10N), otherwise a localized generic template with
@@ -833,10 +905,15 @@ def build_currency_page(code, en_name, lang="en"):
     up = "../" if at_root else "../../"
     home = BASE if at_root else BASE + f"{lang}/"
     canon = f"{BASE}{dirpart}currencies/{code.lower()}/"
-    hreflangs = "\n".join(
-        f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}currencies/{code.lower()}/">'
-        for l in CONTENT_UI)
-    hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}currencies/{code.lower()}/">'
+    # hreflang alternates only among the indexed languages, and only on
+    # pages that are themselves indexable
+    if indexed:
+        hreflangs = "\n".join(
+            f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}currencies/{code.lower()}/">'
+            for l in INDEXED_LANGS)
+        hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}currencies/{code.lower()}/">'
+    else:
+        hreflangs = ""
 
     # minor-unit fact: per-language translation when available (SUB_L10N),
     # otherwise the original English value
@@ -851,14 +928,71 @@ def build_currency_page(code, en_name, lang="en"):
     major_links = " ".join(
         f'<a href="../{c.lower()}/">{c}</a>'
         for c in MAJOR if c != code)
+    # localized About/Privacy/Terms/Contact links (indexed languages only)
+    trust_foot = trust_foot_html(lang, dirpart)
+
+    # long-form article + FAQ: English articles come from CURRENCY_ARTICLES,
+    # translations from ARTICLES_L10N[lang]; rendered on any indexed language
+    # page that has a complete entry for this currency.
+    article_data = None
+    if lang == "en":
+        article_data = CURRENCY_ARTICLES.get(code)
+    elif lang in ARTICLES_L10N:
+        article_data = ARTICLES_L10N[lang].get(code)
+    article_html = ""
+    faq_schema = ""
+    if article_data and lang in INDEXED_LANGS:
+        A = article_data
+        body = []
+        for kind, text in A["sections"]:
+            if kind == "h":
+                body.append(f"<h2>{text}</h2>")
+            elif kind == "li":
+                if body and body[-1].endswith("</ul>"):
+                    body[-1] = body[-1][:-len("</ul>")] + f"<li>{text}</li></ul>"
+                else:
+                    body.append(f"<ul><li>{text}</li></ul>")
+            else:
+                body.append(f"<p>{text}</p>")
+        faq_items = "".join(
+            f'\n  <details><summary>{q}</summary><p>{a}</p></details>'
+            for q, a in A["faq"])
+        article_html = ('<section class="cur-article">\n' + "\n".join(body)
+                        + f'\n<h2>{TRUST_OVERRIDES.get("curFaq", {}).get(lang, C.get("curFaq", "Frequently asked questions"))}</h2>{faq_items}\n</section>')
+        faq_schema = ('<script type="application/ld+json">\n'
+                      + json.dumps({"@context": "https://schema.org", "@type": "FAQPage",
+                                    "mainEntity": [{"@type": "Question", "name": q,
+                                                    "acceptedAnswer": {"@type": "Answer", "text": a}}
+                                                   for q, a in A["faq"]]},
+                                   ensure_ascii=False)
+                      + '\n</script>')
 
     # relative path back to the site root (for sw.js registration)
     root_up = "../../" if at_root else "../../../"
     tools = tools_bar(lang, f"currencies/{code.lower()}/", root_up)
+    robots_line = robots_meta(indexed)
     # USD pages chart "1 USD → EUR" instead of the default "1 {code} → USD"
     chart_label = C["chartHead"].replace("{code}", code)
     if code == "USD":
         chart_label = chart_label.replace("→ USD", "→ EUR", 1)
+
+    # trend chart only where Frankfurter/ECB history exists — shipping the
+    # module on other currencies means a fetch that fails and an empty box
+    if code in ECB_SET:
+        chart_html = f'''<div class="chart-box" id="chartBox" hidden>
+    <div class="chart-head">
+      <span class="t">{chart_label}</span>
+      <span class="chg" id="chg"></span>
+      <span class="rng">
+        <button type="button" class="rngbtn active" data-days="30" onclick="drawChart(30)">30D</button>
+        <button type="button" class="rngbtn" data-days="90" onclick="drawChart(90)">90D</button>
+      </span>
+    </div>
+    <svg class="spark" id="spark" viewBox="0 0 500 110" preserveAspectRatio="none" role="img" aria-label="{code} {C["rateHead"]} trend"></svg>
+    <div class="d" id="chartRange"></div>
+  </div>'''
+    else:
+        chart_html = ""
 
     page = f"""<!DOCTYPE html>
 <html lang="{lang}"{' dir="rtl"' if lang in ('ar', 'fa') else ''}>
@@ -869,7 +1003,7 @@ def build_currency_page(code, en_name, lang="en"):
 <meta name="description" content="{cur_desc}">
 <link rel="canonical" href="{canon}">
 {hreflangs}
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+{robots_line}
 <meta name="theme-color" content="#0d0d14">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
 <link rel="manifest" href="{BASE}manifest.webmanifest">
@@ -893,6 +1027,7 @@ def build_currency_page(code, en_name, lang="en"):
   "about": {{"@type": "Thing", "name": "{name}"}}
 }}
 </script>
+{faq_schema}
 <script src="https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{code.lower()}.min.json" defer></script>
 {CUR_PAGE_CSS}
 {THEME_HELPERS}
@@ -918,27 +1053,17 @@ def build_currency_page(code, en_name, lang="en"):
     <div class="status" id="st">{C["loading"]}</div>
   </div>
   <h2>1 {code} {C["rateHead"]}</h2>
-  <div class="chart-box" id="chartBox" hidden>
-    <div class="chart-head">
-      <span class="t">{chart_label}</span>
-      <span class="chg" id="chg"></span>
-      <span class="rng">
-        <button type="button" class="rngbtn active" data-days="30" onclick="drawChart(30)">30D</button>
-        <button type="button" class="rngbtn" data-days="90" onclick="drawChart(90)">90D</button>
-      </span>
-    </div>
-    <svg class="spark" id="spark" viewBox="0 0 500 110" preserveAspectRatio="none" role="img" aria-label="{code} {C["rateHead"]} trend"></svg>
-    <div class="d" id="chartRange"></div>
-  </div>
-  <div class="trend-none" id="trendNone" hidden>{C["noTrend"]}</div>
+  {chart_html}
   <table aria-label="{code} {C["rateHead"]}">
     <thead><tr><th>{code}</th><th class="r">{C["allCurrencies"]}</th></tr></thead>
     <tbody id="rt"></tbody>
   </table>
   <div class="links" aria-label="Other currencies">{major_links}</div>
+  {article_html}
 </main>
+{trust_foot}
 <p class="disc">{C["disclaimer"]} · <a href="{home}">Fxverter</a></p>
-{CUR_PAGE_JS.replace("{code}", code).replace("{sib}", "../").replace("{sym_js}", json.dumps(symbol)).replace("{targets_js}", json.dumps(targets)).replace("{to_js}", json.dumps(default_to)).replace("{loading}", json.dumps(C["loading"], ensure_ascii=False)).replace("{loaded}", json.dumps(C["ratesLoaded"], ensure_ascii=False)).replace("{fail}", json.dumps(C["ratesFail"], ensure_ascii=False))}
+{CUR_PAGE_JS.replace("{code}", code).replace("{sib}", "../").replace("{sym_js}", json.dumps(symbol)).replace("{targets_js}", json.dumps(targets)).replace("{to_js}", json.dumps(default_to)).replace("{loading}", json.dumps(C["loading"], ensure_ascii=False)).replace("{loaded}", json.dumps(C["ratesLoaded"], ensure_ascii=False)).replace("{fail}", json.dumps(C["ratesFail"], ensure_ascii=False)).replace("{has_chart}", "true" if code in ECB_SET else "false")}
 </body>
 </html>"""
     return page
@@ -955,10 +1080,15 @@ def build_cur_index(lang="en"):
         for c, n in CURRENCIES)
     home = BASE if at_root else BASE + f"{lang}/"
     up = "../" if at_root else "../../"
-    hreflangs = "\n".join(
-        f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}currencies/">'
-        for l in CONTENT_UI)
-    hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}currencies/">'
+    indexed = lang in INDEXED_LANGS
+    trust_foot = trust_foot_html(lang, "" if at_root else lang + "/")
+    if indexed:
+        hreflangs = "\n".join(
+            f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}currencies/">'
+            for l in INDEXED_LANGS)
+        hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}currencies/">'
+    else:
+        hreflangs = ""
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -968,6 +1098,7 @@ def build_cur_index(lang="en"):
 <meta name="description" content="{C.get("curIdxDesc", CONTENT_UI["en"]["curIdxDesc"])}">
 <link rel="canonical" href="{BASE}{"" if at_root else lang + "/"}currencies/">
 {hreflangs}
+{robots_meta(indexed)}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d0d14">
 {CUR_PAGE_CSS}
@@ -984,6 +1115,7 @@ def build_cur_index(lang="en"):
 {idx_items}
 </ul>
 </main>
+{trust_foot}
 <script>
 // localize currency names via the browser's built-in CLDR data — the static
 // English list stays for crawlers
@@ -1140,10 +1272,14 @@ def build_guides_index(lang):
         f'<li><a href="{BASE}guides/{s}/" lang="en">{t}</a><br>'
         f'<span style="color:var(--muted);font-size:0.75rem" lang="en">{de[:110]}</span></li>'
         for s, t, de in guide_entries) or f'<li style="color:var(--muted)">{C["guidesEmpty"]}</li>'
-    hreflangs = "\n".join(
-        f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}guides/">'
-        for l in CONTENT_UI)
-    hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}guides/">'
+    indexed = lang in INDEXED_LANGS
+    if indexed:
+        hreflangs = "\n".join(
+            f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}guides/">'
+            for l in INDEXED_LANGS)
+        hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}guides/">'
+    else:
+        hreflangs = ""
     return f"""<!DOCTYPE html>
 <html lang="{lang}"{' dir="rtl"' if lang in ('ar', 'fa') else ''}>
 <head>
@@ -1153,6 +1289,7 @@ def build_guides_index(lang):
 <meta name="description" content="{C["guidesIntro"]}">
 <link rel="canonical" href="{BASE}{"" if lang == "en" else lang + "/"}guides/">
 {hreflangs}
+{robots_meta(indexed)}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d0d14">
 {CUR_PAGE_CSS}
@@ -1169,6 +1306,7 @@ def build_guides_index(lang):
 {items}
 </ul>
 </main>
+{trust_foot_html(lang, "" if lang == "en" else lang + "/")}
 </body>
 </html>"""
 
@@ -1187,14 +1325,37 @@ def build_support_page(lang="en"):
     at_root = (lang == "en")
     home = BASE if at_root else BASE + f"{lang}/"
     canon = f"{BASE}support/" if at_root else f"{BASE}{lang}/support/"
-    hreflangs = "\n".join(
-        f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}support/">'
-        for l in CONTENT_UI)
-    hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}support/">'
-    tiers_html = "".join(
-        f'<a class="tier" href="{url}" target="_blank" rel="noopener"><span class="tier-name">{name}</span><span class="tier-amt">{amt}</span></a>'
-        for name, amt, url in SUPPORT_TIERS) or \
-        f'<p class="about" style="color:var(--muted)">{C["supportComing"]}</p>'
+    indexed = lang in INDEXED_LANGS
+    if indexed:
+        hreflangs = "\n".join(
+            f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}support/">'
+            for l in INDEXED_LANGS)
+        hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}support/">'
+    else:
+        hreflangs = ""
+    # indexed languages drop the outdated "no ads" claim (advertising is
+    # coming; the Privacy Policy now discloses it)
+    intro = TRUST_OVERRIDES["supportIntro"].get(lang, C["supportIntro"]) if indexed else C["supportIntro"]
+    sup_desc = TRUST_OVERRIDES["supportDesc"].get(lang, C.get("supportDesc", CONTENT_UI["en"]["supportDesc"])) if indexed \
+        else C.get("supportDesc", CONTENT_UI["en"]["supportDesc"])
+    # "Buy us a Coke" sponsorship theme for indexed languages; tier URLs stay
+    # empty until the Creem checkout links are pasted into trust_l10n.py
+    ov = TRUST_OVERRIDES.get("support", {}).get(lang) if indexed else None
+    headline = ov["headline"] if ov else "♥ Fxverter"
+    choose_label = ov["choose"] if ov else C["supportChoose"]
+    perk_html = f'<p class="about" style="font-size:0.78rem">{ov["perk"]}</p>' if ov else ""
+    tiers_def = ov["tiers"] if ov else SUPPORT_TIERS
+    pending_note = ov["note"] if ov and any(not u for _n, _a, u in ov["tiers"]) else ""
+    if tiers_def:
+        tiers_html = "".join(
+            (f'<a class="tier" href="{url}" target="_blank" rel="noopener"><span class="tier-name">{name}</span><span class="tier-amt">{amt}</span></a>'
+             if url else
+             f'<div class="tier"><span class="tier-name">{name}</span><span class="tier-amt">{amt}</span></div>')
+            for name, amt, url in tiers_def)
+    else:
+        tiers_html = f'<p class="about" style="color:var(--muted)">{C["supportComing"]}</p>'
+    if pending_note:
+        tiers_html += f'<p class="about" style="color:var(--muted);font-size:0.78rem">{pending_note}</p>'
     if SUPPORTERS:
         wall = "".join(
             f'<div class="sup-card"><b>{s["name"]}</b><span class="tier-tag">{s.get("tier","")}</span>'
@@ -1202,21 +1363,95 @@ def build_support_page(lang="en"):
             + '</div>'
             for s in SUPPORTERS)
         wall_html = f'<h2>{C["supportThanks"]}</h2><div class="sup-wall">{wall}</div>'
+    elif SUPPORTERS_API:
+        # live wall via API, no static supporters yet: empty container for JS
+        wall_html = f'<h2>{C["supportThanks"]}</h2><div class="sup-wall" id="supWall"></div><p class="about">{C["supportFirst"]}</p>'
     else:
         wall_html = f'<p class="about">{C["supportFirst"]}</p>'
+    # optional live supporters wall + claim form (see creem-worker.js):
+    # payments reach the list automatically once SUPPORTERS_API is wired up
+    api_js = ""
+    claim_html = ""
+    if SUPPORTERS_API and ov and ov.get("claim"):
+        K = ov["claim"]
+        wall_id_attr = ' id="supWall"'
+        wall_html = wall_html.replace('<div class="sup-wall">', f'<div class="sup-wall"{wall_id_attr}>')
+        api_js = f'''<script>
+(function () {{
+  var box = document.getElementById('supWall');
+  if (!box) return;
+  var ANON = {json.dumps(K["anonLabel"], ensure_ascii=False)};
+  fetch({json.dumps(SUPPORTERS_API)}).then(function (r) {{ if (!r.ok) throw 0; return r.json(); }}).then(function (list) {{
+    if (!Array.isArray(list) || !list.length) return;
+    box.innerHTML = '';
+    list.forEach(function (s) {{
+      var card = document.createElement('div'); card.className = 'sup-card';
+      var b = document.createElement('b'); b.textContent = s.name || ANON; card.appendChild(b);
+      if (s.tier) {{ var t = document.createElement('span'); t.className = 'tier-tag'; t.textContent = s.tier; card.appendChild(t); }}
+      if (s.message) {{ var p = document.createElement('p'); p.className = 'sup-msg'; p.textContent = '\\u201C' + s.message + '\\u201D'; card.appendChild(p); }}
+      box.appendChild(card);
+    }});
+  }}).catch(function () {{}});
+}})();
+</script>'''
+        claim_html = f'''
+<h2 style="margin-top:1.2rem">{K["title"]}</h2>
+<div class="fb-panel open" style="margin-bottom:0">
+<form id="fxClaimForm" onsubmit="fxClaim(event); return false;">
+  <input type="text" name="displayName" maxlength="40" autocomplete="off" placeholder="{K["name"]}">
+  <input type="text" name="message" maxlength="120" autocomplete="off" placeholder="{K["message"]}">
+  <input type="email" name="email" maxlength="80" placeholder="{K["email"]}">
+  <label style="display:flex;gap:0.4rem;align-items:center;font-size:0.75rem;color:var(--muted2);margin-bottom:0.55rem"><input type="checkbox" name="anonymous" style="width:auto">{K["anon"]}</label>
+  <div class="fb-err" id="fxClaimErr"></div>
+  <button type="submit" id="fxClaimBtn">{K["send"]}</button>
+</form>
+<div class="fb-ok" id="fxClaimOk" style="display:none">{K["ok"]}</div>
+</div>
+<script>
+function fxClaim(ev) {{
+  ev.preventDefault();
+  var f = document.getElementById('fxClaimForm');
+  var err = document.getElementById('fxClaimErr');
+  if (!f.email.value.trim()) {{ err.style.display = 'block'; err.textContent = {json.dumps(K["needEmail"], ensure_ascii=False)}; return false; }}
+  err.style.display = 'none';
+  var btn = document.getElementById('fxClaimBtn');
+  btn.disabled = true;
+  fetch({json.dumps(SUPPORTERS_API.rstrip("/") + "/claim")}, {{
+    method: 'POST',
+    headers: {{ 'Content-Type': 'application/json' }},
+    body: JSON.stringify({{
+      email: f.email.value.trim(),
+      displayName: f.displayName.value.trim(),
+      message: f.message.value.trim(),
+      anonymous: f.anonymous.checked
+    }})
+  }}).then(function (r) {{
+    return r.json().then(function (j) {{ if (!r.ok || !j.ok) throw new Error(j.error || 'fail'); }});
+  }}).then(function () {{
+    f.style.display = 'none';
+    document.getElementById('fxClaimOk').style.display = 'block';
+  }}).catch(function (e) {{
+    err.style.display = 'block';
+    err.textContent = (e && e.message === 'no-paid-order') ? {json.dumps(K["nopaid"], ensure_ascii=False)} : {json.dumps(K["fail"], ensure_ascii=False)};
+    btn.disabled = false;
+  }});
+  return false;
+}}
+</script>'''
     return f"""<!DOCTYPE html>
 <html lang="{lang}"{' dir="rtl"' if lang in ('ar', 'fa') else ''}>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{C["supportPrivacyNote"].split("©")[0].strip()} | Fxverter</title>
-<meta name="description" content="{C.get("supportDesc", CONTENT_UI["en"]["supportDesc"])}">
+<title>{UI.get(lang, UI["en"])["supportTitle"]} | Fxverter</title>
+<meta name="description" content="{sup_desc}">
 <link rel="canonical" href="{canon}">
 {hreflangs}
+{robots_meta(indexed)}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d0d14">
 <meta property="og:title" content="Support Fxverter">
-<meta property="og:description" content="{C.get("supportDesc", CONTENT_UI["en"]["supportDesc"])}">
+<meta property="og:description" content="{sup_desc}">
 <meta property="og:image" content="{BASE}og-image.png">
 {CUR_PAGE_CSS}
 <style>
@@ -1242,11 +1477,13 @@ h2{{font-family:var(--syne);font-size:1rem;font-weight:700;margin:1.4rem 0 0.6re
 {tools_bar(lang, "support/", "../" if at_root else "../../")}
 <div class="home"><a href="{home}">{C["backHome"]}</a></div>
 <main class="cur-card">
-<h1>♥ Fxverter</h1>
-<p class="about">{C["supportIntro"]}</p>
-<h2>{C["supportChoose"]}</h2>
+<h1>{headline}</h1>
+<p class="about">{intro}</p>
+<h2>{choose_label}</h2>
+{perk_html}
 {tiers_html}
 {wall_html}
+{claim_html}
 <h2>{C["contactTitle"]}</h2>
 <div class="contact">
   <a id="fxMail" href="#" data-u="hello" data-d="fxverter.com" rel="noopener"></a>
@@ -1254,6 +1491,7 @@ h2{{font-family:var(--syne);font-size:1rem;font-weight:700;margin:1.4rem 0 0.6re
 </div>
 <p class="disc" style="margin-top:1.2rem">{C["supportPrivacyNote"]}</p>
 </main>
+{trust_foot_html(lang, "" if at_root else lang + "/")}
 </body>
 </html>"""
 
@@ -1262,6 +1500,135 @@ for _lang in CONTENT_UI:
     os.makedirs(d, exist_ok=True)
     with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(build_support_page(_lang))
+
+# ═══════════════════════════════════════════════════════
+# TRUST PAGES (/about/ /privacy/ /terms/ /contact/) — built
+# for the indexed languages; English lives at the site root.
+# Content: content/trust_l10n.py.
+# ═══════════════════════════════════════════════════════
+
+def build_trust_page(lang, key):
+    T = TRUST[lang][key]
+    at_root = (lang == "en")
+    dirpart = "" if at_root else f"{lang}/"
+    home = BASE if at_root else BASE + f"{lang}/"
+    canon = f"{BASE}{dirpart}{key}/"
+    hreflangs = "\n".join(
+        f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}{key}/">'
+        for l in INDEXED_LANGS)
+    hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}{key}/">'
+    body = []
+    for kind, text in T["sections"]:
+        if kind == "h":
+            body.append(f"<h2>{text}</h2>")
+        elif kind == "li":
+            if body and body[-1].endswith("</ul>"):
+                body[-1] = body[-1][:-len("</ul>")] + f"<li>{text}</li></ul>"
+            else:
+                body.append(f"<ul><li>{text}</li></ul>")
+        else:
+            body.append(f"<p>{text}</p>")
+    content_html = "\n".join(body)
+    # the feedback page renders a visible splitforms form below the intro
+    form_html = ""
+    if key == "feedback":
+        F = T["form"]
+        form_html = f'''
+<div class="fb-panel open" style="margin-top:1.2rem">
+<form id="fxFeedbackForm" onsubmit="fxSubmitFeedback(event); return false;">
+  <input type="text" name="name" maxlength="60" autocomplete="off" placeholder="{F["name"]}">
+  <input type="email" name="email" maxlength="80" placeholder="{F["email"]}">
+  <textarea name="message" rows="5" maxlength="1000" placeholder="{F["message"]}"></textarea>
+  <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+  <div class="fb-err" id="fxFbErr"></div>
+  <button type="submit" id="fxFbBtn">{F["send"]}</button>
+</form>
+<div class="fb-ok" id="fxFbOk" style="display:none">{F["ok"]}</div>
+</div>
+<script>
+function fxSubmitFeedback(ev) {{
+  ev.preventDefault();
+  var f = document.getElementById('fxFeedbackForm');
+  var err = document.getElementById('fxFbErr');
+  var msg = f.message.value.trim();
+  if (!msg) {{ err.style.display = 'block'; err.textContent = {json.dumps(F["empty"], ensure_ascii=False)}; return false; }}
+  err.style.display = 'none';
+  var btn = document.getElementById('fxFbBtn');
+  btn.disabled = true;
+  fetch('https://splitforms.com/api/submit', {{
+    method: 'POST',
+    headers: {{ 'Content-Type': 'application/json', Accept: 'application/json' }},
+    body: JSON.stringify({{
+      access_key: '99f9b5e09c4b43b3a7eef1f22ff09722',
+      subject: 'Fxverter feedback',
+      name: f.name.value.trim() || 'anonymous',
+      email: f.email.value.trim(),
+      message: msg
+    }})
+  }}).then(function (r) {{
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    f.style.display = 'none';
+    document.getElementById('fxFbOk').style.display = 'block';
+  }}).catch(function () {{
+    err.style.display = 'block';
+    err.textContent = {json.dumps(F["fail"], ensure_ascii=False)};
+    btn.disabled = false;
+  }});
+  return false;
+}}
+</script>'''
+    L = TRUST_LABELS[lang]
+    cross = "".join(
+        f'<a href="{BASE}{dirpart}{p}/">{L[p]}</a>'
+        for p in TRUST_PAGES if p != key)
+    tools = tools_bar(lang, f"{key}/", "../" if at_root else "../../", lang_filter=INDEXED_LANGS)
+    C = CONTENT_UI.get(lang, CONTENT_UI["en"])
+    h1 = T["title"].split(" | ")[0]
+    return f"""<!DOCTYPE html>
+<html lang="{lang}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{T["title"]}</title>
+<meta name="description" content="{T["desc"]}">
+<link rel="canonical" href="{canon}">
+{hreflangs}
+{robots_meta(True)}
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0d0d14">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fxverter">
+<meta property="og:url" content="{canon}">
+<meta property="og:title" content="{T["title"]}">
+<meta property="og:description" content="{T["desc"]}">
+{CUR_PAGE_CSS}
+{THEME_HELPERS}
+{CF_BEACON}
+</head>
+<body>
+{tools}
+<div class="home"><a href="{home}">{C["backHome"]}</a></div>
+<main class="cur-card">
+<h1>{h1}</h1>
+<article class="about" style="font-size:0.92rem;color:var(--text);line-height:1.75">
+{content_html}
+</article>
+{form_html}
+<p class="trust-links" style="margin-top:1.4rem">{cross}</p>
+</main>
+<p class="disc">© 2026 Fxverter · <a href="{home}">{C["backHome"]}</a></p>
+</body>
+</html>"""
+
+for _lang in INDEXED_LANGS:
+    if _lang not in TRUST:
+        continue
+    for _key in TRUST_PAGES:
+        d = _key if _lang == "en" else os.path.join(_lang, _key)
+        os.makedirs(d, exist_ok=True)
+        with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(build_trust_page(_lang, _key))
+print(f"generated trust pages for {len(INDEXED_LANGS)} languages x {len(TRUST_PAGES)}")
 
 # inject the Cloudflare beacon into every generated currency / guide page
 def add_beacon(path):
@@ -1283,91 +1650,53 @@ for _lang in CONTENT_UI:
     if _lang != "en":
         add_beacon(os.path.join(_lang, "guides"))
 
-# sitemap: root + languages + currencies + guides + support
+# sitemap: indexed pages only — root + indexed language homes + indexed
+# currencies (in every indexed language) + guides + support + trust pages.
+# Everything else is served but noindexed and deliberately left out here.
 lastmod = datetime.date.today().isoformat()
-urls = [f"""  <url>
-    <loc>{BASE}</loc>
+
+def _u(loc, priority, changefreq="weekly"):
+    return f"""  <url>
+    <loc>{loc}</loc>
     <lastmod>{lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>"""]
-for c in order:
-    if c == "en":
-        continue
-    urls.append(f"""  <url>
-    <loc>{BASE}{c}/</loc>
-    <lastmod>{lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>""")
-urls.append(f"""  <url>
-    <loc>{BASE}currencies/</loc>
-    <lastmod>{lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>""")
-for code, _ in CURRENCIES:
-    urls.append(f"""  <url>
-    <loc>{BASE}currencies/{code.lower()}/</loc>
-    <lastmod>{lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>""")
-# localized currency pages: /zh/currencies/try/ etc.
-for l in CONTENT_UI:
+    <changefreq>{changefreq}</changefreq>
+    <priority>{priority}</priority>
+  </url>"""
+
+known_codes = {c for c, _n in CURRENCIES}
+_missing = set(INDEXED_CURRENCIES) - known_codes
+if _missing:
+    raise SystemExit(f"INDEXED_CURRENCIES contains unknown codes: {sorted(_missing)}")
+indexed_cur = [c for c, _n in CURRENCIES if c in INDEXED_CURRENCIES]
+
+urls = [_u(BASE, "1.0")]
+for c in INDEXED_LANGS:
+    if c != "en":
+        urls.append(_u(f"{BASE}{c}/", "0.9"))
+urls.append(_u(f"{BASE}currencies/", "0.8"))
+for code in indexed_cur:
+    urls.append(_u(f"{BASE}currencies/{code.lower()}/", "0.7"))
+for l in INDEXED_LANGS:
     if l == "en":
         continue
-    urls.append(f"""  <url>
-    <loc>{BASE}{l}/currencies/</loc>
-    <lastmod>{lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>""")
-    for code, _ in CURRENCIES:
-        urls.append(f"""  <url>
-    <loc>{BASE}{l}/currencies/{code.lower()}/</loc>
-    <lastmod>{lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>""")
-# localized guides indexes: /{lang}/guides/
-for l in CONTENT_UI:
-    if l == "en":
-        continue
-    urls.append(f"""  <url>
-    <loc>{BASE}{l}/guides/</loc>
-    <lastmod>{lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>""")
+    urls.append(_u(f"{BASE}{l}/currencies/", "0.6"))
+    for code in indexed_cur:
+        urls.append(_u(f"{BASE}{l}/currencies/{code.lower()}/", "0.6"))
+# localized guides indexes + English guide articles
+for l in INDEXED_LANGS:
+    if l != "en":
+        urls.append(_u(f"{BASE}{l}/guides/", "0.5", "monthly"))
+urls.append(_u(f"{BASE}guides/", "0.5", "monthly"))
 for slug, _t, _d in guide_entries:
-    urls.append(f"""  <url>
-    <loc>{BASE}guides/{slug}/</loc>
-    <lastmod>{lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>""")
-urls.append(f"""  <url>
-    <loc>{BASE}guides/</loc>
-    <lastmod>{lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>""")
-urls.append(f"""  <url>
-    <loc>{BASE}support/</loc>
-    <lastmod>{lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>""")
-for _l in CONTENT_UI:
-    if _l == "en":
-        continue
-    urls.append(f"""  <url>
-    <loc>{BASE}{_l}/support/</loc>
-    <lastmod>{lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>""")
+    urls.append(_u(f"{BASE}guides/{slug}/", "0.6", "monthly"))
+# support + trust pages (About / Privacy / Terms / Contact)
+for l in INDEXED_LANGS:
+    dp = "" if l == "en" else f"{l}/"
+    if l != "en":
+        urls.append(_u(f"{BASE}{l}/support/", "0.4", "monthly"))
+    for p in TRUST_PAGES:
+        urls.append(_u(f"{BASE}{dp}{p}/", "0.4", "monthly"))
+urls.append(_u(f"{BASE}support/", "0.4", "monthly"))
 with open("sitemap.xml", "w", encoding="utf-8", newline="\n") as fh:
     fh.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
              + "\n".join(urls) + "\n</urlset>\n")

@@ -1,6 +1,6 @@
 # Fxverter
 
-> Fxverter (fxverter.com) — free online currency converter with live exchange rates for 141 world currencies, 29 languages, no API key, no sign-up, no tracking.
+> Fxverter (fxverter.com) — free online currency converter with live exchange rates for 140+ world currencies, in-depth currency profiles and plain-language guides in 7 languages. No sign-up, no tracking of conversions, installable as an app.
 
 Fxverter is a free online currency converter that runs entirely in the browser. Users open the website, enter an amount, pick a source and a target currency, and get a converted result based on reference rates from public APIs — no installation and no account needed. Data sources are switchable: Frankfurter (European Central Bank reference rates, ~30 major currencies), ExchangeRate-API (160+ currencies) and the Fawaz Currency API (170+ currencies); pairs missing from one source are fetched from another automatically. Fxverter can also be installed as an app (PWA) on desktop and mobile. Rates are indicative only and not suitable for bank transfers, invoices or accounting.
 
@@ -8,19 +8,36 @@ Key facts:
 
 - Site: https://fxverter.com/ (English entry; auto-redirects visitors by browser language)
 - Contact: hello@fxverter.com
-- Language versions: 29 subdirectories with fully translated static HTML, e.g. https://fxverter.com/zh/ (Chinese), /tr/ (Turkish), /ja/ (Japanese), /de/ (German), /es/ (Spanish), /ar/ (Arabic) — full list in sitemap.xml; linked with rel="alternate" hreflang on every page
 - Price: free, MIT license
 - Author: Seyyid Kadir
 - Currencies: 141 supported (availability per pair depends on the selected data source; missing pairs fall back to another source automatically)
-- Languages: 29 UI languages with automatic browser detection; right-to-left support for Arabic and Persian
-- Interface languages (29): EN English · TR Türkçe · DE Deutsch · FR Français · ES Español · PT Português · RU Русский · ZH 中文 · JA 日本語 · KO 한국어 · AR العربية · HI हिन्दी · ID Bahasa Indonesia · MS Bahasa Melayu · TL Filipino · IT Italiano · NL Nederlands · PL Polski · UK Українська · SV Svenska · TH ไทย · LO ພາສາລາວ · VI Tiếng Việt · EL Ελληνικά · BN বাংলা · FA فارسی · CS Čeština · RO Română · DA Dansk
-- Currency codes (141): AED, AFN, ALL, AMD, ANG, AOA, ARS, AUD, AWG, AZN, BAM, BBD, BDT, BGN, BHD, BIF, BMD, BND, BOB, BRL, BSD, BTN, BWP, BYN, BZD, CAD, CDF, CHF, CLP, CNY, COP, CRC, CUP, CVE, CZK, DJF, DKK, DOP, DZD, EGP, ERN, ETB, EUR, FJD, GBP, GEL, GHS, GMD, GTQ, HKD, HNL, HRK, HTG, HUF, IDR, ILS, INR, IQD, IRR, ISK, JMD, JOD, JPY, KES, KGS, KHR, KMF, KPW, KRW, KWD, KZT, LAK, LBP, LKR, LYD, MAD, MDL, MKD, MMK, MNT, MRU, MUR, MVR, MWK, MXN, MYR, MZN, NAD, NGN, NIO, NOK, NPR, NZD, OMR, PAB, PEN, PGK, PHP, PKR, PLN, PYG, QAR, RON, RSD, RUB, RWF, SAR, SBD, SDG, SEK, SGD, SLE, SOS, SSP, SYP, THB, TJS, TMT, TND, TOP, TRY, TTD, TWD, TZS, UAH, UGX, USD, UYU, UZS, VES, VND, VUV, WST, XAF, XCD, XOF, XPF, YER, ZAR, ZMW, ZWL
-- Privacy: no accounts, no tracking cookies; all conversions run locally in the browser
+- Languages: 29 interface languages with automatic browser detection; right-to-left support for Arabic and Persian
+- Search-indexed versions: English, Chinese, German, French, Spanish, Portuguese, Japanese — these are the pages listed in sitemap.xml and linked with rel="alternate" hreflang
+- Privacy: no accounts; conversions run locally in the browser; only anonymous visit statistics are collected; the site may display advertising — full details at https://fxverter.com/privacy/
 - Accessibility: three font-size levels, mobile-first layout
+
+Site structure (all indexable pages are listed in sitemap.xml):
+
+- Converter (home): https://fxverter.com/ — also at /zh/ (Chinese), /de/ (German), /fr/ (French), /es/ (Spanish), /pt/ (Portuguese), /ja/ (Japanese)
+- Currency pages: /currencies/<code>/ for 40 major currencies — live reference rates, conversion tables, 30/90-day trend charts (for the ~30 ECB reference currencies) and a calculator. Each is available in all 7 indexed languages, e.g. https://fxverter.com/currencies/usd/ and https://fxverter.com/zh/currencies/jpy/
+- In-depth currency profiles: 12 flagship currencies (USD, EUR, GBP, JPY, CNY, CHF, CAD, AUD, TRY, INR, MXN, BRL) additionally carry a written profile — history, what moves the rate, practical use and an FAQ — e.g. https://fxverter.com/currencies/eur/
+- Guides (9 in-depth articles, English) under /guides/:
+  - https://fxverter.com/guides/how-exchange-rates-work/ — how exchange rates are set (fixed, floating, managed)
+  - https://fxverter.com/guides/mid-market-rate/ — what the mid-market rate is and why bank rates differ
+  - https://fxverter.com/guides/send-money-abroad/ — how to send money abroad without overpaying
+  - https://fxverter.com/guides/travel-money/ — travel money: cash, card or exchange
+  - https://fxverter.com/guides/hidden-currency-fees/ — hidden currency conversion fees and how to avoid them
+  - https://fxverter.com/guides/when-to-exchange/ — when is the best time to exchange currency
+  - https://fxverter.com/guides/reading-exchange-rate-quotes/ — how to read exchange rate quotes (base/quote, pips, spreads)
+  - https://fxverter.com/guides/inflation-and-exchange-rates/ — inflation and exchange rates, how they connect
+  - https://fxverter.com/guides/exchange-rate-risk/ — exchange-rate risk for freelancers and small businesses
+- About: https://fxverter.com/about/ — Privacy Policy: https://fxverter.com/privacy/ — Terms of Use: https://fxverter.com/terms/ — Contact: https://fxverter.com/contact/ — Feedback: https://fxverter.com/feedback/ (each also in the 7 indexed languages)
+- Support: https://fxverter.com/support/ — optional "buy us a Coke" contributions processed by Creem as merchant of record
 
 FAQ:
 
 - Is it free? Yes — fully free and open source under the MIT license, no API key or sign-up required.
 - Are the rates accurate? They are indicative daily reference rates from public APIs; verify with your bank or broker before any financial transaction.
 - Can I install it? Yes — it is installable as an app (PWA) on desktop and mobile; no account is required.
-- Does it track users? No — conversions run locally; only anonymous requests go to the public exchange-rate APIs.
+- Does it track users? No — conversions run locally; only anonymous, cookie-free visit statistics are collected. See the Privacy Policy for details on advertising.
+- Where does the data come from? Frankfurter (European Central Bank reference rates), ExchangeRate-API and the Fawaz Currency API — all public sources, switchable in the interface.

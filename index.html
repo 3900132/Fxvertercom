@@ -11,34 +11,12 @@
 <meta name="description" content="Fxverter — free online currency converter with live exchange rates for 141 world currencies. No API key, no sign-up, no tracking. 29 languages, installable app (PWA), mobile-friendly.">
 <link rel="canonical" href="https://fxverter.com/">
 <link rel="alternate" hreflang="en" href="https://fxverter.com/">
-<link rel="alternate" hreflang="tr" href="https://fxverter.com/tr/">
+<link rel="alternate" hreflang="zh" href="https://fxverter.com/zh/">
 <link rel="alternate" hreflang="de" href="https://fxverter.com/de/">
 <link rel="alternate" hreflang="fr" href="https://fxverter.com/fr/">
 <link rel="alternate" hreflang="es" href="https://fxverter.com/es/">
 <link rel="alternate" hreflang="pt" href="https://fxverter.com/pt/">
-<link rel="alternate" hreflang="ru" href="https://fxverter.com/ru/">
-<link rel="alternate" hreflang="zh" href="https://fxverter.com/zh/">
 <link rel="alternate" hreflang="ja" href="https://fxverter.com/ja/">
-<link rel="alternate" hreflang="ko" href="https://fxverter.com/ko/">
-<link rel="alternate" hreflang="ar" href="https://fxverter.com/ar/">
-<link rel="alternate" hreflang="hi" href="https://fxverter.com/hi/">
-<link rel="alternate" hreflang="id" href="https://fxverter.com/id/">
-<link rel="alternate" hreflang="ms" href="https://fxverter.com/ms/">
-<link rel="alternate" hreflang="tl" href="https://fxverter.com/tl/">
-<link rel="alternate" hreflang="it" href="https://fxverter.com/it/">
-<link rel="alternate" hreflang="nl" href="https://fxverter.com/nl/">
-<link rel="alternate" hreflang="pl" href="https://fxverter.com/pl/">
-<link rel="alternate" hreflang="uk" href="https://fxverter.com/uk/">
-<link rel="alternate" hreflang="sv" href="https://fxverter.com/sv/">
-<link rel="alternate" hreflang="th" href="https://fxverter.com/th/">
-<link rel="alternate" hreflang="lo" href="https://fxverter.com/lo/">
-<link rel="alternate" hreflang="vi" href="https://fxverter.com/vi/">
-<link rel="alternate" hreflang="el" href="https://fxverter.com/el/">
-<link rel="alternate" hreflang="bn" href="https://fxverter.com/bn/">
-<link rel="alternate" hreflang="fa" href="https://fxverter.com/fa/">
-<link rel="alternate" hreflang="cs" href="https://fxverter.com/cs/">
-<link rel="alternate" hreflang="ro" href="https://fxverter.com/ro/">
-<link rel="alternate" hreflang="da" href="https://fxverter.com/da/">
 <link rel="alternate" hreflang="x-default" href="https://fxverter.com/">
 <script id="lang-redirect">
 (function(){
@@ -571,6 +549,9 @@ select[hidden]{display:none}
 .seo-section details[open] summary::after{content:'–'}
 .seo-section details p{padding:0 0.8rem 0.7rem;margin:0}
 .seo-disclaimer{font-size:0.7rem;color:var(--muted)}
+p.trust-links{display:flex;flex-wrap:wrap;gap:0.3rem;justify-content:center;margin:1.6rem 0 0.8rem;padding:0}
+.trust-links a, .seo-section .trust-links a{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.28rem 0.65rem;font-size:0.7rem;color:var(--muted2);text-decoration:none}
+.trust-links a:hover, .seo-section .trust-links a:hover{border-color:var(--teal);color:var(--teal);text-decoration:none}
 
 /* ── MOBILE ── */
 @media(max-width:400px){
@@ -742,7 +723,6 @@ select[hidden]{display:none}
     </div>
 
   </div>
-</div>
 
 <section class="seo-section" aria-labelledby="aboutTitle">
   <h2 id="aboutTitle">About Fxverter</h2>
@@ -751,7 +731,6 @@ select[hidden]{display:none}
 
   <h3>Languages &amp; currencies</h3>
   <p id="siteNavLinks">Explore more: <a href="currencies/" id="curNavLink">Browse all currencies</a> · <a href="guides/" id="guideNavLink">Exchange-rate guides</a></p>
-  <p>The interface comes in 29 languages: <strong>EN</strong> English · <strong>TR</strong> Türkçe · <strong>DE</strong> Deutsch · <strong>FR</strong> Français · <strong>ES</strong> Español · <strong>PT</strong> Português · <strong>RU</strong> Русский · <strong>ZH</strong> 中文 · <strong>JA</strong> 日本語 · <strong>KO</strong> 한국어 · <strong>AR</strong> العربية · <strong>HI</strong> हिन्दी · <strong>ID</strong> Bahasa Indonesia · <strong>MS</strong> Bahasa Melayu · <strong>TL</strong> Filipino · <strong>IT</strong> Italiano · <strong>NL</strong> Nederlands · <strong>PL</strong> Polski · <strong>UK</strong> Українська · <strong>SV</strong> Svenska · <strong>TH</strong> ไทย · <strong>LO</strong> ພາສາລາວ · <strong>VI</strong> Tiếng Việt · <strong>EL</strong> Ελληνικά · <strong>BN</strong> বাংলা · <strong>FA</strong> فارسی · <strong>CS</strong> Čeština · <strong>RO</strong> Română · <strong>DA</strong> Dansk.</p>
   <p>Exchange rates are available for 141 currencies, searchable directly in the dropdowns. Per-request availability depends on the selected data source — pairs missing from one source are fetched from another automatically:</p>
   <details id="curList">
     <summary>View the full currency list</summary>
@@ -807,18 +786,17 @@ select[hidden]{display:none}
     <summary>Does the converter track my data?</summary>
     <p>No. All conversions run locally in your browser. There is no account system, no tracking cookies and no server in between — only anonymous requests to the public exchange-rate APIs.</p>
   </details>
-
-  <p class="seo-disclaimer">Disclaimer: all exchange rates are indicative only and must not be used for bank transfers, official invoices or accounting. Always verify rates with your bank or financial institution. © 2026 Seyyid Kadir · MIT License.</p>
-  <p class="seo-disclaimer" id="privacyNote">Privacy: this website uses no cookies and collects no personal data. Anonymous, cookie-free visit statistics (page views and country) may be collected to improve the tool.</p>
 </section>
 </main>
+
+<p id="trustNavLinks" class="trust-links"><a href="about/">About</a><a href="privacy/">Privacy Policy</a><a href="terms/">Terms of Use</a><a href="contact/">Contact</a><a href="feedback/">Feedback</a><a href="support/">Support</a></p>
 
 <noscript>
   <p style="max-width:520px;margin-top:1rem;color:#6868a0;font-size:0.75rem;text-align:center;">JavaScript is disabled — the converter needs JavaScript to fetch live exchange rates. The description and FAQ above still apply.</p>
 </noscript>
 
 <div class="footer" id="footerText">No API key · Open source APIs · Rates are indicative</div>
-<div class="footer"><a id="supportLink" href="support/">♥ <span id="supportLabel">Support</span></a> · <a id="feedbackLink" href="#" onclick="openFeedback(); return false;"><span id="feedbackLabel">Feedback</span></a></div>
+<div class="footer">© 2026 Fxverter · MIT License</div>
 
 <div class="inst-banner" id="instBanner" role="dialog" aria-labelledby="instTitleText" aria-describedby="instDescText" hidden>
   <div class="inst-icon" aria-hidden="true">💱</div>

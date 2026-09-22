@@ -7,35 +7,14 @@
 <meta name="description" content="Plain-language explanations of how exchange rates work, by the Fxverter team.">
 <link rel="canonical" href="https://fxverter.com/guides/">
 <link rel="alternate" hreflang="en" href="https://fxverter.com/guides/">
-<link rel="alternate" hreflang="tr" href="https://fxverter.com/tr/guides/">
 <link rel="alternate" hreflang="zh" href="https://fxverter.com/zh/guides/">
-<link rel="alternate" hreflang="ja" href="https://fxverter.com/ja/guides/">
 <link rel="alternate" hreflang="de" href="https://fxverter.com/de/guides/">
 <link rel="alternate" hreflang="fr" href="https://fxverter.com/fr/guides/">
 <link rel="alternate" hreflang="es" href="https://fxverter.com/es/guides/">
 <link rel="alternate" hreflang="pt" href="https://fxverter.com/pt/guides/">
-<link rel="alternate" hreflang="ru" href="https://fxverter.com/ru/guides/">
-<link rel="alternate" hreflang="ar" href="https://fxverter.com/ar/guides/">
-<link rel="alternate" hreflang="hi" href="https://fxverter.com/hi/guides/">
-<link rel="alternate" hreflang="id" href="https://fxverter.com/id/guides/">
-<link rel="alternate" hreflang="ms" href="https://fxverter.com/ms/guides/">
-<link rel="alternate" hreflang="ko" href="https://fxverter.com/ko/guides/">
-<link rel="alternate" hreflang="vi" href="https://fxverter.com/vi/guides/">
-<link rel="alternate" hreflang="th" href="https://fxverter.com/th/guides/">
-<link rel="alternate" hreflang="fa" href="https://fxverter.com/fa/guides/">
-<link rel="alternate" hreflang="uk" href="https://fxverter.com/uk/guides/">
-<link rel="alternate" hreflang="el" href="https://fxverter.com/el/guides/">
-<link rel="alternate" hreflang="bn" href="https://fxverter.com/bn/guides/">
-<link rel="alternate" hreflang="pl" href="https://fxverter.com/pl/guides/">
-<link rel="alternate" hreflang="nl" href="https://fxverter.com/nl/guides/">
-<link rel="alternate" hreflang="it" href="https://fxverter.com/it/guides/">
-<link rel="alternate" hreflang="ro" href="https://fxverter.com/ro/guides/">
-<link rel="alternate" hreflang="cs" href="https://fxverter.com/cs/guides/">
-<link rel="alternate" hreflang="da" href="https://fxverter.com/da/guides/">
-<link rel="alternate" hreflang="sv" href="https://fxverter.com/sv/guides/">
-<link rel="alternate" hreflang="lo" href="https://fxverter.com/lo/guides/">
-<link rel="alternate" hreflang="tl" href="https://fxverter.com/tl/guides/">
+<link rel="alternate" hreflang="ja" href="https://fxverter.com/ja/guides/">
 <link rel="alternate" hreflang="x-default" href="https://fxverter.com/guides/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d0d14">
 <style>
@@ -72,6 +51,17 @@ td.r,th.r{text-align:right}
 .links a{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.28rem 0.75rem;font-size:0.72rem;color:var(--muted2)}
 .links a:hover{border-color:var(--teal);color:var(--teal);text-decoration:none}
 .disc{color:var(--muted);font-size:0.68rem;margin-top:1.4rem;max-width:560px;text-align:center}
+.trust-links{display:flex;flex-wrap:wrap;gap:0.3rem;justify-content:center;margin:1.1rem auto 0;max-width:560px;padding:0}
+.trust-links a{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.28rem 0.65rem;font-size:0.7rem;color:var(--muted2);text-decoration:none}
+.trust-links a:hover{border-color:var(--teal);color:var(--teal);text-decoration:none}
+.cur-article{margin-top:1.6rem;border-top:1px solid var(--border);padding-top:1.2rem;text-align:left}
+.cur-article p{color:var(--muted2);font-size:0.85rem;line-height:1.75;margin-bottom:0.7rem}
+.cur-article ul{padding-left:1.15rem;margin:0 0 0.8rem}
+.cur-article li{color:var(--muted2);font-size:0.84rem;line-height:1.8}
+.cur-article details{border:1px solid var(--border);border-radius:10px;background:var(--surface2);margin-bottom:0.45rem}
+.cur-article summary{cursor:pointer;padding:0.55rem 0.8rem;font-weight:500;color:var(--text);font-size:0.82rem;list-style:none}
+.cur-article summary::-webkit-details-marker{display:none}
+.cur-article details p{padding:0 0.8rem 0.7rem;margin:0}
 .chart-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem;margin-bottom:1.2rem}
 .chart-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem}
 .chart-head .t{font-family:var(--syne);font-size:0.8rem;font-weight:700}
@@ -346,8 +336,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 <h1>All guides</h1>
 <p class="about">Plain-language explanations of how exchange rates work, by the Fxverter team.</p>
 <ul style="padding-left:1.2rem;font-size:0.88rem;line-height:2.2">
-<li><a href="https://fxverter.com/guides/how-exchange-rates-work/" lang="en">How Exchange Rates Are Set</a><br><span style="color:var(--muted);font-size:0.75rem" lang="en">Who decides what a currency is worth? A plain-language explanation of fixed, floating and managed exchange-rat</span></li><li><a href="https://fxverter.com/guides/mid-market-rate/" lang="en">What Is the Mid-Market Rate?</a><br><span style="color:var(--muted);font-size:0.75rem" lang="en">The mid-market rate is the midpoint between what buyers pay and sellers accept — and the benchmark you should </span></li>
+<li><a href="https://fxverter.com/guides/exchange-rate-risk/" lang="en">Exchange Rate Risk — A Guide for Freelancers and Small Businesses</a><br><span style="color:var(--muted);font-size:0.75rem" lang="en">If you invoice or pay in a foreign currency, exchange rate risk is already in your business. Here is how to se</span></li><li><a href="https://fxverter.com/guides/hidden-currency-fees/" lang="en">Hidden Currency Conversion Fees (and How to Avoid Them)</a><br><span style="color:var(--muted);font-size:0.75rem" lang="en">The fee on the screen is rarely the whole cost. Spreads, dynamic currency conversion, ATM and intermediary fee</span></li><li><a href="https://fxverter.com/guides/how-exchange-rates-work/" lang="en">How Exchange Rates Are Set</a><br><span style="color:var(--muted);font-size:0.75rem" lang="en">Who decides what a currency is worth? A plain-language explanation of fixed, floating and managed exchange-rat</span></li><li><a href="https://fxverter.com/guides/inflation-and-exchange-rates/" lang="en">Inflation and Exchange Rates — How They Connect</a><br><span style="color:var(--muted);font-size:0.75rem" lang="en">High inflation erodes a currency over years, and central banks fight it with interest rates. Understanding bot</span></li><li><a href="https://fxverter.com/guides/mid-market-rate/" lang="en">What Is the Mid-Market Rate?</a><br><span style="color:var(--muted);font-size:0.75rem" lang="en">The mid-market rate is the midpoint between what buyers pay and sellers accept — and the benchmark you should </span></li><li><a href="https://fxverter.com/guides/reading-exchange-rate-quotes/" lang="en">How to Read Exchange Rate Quotes</a><br><span style="color:var(--muted);font-size:0.75rem" lang="en">Base currency, quote currency, pips and spreads — a five-minute guide to understanding what an exchange rate q</span></li><li><a href="https://fxverter.com/guides/send-money-abroad/" lang="en">How to Send Money Abroad Without Overpaying</a><br><span style="color:var(--muted);font-size:0.75rem" lang="en">Banks hide 1-4% inside the exchange rate. Here is how to compare the total cost of an international transfer i</span></li><li><a href="https://fxverter.com/guides/travel-money/" lang="en">Travel Money — Cash, Card or Exchange?</a><br><span style="color:var(--muted);font-size:0.75rem" lang="en">How much cash to carry abroad, which card to pay with, and why "pay in your own currency" is the most expensiv</span></li><li><a href="https://fxverter.com/guides/when-to-exchange/" lang="en">When Is the Best Time to Exchange Currency?</a><br><span style="color:var(--muted);font-size:0.75rem" lang="en">Nobody can predict exchange rates reliably — but you can avoid the worst moments, use alerts instead of guessi</span></li>
 </ul>
 </main>
+<p class="trust-links"><a href="https://fxverter.com/about/">About</a><a href="https://fxverter.com/privacy/">Privacy Policy</a><a href="https://fxverter.com/terms/">Terms of Use</a><a href="https://fxverter.com/contact/">Contact</a><a href="https://fxverter.com/feedback/">Feedback</a><a href="https://fxverter.com/support/">♥ Support</a></p>
 </body>
 </html>
