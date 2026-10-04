@@ -5,7 +5,7 @@
      falls back to the last cached response so the last known rates stay
      available offline
 */
-const CACHE = 'fxcc-v7';
+const CACHE = 'fxcc-v8';
 const CORE = [
   './',
   './manifest.webmanifest',

@@ -38,7 +38,9 @@
   "about": {"@type": "Thing", "name": "Hong Kong Dollar"}
 }
 </script>
-
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "香港ドルは米ドルに固定されていますか？", "acceptedAnswer": {"@type": "Answer", "text": "厳密な単一レートではなく、1米ドル＝7.75〜7.85香港ドルの取引範囲に連動しています。"}}, {"@type": "Question", "name": "香港では人民元を使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "観光地や一部店舗で受け取られることはありますが、釣り銭やレートが不利な場合があるため、通常はHKDで払うのが分かりやすいです。"}}, {"@type": "Question", "name": "香港ドルの紙幣が何種類もあるのはなぜ？", "acceptedAnswer": {"@type": "Answer", "text": "香港では複数の商業銀行が紙幣を発行する独特の制度があるためです。額面とデザインは統一されています。"}}]}
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/hkd.min.json" defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -389,7 +391,23 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <tbody id="rt"></tbody>
   </table>
   <div class="links" aria-label="Other currencies"><a href="../usd/">USD</a> <a href="../eur/">EUR</a> <a href="../gbp/">GBP</a> <a href="../jpy/">JPY</a> <a href="../cny/">CNY</a> <a href="../chf/">CHF</a> <a href="../try/">TRY</a> <a href="../inr/">INR</a> <a href="../krw/">KRW</a> <a href="../aud/">AUD</a> <a href="../cad/">CAD</a> <a href="../mxn/">MXN</a> <a href="../brl/">BRL</a> <a href="../zar/">ZAR</a> <a href="../sek/">SEK</a> <a href="../nok/">NOK</a> <a href="../nzd/">NZD</a> <a href="../sgd/">SGD</a> <a href="../thb/">THB</a></div>
-  
+  <section class="cur-article">
+<h2>香港ドルの歴史を少し</h2>
+<p>香港ドルは香港が国際港として成長した19世紀に生まれ、銀本位制を経て現在の通貨制度へ発展しました。1983年からは米ドルとのリンク制度を採用し、香港の金融市場と貿易の信頼を米国通貨の安定性に結び付けています。</p>
+<p>香港金融管理局は1米ドル＝7.75〜7.85香港ドルの範囲を守るため、必要に応じて市場へ介入します。発券銀行が発行する紙幣を外貨準備で裏付けるカレンシーボードの仕組みが、金融センターの規律を支えています。</p>
+<h2>HKDのレートを動かすもの</h2>
+<p>香港ドルの変動幅は狭い一方、ペッグの内側では金利と資金フローが細かく動かします。</p>
+<ul><li>米連邦準備制度：香港の金利はペッグを守るため米金利に追随しやすくなります</li><li>資金フローと株式市場：香港株への資金流入やIPO需要は香港ドルの短期需要を高めます</li><li>香港と中国本土の関係：人民元、貿易、資本市場の政策変更がHKDの需給に影響します</li><li>不動産と金融市場：香港の資産サイクルは、為替レートがほとんど動かないときでも流動性の状況を増幅させます</li></ul>
+<h2>香港ドルの実務</h2>
+<p>香港ではオクトパス、カード、モバイル決済が日常を支えます。小さな飲食店や市場では現金が便利で、紙幣は香港上海銀行、スタンダード・チャータード銀行、中国銀行香港の3行が発行しています。</p>
+<p>香港ドルは中国本土と異なる通貨なので、越境旅行や買い物ではCNYとの換算を確認してください。送金では、ペッグが安定していても銀行のスプレッドと手数料はサービスごとに違います。</p>
+<h2>人気のHKD通貨ペア</h2>
+<p>USD/HKDはペッグの上下限と香港の資金環境を確認する中心ペアです。HKD/CNYは香港・本土間の商取引に、HKD/JPYとHKD/SGDはアジアの投資と旅行に使われます。</p>
+<h2>よくある質問</h2>
+  <details><summary>香港ドルは米ドルに固定されていますか？</summary><p>厳密な単一レートではなく、1米ドル＝7.75〜7.85香港ドルの取引範囲に連動しています。</p></details>
+  <details><summary>香港では人民元を使えますか？</summary><p>観光地や一部店舗で受け取られることはありますが、釣り銭やレートが不利な場合があるため、通常はHKDで払うのが分かりやすいです。</p></details>
+  <details><summary>香港ドルの紙幣が何種類もあるのはなぜ？</summary><p>香港では複数の商業銀行が紙幣を発行する独特の制度があるためです。額面とデザインは統一されています。</p></details>
+</section>
 </main>
 <p class="trust-links"><a href="https://fxverter.com/ja/about/">Fxverter について</a><a href="https://fxverter.com/ja/privacy/">プライバシーポリシー</a><a href="https://fxverter.com/ja/terms/">利用規約</a><a href="https://fxverter.com/ja/contact/">お問い合わせ</a><a href="https://fxverter.com/ja/feedback/">フィードバック</a><a href="https://fxverter.com/ja/support/">♥ 支援する</a></p>
 <p class="disc">レートは公開ソース（Frankfurter経由のECB、ExchangeRate-API）による参考値で、毎日更新されます — 取引前に銀行でご確認ください。© 2026 Fxverter · 通貨コンバーター · <a href="https://fxverter.com/ja/">Fxverter</a></p>

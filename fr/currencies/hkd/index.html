@@ -38,7 +38,9 @@
   "about": {"@type": "Thing", "name": "Hong Kong Dollar"}
 }
 </script>
-
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Le HKD est-il réellement arrimé au dollar ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Le système de caisse d'émission maintient USD/HKD dans une bande de 7,75 à 7,85 en échangeant des dollars et en laissant les taux locaux s'ajuster."}}, {"@type": "Question", "name": "Pourquoi les taux de Hong Kong suivent-ils la Fed ?", "acceptedAnswer": {"@type": "Answer", "text": "Pour défendre l'ancrage, la liquidité en HKD doit rester cohérente avec la convertibilité en dollars américains ; les taux locaux suivent donc généralement les taux américains."}}, {"@type": "Question", "name": "Les billets de banques différentes sont-ils valables ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Les billets de HSBC, Standard Chartered et Banque de Chine ont des motifs différents, mais ils sont tous des dollars de Hong Kong valides."}}]}
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/hkd.min.json" defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -389,7 +391,23 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <tbody id="rt"></tbody>
   </table>
   <div class="links" aria-label="Other currencies"><a href="../usd/">USD</a> <a href="../eur/">EUR</a> <a href="../gbp/">GBP</a> <a href="../jpy/">JPY</a> <a href="../cny/">CNY</a> <a href="../chf/">CHF</a> <a href="../try/">TRY</a> <a href="../inr/">INR</a> <a href="../krw/">KRW</a> <a href="../aud/">AUD</a> <a href="../cad/">CAD</a> <a href="../mxn/">MXN</a> <a href="../brl/">BRL</a> <a href="../zar/">ZAR</a> <a href="../sek/">SEK</a> <a href="../nok/">NOK</a> <a href="../nzd/">NZD</a> <a href="../sgd/">SGD</a> <a href="../thb/">THB</a></div>
-  
+  <section class="cur-article">
+<h2>Une courte histoire du dollar de Hong Kong</h2>
+<p>Le dollar de Hong Kong est né en 1863 dans une colonie devenue rapidement une plaque tournante du commerce chinois et britannique. Après plusieurs régimes de flottement et de rattachement, l'Autorité monétaire de Hong Kong l'a lié au dollar américain en 1983, dans une bande étroite de 7,75 à 7,85 HKD pour un dollar.</p>
+<p>Ce régime de caisse d'émission signifie que chaque billet émis est adossé à des réserves en dollars, et que les taux locaux suivent largement ceux de la Réserve fédérale. La monnaie a ainsi survécu à la crise asiatique de 1997, à la crise financière mondiale et aux tensions politiques sans perdre son ancrage.</p>
+<h2>Ce qui fait bouger le taux du HKD</h2>
+<p>Le cours au comptant varie peu ; ce sont les flux de capitaux et la liquidité de Hong Kong qui font bouger les conditions financières autour de l'ancrage.</p>
+<ul><li>La Fed et les taux américains : la Hong Kong Monetary Authority suit le cycle américain pour défendre la bande</li><li>Les flux vers la Chine : introductions en Bourse, dividendes et investissements transfrontaliers créent une demande de HKD</li><li>Les réserves de change : leur niveau crédibilise la convertibilité et limite les attaques spéculatives durables</li><li>Le marché immobilier et le crédit : puisque le HKD suit le dollar, les taux américains se transmettent directement aux ménages et entreprises</li></ul>
+<h2>Le dollar de Hong Kong en pratique</h2>
+<p>Hong Kong est très largement sans espèces dans les transports et les commerces, grâce notamment à la carte Octopus et aux cartes bancaires. Les espèces restent pratiques dans les marchés, les restaurants traditionnels et certains taxis. Les billets sont émis par trois banques commerciales, avec des dessins différents mais la même valeur.</p>
+<p>Pour les transferts vers la Chine continentale, le HKD constitue une passerelle liquide, mais les règles de contrôle des capitaux et les plafonds de paiement peuvent ralentir un transfert. Vérifier le montant reçu, plutôt que la seule commission, est essentiel.</p>
+<h2>Conversions populaires du dollar de Hong Kong</h2>
+<p>USD/HKD est l'une des paires les plus stables du marché grâce à la bande officielle. HKD/CNY suit la relation financière avec la Chine ; EUR/HKD et GBP/HKD servent les entreprises internationales et les expatriés. HKD/SGD est courant dans les flux commerciaux asiatiques.</p>
+<h2>Questions fréquentes</h2>
+  <details><summary>Le HKD est-il réellement arrimé au dollar ?</summary><p>Oui. Le système de caisse d'émission maintient USD/HKD dans une bande de 7,75 à 7,85 en échangeant des dollars et en laissant les taux locaux s'ajuster.</p></details>
+  <details><summary>Pourquoi les taux de Hong Kong suivent-ils la Fed ?</summary><p>Pour défendre l'ancrage, la liquidité en HKD doit rester cohérente avec la convertibilité en dollars américains ; les taux locaux suivent donc généralement les taux américains.</p></details>
+  <details><summary>Les billets de banques différentes sont-ils valables ?</summary><p>Oui. Les billets de HSBC, Standard Chartered et Banque de Chine ont des motifs différents, mais ils sont tous des dollars de Hong Kong valides.</p></details>
+</section>
 </main>
 <p class="trust-links"><a href="https://fxverter.com/fr/about/">À propos</a><a href="https://fxverter.com/fr/privacy/">Confidentialité</a><a href="https://fxverter.com/fr/terms/">Conditions d'utilisation</a><a href="https://fxverter.com/fr/contact/">Contact</a><a href="https://fxverter.com/fr/feedback/">Commentaires</a><a href="https://fxverter.com/fr/support/">♥ Soutenir</a></p>
 <p class="disc">Taux indicatifs issus de sources publiques (BCE via Frankfurter, ExchangeRate-API), mis à jour quotidiennement — vérifiez avec votre banque avant toute transaction. © 2026 Fxverter · Convertisseur · <a href="https://fxverter.com/fr/">Fxverter</a></p>

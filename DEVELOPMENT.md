@@ -215,6 +215,15 @@ ABOUT_BATCH = {
 3. 域名：根目录已有 `CNAME` 文件（内容 `fxverter.com`）。注册域名后，在域名商处添加 4 条 A 记录：`185.199.108–111.153` 指向根域名，GitHub Pages 会自动绑定并签发 HTTPS
 4. 上线后：[Google Search Console](https://search.google.com/search-console) 添加资源 `fxverter.com`，提交 `https://fxverter.com/sitemap.xml`，并对首页"请求编入索引"
 
+**IndexNow（必应/雅虎等引擎的秒级推送）**：每次 push 部署完成后跑一次
+
+```bash
+python submit-indexnow.py            # 把 sitemap 里全部收录页推送给必应等引擎
+python submit-indexnow.py --dry-run  # 只看 payload 不发送
+```
+
+所有权靠根目录的密钥文件 `ebad7e82a81a05f950421869b7058a56.txt`（内容 = 文件名，已在仓库里），部署上去即自动完成验证，必应站长平台的 IndexNow 面板无需任何配置。脚本把 sitemap 的 413 个 URL 一次性 POST 给 `api.indexnow.org`（同时路由到 Bing / Yandex / Seznam / Naver，单次上限 1 万条）。返回 200/202 即成功；403/422 说明密钥文件还没部署上去。大改版后尤其要跑——它能让必应尽快用新快照替换旧数据（比如"标题重复"这类基于旧爬取的告警会随之消除）。
+
 **统计**：Cloudflare Web Analytics 代码已内置在全部 175 页（token 已配置）。登录 [dash.cloudflare.com](https://dash.cloudflare.com) → Web Analytics 即可看到访问量、国家、来源。
 
 ---
@@ -351,4 +360,5 @@ SUPPORTERS = [
 2. `python build-lang-pages.py`
 3. 浏览器抽查：根页 + 一两个语言页 + 相关内容页
 4. push 到 GitHub
-5. 大改动（新页面类型/新语言）时：把 `sw.js` 版本号 +1，确保老访客拿到新缓存
+5. 部署生效后 `python submit-indexnow.py`，推送新 URL 给必应等引擎
+6. 大改动（新页面类型/新语言）时：把 `sw.js` 版本号 +1，确保老访客拿到新缓存

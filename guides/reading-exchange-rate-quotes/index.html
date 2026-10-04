@@ -6,19 +6,17 @@
 <title>How to Read Exchange Rate Quotes | Fxverter</title>
 <meta name="description" content="Base currency, quote currency, pips and spreads — a five-minute guide to understanding what an exchange rate quote actually says.">
 <link rel="canonical" href="https://fxverter.com/guides/reading-exchange-rate-quotes/">
+<link rel="alternate" hreflang="en" href="https://fxverter.com/guides/reading-exchange-rate-quotes/">
+<link rel="alternate" hreflang="zh" href="https://fxverter.com/zh/guides/reading-exchange-rate-quotes/">
+<link rel="alternate" hreflang="de" href="https://fxverter.com/de/guides/reading-exchange-rate-quotes/">
+<link rel="alternate" hreflang="fr" href="https://fxverter.com/fr/guides/reading-exchange-rate-quotes/">
+<link rel="alternate" hreflang="es" href="https://fxverter.com/es/guides/reading-exchange-rate-quotes/">
+<link rel="alternate" hreflang="pt" href="https://fxverter.com/pt/guides/reading-exchange-rate-quotes/">
+<link rel="alternate" hreflang="ja" href="https://fxverter.com/ja/guides/reading-exchange-rate-quotes/">
+<link rel="alternate" hreflang="x-default" href="https://fxverter.com/guides/reading-exchange-rate-quotes/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to Read Exchange Rate Quotes", "description": "Base currency, quote currency, pips and spreads — a five-minute guide to understanding what an exchange rate quote actually says.", "author": {"@type": "Person", "name": "Seyyid Kadir"}, "publisher": {"@type": "Organization", "name": "Fxverter", "url": "https://fxverter.com/"}, "mainEntityOfPage": "https://fxverter.com/guides/reading-exchange-rate-quotes/"}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d0d14">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "How to Read Exchange Rate Quotes",
-  "description": "Base currency, quote currency, pips and spreads — a five-minute guide to understanding what an exchange rate quote actually says.",
-  "author": {"@type": "Person", "name": "Seyyid Kadir"},
-  "publisher": {"@type": "Organization", "name": "Fxverter", "url": "https://fxverter.com/"},
-  "mainEntityOfPage": "https://fxverter.com/guides/reading-exchange-rate-quotes/"
-}
-</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#0d0d14;--surface:#16161f;--surface2:#1e1e2a;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);--text:#eeeef5;--muted:#6868a0;--muted2:#9898c0;--teal:#5ecfb0;--syne:'Syne',sans-serif;--dm:'DM Sans',sans-serif;--shadow:0 24px 60px rgba(0,0,0,0.45)}
@@ -150,10 +148,10 @@ function fxToggleTheme() {
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c616c0616b1341d6b1e4930665891a63"}'></script>
 </head>
 <body>
-<div class="tools-bar"><div class="tools-left"><button type="button" class="tool-btn" id="fxThemeBtn" onclick="fxToggleTheme()" title="Theme">◐</button><button type="button" class="tool-btn" id="shareBtn" onclick="fxShare()" title="Share">⤴</button><button type="button" class="tool-btn" id="feedbackBtn" onclick="fxOpenFeedback()" title="Feedback">✎</button><button type="button" class="tool-btn" id="installBtn" onclick="fxInstall()" title="Install app" hidden>⤓</button></div><select class="lang-sel" id="langSel" onchange="fxLangGo(this.value)" aria-label="Language"><option value="en" selected>English</option><option value="tr">Türkçe</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="pt">Português</option><option value="ru">Русский</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="tl">Filipino</option><option value="it">Italiano</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="uk">Українська</option><option value="sv">Svenska</option><option value="th">ไทย</option><option value="lo">ພາສາລາວ</option><option value="vi">Tiếng Việt</option><option value="el">Ελληνικά</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="da">Dansk</option></select></div>
+<div class="tools-bar"><div class="tools-left"><button type="button" class="tool-btn" id="fxThemeBtn" onclick="fxToggleTheme()" title="Theme">◐</button><button type="button" class="tool-btn" id="shareBtn" onclick="fxShare()" title="Share">⤴</button><button type="button" class="tool-btn" id="feedbackBtn" onclick="fxOpenFeedback()" title="Feedback">✎</button><button type="button" class="tool-btn" id="installBtn" onclick="fxInstall()" title="Install app" hidden>⤓</button></div><select class="lang-sel" id="langSel" onchange="fxLangGo(this.value)" aria-label="Language"><option value="en" selected>English</option><option value="zh">中文</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="pt">Português</option><option value="ja">日本語</option></select></div>
 <div class="fb-panel" id="fbPanel"><form id="fbForm" onsubmit="fxSendFeedback(); return false;"><input type="text" id="fbName" maxlength="60" autocomplete="off" placeholder="Name"><input type="email" id="fbEmail" maxlength="80" placeholder="Email (optional)"><textarea id="fbMsg" rows="4" maxlength="1000" placeholder="Your message…"></textarea><input type="checkbox" style="display:none" tabindex="-1" autocomplete="off"><div class="fb-err" id="fbErr"></div><button type="submit" id="fbSendBtn">Send feedback</button></form><div class="fb-ok" id="fbOk" style="display:none">✓ Feedback sent — thank you!</div></div>
 <div class="inst-banner" id="instBanner" role="dialog" aria-labelledby="instTitleText" aria-describedby="instDescText" hidden><div class="inst-icon" aria-hidden="true">💱</div><div class="inst-body"><div class="inst-title" id="instTitleText">Install Fxverter</div><div class="inst-desc" id="instDescText">Add to home screen for quick access — works offline.</div><div class="inst-ios" id="instIosHint">Tap the Share button, then choose “Add to Home Screen”.</div></div><div class="inst-actions"><button class="inst-go" id="instGoBtn" type="button" onclick="instGo()">Install</button><button class="inst-later" id="instLaterBtn" type="button" onclick="fxInstLater()">Not now</button></div></div>
-<script>const FX_PAGE = {"cur": "en", "sub": "", "base": "https://fxverter.com/", "root": "../../"};
+<script>const FX_PAGE = {"cur": "en", "sub": "guides/reading-exchange-rate-quotes/", "base": "https://fxverter.com/", "root": "../../"};
 const FX_T = {"share": "Share", "shared": "Link copied!", "feedback": "Feedback", "fbPlaceholder": "Your message…", "fbSend": "Send feedback", "fbOk": "✓ Feedback sent — thank you!", "fbEmpty": "Please write a message first.", "fbFail": "Sending failed — please try again or email us directly.", "install": "Install app", "instTitle": "Install Fxverter", "instDesc": "Add to home screen for quick access — works offline.", "instBtn": "Install", "instLater": "Not now", "instIos": "Tap the Share button, then choose “Add to Home Screen”."};
 const FX_MAIL = {u: "hello", d: "fxverter.com"};
 function fxShare() {
@@ -333,24 +331,24 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   var btn = document.getElementById('fxThemeBtn');
   if (btn && window.__fxTheme) btn.textContent = window.__fxTheme === 'light' ? '☀' : window.__fxTheme === 'dark' ? '☾' : '◐';
 })();</script>
-<div class="home"><a href="https://fxverter.com/">← Fxverter — Currency Converter</a> · <a href="../">All guides</a></div>
+<div class="home"><a href="https://fxverter.com/">← Fxverter — Currency Converter</a> · <a href="https://fxverter.com/guides/">All guides</a></div>
 <main class="cur-card">
 <h1>How to Read Exchange Rate Quotes</h1>
 <article class="about" style="font-size:0.92rem;color:var(--text)">
 <p>An exchange rate quote looks simple — <strong>EUR/USD 1.08</strong> — but it packs several pieces of information into one number. Here is how to read it, and how to spot when a quoted rate is hiding a cost.</p>
 <h2>Which currency is which</h2>
 <p>In any pair, the <strong>base currency</strong> comes first and the <strong>quote currency</strong> second. The number tells you how much of the quote currency one unit of the base currency buys:</p>
-<ul><li>**EUR/USD 1.08** → 1 euro buys 1.08 US dollars</li><li>**USD/JPY 150.00** → 1 US dollar buys 150 Japanese yen</li></ul>
+<ul><li><strong>EUR/USD 1.08</strong> → 1 euro buys 1.08 US dollars</li><li><strong>USD/JPY 150.00</strong> → 1 US dollar buys 150 Japanese yen</li></ul>
 <p>The order is a market convention, not a choice: some pairs always appear one way (EUR/USD, GBP/USD) and others the opposite (USD/JPY, USD/CAD). When you look up a rate, make sure you know which currency is the base — otherwise you might read 150 yen as 150 dollars.</p>
 <h2>The big figure and the pips</h2>
 <p>In EUR/USD 1.0850, the <strong>big figure</strong> is 1.08 and the last two digits — the pips — are 50. Most pairs are quoted to four or five decimal places, and yen pairs to two or three. Daily moves for major pairs are often just a few dozen pips, which is why a 1% move in a day counts as a big day.</p>
 <h2>Why you see one rate and the market sees two</h2>
-<p>Professional markets quote <strong>two prices</strong>: the bid (what buyers pay) and the ask (what sellers accept). The gap between them is the <strong>spread</strong> — the market's own transaction cost. For EUR/USD it can be a fraction of a pip; for an exotic pair it can be hundreds of times wider.</p>
+<p>Professional markets quote <strong>two prices</strong>: the bid (the price at which a dealer is willing to buy) and the ask (the price at which a dealer is willing to sell). The gap between them is the <strong>spread</strong> — the market's own transaction cost. For EUR/USD it can be a fraction of a pip; for an exotic pair it can be hundreds of times wider.</p>
 <p>When you exchange money as a customer, you usually see <strong>one rate</strong>. That rate is the mid-market rate plus the provider's margin. The wider the gap between the mid-market rate and the rate you are offered, the more the conversion actually costs — regardless of what the fee column says.</p>
 <h2>Cross rates: why the dollar is everywhere</h2>
 <p>Most currency pairs are not traded directly. If you want to convert Danish kroner to Brazilian reais, the market prices it as DKK→USD and USD→BRL stitched together. This is why dollar-based reference rates are useful for everything, and why some unusual pairs have wider spreads — you are paying for two conversions even when you see one.</p>
 <h2>A practical reading routine</h2>
-<p>1. Find the <strong>mid-market rate</strong> for your pair (Fxverter, Google, or any reference source)<br>2. Get the provider's <strong>total received</strong> amount for your transfer<br>3. Divide the received amount by what the mid-market rate would give — the gap is the true cost<br>4. Repeat with a second provider; the gap, not the fee, decides the winner</p>
+<ul><li>Find the <strong>mid-market rate</strong> for your pair (Fxverter, Google, or any reference source)</li><li>Get the provider's <strong>total received</strong> amount for your transfer</li><li>Divide the received amount by what the mid-market rate would give — the gap is the true cost</li><li>Repeat with a second provider; the gap, not the fee, decides the winner</li></ul>
 <p>Once you can read a quote this way, "no commission" marketing stops working on you — because you are no longer looking at the number they want you to see.</p>
 </article>
 </main>

@@ -10,7 +10,7 @@ crawlers see the target language without executing JavaScript.
 Run from the repo root:  python build-lang-pages.py
 Root edits (UI, FAQ, styles) should be made in index.html, then re-run.
 """
-import os, re, json, datetime, sys
+import os, re, json, datetime, sys, html as html_lib
 
 from page_content import CONTENT
 from content.ui_strings import UI, SUPPORT_LABEL
@@ -19,6 +19,15 @@ from content.supporters import SUPPORTERS
 from content.currencies import CURRENCY_INFO
 from content.currency_articles import CURRENCY_ARTICLES
 from content.currency_articles_l10n import ARTICLES_L10N
+from content.guide_articles_l10n import GUIDE_L10N
+from content.guide_articles_de import GUIDE_L10N as GUIDE_DE
+from content.guide_articles_fr import GUIDE_L10N as GUIDE_FR
+from content.guide_articles_es import GUIDE_L10N as GUIDE_ES
+from content.guide_articles_pt import GUIDE_L10N as GUIDE_PT
+from content.guide_articles_ja import GUIDE_L10N as GUIDE_JA
+
+for _guide_lang, _guide_data in (("de", GUIDE_DE), ("fr", GUIDE_FR), ("es", GUIDE_ES), ("pt", GUIDE_PT), ("ja", GUIDE_JA)):
+    GUIDE_L10N[_guide_lang] = _guide_data
 from content.about_l10n import ABOUT_L10N
 from content.sub_l10n import SUB_L10N
 from content.page_meta import PAGE_META
@@ -1150,7 +1159,7 @@ for lang in CONTENT_UI:
             fh.write(build_currency_page(code, en_name, lang))
         cur_pages += 1
 
-# ── guides: guides/*.md → /guides/<slug>/ pages ──
+# ── guides: canonical English markdown + localized article modules ──
 GUIDE_CSS = CUR_PAGE_CSS
 guides_dir = "guides"
 guide_entries = []
@@ -1170,108 +1179,106 @@ if os.path.isdir(guides_dir):
         slug = meta.get("slug", os.path.splitext(mf)[0])
         title = meta.get("title", slug.replace("-", " ").title())
         desc = meta.get("description", body.strip()[:150])
-        # minimal markdown: paragraphs, ## headings, - lists, **bold**
-        html_body = []
+        sections = []
         for block in re.split(r"\n\s*\n", body.strip()):
             lines = block.split("\n")
             if lines[0].startswith("## "):
-                html_body.append(f"<h2>{lines[0][3:].strip()}</h2>")
-                rest = [l for l in lines[1:] if l.strip()]
-                if rest:
-                    html_body.append("<p>" + "<br>".join(l.strip() for l in rest) + "</p>")
+                sections.append(("h", lines[0][3:].strip()))
+                sections.extend(("p", line.strip()) for line in lines[1:] if line.strip())
             elif lines[0].startswith("- "):
-                items = "".join(f"<li>{l[2:].strip()}</li>" for l in lines if l.startswith("- "))
-                html_body.append(f"<ul>{items}</ul>")
+                sections.extend(("li", line[2:].strip()) for line in lines if line.startswith("- "))
             else:
-                text = "<br>".join(l.strip() for l in lines if l.strip())
-                text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", text)
-                html_body.append(f"<p>{text}</p>")
-        content_html = "\n".join(html_body)
-        d = os.path.join(guides_dir, slug)
-        os.makedirs(d, exist_ok=True)
-        gpage = f"""<!DOCTYPE html>
-<html lang="en">
+                text = "<br>".join(line.strip() for line in lines if line.strip())
+                sections.append(("p", text))
+        guide_entries.append({"slug": slug, "title": title, "description": desc, "sections": sections})
+
+
+def _guide_html(sections):
+    def inline(text):
+        escaped = "<br>".join(html_lib.escape(part, quote=False) for part in text.split("<br>"))
+        return re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", escaped)
+
+    rendered = []
+    for kind, text in sections:
+        content = inline(text)
+        if kind == "h":
+            rendered.append(f"<h2>{content}</h2>")
+        elif kind == "li":
+            if not rendered or not rendered[-1].startswith("<ul>"):
+                rendered.append("<ul></ul>")
+            rendered[-1] = rendered[-1][:-5] + f"<li>{content}</li></ul>"
+        else:
+            rendered.append(f"<p>{content}</p>")
+    return "\n".join(rendered)
+
+
+def _guide_page(slug, lang, title, desc, sections):
+    localized = lang != "en"
+    prefix = "" if lang == "en" else f"{lang}/"
+    url = f"{BASE}{prefix}guides/{slug}/"
+    home = BASE if lang == "en" else f"{BASE}{lang}/"
+    all_guides = f"{BASE}{prefix}guides/"
+    title_attr = html_lib.escape(title, quote=True)
+    desc_attr = html_lib.escape(desc, quote=True)
+    article_data = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": title,
+        "description": desc,
+        "author": {"@type": "Person", "name": "Seyyid Kadir"},
+        "publisher": {"@type": "Organization", "name": "Fxverter", "url": BASE},
+        "mainEntityOfPage": url,
+    }, ensure_ascii=False).replace("</", "<\\\\/")
+    lang_links = "\n".join(
+        f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}guides/{slug}/">'
+        for l in INDEXED_LANGS if slug in GUIDE_L10N.get(l, {}) or l == "en")
+    if lang_links:
+        lang_links += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}guides/{slug}/">'
+    return f"""<!DOCTYPE html>
+<html lang="{lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title} | Fxverter</title>
-<meta name="description" content="{desc}">
-<link rel="canonical" href="{BASE}guides/{slug}/">
+<title>{title_attr} | Fxverter</title>
+<meta name="description" content="{desc_attr}">
+<link rel="canonical" href="{url}">
+{lang_links}
+<script type="application/ld+json">{article_data}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d0d14">
-<script type="application/ld+json">
-{{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "{title}",
-  "description": "{desc}",
-  "author": {{"@type": "Person", "name": "Seyyid Kadir"}},
-  "publisher": {{"@type": "Organization", "name": "Fxverter", "url": "{BASE}"}},
-  "mainEntityOfPage": "{BASE}guides/{slug}/"
-}}
-</script>
 {GUIDE_CSS}
 {THEME_HELPERS}
+{CF_BEACON}
 </head>
 <body>
-{tools_bar("en", "", "../../")}
-<div class="home"><a href="{BASE}">← Fxverter — Currency Converter</a> · <a href="../">All guides</a></div>
+{tools_bar(lang, f"guides/{slug}/", "../../../" if localized else "../../", INDEXED_LANGS)}
+<div class="home"><a href="{home}">← Fxverter — Currency Converter</a> · <a href="{all_guides}">All guides</a></div>
 <main class="cur-card">
-<h1>{title}</h1>
+<h1>{title_attr}</h1>
 <article class="about" style="font-size:0.92rem;color:var(--text)">
-{content_html}
+{_guide_html(sections)}
 </article>
 </main>
-<p class="disc">© 2026 Fxverter · <a href="{BASE}">Free currency converter</a> — 141 currencies, 29 languages, no sign-up.</p>
+<p class="disc">© 2026 Fxverter · <a href="{home}">Free currency converter</a> — 141 currencies, 29 languages, no sign-up.</p>
 </body>
 </html>"""
-        with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
-            fh.write(gpage)
-        guide_entries.append((slug, title, desc))
 
-# guides index
-if guide_entries or True:
-    d = "guides"
-    os.makedirs(d, exist_ok=True)
-    items = "".join(
-        f'<li><a href="{s}/">{t}</a><br><span style="color:var(--muted);font-size:0.75rem">{de[:110]}</span></li>'
-        for s, t, de in guide_entries) or '<li style="color:var(--muted)">Guides are coming soon.</li>'
-    gi = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Exchange-Rate Guides | Fxverter</title>
-<meta name="description" content="Plain-language guides about exchange rates: how rates are set, mid-market rates, when to exchange money and more. By Fxverter, the free currency converter.">
-<link rel="canonical" href="{BASE}guides/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
-<meta name="theme-color" content="#0d0d14">
-{CUR_PAGE_CSS}
-{THEME_HELPERS}
-</head>
-<body>
-{tools_bar("en", "", "../")}
-<div class="home"><a href="{BASE}">← Fxverter — Currency Converter</a></div>
-<main class="cur-card">
-<h1>Exchange-rate guides</h1>
-<p class="about">Plain-language explanations of how exchange rates work, by the Fxverter team.</p>
-<ul style="padding-left:1.2rem;font-size:0.88rem;line-height:2.2">
-{items}
-</ul>
-</main>
-</body>
-</html>"""
-    with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(gi)
 
-# localized guides indexes: /{lang}/guides/ — the language home pages link here.
-# Page chrome is localized (CONTENT_UI); guide articles stay English (lang="en").
 def build_guides_index(lang):
     C = CONTENT_UI.get(lang, CONTENT_UI["en"])
+    prefix = "" if lang == "en" else f"{lang}/"
     home = BASE if lang == "en" else BASE + f"{lang}/"
-    items = "".join(
-        f'<li><a href="{BASE}guides/{s}/" lang="en">{t}</a><br>'
-        f'<span style="color:var(--muted);font-size:0.75rem" lang="en">{de[:110]}</span></li>'
-        for s, t, de in guide_entries) or f'<li style="color:var(--muted)">{C["guidesEmpty"]}</li>'
+    items = []
+    for entry in guide_entries:
+        translated = GUIDE_L10N.get(lang, {}).get(entry["slug"], {})
+        title = translated.get("title", entry["title"])
+        desc = translated.get("description", entry["description"])
+        article_lang = lang if translated else "en"
+        article_prefix = prefix if translated else ""
+        items.append(
+            f'<li><a href="{BASE}{article_prefix}guides/{entry["slug"]}/" lang="{article_lang}">{html_lib.escape(title)}</a><br>'
+            f'<span style="color:var(--muted);font-size:0.75rem" lang="{article_lang}">{html_lib.escape(desc[:110])}</span></li>')
+    items_html = "".join(items) or f'<li style="color:var(--muted)">{C["guidesEmpty"]}</li>'
     indexed = lang in INDEXED_LANGS
     if indexed:
         hreflangs = "\n".join(
@@ -1287,7 +1294,7 @@ def build_guides_index(lang):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{C["allGuides"]} | Fxverter</title>
 <meta name="description" content="{C["guidesIntro"]}">
-<link rel="canonical" href="{BASE}{"" if lang == "en" else lang + "/"}guides/">
+<link rel="canonical" href="{BASE}{prefix}guides/">
 {hreflangs}
 {robots_meta(indexed)}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
@@ -1303,17 +1310,29 @@ def build_guides_index(lang):
 <h1>{C["allGuides"]}</h1>
 <p class="about">{C["guidesIntro"]}</p>
 <ul style="padding-left:1.2rem;font-size:0.88rem;line-height:2.2">
-{items}
+{items_html}
 </ul>
 </main>
-{trust_foot_html(lang, "" if lang == "en" else lang + "/")}
+{trust_foot_html(lang, prefix)}
 </body>
 </html>"""
 
+
+for _entry in guide_entries:
+    for _lang in INDEXED_LANGS:
+        _translated = GUIDE_L10N.get(_lang, {}).get(_entry["slug"])
+        if _lang != "en" and not _translated:
+            continue
+        _content = _translated or _entry
+        _dir = os.path.join("guides", _entry["slug"]) if _lang == "en" else os.path.join(_lang, "guides", _entry["slug"])
+        os.makedirs(_dir, exist_ok=True)
+        with open(os.path.join(_dir, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(_guide_page(_entry["slug"], _lang, _content["title"], _content["description"], _content["sections"]))
+
 for _lang in CONTENT_UI:
-    gd = "guides" if _lang == "en" else os.path.join(_lang, "guides")
-    os.makedirs(gd, exist_ok=True)
-    with open(os.path.join(gd, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
+    _dir = "guides" if _lang == "en" else os.path.join(_lang, "guides")
+    os.makedirs(_dir, exist_ok=True)
+    with open(os.path.join(_dir, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(build_guides_index(_lang))
 
 # ═══════════════════════════════════════════════════════
@@ -1643,8 +1662,11 @@ def add_beacon(path):
 for code, _ in CURRENCIES:
     add_beacon(os.path.join("currencies", code.lower()))
 add_beacon("currencies")
-for slug, _t, _d in guide_entries:
-    add_beacon(os.path.join("guides", slug))
+for _entry in guide_entries:
+    add_beacon(os.path.join("guides", _entry["slug"]))
+    for _lang in INDEXED_LANGS:
+        if _lang != "en" and _entry["slug"] in GUIDE_L10N.get(_lang, {}):
+            add_beacon(os.path.join(_lang, "guides", _entry["slug"]))
 add_beacon("guides")
 for _lang in CONTENT_UI:
     if _lang != "en":
@@ -1682,13 +1704,17 @@ for l in INDEXED_LANGS:
     urls.append(_u(f"{BASE}{l}/currencies/", "0.6"))
     for code in indexed_cur:
         urls.append(_u(f"{BASE}{l}/currencies/{code.lower()}/", "0.6"))
-# localized guides indexes + English guide articles
+# localized guide indexes and translated articles + English canonical pages
 for l in INDEXED_LANGS:
     if l != "en":
         urls.append(_u(f"{BASE}{l}/guides/", "0.5", "monthly"))
 urls.append(_u(f"{BASE}guides/", "0.5", "monthly"))
-for slug, _t, _d in guide_entries:
+for _entry in guide_entries:
+    slug = _entry["slug"]
     urls.append(_u(f"{BASE}guides/{slug}/", "0.6", "monthly"))
+    for l in INDEXED_LANGS:
+        if l != "en" and slug in GUIDE_L10N.get(l, {}):
+            urls.append(_u(f"{BASE}{l}/guides/{slug}/", "0.6", "monthly"))
 # support + trust pages (About / Privacy / Terms / Contact)
 for l in INDEXED_LANGS:
     dp = "" if l == "en" else f"{l}/"
@@ -1703,5 +1729,5 @@ with open("sitemap.xml", "w", encoding="utf-8", newline="\n") as fh:
 
 print(f"generated {len(generated)} language pages: {' '.join(generated)}")
 print(f"generated {cur_pages} currency pages + /currencies/ index")
-print(f"generated {len(guide_entries)} guide pages + /guides/ index")
+print(f"generated {len(guide_entries)} guide articles and localized versions + guide indexes")
 print("sitemap.xml rewritten with", len(urls), "urls")
