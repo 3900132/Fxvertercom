@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 """Submit fxverter.com URLs to IndexNow (Bing / Yandex / Seznam / Naver).
 
-Ownership is proven by a key file at the site root (ebad7e82a81a05f950421869b7058a56.txt,
-committed to this repo), so every GitHub Pages deploy keeps the site verified —
-no Bing Webmaster settings to touch. The shared endpoint api.indexnow.org
-routes the submission to every participating engine at once.
+Ownership is proven by the key file at the site root
+(ebad7e82a81a05f950421869b7058a56.txt, committed to this repo), so every
+GitHub Pages deploy keeps the site verified — no Bing Webmaster settings
+to touch. The shared endpoint api.indexnow.org routes the submission to
+every participating engine at once.
 
 Run after each deploy (the sitemap only contains indexable pages):
     python submit-indexnow.py            # submit every sitemap URL
@@ -40,11 +41,12 @@ def main():
     body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
     print(f"{len(urls)} URLs loaded from sitemap.xml" + (" (dry run)" if dry else ""))
     if dry:
-        print(json.dumps({**payload, "urlList": urls[:3] + ["…"]}, ensure_ascii=False, indent=2))
+        print(json.dumps({**payload, "urlList": urls[:3] + ["…"]},
+                         ensure_ascii=False, indent=2))
         return
     req = urllib.request.Request(
-        ENDPOINT, data=body, headers={"Content-Type": "application/json; charset=utf-8"},
-        method="POST")
+        ENDPOINT, data=body,
+        headers={"Content-Type": "application/json; charset=utf-8"}, method="POST")
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
             print(f"HTTP {resp.status} — accepted. Engines will crawl shortly.")
