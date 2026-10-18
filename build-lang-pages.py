@@ -10,7 +10,7 @@ crawlers see the target language without executing JavaScript.
 Run from the repo root:  python build-lang-pages.py
 Root edits (UI, FAQ, styles) should be made in index.html, then re-run.
 """
-import os, re, json, datetime, sys, html as html_lib
+import os, re, json, datetime, sys, time, html as html_lib
 
 from page_content import CONTENT
 from content.ui_strings import UI, SUPPORT_LABEL
@@ -33,6 +33,31 @@ from content.sub_l10n import SUB_L10N
 from content.page_meta import PAGE_META
 from content.site_config import INDEXED_LANGS, INDEXED_CURRENCIES, ECB_SET, TRUST_PAGES
 from content.trust_l10n import TRUST, TRUST_LABELS, TRUST_OVERRIDES
+
+# per-language trust/guide extensions (22 additional languages beyond the
+# seven fully-translated ones); a missing module keeps that language on its
+# previous fallback
+for _trust_lang in ("tr", "ru", "ko", "ar", "hi", "id", "ms", "tl", "it",
+                    "nl", "pl", "uk", "sv", "th", "lo", "vi", "el", "bn",
+                    "fa", "cs", "ro", "da"):
+    try:
+        _tm = __import__("content.trust_l10n_" + _trust_lang, fromlist=["TRUST_LANG", "LABELS"])
+        TRUST[_trust_lang] = _tm.TRUST_LANG
+        # some modules ship only the four nav chips; the feedback chip label
+        # falls back to the UI string (TRUST_PAGES includes "feedback")
+        _labels = dict(_tm.LABELS)
+        _labels.setdefault("feedback", UI.get(_trust_lang, UI["en"])["feedback"])
+        TRUST_LABELS[_trust_lang] = _labels
+    except ImportError:
+        pass
+for _guide_lang in ("tr", "ru", "ko", "ar", "hi", "id", "ms", "tl", "it",
+                    "nl", "pl", "uk", "sv", "th", "lo", "vi", "el", "bn",
+                    "fa", "cs", "ro", "da"):
+    try:
+        _gm = __import__("content.guide_articles_" + _guide_lang, fromlist=["GUIDE_L10N"])
+        GUIDE_L10N[_guide_lang] = _gm.GUIDE_L10N
+    except ImportError:
+        pass
 
 # per-language <title>/<meta description> templates for secondary pages
 for _l, _m in PAGE_META.items():
@@ -138,6 +163,20 @@ FIELDS = ("name","dir","appTitle","appSub","liveBadge","labelApiSource","labelAm
 def unesc(s):
     return s.replace("\\'", "'")
 
+def write_text(path, text):
+    """Write with retry: real-time AV / Windows Search briefly lock freshly
+    written files (5-10s), which surfaces as a random OSError 22 when the
+    build rewrites ~4400 pages in one run."""
+    for attempt in range(10):
+        try:
+            with open(path, "w", encoding="utf-8", newline="\n") as fh:
+                fh.write(text)
+            return
+        except OSError:
+            if attempt == 9:
+                raise
+            time.sleep(2)
+
 def sub1(text, pattern, repl):
     if callable(repl):
         return re.sub(pattern, repl, text, count=1)
@@ -171,9 +210,14 @@ UI_JSON = json.dumps(UI, ensure_ascii=False, separators=(",", ":"))
 UI_INJECT = "const UI_STR = window.UI_STR = " + UI_JSON + ";\n"
 
 def inject_ui(page):
-    """Add the UI_STR dictionary before LANGS on any page missing it."""
+    """Refresh the template's baked-in UI_STR with the fresh build-time copy.
+
+    index.html carries an inline UI_STR snapshot for the root entry page; it
+    must be replaced (not skipped) so generated pages always use the current
+    ui_strings.py content."""
     if "const UI_STR" in page:
-        return page
+        return re.sub(r'^const UI_STR = window\.UI_STR = .+$',
+                      lambda m: UI_INJECT.rstrip("\n"), page, count=1, flags=re.M)
     return page.replace("const LANGS = {", UI_INJECT + "const LANGS = {", 1)
 
 
@@ -293,6 +337,33 @@ for code, t in langs.items():
     page = sub1(page, r'(id="resultLabel">).*?(</div>)', lambda m: m.group(1) + t["resultLabel"] + m.group(2))
     page = sub1(page, r'(<div class="footer" id="footerText">).*?(</div>)', lambda m: m.group(1) + t["footer"] + m.group(2))
     page = sub1(page, r'(<span class="fs-label" id="fsLabel">).*?(</span>)', lambda m: m.group(1) + t["fsLabel"] + m.group(2))
+    # saved-pairs label + feedback submit button (runtime also sets these)
+    page = sub1(page, r'(id="favLabel">).*?(</span>)', lambda m, v=UI[code]["favLabel"]: m.group(1) + v + m.group(2))
+    page = sub1(page, r'(id="fbSend">).*?(</button>)', lambda m, v=UI[code]["fbSend"]: m.group(1) + v + m.group(2))
+    # feedback form placeholders + control tooltips, baked for crawlers/no-JS
+    page = sub1(page, r'(id="fbName"[^>]*placeholder=")[^"]*(")',
+                lambda m, v=UI[code]["fbNameLabel"]: m.group(1) + v + m.group(2))
+    page = sub1(page, r'(id="fbEmail"[^>]*placeholder=")[^"]*(")',
+                lambda m, v=UI[code]["fbEmailLabel"]: m.group(1) + v + m.group(2))
+    page = sub1(page, r'(id="fbMsg"[^>]*placeholder=")[^"]*(")',
+                lambda m, v=UI[code]["fbPlaceholder"]: m.group(1) + v + m.group(2))
+    # icon-button tooltips (runtime re-sets these; bake for no-JS/crawlers)
+    page = sub1(page, r'(id="copyBtn"[^>]*title=")[^"]*(")',
+                lambda m, v=UI[code]["copy"]: m.group(1) + v + m.group(2))
+    page = sub1(page, r'(id="favBtn"[^>]*title=")[^"]*(")',
+                lambda m, v=UI[code]["save"]: m.group(1) + v + m.group(2))
+    page = sub1(page, r'(id="themeBtn"[^>]*title=")[^"]*(")',
+                lambda m, v=UI[code]["themeAuto"]: m.group(1) + v + m.group(2))
+    page = sub1(page, r'(id="shareBtn"[^>]*title=")[^"]*(")',
+                lambda m, v=UI[code]["share"]: m.group(1) + v + m.group(2))
+    page = sub1(page, r'(id="feedbackBtn"[^>]*title=")[^"]*(")',
+                lambda m, v=UI[code]["feedback"]: m.group(1) + v + m.group(2))
+    page = sub1(page, r'(id="installBtn"[^>]*title=")[^"]*(")',
+                lambda m, v=UI[code]["install"]: m.group(1) + v + m.group(2))
+    page = sub1(page, r'(id="swapBtn" onclick="swapCurrencies\(\)" title=")[^"]*(">)',
+                lambda m, v=UI[code]["swapTitle"]: m.group(1) + v + m.group(2))
+    page = sub1(page, r'(id="refreshBtn" onclick="refreshRates\(\)" title=")[^"]*(">)',
+                lambda m, v=UI[code]["refreshTitle"]: m.group(1) + v + m.group(2))
 
     # fixed language for the page runtime; select navigates between directories
     page = page.replace("applyLang(detectLang());", f"applyLang('{code}');", 1)
@@ -362,8 +433,7 @@ for code, t in langs.items():
     # paragraph is replaced wholesale by build_section, so patch the nav links there instead.
 
     os.makedirs(code, exist_ok=True)
-    with open(os.path.join(code, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(page)
+    write_text(os.path.join(code, "index.html"), page)
     generated.append(code)
 
 # ═══════════════════════════════════════════════════════
@@ -390,7 +460,7 @@ a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
 .cur-flag{font-size:2.6rem;line-height:1}
 .cur-head h1{font-family:var(--syne);font-size:1.6rem;font-weight:700;line-height:1.15}
 .cur-head .sub{color:var(--muted);font-size:0.82rem;margin-top:0.2rem}
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin:1rem 0 1.2rem}
+.facts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0.6rem;margin:1rem 0 1.2rem}
 .fact{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:0.7rem 0.9rem}
 .fact .k{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-family:var(--syne)}
 .fact .v{font-size:0.92rem;margin-top:0.15rem}
@@ -422,7 +492,7 @@ td.r,th.r{text-align:right}
 .cur-article summary::-webkit-details-marker{display:none}
 .cur-article details p{padding:0 0.8rem 0.7rem;margin:0}
 .chart-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem;margin-bottom:1.2rem}
-.chart-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.25rem 0.5rem;margin-bottom:0.5rem}
 .chart-head .t{font-family:var(--syne);font-size:0.8rem;font-weight:700}
 .chart-head .d{font-size:0.68rem;color:var(--muted);margin-top:0.35rem}
 .chart-head .chg{font-size:0.75rem;font-weight:500}
@@ -446,12 +516,12 @@ html.theme-light .chg.up{color:#c74e70}html.theme-light .chg.down{color:#14967a}
 # Shared tools bar (theme / share / feedback / install / language) appended to
 # every secondary page: currency pages, currency index, guides, support.
 TOOLS_CSS = """<style>
-.tools-bar{width:100%;max-width:560px;display:flex;align-items:center;justify-content:space-between;gap:0.5rem;margin-bottom:1rem}
-.tools-left{display:flex;gap:0.3rem}
+.tools-bar{width:100%;max-width:560px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.4rem 0.5rem;margin-bottom:1rem}
+.tools-left{display:flex;gap:0.3rem;min-width:0}
 .tool-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.3rem 0.55rem;font-family:var(--dm);font-weight:500;color:var(--muted2);cursor:pointer;transition:all 0.15s;line-height:1;font-size:0.85rem}
 .tool-btn:hover{border-color:var(--border2);color:var(--text)}
 .tool-btn.ok{border-color:var(--teal);color:var(--teal)}
-.lang-sel{appearance:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.32rem 0.7rem;font-family:var(--dm);font-size:0.72rem;font-weight:500;color:var(--muted2);outline:none;cursor:pointer;max-width:150px}
+.lang-sel{appearance:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.32rem 0.7rem;font-family:var(--dm);font-size:0.72rem;font-weight:500;color:var(--muted2);outline:none;cursor:pointer;max-width:150px;min-width:0;margin-inline-start:auto}
 .lang-sel:hover{border-color:var(--border2);color:var(--text)}
 .lang-sel option{background:#1e1e2a;color:#eeeef5}
 html.theme-light .lang-sel option{background:#ffffff;color:#1a1c26}
@@ -515,6 +585,7 @@ CUR_PAGE_JS = """<script>
 const CODE = "{code}";
 const SYMBOL = {sym_js};
 const HAS_CHART = {has_chart};
+const TREND_TPL = {trend_tpl};
 // localize the currency name in the heading via the browser's built-in CLDR
 // data — the static English markup stays for crawlers
 (function () {
@@ -624,7 +695,7 @@ function calc(v){
     const el = document.getElementById('chg');
     el.textContent = (chg >= 0 ? '▲ +' : '▼ ') + chg.toFixed(2) + '%';
     el.classList.add(chg >= 0 ? 'up' : 'down');
-    document.getElementById('chartRange').textContent = pts[0].date + ' → ' + pts[pts.length - 1].date + ' · ' + days + '-day trend · ECB reference rates';
+    document.getElementById('chartRange').textContent = pts[0].date + ' → ' + pts[pts.length - 1].date + ' · ' + TREND_TPL.replace('{days}', days);
     document.querySelectorAll('.rngbtn').forEach(b => b.classList.toggle('active', +b.dataset.days === days));
   }
   drawChart(30);
@@ -849,8 +920,8 @@ def tools_bar(lang, sub, root, lang_filter=None):
         '</div>\n'
         '<div class="fb-panel" id="fbPanel">'
         '<form id="fbForm" onsubmit="fxSendFeedback(); return false;">'
-        '<input type="text" id="fbName" maxlength="60" autocomplete="off" placeholder="Name">'
-        '<input type="email" id="fbEmail" maxlength="80" placeholder="Email (optional)">'
+        f'<input type="text" id="fbName" maxlength="60" autocomplete="off" placeholder="{C["fbNameLabel"]}">'
+        f'<input type="email" id="fbEmail" maxlength="80" placeholder="{C["fbEmailLabel"]}">'
         f'<textarea id="fbMsg" rows="4" maxlength="1000" placeholder="{C["fbPlaceholder"]}"></textarea>'
         '<input type="checkbox" style="display:none" tabindex="-1" autocomplete="off">'
         '<div class="fb-err" id="fbErr"></div>'
@@ -1072,7 +1143,7 @@ def build_currency_page(code, en_name, lang="en"):
 </main>
 {trust_foot}
 <p class="disc">{C["disclaimer"]} · <a href="{home}">Fxverter</a></p>
-{CUR_PAGE_JS.replace("{code}", code).replace("{sib}", "../").replace("{sym_js}", json.dumps(symbol)).replace("{targets_js}", json.dumps(targets)).replace("{to_js}", json.dumps(default_to)).replace("{loading}", json.dumps(C["loading"], ensure_ascii=False)).replace("{loaded}", json.dumps(C["ratesLoaded"], ensure_ascii=False)).replace("{fail}", json.dumps(C["ratesFail"], ensure_ascii=False)).replace("{has_chart}", "true" if code in ECB_SET else "false")}
+{CUR_PAGE_JS.replace("{code}", code).replace("{sib}", "../").replace("{sym_js}", json.dumps(symbol)).replace("{targets_js}", json.dumps(targets)).replace("{to_js}", json.dumps(default_to)).replace("{loading}", json.dumps(C["loading"], ensure_ascii=False)).replace("{loaded}", json.dumps(C["ratesLoaded"], ensure_ascii=False)).replace("{fail}", json.dumps(C["ratesFail"], ensure_ascii=False)).replace("{has_chart}", "true" if code in ECB_SET else "false").replace("{trend_tpl}", json.dumps(C["chartTrend"], ensure_ascii=False))}
 </body>
 </html>"""
     return page
@@ -1147,16 +1218,14 @@ def build_cur_index(lang="en"):
 for _lang in CONTENT_UI:
     ld = cur_dir if _lang == "en" else os.path.join(_lang, "currencies")
     os.makedirs(ld, exist_ok=True)
-    with open(os.path.join(ld, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(build_cur_index(_lang))
+    write_text(os.path.join(ld, "index.html"), build_cur_index(_lang))
 
 cur_pages = 0
 for lang in CONTENT_UI:
     for code, en_name in CURRENCIES:
         d = os.path.join("currencies", code.lower()) if lang == "en" else os.path.join(lang, "currencies", code.lower())
         os.makedirs(d, exist_ok=True)
-        with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
-            fh.write(build_currency_page(code, en_name, lang))
+        write_text(os.path.join(d, "index.html"), build_currency_page(code, en_name, lang))
         cur_pages += 1
 
 # ── guides: canonical English markdown + localized article modules ──
@@ -1214,6 +1283,7 @@ def _guide_html(sections):
 
 def _guide_page(slug, lang, title, desc, sections):
     localized = lang != "en"
+    C = CONTENT_UI.get(lang, CONTENT_UI["en"])
     prefix = "" if lang == "en" else f"{lang}/"
     url = f"{BASE}{prefix}guides/{slug}/"
     home = BASE if lang == "en" else f"{BASE}{lang}/"
@@ -1251,15 +1321,15 @@ def _guide_page(slug, lang, title, desc, sections):
 {CF_BEACON}
 </head>
 <body>
-{tools_bar(lang, f"guides/{slug}/", "../../../" if localized else "../../", INDEXED_LANGS)}
-<div class="home"><a href="{home}">← Fxverter — Currency Converter</a> · <a href="{all_guides}">All guides</a></div>
+{tools_bar(lang, f"guides/{slug}/", "../../../" if localized else "../../", LANG_ORDER)}
+<div class="home"><a href="{home}">{C["backHome"]}</a> · <a href="{all_guides}">{C["allGuides"]}</a></div>
 <main class="cur-card">
 <h1>{title_attr}</h1>
 <article class="about" style="font-size:0.92rem;color:var(--text)">
 {_guide_html(sections)}
 </article>
 </main>
-<p class="disc">© 2026 Fxverter · <a href="{home}">Free currency converter</a> — 141 currencies, 29 languages, no sign-up.</p>
+<p class="disc">© 2026 Fxverter · <a href="{home}">{C["backHome"]}</a></p>
 </body>
 </html>"""
 
@@ -1319,21 +1389,21 @@ def build_guides_index(lang):
 
 
 for _entry in guide_entries:
-    for _lang in INDEXED_LANGS:
+    # translated articles are generated for every language that has one;
+    # English canonical pages exist for all slugs
+    for _lang in ["en"] + LANG_ORDER:
         _translated = GUIDE_L10N.get(_lang, {}).get(_entry["slug"])
         if _lang != "en" and not _translated:
             continue
         _content = _translated or _entry
         _dir = os.path.join("guides", _entry["slug"]) if _lang == "en" else os.path.join(_lang, "guides", _entry["slug"])
         os.makedirs(_dir, exist_ok=True)
-        with open(os.path.join(_dir, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
-            fh.write(_guide_page(_entry["slug"], _lang, _content["title"], _content["description"], _content["sections"]))
+        write_text(os.path.join(_dir, "index.html"), _guide_page(_entry["slug"], _lang, _content["title"], _content["description"], _content["sections"]))
 
 for _lang in CONTENT_UI:
     _dir = "guides" if _lang == "en" else os.path.join(_lang, "guides")
     os.makedirs(_dir, exist_ok=True)
-    with open(os.path.join(_dir, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(build_guides_index(_lang))
+    write_text(os.path.join(_dir, "index.html"), build_guides_index(_lang))
 
 # ═══════════════════════════════════════════════════════
 # SUPPORT PAGE (/support/) — Creem.io checkout tiers + supporters wall.
@@ -1479,7 +1549,7 @@ function fxClaim(ev) {{
 .tier-name{{font-family:var(--syne);font-weight:700}}
 .tier-amt{{color:var(--teal);font-weight:700;font-family:var(--syne)}}
 h2{{font-family:var(--syne);font-size:1rem;font-weight:700;margin:1.4rem 0 0.6rem}}
-.sup-wall{{display:grid;grid-template-columns:1fr 1fr;gap:0.55rem}}
+.sup-wall{{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0.55rem}}
 .sup-card{{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:0.7rem 0.9rem;font-size:0.82rem}}
 .sup-card b{{color:var(--text)}}
 .tier-tag{{margin-left:0.5rem;color:var(--teal);font-size:0.72rem}}
@@ -1517,8 +1587,7 @@ h2{{font-family:var(--syne);font-size:1rem;font-weight:700;margin:1.4rem 0 0.6re
 for _lang in CONTENT_UI:
     d = "support" if _lang == "en" else os.path.join(_lang, "support")
     os.makedirs(d, exist_ok=True)
-    with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(build_support_page(_lang))
+    write_text(os.path.join(d, "index.html"), build_support_page(_lang))
 
 # ═══════════════════════════════════════════════════════
 # TRUST PAGES (/about/ /privacy/ /terms/ /contact/) — built
@@ -1600,7 +1669,7 @@ function fxSubmitFeedback(ev) {{
     cross = "".join(
         f'<a href="{BASE}{dirpart}{p}/">{L[p]}</a>'
         for p in TRUST_PAGES if p != key)
-    tools = tools_bar(lang, f"{key}/", "../" if at_root else "../../", lang_filter=INDEXED_LANGS)
+    tools = tools_bar(lang, f"{key}/", "../" if at_root else "../../", lang_filter=LANG_ORDER)
     C = CONTENT_UI.get(lang, CONTENT_UI["en"])
     h1 = T["title"].split(" | ")[0]
     return f"""<!DOCTYPE html>
@@ -1612,7 +1681,7 @@ function fxSubmitFeedback(ev) {{
 <meta name="description" content="{T["desc"]}">
 <link rel="canonical" href="{canon}">
 {hreflangs}
-{robots_meta(True)}
+{robots_meta(lang in INDEXED_LANGS)}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d0d14">
 <meta property="og:type" content="website">
@@ -1639,15 +1708,14 @@ function fxSubmitFeedback(ev) {{
 </body>
 </html>"""
 
-for _lang in INDEXED_LANGS:
-    if _lang not in TRUST:
-        continue
+# trust pages exist in every language that has translations (22 more via
+# content/trust_l10n_<lang>.py); only the indexed languages are crawlable
+for _lang in TRUST:
     for _key in TRUST_PAGES:
         d = _key if _lang == "en" else os.path.join(_lang, _key)
         os.makedirs(d, exist_ok=True)
-        with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
-            fh.write(build_trust_page(_lang, _key))
-print(f"generated trust pages for {len(INDEXED_LANGS)} languages x {len(TRUST_PAGES)}")
+        write_text(os.path.join(d, "index.html"), build_trust_page(_lang, _key))
+print(f"generated trust pages for {len(TRUST)} languages x {len(TRUST_PAGES)}")
 
 # inject the Cloudflare beacon into every generated currency / guide page
 def add_beacon(path):
@@ -1657,7 +1725,7 @@ def add_beacon(path):
     t = open(p, encoding="utf-8").read()
     if "cloudflareinsights" not in t:
         t = t.replace("</head>", CF_BEACON + "\n</head>", 1)
-        open(p, "w", encoding="utf-8", newline="\n").write(t)
+        write_text(p, t)
 
 for code, _ in CURRENCIES:
     add_beacon(os.path.join("currencies", code.lower()))
@@ -1723,8 +1791,7 @@ for l in INDEXED_LANGS:
     for p in TRUST_PAGES:
         urls.append(_u(f"{BASE}{dp}{p}/", "0.4", "monthly"))
 urls.append(_u(f"{BASE}support/", "0.4", "monthly"))
-with open("sitemap.xml", "w", encoding="utf-8", newline="\n") as fh:
-    fh.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+write_text("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
              + "\n".join(urls) + "\n</urlset>\n")
 
 print(f"generated {len(generated)} language pages: {' '.join(generated)}")

@@ -47,7 +47,7 @@ a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
 .cur-flag{font-size:2.6rem;line-height:1}
 .cur-head h1{font-family:var(--syne);font-size:1.6rem;font-weight:700;line-height:1.15}
 .cur-head .sub{color:var(--muted);font-size:0.82rem;margin-top:0.2rem}
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin:1rem 0 1.2rem}
+.facts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0.6rem;margin:1rem 0 1.2rem}
 .fact{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:0.7rem 0.9rem}
 .fact .k{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-family:var(--syne)}
 .fact .v{font-size:0.92rem;margin-top:0.15rem}
@@ -79,7 +79,7 @@ td.r,th.r{text-align:right}
 .cur-article summary::-webkit-details-marker{display:none}
 .cur-article details p{padding:0 0.8rem 0.7rem;margin:0}
 .chart-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem;margin-bottom:1.2rem}
-.chart-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.25rem 0.5rem;margin-bottom:0.5rem}
 .chart-head .t{font-family:var(--syne);font-size:0.8rem;font-weight:700}
 .chart-head .d{font-size:0.68rem;color:var(--muted);margin-top:0.35rem}
 .chart-head .chg{font-size:0.75rem;font-weight:500}
@@ -99,12 +99,12 @@ html.theme-light .chg.up{color:#c74e70}html.theme-light .chg.down{color:#14967a}
 .fxtheme:hover{border-color:var(--teal);color:var(--teal)}
 @media(max-width:480px){.facts{grid-template-columns:1fr}}
 </style><style>
-.tools-bar{width:100%;max-width:560px;display:flex;align-items:center;justify-content:space-between;gap:0.5rem;margin-bottom:1rem}
-.tools-left{display:flex;gap:0.3rem}
+.tools-bar{width:100%;max-width:560px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.4rem 0.5rem;margin-bottom:1rem}
+.tools-left{display:flex;gap:0.3rem;min-width:0}
 .tool-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.3rem 0.55rem;font-family:var(--dm);font-weight:500;color:var(--muted2);cursor:pointer;transition:all 0.15s;line-height:1;font-size:0.85rem}
 .tool-btn:hover{border-color:var(--border2);color:var(--text)}
 .tool-btn.ok{border-color:var(--teal);color:var(--teal)}
-.lang-sel{appearance:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.32rem 0.7rem;font-family:var(--dm);font-size:0.72rem;font-weight:500;color:var(--muted2);outline:none;cursor:pointer;max-width:150px}
+.lang-sel{appearance:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.32rem 0.7rem;font-family:var(--dm);font-size:0.72rem;font-weight:500;color:var(--muted2);outline:none;cursor:pointer;max-width:150px;min-width:0;margin-inline-start:auto}
 .lang-sel:hover{border-color:var(--border2);color:var(--text)}
 .lang-sel option{background:#1e1e2a;color:#eeeef5}
 html.theme-light .lang-sel option{background:#ffffff;color:#1a1c26}
@@ -164,7 +164,7 @@ function fxToggleTheme() {
 </head>
 <body>
 <div class="tools-bar"><div class="tools-left"><button type="button" class="tool-btn" id="fxThemeBtn" onclick="fxToggleTheme()" title="Theme">◐</button><button type="button" class="tool-btn" id="shareBtn" onclick="fxShare()" title="Partager">⤴</button><button type="button" class="tool-btn" id="feedbackBtn" onclick="fxOpenFeedback()" title="Commentaires">✎</button><button type="button" class="tool-btn" id="installBtn" onclick="fxInstall()" title="Installer l'application" hidden>⤓</button></div><select class="lang-sel" id="langSel" onchange="fxLangGo(this.value)" aria-label="Language"><option value="en">English</option><option value="tr">Türkçe</option><option value="de">Deutsch</option><option value="fr" selected>Français</option><option value="es">Español</option><option value="pt">Português</option><option value="ru">Русский</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="tl">Filipino</option><option value="it">Italiano</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="uk">Українська</option><option value="sv">Svenska</option><option value="th">ไทย</option><option value="lo">ພາສາລາວ</option><option value="vi">Tiếng Việt</option><option value="el">Ελληνικά</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="da">Dansk</option></select></div>
-<div class="fb-panel" id="fbPanel"><form id="fbForm" onsubmit="fxSendFeedback(); return false;"><input type="text" id="fbName" maxlength="60" autocomplete="off" placeholder="Name"><input type="email" id="fbEmail" maxlength="80" placeholder="Email (optional)"><textarea id="fbMsg" rows="4" maxlength="1000" placeholder="Votre message…"></textarea><input type="checkbox" style="display:none" tabindex="-1" autocomplete="off"><div class="fb-err" id="fbErr"></div><button type="submit" id="fbSendBtn">Envoyer le commentaire</button></form><div class="fb-ok" id="fbOk" style="display:none">✓ Commentaire envoyé — merci !</div></div>
+<div class="fb-panel" id="fbPanel"><form id="fbForm" onsubmit="fxSendFeedback(); return false;"><input type="text" id="fbName" maxlength="60" autocomplete="off" placeholder="Nom"><input type="email" id="fbEmail" maxlength="80" placeholder="E-mail (facultatif)"><textarea id="fbMsg" rows="4" maxlength="1000" placeholder="Votre message…"></textarea><input type="checkbox" style="display:none" tabindex="-1" autocomplete="off"><div class="fb-err" id="fbErr"></div><button type="submit" id="fbSendBtn">Envoyer le commentaire</button></form><div class="fb-ok" id="fbOk" style="display:none">✓ Commentaire envoyé — merci !</div></div>
 <div class="inst-banner" id="instBanner" role="dialog" aria-labelledby="instTitleText" aria-describedby="instDescText" hidden><div class="inst-icon" aria-hidden="true">💱</div><div class="inst-body"><div class="inst-title" id="instTitleText">Installer Fxverter</div><div class="inst-desc" id="instDescText">Ajouter à l’écran d’accueil pour un accès rapide — fonctionne hors ligne.</div><div class="inst-ios" id="instIosHint">Touchez le bouton Partager, puis choisissez « Sur l’écran d’accueil ».</div></div><div class="inst-actions"><button class="inst-go" id="instGoBtn" type="button" onclick="instGo()">Installer</button><button class="inst-later" id="instLaterBtn" type="button" onclick="fxInstLater()">Pas maintenant</button></div></div>
 <script>const FX_PAGE = {"cur": "fr", "sub": "currencies/kgs/", "base": "https://fxverter.com/", "root": "../../../"};
 const FX_T = {"share": "Partager", "shared": "Lien copié !", "feedback": "Commentaires", "fbPlaceholder": "Votre message…", "fbSend": "Envoyer le commentaire", "fbOk": "✓ Commentaire envoyé — merci !", "fbEmpty": "Veuillez d'abord écrire un message.", "fbFail": "Échec de l'envoi — réessayez ou écrivez-nous directement.", "install": "Installer l'application", "instTitle": "Installer Fxverter", "instDesc": "Ajouter à l’écran d’accueil pour un accès rapide — fonctionne hors ligne.", "instBtn": "Installer", "instLater": "Pas maintenant", "instIos": "Touchez le bouton Partager, puis choisissez « Sur l’écran d’accueil »."};
@@ -379,6 +379,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 const CODE = "KGS";
 const SYMBOL = "";
 const HAS_CHART = false;
+const TREND_TPL = "Tendance sur {days} jours · Taux de référence de la BCE";
 // localize the currency name in the heading via the browser's built-in CLDR
 // data — the static English markup stays for crawlers
 (function () {
@@ -488,7 +489,7 @@ function calc(v){
     const el = document.getElementById('chg');
     el.textContent = (chg >= 0 ? '▲ +' : '▼ ') + chg.toFixed(2) + '%';
     el.classList.add(chg >= 0 ? 'up' : 'down');
-    document.getElementById('chartRange').textContent = pts[0].date + ' → ' + pts[pts.length - 1].date + ' · ' + days + '-day trend · ECB reference rates';
+    document.getElementById('chartRange').textContent = pts[0].date + ' → ' + pts[pts.length - 1].date + ' · ' + TREND_TPL.replace('{days}', days);
     document.querySelectorAll('.rngbtn').forEach(b => b.classList.toggle('active', +b.dataset.days === days));
   }
   drawChart(30);

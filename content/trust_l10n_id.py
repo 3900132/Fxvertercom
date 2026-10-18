@@ -1,0 +1,122 @@
+# -*- coding: utf-8 -*-
+"""Halaman kepercayaan Fxverter dalam Bahasa Indonesia
+(About / Kebijakan Privasi / Ketentuan Penggunaan / Kontak / Masukan).
+
+Mencerminkan entri bahasa Inggris di trust_l10n.py: {"title", "desc",
+"sections": [["h", ...], ["p", ...], ["li", ...], ...]}.
+"""
+
+TRUST_LANG = {
+    "about": {
+        "title": "Tentang Fxverter — Konverter Mata Uang Gratis dan Open Source",
+        "desc": "Siapa yang berada di balik Fxverter, mengapa situs ini ada, dan apa yang membuatnya berbeda: konverter mata uang open source yang mengutamakan privasi, dengan kurs referensi yang jujur dan panduan berbahasa sederhana.",
+        "sections": [
+            ["p", "Fxverter adalah konverter mata uang online gratis dan open source yang berjalan sepenuhnya di browser Anda. Situs ini menampilkan kurs referensi untuk lebih dari 140 mata uang dunia, tanpa perlu kunci API, tanpa pendaftaran, dan tanpa instalasi — Anda cukup membuka situsnya dan mulai mengonversi."],
+            ["h", "Mengapa kami membangunnya"],
+            ["p", "Sebagian besar situs konverter mengubur kurs yang sebenarnya di balik pop-up, paksaan mendaftar, dan ajakan memasang aplikasi yang terus mengganggu. Kami ingin kebalikannya: alat yang cepat dan privat yang menampilkan kurs tengah pasar yang jujur lebih dulu, lalu mengalah. Seluruh produknya hanya satu halaman statis yang berfungsi di perangkat apa pun, dalam tujuh bahasa, bahkan offline setelah dipasang."],
+            ["h", "Apa yang membuatnya berbeda"],
+            ["li", "Tanpa akun, tanpa pelacakan — konversi berjalan lokal di browser Anda"],
+            ["li", "Tiga sumber data publik yang dapat dipilih: Frankfurter (kurs referensi Bank Sentral Eropa), ExchangeRate-API, dan Fawaz Currency API"],
+            ["li", "40 mata uang utama dengan halaman khusus: tabel konversi langsung, grafik tren 30/90 hari, dan profil mata uang"],
+            ["li", "Panduan berbahasa sederhana yang menjelaskan bagaimana nilai tukar benar-benar bekerja"],
+            ["li", "Dapat dipasang sebagai aplikasi (PWA) yang tetap berfungsi offline dengan kurs terakhir yang diketahui"],
+            ["h", "Tentang data"],
+            ["p", "Kurs yang ditampilkan adalah kurs referensi indikatif dari sumber bank sentral dan pasar yang publik, diperbarui setiap hari. Ini adalah tolok ukur yang sama dengan yang Anda lihat di Google atau berita finansial — berguna untuk perbandingan dan perencanaan, bukan kutipan kontraktual untuk transfer tertentu."],
+            ["h", "Siapa yang berada di baliknya"],
+            ["p", "Fxverter dibangun dan dipelihara oleh seorang pengembang independen serta didukung oleh penggunanya. Kode sumber lengkapnya publik di GitHub — siapa pun dapat mengauditnya, meng-host sendiri, atau menyumbangkan perbaikan."],
+            ["p", "Ada pertanyaan, koreksi, atau ide? Tulis ke <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a> — kami membaca semuanya."],
+        ],
+    },
+    "privacy": {
+        "title": "Kebijakan Privasi | Fxverter",
+        "desc": "Apa yang dikumpulkan dan tidak dikumpulkan Fxverter: tanpa cookie yang diwajibkan, tanpa akun, hanya statistik anonim — serta bagaimana iklan dan layanan pihak ketiga ditangani.",
+        "sections": [
+            ["p", "Fxverter dirancang agar tetap dapat digunakan tanpa menyerahkan informasi pribadi apa pun. Kebijakan ini menjelaskan apa yang dikumpulkan dan tidak dikumpulkan situs ini, serta bagaimana iklan dan layanan pihak ketiga ditangani. Terakhir diperbarui: September 2026."],
+            ["h", "Apa yang tidak kami kumpulkan"],
+            ["p", "Tidak perlu akun dan situs ini sendiri tidak memasang cookie iklan. Konversi berjalan lokal di browser Anda — kami tidak pernah melihat jumlah atau pasangan mata uang yang Anda konversi."],
+            ["h", "Informasi yang dikumpulkan secara otomatis"],
+            ["p", "Statistik kunjungan anonim dan agregat (tampilan halaman dan negara, tanpa cookie) dapat dikumpulkan untuk memahami penggunaan secara keseluruhan dan meningkatkan alat ini. Statistik tersebut tidak dapat digunakan untuk mengidentifikasi Anda."],
+            ["h", "Informasi yang Anda kirimkan sendiri"],
+            ["p", "Jika Anda menggunakan formulir masukan, nama, alamat email, dan pesan yang Anda kirimkan hanya digunakan untuk membaca dan membalas masukan Anda. Jika Anda mendukung proyek ini, pembayaran diproses oleh Creem.io sebagai merchant of record — kami tidak pernah menerima rincian pembayaran lengkap Anda. Para pendukung hanya dicantumkan namanya dengan persetujuan eksplisit mereka."],
+            ["h", "Layanan pihak ketiga"],
+            ["p", "Kurs diambil oleh browser Anda langsung dari API publik (Frankfurter/ECB, ExchangeRate-API, Fawaz Currency API) — permintaan tersebut berasal dari perangkat Anda, bukan melalui server kami. Situs ini dihosting sebagai berkas statis, dan analitik anonim dapat berjalan melalui Cloudflare."],
+            ["h", "Iklan"],
+            ["p", "Situs ini dapat menampilkan iklan yang disajikan melalui Google AdSense. Vendor pihak ketiga, termasuk Google, menggunakan cookie dan teknologi serupa untuk menayangkan iklan berdasarkan kunjungan Anda sebelumnya ke situs ini atau situs web lain. Penggunaan cookie iklan oleh Google memungkinkan Google dan mitranya menayangkan iklan kepada Anda berdasarkan kunjungan Anda ke situs kami dan/atau situs lain di internet."],
+            ["p", "Anda dapat menonaktifkan iklan personalisasi di <a href=\"https://adssettings.google.com\" rel=\"noopener\">Google Ads Settings</a>, atau menolak cookie vendor pihak ketiga di <a href=\"https://www.aboutads.info\" rel=\"noopener\">aboutads.info</a>. Bila diwajibkan hukum — misalnya di EEA dan Inggris — iklan personalisasi hanya ditayangkan dengan persetujuan Anda, dan iklan non-personalisasi digunakan sebagai gantinya. Untuk detailnya, lihat <a href=\"https://policies.google.com/technologies/ads\" rel=\"noopener\">bagaimana Google menggunakan informasi dari situs yang menggunakan layanannya</a>."],
+            ["h", "Penyimpanan lokal"],
+            ["p", "Pilihan tema Anda, ukuran huruf, pasangan mata uang tersimpan, dan waktu munculnya banner instalasi disimpan di penyimpanan lokal browser Anda. Data ini tidak pernah meninggalkan perangkat Anda dan dapat dihapus kapan saja melalui pengaturan browser."],
+            ["h", "Masa penyimpanan dan hak Anda"],
+            ["p", "Pesan masukan hanya disimpan selama diperlukan untuk membalas. Anda dapat meminta kami menghapus masukan yang pernah Anda kirim dengan menulis ke <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>."],
+            ["h", "Perubahan kebijakan ini"],
+            ["p", "Jika praktik data situs ini berubah, halaman ini akan diperbarui dan tanggal di atas direvisi. Penggunaan situs yang berlanjut setelah perubahan berarti Anda menerima kebijakan yang diperbarui."],
+        ],
+    },
+    "terms": {
+        "title": "Ketentuan Penggunaan | Fxverter",
+        "desc": "Aturan dasar penggunaan Fxverter: kurs bersifat nilai referensi indikatif, bukan kutipan harga; layanan disediakan apa adanya; serta bagaimana tanggung jawab, kekayaan intelektual, dan penggunaan yang wajar diatur.",
+        "sections": [
+            ["p", "Dengan menggunakan fxverter.com, Anda menyetujui ketentuan ini. Jika Anda tidak setuju, mohon jangan gunakan situs ini. Terakhir diperbarui: September 2026."],
+            ["h", "Layanan"],
+            ["p", "Fxverter adalah konverter mata uang online gratis dan open source, disediakan “apa adanya” dan “sebagaimana tersedia” tanpa jaminan dalam bentuk apa pun, tersurat maupun tersirat — termasuk keakuratan, ketersediaan, atau kesesuaian untuk tujuan tertentu."],
+            ["h", "Nilai tukar hanya bersifat indikatif"],
+            ["p", "Semua kurs yang ditampilkan adalah kurs referensi yang dikumpulkan dari sumber publik seperti bank sentral dan API mata uang terbuka, biasanya diperbarui sekali per hari. Kurs-kurs tersebut adalah tolok ukur untuk perbandingan — bukan kutipan harga, bukan saran finansial, dan bukan harga yang benar-benar akan diberikan penyedia mana pun. Jangan gunakannya untuk transaksi finansial, transfer bank, penagihan, atau pembukuan resmi; selalu verifikasi kurs dengan bank atau lembaga keuangan Anda sebelum bertransaksi."],
+            ["h", "Pembatasan tanggung jawab"],
+            ["p", "Sejauh diizinkan oleh hukum, para pemelihara Fxverter tidak bertanggung jawab atas kerugian atau kerusakan apa pun yang timbul dari penggunaan, atau ketidakmampuan menggunakan, situs atau datanya — termasuk keputusan yang diambil dengan mengandalkan kurs yang ditampilkan."],
+            ["h", "Kekayaan intelektual"],
+            ["p", "Kode sumbernya open source di bawah lisensi MIT dan tersedia di GitHub. Teks, desain, dan merek situs ini tetap menjadi milik proyek Fxverter; Anda tidak boleh mempublikasikan ulang seluruh konten situs tanpa izin."],
+            ["h", "Layanan dan tautan pihak ketiga"],
+            ["p", "Situs ini bergantung pada API publik pihak ketiga dan dapat menautkan ke situs web pihak ketiga. Kami tidak mengendalikannya dan tidak bertanggung jawab atas konten, ketersediaan, atau praktiknya."],
+            ["h", "Penggunaan yang wajar"],
+            ["p", "Anda setuju untuk tidak mengganggu layanan, tidak mencoba membebani layanan secara berlebihan, dan tidak menggunakan alat otomatis dengan cara yang merugikan pengunjung lain."],
+            ["h", "Perubahan ketentuan ini"],
+            ["p", "Ketentuan ini dapat diperbarui dari waktu ke waktu; versi terkini selalu halaman ini. Ada pertanyaan? Tulis ke <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>."],
+        ],
+    },
+    "contact": {
+        "title": "Kontak | Fxverter",
+        "desc": "Cara menghubungi tim Fxverter: masukan, koreksi kurs, perizinan, dan pers — hello@fxverter.com atau formulir masukan online.",
+        "sections": [
+            ["p", "Cara tercepat menghubungi kami adalah melalui email: <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>. Kami membaca setiap pesan dan biasanya membalas dalam beberapa hari."],
+            ["h", "Apa yang bisa Anda tuliskan"],
+            ["li", "Masukan dan ide fitur — apa yang berfungsi, yang tidak, dan yang belum ada"],
+            ["li", "Koreksi — jika ada yang tampak salah di sebuah halaman, beri tahu kami halaman yang mana"],
+            ["li", "Pertanyaan tentang perizinan dan publikasi ulang"],
+            ["li", "Permintaan pers dan kemitraan"],
+            ["h", "Bug dan masalah kode"],
+            ["p", "Fxverter bersifat open source — laporan bug dan pull request dipersilakan langsung di repositori GitHub proyek, tempat semuanya bersifat publik dan dapat dilacak."],
+            ["h", "Catatan tentang kurs"],
+            ["p", "Semua kurs adalah nilai referensi indikatif dari sumber publik, diperbarui setiap hari — lihat <a href=\"../guides/\">panduan</a> untuk memahami artinya dalam praktik. Sebelum menulis tentang kurs yang “salah”, mohon bandingkan dengan sumber kedua pada waktu yang sama dalam sehari: selisih kecil antara kurs referensi dan kutipan penyedia adalah hal normal."],
+            ["h", "Privasi"],
+            ["p", "Alamat email Anda hanya digunakan untuk membalas Anda — tanpa buletin, tanpa pemasaran. Lihat <a href=\"../privacy/\">Kebijakan Privasi</a> untuk detailnya."],
+        ],
+    },
+    "feedback": {
+        "title": "Kirim Masukan | Fxverter",
+        "desc": "Beri tahu kami apa yang berfungsi, yang bermasalah, dan yang belum ada — formulir masukan Fxverter langsung menuju kotak masuk tim, tanpa perlu akun.",
+        "sections": [
+            ["p", "Menemukan bug, kurs yang terlihat janggal, atau ide yang bisa membuat Fxverter lebih berguna? Formulir di bawah langsung menuju kotak masuk kami — tanpa perlu akun, dan hanya butuh sekitar tiga puluh detik."],
+            ["h", "Yang paling membantu kami"],
+            ["li", "Halaman atau fitur apa yang sedang Anda gunakan"],
+            ["li", "Apa yang Anda harapkan dan apa yang benar-benar terjadi"],
+            ["li", "Browser atau perangkat Anda, jika masalahnya terkait tampilan"],
+            ["h", "Lebih suka email?"],
+            ["p", "Tulis ke <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a> — atau cukup gunakan formulir di bawah, keduanya sampai ke tempat yang sama."],
+        ],
+        "form": {
+            "name": "Nama (opsional)",
+            "email": "Email (opsional — hanya jika Anda ingin dibalas)",
+            "message": "Pesan Anda",
+            "send": "Kirim masukan",
+            "ok": "✓ Masukan terkirim — terima kasih!",
+            "empty": "Mohon tulis pesan terlebih dahulu.",
+            "fail": "Pengiriman gagal — silakan email langsung ke hello@fxverter.com.",
+        },
+    },
+}
+
+LABELS = {
+    "about": "Tentang kami",
+    "privacy": "Kebijakan Privasi",
+    "terms": "Ketentuan Penggunaan",
+    "contact": "Kontak",
+}

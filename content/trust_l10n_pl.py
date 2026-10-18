@@ -1,0 +1,122 @@
+# -*- coding: utf-8 -*-
+"""Trust pages in Polish (Polski): O nas / Polityka prywatności / Regulamin /
+Kontakt / Opinia. Loaded by build-lang-pages.py as TRUST["pl"] and
+TRUST_LABELS["pl"]; sections follow the English TRUST["en"] structure.
+The contact page reflects the effective English content (the developer-facing
+GitHub section is replaced by a pointer to the feedback form)."""
+
+TRUST_LANG = {
+    "about": {
+        "title": "O Fxverterze – darmowy konwerter walut typu open source",
+        "desc": "Kto stoi za Fxverterem, dlaczego powstał i co go wyróżnia: konwerter walut open source z myślą o prywatności, z uczciwymi kursami referencyjnymi i przewodnikami prostym językiem.",
+        "sections": [
+            ["p", "Fxverter to darmowy internetowy konwerter walut typu open source, działający w całości w twojej przeglądarce. Pokazuje referencyjne kursy ponad 140 walut świata, nie wymaga klucza API, rejestracji ani instalacji – otwierasz stronę i przeliczasz."],
+            ["h", "Dlaczego go stworzyliśmy"],
+            ["p", "Większość stron z konwerterami chowa prawdziwy kurs pod wyskakującymi okienkami, murami rejestracji i wypytywaniem o instalację aplikacji. Chcieliśmy odwrotności: szybkiego, prywatnego narzędzia, które najpierw pokazuje uczciwy referencyjny kurs średni rynkowy i nie przeszkadza. Cały produkt to jedna strona statyczna, działająca na każdym urządzeniu, w siedmiu językach, a po instalacji nawet offline."],
+            ["h", "Co go wyróżnia"],
+            ["li", "Bez konta i bez śledzenia – przeliczenia odbywają się lokalnie w twojej przeglądarce"],
+            ["li", "Trzy przełączalne publiczne źródła danych: Frankfurter (kursy referencyjne Europejskiego Banku Centralnego), ExchangeRate-API oraz Fawaz Currency API"],
+            ["li", "40 głównych walut z osobnymi stronami: tabele przeliczeń na żywo, wykresy trendów 30/90 dni i profile walut"],
+            ["li", "Przewodniki pisane prostym językiem, które wyjaśniają, jak kursy walutowe naprawdę działają"],
+            ["li", "Da się zainstalować jako aplikacja (PWA), która nadal działa offline z ostatnimi znanymi kursami"],
+            ["h", "Dane"],
+            ["p", "Kursy to orientacyjne kursy referencyjne z publicznych źródeł banków centralnych i rynku, aktualizowane codziennie. To ten sam punkt odniesienia, który widzisz w Google lub w serwisach finansowych – przydatny do porównań i planowania, ale nie wiążąca wycena konkretnego przelewu."],
+            ["h", "Kto stoi za projektem"],
+            ["p", "Fxverter tworzy i utrzymuje niezależny deweloper, a dźwigają go użytkownicy. Pełny kod źródłowy jest publiczny na GitHubie – każdy może go sprawdzić, hostować we własnym zakresie lub wnieść ulepszenia."],
+            ["p", "Pytania, poprawki czy pomysły? Napisz na <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a> – czytamy wszystko."],
+        ],
+    },
+    "privacy": {
+        "title": "Polityka prywatności | Fxverter",
+        "desc": "Co Fxverter zbiera, a czego nie: bez wymaganych plików cookie i kont, tylko anonimowe statystyki – oraz jak obsługiwane są reklama i usługi zewnętrzne.",
+        "sections": [
+            ["p", "Fxverter zaprojektowano tak, by można było z niego korzystać bez przekazywania jakichkolwiek informacji osobistych. Niniejsza polityka wyjaśnia, co strona zbiera, a czego nie, oraz jak obsługiwane są reklama i usługi stron trzecich. Ostatnia aktualizacja: wrzesień 2026 r."],
+            ["h", "Czego nie zbieramy"],
+            ["p", "Konto nie jest wymagane, a sama strona nie ustawia plików cookie reklamowych. Przeliczenia odbywają się lokalnie w twojej przeglądarce – nigdy nie widzimy kwot ani par walut, które przeliczasz."],
+            ["h", "Informacje zbierane automatycznie"],
+            ["p", "Aby zrozumieć ogólny sposób korzystania i ulepszać narzędzie, mogą być zbierane anonimowe, zagregowane statystyki wizyt (odsłony stron i kraj, bez plików cookie). Nie pozwalają one na zidentyfikowanie ciebie."],
+            ["h", "Informacje wysyłane dobrowolnie"],
+            ["p", "Jeśli korzystasz z formularza opinii, przesłane imię, adres e-mail i wiadomość służą wyłącznie do przeczytania twojej opinii i odpowiedzi na nią. Jeśli wspierasz projekt, płatność obsługuje Creem.io jako merchant of record – nigdy nie otrzymujemy pełnych danych twojej płatności. Wspierający wymieniani są z imienia wyłącznie za wyraźną zgodą."],
+            ["h", "Usługi stron trzecich"],
+            ["p", "Kursy walut pobiera twoja przeglądarka bezpośrednio z publicznych API (Frankfurter/EBC, ExchangeRate-API, Fawaz Currency API) – te żądania wychodzą z twojego urządzenia, a nie przechodzą przez nasze serwery. Strona jest hostowana jako pliki statyczne, a anonimowa analityka może być prowadzona przez Cloudflare."],
+            ["h", "Reklama"],
+            ["p", "Ta strona może wyświetlać reklamy serwowane przez Google AdSense. Zewnętrzni dostawcy, w tym Google, używają plików cookie i podobnych technologii, aby serwować reklamy na podstawie twoich wcześniejszych wizyt na tej lub innych stronach internetowych. Wykorzystywanie plików cookie reklamowych przez Google pozwala jemu i jego partnerom serwować ci reklamy na podstawie wizyt na naszej stronie i/lub innych stronach w internecie."],
+            ["p", "Reklamy spersonalizowane możesz wyłączyć w <a href=\"https://adssettings.google.com\" rel=\"noopener\">Ustawieniach reklam Google</a>, a pliki cookie dostawców zewnętrznych odrzucić na stronie <a href=\"https://www.aboutads.info\" rel=\"noopener\">aboutads.info</a>. Tam, gdzie wymagają tego przepisy – na przykład w Europejskim Obszarze Gospodarczym i Wielkiej Brytanii – reklama spersonalizowana wyświetlana jest wyłącznie za twoją zgodą, a w pozostałych przypadkach stosuje się reklamy niespersonalizowane. Szczegóły: <a href=\"https://policies.google.com/technologies/ads\" rel=\"noopener\">jak Google wykorzystuje informacje ze stron korzystających z jego usług</a>."],
+            ["h", "Pamięć lokalna"],
+            ["p", "Wybór motywu, rozmiar czcionki, zapisane pary walut i czas wyświetlania banera instalacyjnego są przechowywane w pamięci lokalnej twojej przeglądarki. Te dane nigdy nie opuszczają twojego urządzenia i możesz je wyczyścić w każdej chwili w ustawieniach przeglądarki."],
+            ["h", "Przechowywanie danych i twoje prawa"],
+            ["p", "Wiadomości z opiniami przechowujemy tylko tak długo, jak długo jest to potrzebne do odpowiedzi. Możesz poprosić o usunięcie dowolnej przesłanej opinii, pisząc na <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>."],
+            ["h", "Zmiany w polityce"],
+            ["p", "Jeśli praktyki strony dotyczące danych się zmienią, ta strona zostanie zaktualizowana, a data powyżej skorygowana. Dalsze korzystanie ze strony po zmianie oznacza akceptację zaktualizowanej polityki."],
+        ],
+    },
+    "terms": {
+        "title": "Regulamin | Fxverter",
+        "desc": "Podstawowe zasady korzystania z Fxvertera: kursy to orientacyjne wartości referencyjne, nie oferty; usługa dostarczana jest w stanie, w jakim jest; oraz jak uregulowano odpowiedzialność, własność intelektualną i akceptowalne korzystanie.",
+        "sections": [
+            ["p", "Korzystając z serwisu fxverter.com, zgadzasz się z niniejszymi warunkami. Jeśli się z nimi nie zgadzasz, nie korzystaj z serwisu. Ostatnia aktualizacja: wrzesień 2026 r."],
+            ["h", "Usługa"],
+            ["p", "Fxverter to darmowy internetowy konwerter walut typu open source, udostępniany „jak jest” i „według dostępności”, bez jakichkolwiek gwarancji, wyraźnych ani dorozumianych – w tym co do dokładności, dostępności czy przydatności do określonego celu."],
+            ["h", "Kursy walutowe są wyłącznie orientacyjne"],
+            ["p", "Wszystkie wyświetlane kursy to kursy referencyjne zbierane z publicznych źródeł, takich jak banki centralne i otwarte API walutowe, zwykle aktualizowane raz na dobę. Są to punkty odniesienia do porównań – nie oferty, nie porada finansowa i nie cena, którą jakikolwiek dostawca faktycznie ci zaproponuje. Nie używaj ich do transakcji finansowych, przelewów bankowych, fakturowania ani oficjalnej księgowości; przed transakcją zawsze potwierdź kurs w swoim banku lub instytucji finansowej."],
+            ["h", "Ograniczenie odpowiedzialności"],
+            ["p", "W maksymalnym zakresie dozwolonym przez prawo utrzymujący Fxverter nie ponoszą odpowiedzialności za jakąkolwiek stratę lub szkodę powstałą w wyniku korzystania ze strony lub jej danych albo z braku możliwości ich użycia – w tym za decyzje podjęte w oparciu o wyświetlane kursy."],
+            ["h", "Własność intelektualna"],
+            ["p", "Kod źródłowy jest open source na licencji MIT i dostępny na GitHubie. Teksty, projekt i marka serwisu pozostają własnością projektu Fxverter; bez zgody nie wolno przedrukowywać treści serwisu w całości."],
+            ["h", "Usługi stron trzecich i linki"],
+            ["p", "Serwis korzysta z publicznych API stron trzecich i może odsyłać do zewnętrznych witryn. Nie kontrolujemy ich i nie odpowiadamy za ich treść, dostępność ani praktyki."],
+            ["h", "Akceptowalne korzystanie"],
+            ["p", "Zgadzasz się nie zakłócać działania usługi, nie usiłować jej przeciążać i nie używać narzędzi automatycznych w sposób, który utrudnia korzystanie z niej innym odwiedzającym."],
+            ["h", "Zmiany warunków"],
+            ["p", "Niniejsze warunki mogą być od czasu do czasu aktualizowane; aktualna wersja to zawsze ta strona. Masz pytania? Napisz na <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>."],
+        ],
+    },
+    "contact": {
+        "title": "Kontakt | Fxverter",
+        "desc": "Jak dotrzeć do zespołu Fxvertera: opinie, poprawki kursów, licencje i prasa – hello@fxverter.com albo formularz opinii online.",
+        "sections": [
+            ["p", "Najszybciej dotrzesz do nas e-mailem: <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>. Czytamy każdą wiadomość i zwykle odpowiadamy w ciągu kilku dni."],
+            ["h", "O czym pisać"],
+            ["li", "Opinie i pomysły na funkcje – co działa, co nie działa, czego brakuje"],
+            ["li", "Poprawki – jeśli coś na stronie wygląda nie tak, daj nam znać, o którą stronę chodzi"],
+            ["li", "Pytania o licencje i przedruk treści"],
+            ["li", "Zapytania prasowe i dotyczące współpracy"],
+            ["h", "Szybsza droga"],
+            ["p", "Nie masz ochoty pisać e-maila? Skorzystaj z <a href=\"../feedback/\">formularza opinii online</a> – trafia on do tej samej skrzynki, a wypełnienie zajmuje około trzydzieści sekund."],
+            ["h", "Uwaga o kursach"],
+            ["p", "Wszystkie kursy to orientacyjne wartości referencyjne z publicznych źródeł, aktualizowane codziennie – <a href=\"../guides/\">przewodniki</a> wyjaśniają, co to oznacza w praktyce. Zanim napiszesz o „błędnym” kursie, porównaj go z drugim źródłem o tej samej porze dnia: niewielkie różnice między kursami referencyjnymi a kursami dostawców są normalne."],
+            ["h", "Prywatność"],
+            ["p", "Twój adres e-mail służy wyłącznie do odpowiedzi – bez newslettera i bez marketingu. Szczegóły znajdziesz w <a href=\"../privacy/\">Polityce prywatności</a>."],
+        ],
+    },
+    "feedback": {
+        "title": "Prześlij opinię | Fxverter",
+        "desc": "Powiedz nam, co działa, co się psuje i czego brakuje – formularz opinii Fxvertera trafia prosto do skrzynki zespołu, bez zakładania konta.",
+        "sections": [
+            ["p", "Błąd, podejrzanie wyglądający kurs albo pomysł, który uczyniłby Fxverter bardziej przydatnym? Poniższy formularz trafia prosto do naszej skrzynki – bez zakładania konta, a wypełnienie zajmuje jakieś trzydzieści sekund."],
+            ["h", "Co pomaga nam najbardziej"],
+            ["li", "jakiej strony lub funkcji dotyczyło zgłoszenie"],
+            ["li", "czego się spodziewano i co wydarzyło się naprawdę"],
+            ["li", "jaka przeglądarka lub urządzenie, jeśli problem dotyczy wyglądu"],
+            ["h", "Wolisz e-mail?"],
+            ["p", "Napisz na <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a> – albo po prostu użyj poniższego formularza, trafia on w to samo miejsce."],
+        ],
+        "form": {
+            "name": "Imię (opcjonalnie)",
+            "email": "E-mail (opcjonalnie – tylko jeśli oczekujesz odpowiedzi)",
+            "message": "Twoja wiadomość",
+            "send": "Wyślij opinię",
+            "ok": "✓ Opinia wysłana – dziękujemy!",
+            "empty": "Najpierw wpisz treść wiadomości.",
+            "fail": "Wysyłanie nie powiodło się – napisz bezpośrednio na hello@fxverter.com.",
+        },
+    },
+}
+
+LABELS = {
+    "about": "O nas",
+    "privacy": "Prywatność",
+    "terms": "Regulamin",
+    "contact": "Kontakt",
+    "feedback": "Opinia",
+}

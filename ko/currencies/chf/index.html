@@ -47,7 +47,7 @@ a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
 .cur-flag{font-size:2.6rem;line-height:1}
 .cur-head h1{font-family:var(--syne);font-size:1.6rem;font-weight:700;line-height:1.15}
 .cur-head .sub{color:var(--muted);font-size:0.82rem;margin-top:0.2rem}
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin:1rem 0 1.2rem}
+.facts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0.6rem;margin:1rem 0 1.2rem}
 .fact{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:0.7rem 0.9rem}
 .fact .k{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-family:var(--syne)}
 .fact .v{font-size:0.92rem;margin-top:0.15rem}
@@ -79,7 +79,7 @@ td.r,th.r{text-align:right}
 .cur-article summary::-webkit-details-marker{display:none}
 .cur-article details p{padding:0 0.8rem 0.7rem;margin:0}
 .chart-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem;margin-bottom:1.2rem}
-.chart-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.25rem 0.5rem;margin-bottom:0.5rem}
 .chart-head .t{font-family:var(--syne);font-size:0.8rem;font-weight:700}
 .chart-head .d{font-size:0.68rem;color:var(--muted);margin-top:0.35rem}
 .chart-head .chg{font-size:0.75rem;font-weight:500}
@@ -99,12 +99,12 @@ html.theme-light .chg.up{color:#c74e70}html.theme-light .chg.down{color:#14967a}
 .fxtheme:hover{border-color:var(--teal);color:var(--teal)}
 @media(max-width:480px){.facts{grid-template-columns:1fr}}
 </style><style>
-.tools-bar{width:100%;max-width:560px;display:flex;align-items:center;justify-content:space-between;gap:0.5rem;margin-bottom:1rem}
-.tools-left{display:flex;gap:0.3rem}
+.tools-bar{width:100%;max-width:560px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.4rem 0.5rem;margin-bottom:1rem}
+.tools-left{display:flex;gap:0.3rem;min-width:0}
 .tool-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.3rem 0.55rem;font-family:var(--dm);font-weight:500;color:var(--muted2);cursor:pointer;transition:all 0.15s;line-height:1;font-size:0.85rem}
 .tool-btn:hover{border-color:var(--border2);color:var(--text)}
 .tool-btn.ok{border-color:var(--teal);color:var(--teal)}
-.lang-sel{appearance:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.32rem 0.7rem;font-family:var(--dm);font-size:0.72rem;font-weight:500;color:var(--muted2);outline:none;cursor:pointer;max-width:150px}
+.lang-sel{appearance:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.32rem 0.7rem;font-family:var(--dm);font-size:0.72rem;font-weight:500;color:var(--muted2);outline:none;cursor:pointer;max-width:150px;min-width:0;margin-inline-start:auto}
 .lang-sel:hover{border-color:var(--border2);color:var(--text)}
 .lang-sel option{background:#1e1e2a;color:#eeeef5}
 html.theme-light .lang-sel option{background:#ffffff;color:#1a1c26}
@@ -164,7 +164,7 @@ function fxToggleTheme() {
 </head>
 <body>
 <div class="tools-bar"><div class="tools-left"><button type="button" class="tool-btn" id="fxThemeBtn" onclick="fxToggleTheme()" title="Theme">◐</button><button type="button" class="tool-btn" id="shareBtn" onclick="fxShare()" title="공유">⤴</button><button type="button" class="tool-btn" id="feedbackBtn" onclick="fxOpenFeedback()" title="피드백">✎</button><button type="button" class="tool-btn" id="installBtn" onclick="fxInstall()" title="앱 설치" hidden>⤓</button></div><select class="lang-sel" id="langSel" onchange="fxLangGo(this.value)" aria-label="Language"><option value="en">English</option><option value="tr">Türkçe</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="pt">Português</option><option value="ru">Русский</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko" selected>한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="tl">Filipino</option><option value="it">Italiano</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="uk">Українська</option><option value="sv">Svenska</option><option value="th">ไทย</option><option value="lo">ພາສາລາວ</option><option value="vi">Tiếng Việt</option><option value="el">Ελληνικά</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="da">Dansk</option></select></div>
-<div class="fb-panel" id="fbPanel"><form id="fbForm" onsubmit="fxSendFeedback(); return false;"><input type="text" id="fbName" maxlength="60" autocomplete="off" placeholder="Name"><input type="email" id="fbEmail" maxlength="80" placeholder="Email (optional)"><textarea id="fbMsg" rows="4" maxlength="1000" placeholder="메시지를 입력…"></textarea><input type="checkbox" style="display:none" tabindex="-1" autocomplete="off"><div class="fb-err" id="fbErr"></div><button type="submit" id="fbSendBtn">피드백 보내기</button></form><div class="fb-ok" id="fbOk" style="display:none">✓ 피드백이 전송되었습니다 — 감사합니다!</div></div>
+<div class="fb-panel" id="fbPanel"><form id="fbForm" onsubmit="fxSendFeedback(); return false;"><input type="text" id="fbName" maxlength="60" autocomplete="off" placeholder="이름"><input type="email" id="fbEmail" maxlength="80" placeholder="이메일(선택)"><textarea id="fbMsg" rows="4" maxlength="1000" placeholder="메시지를 입력…"></textarea><input type="checkbox" style="display:none" tabindex="-1" autocomplete="off"><div class="fb-err" id="fbErr"></div><button type="submit" id="fbSendBtn">피드백 보내기</button></form><div class="fb-ok" id="fbOk" style="display:none">✓ 피드백이 전송되었습니다 — 감사합니다!</div></div>
 <div class="inst-banner" id="instBanner" role="dialog" aria-labelledby="instTitleText" aria-describedby="instDescText" hidden><div class="inst-icon" aria-hidden="true">💱</div><div class="inst-body"><div class="inst-title" id="instTitleText">Fxverter 설치</div><div class="inst-desc" id="instDescText">홈 화면에 추가하면 빠르게 접속할 수 있고 오프라인에서도 작동합니다.</div><div class="inst-ios" id="instIosHint">공유 버튼을 누른 다음 «홈 화면에 추가»를 선택하세요.</div></div><div class="inst-actions"><button class="inst-go" id="instGoBtn" type="button" onclick="instGo()">설치</button><button class="inst-later" id="instLaterBtn" type="button" onclick="fxInstLater()">나중에</button></div></div>
 <script>const FX_PAGE = {"cur": "ko", "sub": "currencies/chf/", "base": "https://fxverter.com/", "root": "../../../"};
 const FX_T = {"share": "공유", "shared": "링크 복사됨!", "feedback": "피드백", "fbPlaceholder": "메시지를 입력…", "fbSend": "피드백 보내기", "fbOk": "✓ 피드백이 전송되었습니다 — 감사합니다!", "fbEmpty": "먼저 메시지를 입력하세요.", "fbFail": "전송에 실패했습니다 — 다시 시도하거나 직접 이메일을 보내주세요.", "install": "앱 설치", "instTitle": "Fxverter 설치", "instDesc": "홈 화면에 추가하면 빠르게 접속할 수 있고 오프라인에서도 작동합니다.", "instBtn": "설치", "instLater": "나중에", "instIos": "공유 버튼을 누른 다음 «홈 화면에 추가»를 선택하세요."};
@@ -384,12 +384,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="links" aria-label="Other currencies"><a href="../usd/">USD</a> <a href="../eur/">EUR</a> <a href="../gbp/">GBP</a> <a href="../jpy/">JPY</a> <a href="../cny/">CNY</a> <a href="../try/">TRY</a> <a href="../inr/">INR</a> <a href="../krw/">KRW</a> <a href="../aud/">AUD</a> <a href="../cad/">CAD</a> <a href="../mxn/">MXN</a> <a href="../brl/">BRL</a> <a href="../zar/">ZAR</a> <a href="../sek/">SEK</a> <a href="../nok/">NOK</a> <a href="../nzd/">NZD</a> <a href="../sgd/">SGD</a> <a href="../hkd/">HKD</a> <a href="../thb/">THB</a></div>
   
 </main>
-
+<p class="trust-links"><a href="https://fxverter.com/ko/about/">소개</a><a href="https://fxverter.com/ko/privacy/">개인정보 처리방침</a><a href="https://fxverter.com/ko/terms/">이용약관</a><a href="https://fxverter.com/ko/contact/">문의</a><a href="https://fxverter.com/ko/feedback/">피드백</a><a href="https://fxverter.com/ko/support/">♥ 支持</a></p>
 <p class="disc">환율은 공개 소스의 참고용이며 매일 갱신됩니다 — 거래 전 은행에 확인하세요. © 2026 Fxverter · 환율 계산기 · <a href="https://fxverter.com/ko/">Fxverter</a></p>
 <script>
 const CODE = "CHF";
 const SYMBOL = "Fr";
 const HAS_CHART = true;
+const TREND_TPL = "{days}일 추세 · ECB 기준 환율";
 // localize the currency name in the heading via the browser's built-in CLDR
 // data — the static English markup stays for crawlers
 (function () {
@@ -499,7 +500,7 @@ function calc(v){
     const el = document.getElementById('chg');
     el.textContent = (chg >= 0 ? '▲ +' : '▼ ') + chg.toFixed(2) + '%';
     el.classList.add(chg >= 0 ? 'up' : 'down');
-    document.getElementById('chartRange').textContent = pts[0].date + ' → ' + pts[pts.length - 1].date + ' · ' + days + '-day trend · ECB reference rates';
+    document.getElementById('chartRange').textContent = pts[0].date + ' → ' + pts[pts.length - 1].date + ' · ' + TREND_TPL.replace('{days}', days);
     document.querySelectorAll('.rngbtn').forEach(b => b.classList.toggle('active', +b.dataset.days === days));
   }
   drawChart(30);
