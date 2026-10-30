@@ -369,7 +369,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="cur-flag" aria-hidden="true">🇺🇸🇬🇧</div>
     <div>
       <h1>USD から GBP へ — 米ドルを英ポンドに換算</h1>
-      <div class="sub">US Dollar (USD) → British Pound (GBP)</div>
+      <div class="sub" data-pf="USD" data-pt="GBP">US Dollar (USD) → British Pound (GBP)</div>
     </div>
   </div>
   <h2>リアルタイム換算機</h2>
@@ -403,6 +403,17 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 <p class="disc">レートは公開ソース（Frankfurter経由のECB、ExchangeRate-API）による参考値で、毎日更新されます — 取引前に銀行でご確認ください。© 2026 Fxverter · 通貨コンバーター · <a href="https://fxverter.com/ja/">Fxverter</a></p>
 <script>
 const PF = "USD", PT = "GBP";
+// localize the currency names in the subtitle via the browser's CLDR data —
+// the static English markup stays for crawlers (same policy as currency pages)
+try {
+  var sub = document.querySelector('.sub[data-pf]');
+  if (sub && window.Intl && Intl.DisplayNames) {
+    var DN = new Intl.DisplayNames([document.documentElement.lang || 'en'], {type: 'currency', fallback: 'code'});
+    var qf = sub.getAttribute('data-pf'), qt = sub.getAttribute('data-pt');
+    var fn = DN.of(qf), tn = DN.of(qt);
+    sub.textContent = (fn || qf) + ' (' + qf + ') \u2192 ' + (tn || qt) + ' (' + qt + ')';
+  }
+} catch (e) {}
 const NF = new Intl.NumberFormat(document.documentElement.lang || 'en', {maximumFractionDigits: 4});
 let RATE = null;
 function fmt(v){ try { return NF.format(v); } catch(e){ return String(v); } }

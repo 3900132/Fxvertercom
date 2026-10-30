@@ -1433,6 +1433,17 @@ def build_pair_page(f, t, lang):
 
     page_js = f"""<script>
 const PF = {json.dumps(f)}, PT = {json.dumps(t)};
+// localize the currency names in the subtitle via the browser's CLDR data —
+// the static English markup stays for crawlers (same policy as currency pages)
+try {{
+  var sub = document.querySelector('.sub[data-pf]');
+  if (sub && window.Intl && Intl.DisplayNames) {{
+    var DN = new Intl.DisplayNames([document.documentElement.lang || 'en'], {{type: 'currency', fallback: 'code'}});
+    var qf = sub.getAttribute('data-pf'), qt = sub.getAttribute('data-pt');
+    var fn = DN.of(qf), tn = DN.of(qt);
+    sub.textContent = (fn || qf) + ' (' + qf + ') \\u2192 ' + (tn || qt) + ' (' + qt + ')';
+  }}
+}} catch (e) {{}}
 const NF = new Intl.NumberFormat(document.documentElement.lang || 'en', {{maximumFractionDigits: 4}});
 let RATE = null;
 function fmt(v){{ try {{ return NF.format(v); }} catch(e){{ return String(v); }} }}
@@ -1523,7 +1534,7 @@ pairRate();
     <div class="cur-flag" aria-hidden="true">{f_flag}{t_flag}</div>
     <div>
       <h1>{html_lib.escape(PC["h1"], quote=False)}</h1>
-      <div class="sub">{html_lib.escape(fname, quote=True)} ({f}) → {html_lib.escape(tname, quote=True)} ({t})</div>
+      <div class="sub" data-pf="{f}" data-pt="{t}">{html_lib.escape(fname, quote=True)} ({f}) → {html_lib.escape(tname, quote=True)} ({t})</div>
     </div>
   </div>
   <h2>{html_lib.escape(U["pairConvert"], quote=False)}</h2>
