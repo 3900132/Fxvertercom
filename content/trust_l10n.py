@@ -1028,4 +1028,10 @@ TRUST_OVERRIDES["curFaq"] = {
     "es": "Preguntas frecuentes",
     "pt": "Perguntas frequentes",
     "ja": "よくある質問",
+    "ko": "자주 묻는 질문",
+    "ru": "Часто задаваемые вопросы",
+    "hi": "अक्सर पूछे जाने वाले प्रश्न",
+    "ar": "الأسئلة الشائعة",
+    "it": "Domande frequenti",
+    "th": "คำถามที่พบบ่อย",
 }

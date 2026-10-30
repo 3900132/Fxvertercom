@@ -1,13 +1,13 @@
 # Fxverter — 开发与内容维护指南
 
-> **当前状态（2026-10 第三轮整改）**：在第二轮基础上再扩容——收录币种 40 → **56**（新增 UAH/QAR/KWD/MAD/BDT/LKR/KZT/GEL/AZN/ETB/GHS/KES/TZS/XOF/XAF，全部有深度文章 × 7 语言）、
+> **当前状态（2026-10 第三轮整改）**：在第二轮基础上再扩容——收录币种 40 → **56**（新增 UAH/QAR/KWD/MAD/BDT/LKR/KZT/GEL/AZN/ETB/GHS/KES/TZS/XOF/XAF，全部有深度文章）、
 > 新增 **15 个货币对页面**（/currencies/usd-to-eur/ 等，7 语言，含构建时 ECB 快照汇率表）、指南 9 → **13 篇**（新增 PayPal/Wise/银行对比、留学汇学费、
 > 历史汇率查询、恶性通胀解读，全部翻译到 7 种收录语言）、全站页面补 **BreadcrumbList 结构化数据**、sitemap **lastmod 按源文件真实修改时间生成**、
 > noscript 提示语 29 语言本地化、修复 22 种非收录语言指南页**漏加 noindex** 的问题、sw v9。
-> **下一步**：① 部署上线（git push，跑一次 submit-indexnow.py）→ ② 等 2–4 周重新抓取 → ③ 重新申请 AdSense → ④ 过审后加广告代码；此后按季评估放开第二梯队语言（建议顺序 ko/ru/hi/ar/it/th，前提是先给该语言补深度文章）。
+> **第四轮：收录语言 7 → 13**（新增 ko/ru/hi/ar/it/th）——每种语言补齐完整内容包（56 篇币种文章 + 15 配对页 + 13 篇指南全翻译）后加入 INDEXED_LANGS 转正，sitemap 651 → 1209 URL。> **下一步**：① 部署上线（git push，跑一次 submit-indexnow.py）→ ② 等 2–4 周重新抓取 → ③ 重新申请 AdSense → ④ 过审后加广告代码；剩余 16 种语言（tr/id/ms/tl/nl/pl/uk/sv/lo/vi/el/bn/fa/cs/ro/da）按季照同样流程扩。
 > ⚠️ 大改动记得把 `sw.js` 缓存版本号 +1。改任何源文件后跑 `python build-lang-pages.py`。
 
-Fxverter 是一个纯静态多语言换汇工具站：首页（29 语言页，其中 7 种收录进搜索引擎）+ 141 个币种页（56 个收录，56 个有深度文章 × 7 语言）+ 15 个货币对页 × 7 语言 + 13 篇指南 + 35 个信任页（关于/隐私/条款/联系/反馈 × 7 语言）+ 支持页，共 4300+ 个页面（sitemap 约 650 URL）。**你日常只编辑 10 个源文件，其余页面全部由构建脚本自动生成。**
+Fxverter 是一个纯静态多语言换汇工具站：首页（29 语言页，其中 13 种收录进搜索引擎）+ 141 个币种页（56 个收录，56 个有深度文章 × 13 语言）+ 15 个货币对页 × 13 语言 + 13 篇指南 + 35 个信任页（关于/隐私/条款/联系/反馈 × 13 语言）+ 支持页，共 4300+ 个页面（sitemap 1209 URL）。**你日常只编辑 10 个源文件，其余页面全部由构建脚本自动生成。**
 
 ---
 
@@ -88,7 +88,7 @@ description: 一句话摘要             ← meta description
 
 ### 6. `content/site_config.py` — 收录策略（谁进搜索引擎）
 
-控制哪些页面允许被搜索引擎收录：`INDEXED_LANGS`（收录语言，当前 7 种：en/zh/de/fr/es/pt/ja）、`INDEXED_CURRENCIES`（收录币种，当前 56 个）、`ECB_SET`（有趋势图数据的币种）、`TRUST_PAGES`（信任页）。**不在清单里的页面照常生成、照常可访问，但会被加上 `noindex, follow` 并且不进 sitemap.xml。** 过审后扩语言/转正币种，只需往这两个清单里加代码再重新构建；hreflang、robots meta、sitemap 全部自动跟着变。改配置后构建脚本会校验币种代码是否存在，写错会直接报错退出。
+控制哪些页面允许被搜索引擎收录：`INDEXED_LANGS`（收录语言，当前 13 种：en/zh/de/fr/es/pt/ja/ko/ru/hi/ar/it/th）、`INDEXED_CURRENCIES`（收录币种，当前 56 个）、`ECB_SET`（有趋势图数据的币种）、`TRUST_PAGES`（信任页）。**不在清单里的页面照常生成、照常可访问，但会被加上 `noindex, follow` 并且不进 sitemap.xml。** 过审后扩语言/转正币种，只需往这两个清单里加代码再重新构建；hreflang、robots meta、sitemap 全部自动跟着变。改配置后构建脚本会校验币种代码是否存在，写错会直接报错退出。
 
 ### 7. `content/trust_l10n.py` — 信任页内容（About/隐私/条款/联系）
 

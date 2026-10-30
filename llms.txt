@@ -1,6 +1,6 @@
 # Fxverter
 
-> Fxverter (fxverter.com) — free online currency converter with live exchange rates for 140+ world currencies, in-depth currency profiles, currency-pair pages and plain-language guides in 7 languages. No sign-up, no tracking of conversions, installable as an app.
+> Fxverter (fxverter.com) — free online currency converter with live exchange rates for 140+ world currencies, in-depth currency profiles, currency-pair pages and plain-language guides in 13 languages. No sign-up, no tracking of conversions, installable as an app.
 
 Fxverter is a free online currency converter that runs entirely in the browser. Users open the website, enter an amount, pick a source and a target currency, and get a converted result based on reference rates from public APIs — no installation and no account needed. Data sources are switchable: Frankfurter (European Central Bank reference rates, ~30 major currencies), ExchangeRate-API (160+ currencies) and the Fawaz Currency API (170+ currencies); pairs missing from one source are fetched from another automatically. Fxverter can also be installed as an app (PWA) on desktop and mobile. Rates are indicative only and not suitable for bank transfers, invoices or accounting.
 
@@ -12,16 +12,16 @@ Key facts:
 - Author: Seyyid Kadir
 - Currencies: 141 supported (availability per pair depends on the selected data source; missing pairs fall back to another source automatically)
 - Languages: 29 interface languages with automatic browser detection; right-to-left support for Arabic and Persian
-- Search-indexed versions: English, Chinese, German, French, Spanish, Portuguese, Japanese — these are the pages listed in sitemap.xml and linked with rel="alternate" hreflang
+- Search-indexed versions: English, Chinese, German, French, Spanish, Portuguese, Japanese, Korean, Russian, Hindi, Arabic, Italian, Thai — these are the pages listed in sitemap.xml and linked with rel="alternate" hreflang
 - Privacy: no accounts; conversions run locally in the browser; only anonymous visit statistics are collected; the site may display advertising — full details at https://fxverter.com/privacy/
 - Accessibility: three font-size levels, mobile-first layout
 
 Site structure (all indexable pages are listed in sitemap.xml):
 
-- Converter (home): https://fxverter.com/ — also at /zh/ (Chinese), /de/ (German), /fr/ (French), /es/ (Spanish), /pt/ (Portuguese), /ja/ (Japanese)
-- Currency pages: /currencies/<code>/ for 56 major currencies — live reference rates, conversion tables, 30/90-day trend charts (for the ~30 ECB reference currencies), a calculator and a written profile (history, what moves the rate, practical use, FAQ) on every indexed currency. Each is available in all 7 indexed languages, e.g. https://fxverter.com/currencies/usd/ and https://fxverter.com/zh/currencies/jpy/
+- Converter (home): https://fxverter.com/ — also at /zh/ (Chinese), /de/ (German), /fr/ (French), /es/ (Spanish), /pt/ (Portuguese), /ja/ (Japanese), /ko/ (Korean), /ru/ (Russian), /hi/ (Hindi), /ar/ (Arabic), /it/ (Italian), /th/ (Thai)
+- Currency pages: /currencies/<code>/ for 56 major currencies — live reference rates, conversion tables, 30/90-day trend charts (for the ~30 ECB reference currencies), a calculator and a written profile (history, what moves the rate, practical use, FAQ) on every indexed currency. Each is available in all 7 indexed languages, e.g. https://fxverter.com/currencies/usd/ and https://fxverter.com/zh/currencies/jpy/, https://fxverter.com/ko/currencies/usd/, https://fxverter.com/ar/currencies/try/
 - Currency-pair pages: /currencies/<from>-to-<to>/ for 15 popular pairs (USD→EUR, USD→GBP, USD→JPY, USD→CNY, USD→INR, USD→CAD, USD→AUD, USD→CHF, USD→MXN, USD→PHP, EUR→GBP, EUR→CHF, EUR→PLN, GBP→JPY, AUD→JPY) — live converter, a reference-rate snapshot with common-amount tables in both directions, and pair-specific background and FAQ, e.g. https://fxverter.com/currencies/usd-to-eur/
-- Guides (13 in-depth articles, English + the 6 other indexed languages) under /guides/:
+- Guides (13 in-depth articles, English + the 12 other indexed languages) under /guides/:
   - https://fxverter.com/guides/how-exchange-rates-work/ — how exchange rates are set (fixed, floating, managed)
   - https://fxverter.com/guides/mid-market-rate/ — what the mid-market rate is and why bank rates differ
   - https://fxverter.com/guides/send-money-abroad/ — how to send money abroad without overpaying
@@ -35,7 +35,7 @@ Site structure (all indexable pages are listed in sitemap.xml):
   - https://fxverter.com/guides/paying-tuition-abroad/ — paying tuition abroad: rates, fees and planning for students and parents
   - https://fxverter.com/guides/historical-exchange-rates/ — historical exchange rates: where to find them and how to use them
   - https://fxverter.com/guides/hyperinflation-and-your-money/ — hyperinflation explained: what it does to a currency and your money
-- About: https://fxverter.com/about/ — Privacy Policy: https://fxverter.com/privacy/ — Terms of Use: https://fxverter.com/terms/ — Contact: https://fxverter.com/contact/ — Feedback: https://fxverter.com/feedback/ (each also in the 7 indexed languages)
+- About: https://fxverter.com/about/ — Privacy Policy: https://fxverter.com/privacy/ — Terms of Use: https://fxverter.com/terms/ — Contact: https://fxverter.com/contact/ — Feedback: https://fxverter.com/feedback/ (each also in the 13 indexed languages)
 - Support: https://fxverter.com/support/ — optional "buy us a Coke" contributions processed by Creem as merchant of record
 
 FAQ:

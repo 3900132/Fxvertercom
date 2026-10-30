@@ -13,7 +13,8 @@ BASE = "https://fxverter.com/"
 # Languages promoted to search engines. All other generated language
 # directories stay online for visitors but are noindexed until their
 # deep content is written and reviewed.
-INDEXED_LANGS = ["en", "zh", "de", "fr", "es", "pt", "ja"]
+INDEXED_LANGS = ["en", "zh", "de", "fr", "es", "pt", "ja",
+                 "ko", "ru", "hi", "ar", "it", "th"]
 
 # Currency pages promoted to search engines (56 mainstream currencies).
 # Every page outside this list stays online and usable but noindexed.

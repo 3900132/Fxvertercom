@@ -68,19 +68,29 @@ try:
     CURRENCY_ARTICLES.update(_ART_B2_EN)
 except ImportError:
     pass
-for _b2_lang in ("zh", "de", "fr", "es", "pt", "ja"):
-    try:
-        _m2 = __import__("content.currency_articles_b2_" + _b2_lang, fromlist=["ARTICLES_B2"])
-        ARTICLES_L10N.setdefault(_b2_lang, {}).update(_m2.ARTICLES_B2)
-    except ImportError:
-        pass
-for _b2_lang in ("zh", "de", "fr", "es", "pt", "ja"):
+# article translations for promoted languages: batch-1 (41 flagship
+# currencies, split over two files per language), batch-2 (15 additional
+# currencies) — every module is optional so the build works while a
+# language's translations are still being written
+_L10N_ART_LANGS = ("zh", "de", "fr", "es", "pt", "ja", "ko", "ru", "hi", "ar", "it", "th")
+for _l10n_lang in _L10N_ART_LANGS:
+    for _art_mod, _art_var in (
+            ("currency_articles_b1a_" + _l10n_lang, "ARTICLES_B1"),
+            ("currency_articles_b1b_" + _l10n_lang, "ARTICLES_B1"),
+            ("currency_articles_b2_" + _l10n_lang, "ARTICLES_B2")):
+        try:
+            _m2 = __import__("content." + _art_mod, fromlist=[_art_var])
+            ARTICLES_L10N.setdefault(_l10n_lang, {}).update(getattr(_m2, _art_var))
+        except ImportError:
+            pass
+_L10N_LANGS = ("zh", "de", "fr", "es", "pt", "ja", "ko", "ru", "hi", "ar", "it", "th")
+for _b2_lang in _L10N_LANGS:
     try:
         _gm2 = __import__("content.guide_articles_b2_" + _b2_lang, fromlist=["GUIDE_L10N_B2"])
         GUIDE_L10N.setdefault(_b2_lang, {}).update(_gm2.GUIDE_L10N_B2)
     except ImportError:
         pass
-for _pp_lang in ("zh", "de", "fr", "es", "pt", "ja"):
+for _pp_lang in _L10N_LANGS:
     try:
         _pm = __import__("content.pair_pages_l10n_" + _pp_lang, fromlist=["PAIR_CONTENT_L10N", "PAIR_UI_L10N"])
         PAIR_CONTENT.setdefault(_pp_lang, {}).update(_pm.PAIR_CONTENT_L10N)
@@ -209,19 +219,25 @@ def unesc(s):
     return s.replace("\\'", "'")
 
 def write_text(path, text):
-    """Write with retry: real-time AV / Windows Search briefly lock freshly
-    written files (5-10s), which surfaces as a random OSError 22 when the
-    build rewrites ~4400 pages in one run. 15 attempts x 2s tolerates the
-    occasional longer lock."""
-    for attempt in range(15):
+    """Write with retry. Two environment quirks on this machine:
+    - truncate-writes (open 'w'/'wb', os.O_TRUNC) are intermittently rejected
+      with OSError 22 by a file-system filter, while remove+append always work
+      — so the write goes through "remove, then append";
+    - freshly written files get briefly locked by AV / Windows Search — hence
+      the retry loop."""
+    for attempt in range(30):
         try:
-            with open(path, "w", encoding="utf-8", newline="\n") as fh:
+            try:
+                os.remove(path)
+            except FileNotFoundError:
+                pass
+            with open(path, "a", encoding="utf-8", newline="\n") as fh:
                 fh.write(text)
             return
         except OSError:
-            if attempt == 14:
+            if attempt == 29:
                 raise
-            time.sleep(2)
+            time.sleep(3)
 
 def sub1(text, pattern, repl):
     if callable(repl):
