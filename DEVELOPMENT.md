@@ -215,8 +215,8 @@ ABOUT_BATCH = {
 
 | 维度 | 已覆盖 | 未覆盖（回退英文 / 模板） |
 |---|---|---|
-| 辅币单位 | 18 语言 × 38 币种 = 684 条 | da、sv、el、ro、ar、fa、hi、bn、id |
-| 专属介绍 | 19 语言 × 38 币种 = 722 条 | cs、th、vi、da、sv、el、ro、lo |
+| 辅币单位 | 20 语言 × 38 币种（含 ar/hi） | da、sv、el、ro、fa、bn、id |
+| 专属介绍 | 20 语言 × 38 币种（含 th） | cs、vi、da、sv、el、ro、lo |
 
 要把任意一种拉满，向 `content/` 目录丢一个 `sub_languages_<lang>.py` 或 `about_batch_<lang>.py`，跑一次构建，结束。
 
