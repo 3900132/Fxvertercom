@@ -1055,3 +1055,77 @@ UI = {
         "nearLow":"Kursen nær {days}-dages bund",
  },
 }
+
+# ─── noscript warning + "page updated" stamp (29 languages) ───
+# merged into the per-language UI dicts below; build-lang-pages.py bakes the
+# noscript text into every generated language page and stamps the update date
+# on pages that carry a long-form article.
+
+UI_NOSCRIPT = {
+ "en": "JavaScript is disabled — the converter needs JavaScript to fetch live exchange rates. The description and FAQ above still apply.",
+ "tr": "JavaScript devre dışı — dönüştürücü canlı döviz kurlarını getirmek için JavaScript'e ihtiyaç duyar. Yukarıdaki açıklama ve SSS geçerliliğini korur.",
+ "de": "JavaScript ist deaktiviert — der Umrechner benötigt JavaScript, um aktuelle Wechselkurse zu laden. Die Beschreibung und die FAQ oben gelten weiterhin.",
+ "fr": "JavaScript est désactivé — le convertisseur a besoin de JavaScript pour récupérer les taux de change en direct. La description et la FAQ ci-dessus restent valables.",
+ "es": "JavaScript está desactivado — el conversor necesita JavaScript para obtener los tipos de cambio en vivo. La descripción y las preguntas frecuentes de arriba siguen siendo válidas.",
+ "pt": "O JavaScript está desativado — o conversor precisa de JavaScript para obter as taxas de câmbio ao vivo. A descrição e as perguntas frequentes acima continuam válidas.",
+ "ru": "JavaScript отключён — конвертеру нужен JavaScript для загрузки актуальных курсов. Описание и ответы на вопросы выше остаются в силе.",
+ "zh": "JavaScript 已被禁用——换算器需要 JavaScript 才能获取实时汇率。上方的说明和常见问题仍然适用。",
+ "ja": "JavaScriptが無効です — コンバーターがリアルタイム為替レートを取得するにはJavaScriptが必要です。上記の説明とFAQは引き続き有効です。",
+ "ko": "JavaScript가 비활성화되어 있습니다 — 변환기가 실시간 환율을 가져오려면 JavaScript가 필요합니다. 위의 설명과 FAQ는 계속 유효합니다.",
+ "ar": "جافاسكريبت معطّل — يحتاج محوّل العملات إلى جافاسكريبت لجلب أسعار الصرف المباشرة. الوصف والأسئلة الشائعة أعلاه لا يزالان ساريين.",
+ "hi": "JavaScript अक्षम है — लाइव विनिमय दरें प्राप्त करने के लिए कनवर्टर को JavaScript की आवश्यकता है। ऊपर का विवरण और सामान्य प्रश्न अभी भी लागू हैं।",
+ "id": "JavaScript dinonaktifkan — konverter memerlukan JavaScript untuk mengambil kurs terkini. Deskripsi dan FAQ di atas tetap berlaku.",
+ "ms": "JavaScript dilumpuhkan — penukar memerlukan JavaScript untuk mendapatkan kadar semasa. Penerangan dan Soalan Lazim di atas masih terpakai.",
+ "tl": "Naka-disable ang JavaScript — kailangan ng converter ng JavaScript upang makuha ang mga live na exchange rate. Mananatiling may bisa ang paglalarawan at FAQ sa itaas.",
+ "it": "JavaScript è disattivato — il convertitore ha bisogno di JavaScript per ottenere i tassi di cambio in tempo reale. La descrizione e le FAQ sopra restano valide.",
+ "nl": "JavaScript is uitgeschakeld — de omrekenner heeft JavaScript nodig om actuele wisselkoersen op te halen. De beschrijving en FAQ hierboven blijven geldig.",
+ "pl": "JavaScript jest wyłączony — przelicznik potrzebuje JavaScript, aby pobrać aktualne kursy walut. Opis i FAQ powyżej pozostają aktualne.",
+ "uk": "JavaScript вимкнено — конвертеру потрібен JavaScript для завантаження актуальних курсів. Опис і поширені запитання вище залишаються чинними.",
+ "sv": "JavaScript är inaktiverat — omvandlaren behöver JavaScript för att hämta aktuella växelkurser. Beskrivningen och FAQ ovan gäller fortfarande.",
+ "th": "JavaScript ถูกปิดใช้งาน — เครื่องแปลงสกุลเงินต้องใช้ JavaScript เพื่อดึงอัตราแลกเปลี่ยนแบบเรียลไทม์ คำอธิบายและคำถามที่พบบ่อยด้านบนยังคงมีผล",
+ "lo": "JavaScript ຖືກປິດໃຊ້ງານ — ຕົວແປງສະກຸນເງິນຕ້ອງໃຊ້ JavaScript ເພື່ອດຶງອັດຕາແລກປ່ຽນສົດໆ. ຄຳອະທິບາຍ ແລະ ຄຳຖາມທີ່ພົບເລື້ອຍຂ້າງເທິງຍັງມີຜົນບັງຄັບ.",
+ "vi": "JavaScript đang bị tắt — bộ chuyển đổi cần JavaScript để tải tỷ giá trực tuyến. Phần mô tả và câu hỏi thường gặp ở trên vẫn còn hiệu lực.",
+ "el": "Η JavaScript είναι απενεργοποιημένη — ο μετατροπέας χρειάζεται JavaScript για να αντλήσει ζωντανές ισοτιμίες. Η περιγραφή και οι συχνές ερωτήσεις παραμένουν σε ισχύ.",
+ "bn": "JavaScript নিষ্ক্রিয় — লাইভ বিনিময় হার আনতে কনভার্টারের JavaScript প্রয়োজন। উপরের বিবরণ এবং সাধারণ প্রশ্নগুলি এখনও প্রযোজ্য।",
+ "fa": "جاوااسکریپت غیرفعال است — مبدل برای دریافت نرخ ارز لحظه‌ای به جاوااسکریپت نیاز دارد. توضیحات و پرسش‌های متداول بالا همچنان معتبر هستند.",
+ "cs": "JavaScript je zakázán — převodník potřebuje JavaScript k načtení aktuálních kurzů. Popis a FAQ výše zůstávají v platnosti.",
+ "ro": "JavaScript este dezactivat — convertorul are nevoie de JavaScript pentru a prelua cursurile valutare în timp real. Descrierea și întrebările frecvente de mai sus rămân valabile.",
+ "da": "JavaScript er deaktiveret — omregneren kræver JavaScript for at hente aktuelle valutakurser. Beskrivelsen og ofte stillede spørgsmål ovenfor gælder stadig.",
+}
+
+UI_PAGEUPDATED = {
+ "en": "Page updated: {d}",
+ "tr": "Sayfa güncellendi: {d}",
+ "de": "Seite aktualisiert: {d}",
+ "fr": "Page mise à jour : {d}",
+ "es": "Página actualizada: {d}",
+ "pt": "Página atualizada: {d}",
+ "ru": "Страница обновлена: {d}",
+ "zh": "页面更新于：{d}",
+ "ja": "ページの更新日：{d}",
+ "ko": "페이지 업데이트: {d}",
+ "ar": "آخر تحديث للصفحة: {d}",
+ "hi": "पृष्ठ अपडेट: {d}",
+ "id": "Halaman diperbarui: {d}",
+ "ms": "Halaman dikemas kini: {d}",
+ "tl": "Na-update ang pahina: {d}",
+ "it": "Pagina aggiornata: {d}",
+ "nl": "Pagina bijgewerkt: {d}",
+ "pl": "Strona zaktualizowana: {d}",
+ "uk": "Сторінку оновлено: {d}",
+ "sv": "Sidan uppdaterad: {d}",
+ "th": "อัปเดตหน้านี้: {d}",
+ "lo": "ອັບເດດໜ້ານີ້: {d}",
+ "vi": "Trang được cập nhật: {d}",
+ "el": "Ενημέρωση σελίδας: {d}",
+ "bn": "পৃষ্ঠা আপডেট: {d}",
+ "fa": "آخرین به‌روزرسانی صفحه: {d}",
+ "cs": "Stránka aktualizována: {d}",
+ "ro": "Pagina actualizată: {d}",
+ "da": "Side opdateret: {d}",
+}
+
+for _k, _v in UI_NOSCRIPT.items():
+    UI.setdefault(_k, {})["noscript"] = _v
+for _k, _v in UI_PAGEUPDATED.items():
+    UI.setdefault(_k, {})["pageUpdated"] = _v

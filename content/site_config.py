@@ -15,7 +15,7 @@ BASE = "https://fxverter.com/"
 # deep content is written and reviewed.
 INDEXED_LANGS = ["en", "zh", "de", "fr", "es", "pt", "ja"]
 
-# Currency pages promoted to search engines (41 mainstream currencies).
+# Currency pages promoted to search engines (56 mainstream currencies).
 # Every page outside this list stays online and usable but noindexed.
 INDEXED_CURRENCIES = [
     "USD", "EUR", "GBP", "JPY", "CNY", "CHF", "CAD", "AUD", "TRY", "INR",
@@ -23,6 +23,9 @@ INDEXED_CURRENCIES = [
     "DKK", "CZK", "PLN", "HUF", "RON", "BGN", "IDR", "ILS", "PHP", "MYR",
     "RUB",
     "ISK", "AED", "SAR", "VND", "PKR", "NGN", "EGP", "TWD", "ARS", "CLP",
+    # second batch: high-interest emerging-market / pegged currencies
+    "UAH", "QAR", "KWD", "MAD", "BDT", "LKR", "KZT", "GEL", "AZN",
+    "ETB", "GHS", "KES", "TZS", "XOF", "XAF",
 ]
 
 # Currencies covered by the ECB reference-rate set (Frankfurter time series)

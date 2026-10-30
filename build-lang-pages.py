@@ -19,6 +19,7 @@ from content.supporters import SUPPORTERS
 from content.currencies import CURRENCY_INFO
 from content.currency_articles import CURRENCY_ARTICLES
 from content.currency_articles_l10n import ARTICLES_L10N
+from content.pair_pages import PAIRS, PAIR_UI, PAIR_CONTENT
 from content.guide_articles_l10n import GUIDE_L10N
 from content.guide_articles_de import GUIDE_L10N as GUIDE_DE
 from content.guide_articles_fr import GUIDE_L10N as GUIDE_FR
@@ -59,11 +60,55 @@ for _guide_lang in ("tr", "ru", "ko", "ar", "hi", "id", "ms", "tl", "it",
     except ImportError:
         pass
 
+# second content batch: 15 additional currencies (articles + translations),
+# their pair-page copy and the new guides — every module is optional so the
+# build works before a language's translations land
+try:
+    from content.currency_articles_b2_en import ARTICLES_B2 as _ART_B2_EN
+    CURRENCY_ARTICLES.update(_ART_B2_EN)
+except ImportError:
+    pass
+for _b2_lang in ("zh", "de", "fr", "es", "pt", "ja"):
+    try:
+        _m2 = __import__("content.currency_articles_b2_" + _b2_lang, fromlist=["ARTICLES_B2"])
+        ARTICLES_L10N.setdefault(_b2_lang, {}).update(_m2.ARTICLES_B2)
+    except ImportError:
+        pass
+for _b2_lang in ("zh", "de", "fr", "es", "pt", "ja"):
+    try:
+        _gm2 = __import__("content.guide_articles_b2_" + _b2_lang, fromlist=["GUIDE_L10N_B2"])
+        GUIDE_L10N.setdefault(_b2_lang, {}).update(_gm2.GUIDE_L10N_B2)
+    except ImportError:
+        pass
+for _pp_lang in ("zh", "de", "fr", "es", "pt", "ja"):
+    try:
+        _pm = __import__("content.pair_pages_l10n_" + _pp_lang, fromlist=["PAIR_CONTENT_L10N", "PAIR_UI_L10N"])
+        PAIR_CONTENT.setdefault(_pp_lang, {}).update(_pm.PAIR_CONTENT_L10N)
+        PAIR_UI.setdefault(_pp_lang, {}).update(_pm.PAIR_UI_L10N)
+    except ImportError:
+        pass
+
 # per-language <title>/<meta description> templates for secondary pages
 for _l, _m in PAGE_META.items():
     CONTENT_UI.setdefault(_l, {}).update(_m)
 
 BASE = "https://fxverter.com/"
+
+BUILD_DATE = datetime.date.today().isoformat()
+
+
+def breadcrumb_schema(items):
+    """BreadcrumbList JSON-LD. items: (name, url_or_None) from the root."""
+    els = []
+    for i, (name, url) in enumerate(items, 1):
+        el = {"@type": "ListItem", "position": i, "name": name}
+        if url:
+            el["item"] = url
+        els.append(el)
+    return ('<script type="application/ld+json">\n'
+            + json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList",
+                          "itemListElement": els}, ensure_ascii=False)
+            + '\n</script>')
 
 CF_BEACON = ('<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" '
              "data-cf-beacon='{\"token\": \"c616c0616b1341d6b1e4930665891a63\"}'></script>")
@@ -166,14 +211,15 @@ def unesc(s):
 def write_text(path, text):
     """Write with retry: real-time AV / Windows Search briefly lock freshly
     written files (5-10s), which surfaces as a random OSError 22 when the
-    build rewrites ~4400 pages in one run."""
-    for attempt in range(10):
+    build rewrites ~4400 pages in one run. 15 attempts x 2s tolerates the
+    occasional longer lock."""
+    for attempt in range(15):
         try:
             with open(path, "w", encoding="utf-8", newline="\n") as fh:
                 fh.write(text)
             return
         except OSError:
-            if attempt == 9:
+            if attempt == 14:
                 raise
             time.sleep(2)
 
@@ -364,6 +410,12 @@ for code, t in langs.items():
                 lambda m, v=UI[code]["swapTitle"]: m.group(1) + v + m.group(2))
     page = sub1(page, r'(id="refreshBtn" onclick="refreshRates\(\)" title=")[^"]*(">)',
                 lambda m, v=UI[code]["refreshTitle"]: m.group(1) + v + m.group(2))
+    # noscript notice, localized — JS-less visitors otherwise see English on
+    # every language page
+    _ns = UI.get(code, {}).get("noscript")
+    if _ns:
+        page = sub1(page, r'(<noscript>\s*<p[^>]*>).*?(</p>)',
+                    lambda m: m.group(1) + html_lib.escape(_ns) + m.group(2))
 
     # fixed language for the page runtime; select navigates between directories
     page = page.replace("applyLang(detectLang());", f"applyLang('{code}');", 1)
@@ -485,6 +537,7 @@ td.r,th.r{text-align:right}
 .trust-links a:hover{border-color:var(--teal);color:var(--teal);text-decoration:none}
 .cur-article{margin-top:1.6rem;border-top:1px solid var(--border);padding-top:1.2rem;text-align:left}
 .cur-article p{color:var(--muted2);font-size:0.85rem;line-height:1.75;margin-bottom:0.7rem}
+.updstamp{color:var(--muted);font-size:0.72rem;margin-top:1rem}
 .cur-article ul{padding-left:1.15rem;margin:0 0 0.8rem}
 .cur-article li{color:var(--muted2);font-size:0.84rem;line-height:1.8}
 .cur-article details{border:1px solid var(--border);border-radius:10px;background:var(--surface2);margin-bottom:0.45rem}
@@ -1047,6 +1100,27 @@ def build_currency_page(code, en_name, lang="en"):
                                    ensure_ascii=False)
                       + '\n</script>')
 
+    # "page updated" stamp on pages that carry a long-form article
+    updstamp = ""
+    if article_html:
+        _upd = UI.get(lang, UI["en"]).get("pageUpdated", "Page updated: {d}").replace("{d}", BUILD_DATE)
+        updstamp = f'<p class="updstamp">{html_lib.escape(_upd)}</p>'
+
+    # links to this currency's pair pages (rendered only where pair content exists)
+    pair_links = ""
+    if lang in PAIR_CONTENT:
+        _pl = " ".join(
+            f'<a href="{f.lower()}-to-{t.lower()}/">{f} → {t}</a>'
+            for f, t in PAIRS if code in (f, t))
+        if _pl:
+            pair_links = f'<div class="links" aria-label="Popular conversions">{_pl}</div>'
+
+    breadcrumb = breadcrumb_schema([
+        (C["backHome"], home),
+        (C["allCurrencies"], f"{BASE}{dirpart}currencies/"),
+        (f"{name} ({code})", None),
+    ])
+
     # relative path back to the site root (for sw.js registration)
     root_up = "../../" if at_root else "../../../"
     tools = tools_bar(lang, f"currencies/{code.lower()}/", root_up)
@@ -1103,11 +1177,13 @@ def build_currency_page(code, en_name, lang="en"):
   "name": "{cur_title}",
   "description": "{cur_desc}",
   "inLanguage": "{lang}",
+  "dateModified": "{BUILD_DATE}",
   "isPartOf": {{"@type": "WebSite", "name": "Fxverter", "url": "{BASE}"}},
   "about": {{"@type": "Thing", "name": "{name}"}}
 }}
 </script>
 {faq_schema}
+{breadcrumb}
 <script src="https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{code.lower()}.min.json" defer></script>
 {CUR_PAGE_CSS}
 {THEME_HELPERS}
@@ -1139,7 +1215,9 @@ def build_currency_page(code, en_name, lang="en"):
     <tbody id="rt"></tbody>
   </table>
   <div class="links" aria-label="Other currencies">{major_links}</div>
+  {pair_links}
   {article_html}
+  {updstamp}
 </main>
 {trust_foot}
 <p class="disc">{C["disclaimer"]} · <a href="{home}">Fxverter</a></p>
@@ -1158,6 +1236,13 @@ def build_cur_index(lang="en"):
     idx_items = "".join(
         f'<li><a href="{c.lower()}/">{c} — {CURRENCY_INFO.get(c, {}).get("name", dict(CURRENCIES).get(c, c))}</a></li>'
         for c, n in CURRENCIES)
+    # popular-pair links: only where this language has pair-page content
+    pair_block = ""
+    if lang in PAIR_CONTENT:
+        _pl = " ".join(
+            f'<a href="{f.lower()}-to-{t.lower()}/">{f} → {t}</a>' for f, t in PAIRS)
+        pair_block = (f'<h2 style="margin-top:1.6rem">{PAIR_UI.get(lang, PAIR_UI["en"])["pairMorePairs"]}</h2>'
+                      f'<div class="links" aria-label="Popular conversions">{_pl}</div>')
     home = BASE if at_root else BASE + f"{lang}/"
     up = "../" if at_root else "../../"
     indexed = lang in INDEXED_LANGS
@@ -1194,6 +1279,7 @@ def build_cur_index(lang="en"):
 <ul style="columns:2;-webkit-columns:2;gap:1.5rem;padding-left:1.2rem;font-size:0.85rem;line-height:1.9" aria-label="Currency list">
 {idx_items}
 </ul>
+{pair_block}
 </main>
 {trust_foot}
 <script>
@@ -1227,6 +1313,258 @@ for lang in CONTENT_UI:
         os.makedirs(d, exist_ok=True)
         write_text(os.path.join(d, "index.html"), build_currency_page(code, en_name, lang))
         cur_pages += 1
+
+# ═══════════════════════════════════════════════════════
+# PAIR PAGES (/currencies/usd-to-eur/) — one page per pair per language
+# that has PAIR_CONTENT. A build-time snapshot rate (ECB/Frankfurter) fills
+# the amount tables for crawlers; the converter itself always fetches live.
+# ═══════════════════════════════════════════════════════
+
+def _fmt_rate(v):
+    if v >= 100:
+        return f"{v:,.2f}"
+    if v >= 1:
+        return f"{v:.4f}"
+    return f"{v:.6f}"
+
+def _fmt_amt(v):
+    if v >= 1000:
+        return f"{v:,.0f}"
+    if v >= 1:
+        return f"{v:,.2f}"
+    return f"{v:.4f}"
+
+def fetch_static_rates():
+    """One build-time snapshot of every pair's base currency from Frankfurter.
+    All pilot pairs are ECB currencies; a failed fetch simply means the
+    snapshot tables are skipped and the page relies on the live converter."""
+    import urllib.request
+    rates = {}
+    for f in sorted({f for f, _t in PAIRS}):
+        tos = sorted({t for ff, t in PAIRS if ff == f})
+        try:
+            req = urllib.request.Request(
+                f"https://api.frankfurter.dev/v1/latest?from={f}&to={','.join(tos)}",
+                headers={"User-Agent": "fxverter-build/1.0"})
+            with urllib.request.urlopen(req, timeout=15) as r:
+                data = json.loads(r.read().decode())
+            for t, v in (data.get("rates") or {}).items():
+                rates[(f, t)] = v
+        except Exception:
+            continue
+    return rates
+
+STATIC_RATES = fetch_static_rates()
+
+PAIR_AMTS = [1, 5, 10, 25, 50, 100, 500, 1000, 5000]
+
+def build_pair_page(f, t, lang):
+    key = f"{f}-{t}"
+    PC = PAIR_CONTENT[lang][key]
+    U = PAIR_UI.get(lang, PAIR_UI["en"])
+    C = CONTENT_UI.get(lang, CONTENT_UI["en"])
+    fname = CURRENCY_INFO.get(f, {}).get("name", f)
+    tname = CURRENCY_INFO.get(t, {}).get("name", t)
+    f_flag = CURRENCY_INFO.get(f, {}).get("flag", "🏳️")
+    t_flag = CURRENCY_INFO.get(t, {}).get("flag", "🏳️")
+
+    at_root = (lang == "en")
+    dirpart = "" if at_root else f"{lang}/"
+    home = BASE if at_root else BASE + f"{lang}/"
+    canon = f"{BASE}{dirpart}currencies/{f.lower()}-to-{t.lower()}/"
+    slug = f"{f.lower()}-to-{t.lower()}"
+    indexed = lang in INDEXED_LANGS
+    if indexed:
+        pair_langs = [l for l in INDEXED_LANGS if key in PAIR_CONTENT.get(l, {})]
+        hreflangs = "\n".join(
+            f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}currencies/{slug}/">'
+            for l in pair_langs)
+        hreflangs += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}currencies/{slug}/">'
+    else:
+        hreflangs = ""
+
+    rate = STATIC_RATES.get((f, t))
+    snap = ""
+    tables = ""
+    if rate:
+        snap = (f'<p class="updstamp" style="margin:-0.5rem 0 1.2rem">1 {f} = {_fmt_rate(rate)} {t} · '
+                f'{html_lib.escape(U["pairAsOf"].replace("{d}", BUILD_DATE))}</p>')
+        rows_f = "".join(
+            f'<tr><td>{_fmt_amt(a)} {f}</td><td class="r">{_fmt_amt(a * rate)} {t}</td></tr>'
+            for a in PAIR_AMTS)
+        rows_t = "".join(
+            f'<tr><td>{_fmt_amt(a)} {t}</td><td class="r">{_fmt_amt(a / rate)} {f}</td></tr>'
+            for a in PAIR_AMTS)
+        tables = (f'<h2>{html_lib.escape(U["pairAmounts"].replace("{f}", f).replace("{t}", t))}</h2>\n'
+                  f'<table aria-label="{f} to {t}"><thead><tr><th>{f}</th><th class="r">{t}</th></tr></thead>'
+                  f'<tbody>{rows_f}</tbody></table>\n'
+                  f'<h2>{html_lib.escape(U["pairReverse"].replace("{f}", f).replace("{t}", t))}</h2>\n'
+                  f'<table aria-label="{t} to {f}"><thead><tr><th>{t}</th><th class="r">{f}</th></tr></thead>'
+                  f'<tbody>{rows_t}</tbody></table>')
+
+    intro = "\n".join(f"<p>{p}</p>" for p in PC["intro"])
+    faq_items = "".join(
+        f'\n  <details><summary>{html_lib.escape(q, quote=False)}</summary><p>{html_lib.escape(a, quote=False)}</p></details>'
+        for q, a in PC["faq"])
+    faq_schema = ('<script type="application/ld+json">\n'
+                  + json.dumps({"@context": "https://schema.org", "@type": "FAQPage",
+                                "mainEntity": [{"@type": "Question", "name": q,
+                                                "acceptedAnswer": {"@type": "Answer", "text": a}}
+                                               for q, a in PC["faq"]]}, ensure_ascii=False)
+                  + '\n</script>')
+
+    cur_links = " ".join(
+        f'<a href="../{c.lower()}/">{c}</a>' for c in (f, t))
+    other_pairs = " ".join(
+        f'<a href="{ff.lower()}-to-{tt.lower()}/">{ff} → {tt}</a>'
+        for ff, tt in PAIRS if (ff, tt) != (f, t))
+    intro_head = U["pairIntroHead"].replace("{f}", fname).replace("{t}", tname)
+    more_head = U.get("pairMorePairs", "More currency pairs")
+
+    breadcrumb = breadcrumb_schema([
+        (C["backHome"], home),
+        (C["allCurrencies"], f"{BASE}{dirpart}currencies/"),
+        (f"{f} to {t}", None),
+    ])
+
+    root_up = "../../" if at_root else "../../../"
+    tools = tools_bar(lang, f"currencies/{slug}/", root_up)
+    trust_foot = trust_foot_html(lang, dirpart)
+
+    page_js = f"""<script>
+const PF = {json.dumps(f)}, PT = {json.dumps(t)};
+const NF = new Intl.NumberFormat(document.documentElement.lang || 'en', {{maximumFractionDigits: 4}});
+let RATE = null;
+function fmt(v){{ try {{ return NF.format(v); }} catch(e){{ return String(v); }} }}
+function pairCalc(v){{
+  const a = parseFloat(String(v).replace(/,/g, '.'));
+  const out = document.getElementById('out');
+  if (!isFinite(a) || !RATE) {{ out.textContent = ''; return; }}
+  out.textContent = fmt(a) + ' ' + PF + ' = ' + fmt(a * RATE) + ' ' + PT;
+}}
+async function pairRate(){{
+  const st = document.getElementById('st');
+  try {{
+    const r = await fetch('https://api.frankfurter.dev/v1/latest?from=' + PF + '&to=' + PT);
+    const j = await r.json();
+    if (j && j.rates && j.rates[PT]) {{ RATE = j.rates[PT]; st.textContent = {json.dumps(C.get("ratesLoaded", ""))}; return; }}
+    throw 0;
+  }} catch(e) {{
+    try {{
+      const r2 = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/' + PF.toLowerCase() + '.min.json');
+      const j2 = await r2.json();
+      const v2 = j2 && j2[PF.toLowerCase()] && j2[PF.toLowerCase()][PT.toLowerCase()];
+      if (v2) {{ RATE = v2; st.textContent = {json.dumps(C.get("ratesLoaded", ""))}; return; }}
+      throw 0;
+    }} catch(e2) {{
+      try {{
+        const r3 = await fetch('https://api.exchangerate-api.com/v4/latest/' + PF);
+        const j3 = await r3.json();
+        const v3 = j3 && j3.rates && j3.rates[PT];
+        if (v3) {{ RATE = v3; st.textContent = {json.dumps(C.get("ratesLoaded", ""))}; return; }}
+        throw 0;
+      }} catch(e3) {{ st.textContent = {json.dumps(C.get("ratesFail", ""))}; }}
+    }}
+  }}
+  const inp = document.getElementById('amt');
+  if (inp && inp.value) pairCalc(inp.value);
+}}
+pairRate();
+</script>"""
+
+    return f"""<!DOCTYPE html>
+<html lang="{lang}"{' dir="rtl"' if lang in ('ar', 'fa') else ''}>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{html_lib.escape(PC["title"], quote=True)} | Fxverter</title>
+<meta name="description" content="{html_lib.escape(PC["description"], quote=True)}">
+<link rel="canonical" href="{canon}">
+{hreflangs}
+{robots_meta(indexed)}
+<meta name="theme-color" content="#0d0d14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="{BASE}manifest.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fxverter">
+<meta property="og:url" content="{canon}">
+<meta property="og:title" content="{html_lib.escape(PC["title"], quote=True)}">
+<meta property="og:description" content="{html_lib.escape(PC["description"], quote=True)}">
+<meta property="og:image" content="{BASE}og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "{canon}#page",
+  "url": "{canon}",
+  "name": "{html_lib.escape(PC["title"], quote=True)}",
+  "description": "{html_lib.escape(PC["description"], quote=True)}",
+  "inLanguage": "{lang}",
+  "dateModified": "{BUILD_DATE}",
+  "isPartOf": {{"@type": "WebSite", "name": "Fxverter", "url": "{BASE}"}},
+  "about": [
+    {{"@type": "Thing", "name": "{html_lib.escape(fname, quote=True)}"}},
+    {{"@type": "Thing", "name": "{html_lib.escape(tname, quote=True)}"}}
+  ]
+}}
+</script>
+{faq_schema}
+{breadcrumb}
+{CUR_PAGE_CSS}
+{THEME_HELPERS}
+{CF_BEACON}
+</head>
+<body>
+{tools}
+<div class="home"><a href="{home}">{C["backHome"]}</a> · <a href="../">{C["allCurrencies"]}</a></div>
+<main class="cur-card">
+  <div class="cur-head">
+    <div class="cur-flag" aria-hidden="true">{f_flag}{t_flag}</div>
+    <div>
+      <h1>{html_lib.escape(PC["h1"], quote=False)}</h1>
+      <div class="sub">{html_lib.escape(fname, quote=True)} ({f}) → {html_lib.escape(tname, quote=True)} ({t})</div>
+    </div>
+  </div>
+  <h2>{html_lib.escape(U["pairConvert"], quote=False)}</h2>
+  <div class="ratebox">
+    <input type="text" inputmode="decimal" id="amt" placeholder="{C["calcPlaceholder"]} {f}" oninput="pairCalc(this.value)">
+    <div class="out" id="out"></div>
+    <div class="status" id="st">{C["loading"]}</div>
+  </div>
+  <h2>{html_lib.escape(U["pairRateHead"], quote=False)}</h2>
+  {snap}
+  {tables}
+  <h2>{html_lib.escape(intro_head, quote=False)}</h2>
+  <section class="cur-article" style="border-top:none;padding-top:0;margin-top:0.4rem">
+  {intro}
+  </section>
+  <section class="cur-article">
+  <h2>{TRUST_OVERRIDES.get("curFaq", {}).get(lang, C.get("curFaq", "Frequently asked questions"))}</h2>{faq_items}
+  </section>
+  <h2>{html_lib.escape(U["pairCurLinks"], quote=False)}</h2>
+  <div class="links" aria-label="Currency pages">{cur_links}</div>
+  <h2>{html_lib.escape(more_head, quote=False)}</h2>
+  <div class="links" aria-label="Other pairs">{other_pairs}</div>
+</main>
+{trust_foot}
+<p class="disc">{C["disclaimer"]} · <a href="{home}">Fxverter</a></p>
+{page_js}
+</body>
+</html>"""
+
+
+pair_pages_count = 0
+for _plang in sorted(PAIR_CONTENT):
+    for _pf, _pt in PAIRS:
+        if f"{_pf}-{_pt}" not in PAIR_CONTENT[_plang]:
+            continue
+        _pd = os.path.join("currencies", f"{_pf.lower()}-to-{_pt.lower()}") if _plang == "en" \
+            else os.path.join(_plang, "currencies", f"{_pf.lower()}-to-{_pt.lower()}")
+        os.makedirs(_pd, exist_ok=True)
+        write_text(os.path.join(_pd, "index.html"), build_pair_page(_pf, _pt, _plang))
+        pair_pages_count += 1
+print(f"generated {pair_pages_count} pair pages")
 
 # ── guides: canonical English markdown + localized article modules ──
 GUIDE_CSS = CUR_PAGE_CSS
@@ -1288,6 +1626,7 @@ def _guide_page(slug, lang, title, desc, sections):
     url = f"{BASE}{prefix}guides/{slug}/"
     home = BASE if lang == "en" else f"{BASE}{lang}/"
     all_guides = f"{BASE}{prefix}guides/"
+    indexed = lang in INDEXED_LANGS
     title_attr = html_lib.escape(title, quote=True)
     desc_attr = html_lib.escape(desc, quote=True)
     article_data = json.dumps({
@@ -1298,12 +1637,18 @@ def _guide_page(slug, lang, title, desc, sections):
         "author": {"@type": "Person", "name": "Seyyid Kadir"},
         "publisher": {"@type": "Organization", "name": "Fxverter", "url": BASE},
         "mainEntityOfPage": url,
+        "dateModified": BUILD_DATE,
     }, ensure_ascii=False).replace("</", "<\\\\/")
     lang_links = "\n".join(
         f'<link rel="alternate" hreflang="{l}" href="{BASE}{"" if l == "en" else l + "/"}guides/{slug}/">'
         for l in INDEXED_LANGS if slug in GUIDE_L10N.get(l, {}) or l == "en")
     if lang_links:
         lang_links += f'\n<link rel="alternate" hreflang="x-default" href="{BASE}guides/{slug}/">'
+    breadcrumb = breadcrumb_schema([
+        (C["backHome"], home),
+        (C["allGuides"], all_guides),
+        (title, None),
+    ])
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -1313,7 +1658,9 @@ def _guide_page(slug, lang, title, desc, sections):
 <meta name="description" content="{desc_attr}">
 <link rel="canonical" href="{url}">
 {lang_links}
+{robots_meta(indexed)}
 <script type="application/ld+json">{article_data}</script>
+{breadcrumb}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d0d14">
 {GUIDE_CSS}
@@ -1741,14 +2088,35 @@ for _lang in CONTENT_UI:
         add_beacon(os.path.join(_lang, "guides"))
 
 # sitemap: indexed pages only — root + indexed language homes + indexed
-# currencies (in every indexed language) + guides + support + trust pages.
-# Everything else is served but noindexed and deliberately left out here.
-lastmod = datetime.date.today().isoformat()
+# currencies (in every indexed language) + pair pages + guides + support +
+# trust pages. Everything else is served but noindexed and deliberately left
+# out here. lastmod is derived from the mtime of the source files that feed
+# each section, so it only moves when the content actually changed.
 
-def _u(loc, priority, changefreq="weekly"):
+import glob as _glob
+
+def _sec_date(*paths):
+    ds = [datetime.date.fromtimestamp(os.path.getmtime(p)) for p in paths if os.path.exists(p)]
+    return max(ds).isoformat() if ds else BUILD_DATE
+
+_home_lastmod = _sec_date("index.html", "page_content.py",
+                          os.path.join("content", "ui_strings.py"),
+                          os.path.join("content", "content_ui.py"))
+_cur_lastmod = _sec_date(os.path.join("content", "currencies.py"),
+                         *_glob.glob(os.path.join("content", "currency_articles*.py")),
+                         os.path.join("content", "about_l10n.py"),
+                         os.path.join("content", "sub_l10n.py"))
+_guide_lastmod = _sec_date(*_glob.glob(os.path.join("guides", "*.md")),
+                           *_glob.glob(os.path.join("content", "guide_articles*.py")))
+_pair_lastmod = _sec_date(*_glob.glob(os.path.join("content", "pair_pages*.py")))
+_trust_lastmod = _sec_date(*_glob.glob(os.path.join("content", "trust_l10n*.py")),
+                           os.path.join("content", "supporters.py"))
+
+def _u(loc, priority, changefreq="weekly", lastmod=None):
+    lm = lastmod or BUILD_DATE
     return f"""  <url>
     <loc>{loc}</loc>
-    <lastmod>{lastmod}</lastmod>
+    <lastmod>{lm}</lastmod>
     <changefreq>{changefreq}</changefreq>
     <priority>{priority}</priority>
   </url>"""
@@ -1759,38 +2127,45 @@ if _missing:
     raise SystemExit(f"INDEXED_CURRENCIES contains unknown codes: {sorted(_missing)}")
 indexed_cur = [c for c, _n in CURRENCIES if c in INDEXED_CURRENCIES]
 
-urls = [_u(BASE, "1.0")]
+urls = [_u(BASE, "1.0", lastmod=_home_lastmod)]
 for c in INDEXED_LANGS:
     if c != "en":
-        urls.append(_u(f"{BASE}{c}/", "0.9"))
-urls.append(_u(f"{BASE}currencies/", "0.8"))
+        urls.append(_u(f"{BASE}{c}/", "0.9", lastmod=_home_lastmod))
+urls.append(_u(f"{BASE}currencies/", "0.8", lastmod=_cur_lastmod))
 for code in indexed_cur:
-    urls.append(_u(f"{BASE}currencies/{code.lower()}/", "0.7"))
+    urls.append(_u(f"{BASE}currencies/{code.lower()}/", "0.7", lastmod=_cur_lastmod))
 for l in INDEXED_LANGS:
     if l == "en":
         continue
-    urls.append(_u(f"{BASE}{l}/currencies/", "0.6"))
+    urls.append(_u(f"{BASE}{l}/currencies/", "0.6", lastmod=_cur_lastmod))
     for code in indexed_cur:
-        urls.append(_u(f"{BASE}{l}/currencies/{code.lower()}/", "0.6"))
+        urls.append(_u(f"{BASE}{l}/currencies/{code.lower()}/", "0.6", lastmod=_cur_lastmod))
+# currency pair pages, English canonical + languages with translated content
+for _pf, _pt in PAIRS:
+    _pkey = f"{_pf}-{_pt}"
+    urls.append(_u(f"{BASE}currencies/{_pf.lower()}-to-{_pt.lower()}/", "0.6", "monthly", _pair_lastmod))
+    for l in INDEXED_LANGS:
+        if l != "en" and _pkey in PAIR_CONTENT.get(l, {}):
+            urls.append(_u(f"{BASE}{l}/currencies/{_pf.lower()}-to-{_pt.lower()}/", "0.5", "monthly", _pair_lastmod))
 # localized guide indexes and translated articles + English canonical pages
 for l in INDEXED_LANGS:
     if l != "en":
-        urls.append(_u(f"{BASE}{l}/guides/", "0.5", "monthly"))
-urls.append(_u(f"{BASE}guides/", "0.5", "monthly"))
+        urls.append(_u(f"{BASE}{l}/guides/", "0.5", "monthly", _guide_lastmod))
+urls.append(_u(f"{BASE}guides/", "0.5", "monthly", _guide_lastmod))
 for _entry in guide_entries:
     slug = _entry["slug"]
-    urls.append(_u(f"{BASE}guides/{slug}/", "0.6", "monthly"))
+    urls.append(_u(f"{BASE}guides/{slug}/", "0.6", "monthly", _guide_lastmod))
     for l in INDEXED_LANGS:
         if l != "en" and slug in GUIDE_L10N.get(l, {}):
-            urls.append(_u(f"{BASE}{l}/guides/{slug}/", "0.6", "monthly"))
+            urls.append(_u(f"{BASE}{l}/guides/{slug}/", "0.6", "monthly", _guide_lastmod))
 # support + trust pages (About / Privacy / Terms / Contact)
 for l in INDEXED_LANGS:
     dp = "" if l == "en" else f"{l}/"
     if l != "en":
-        urls.append(_u(f"{BASE}{l}/support/", "0.4", "monthly"))
+        urls.append(_u(f"{BASE}{l}/support/", "0.4", "monthly", _trust_lastmod))
     for p in TRUST_PAGES:
-        urls.append(_u(f"{BASE}{dp}{p}/", "0.4", "monthly"))
-urls.append(_u(f"{BASE}support/", "0.4", "monthly"))
+        urls.append(_u(f"{BASE}{dp}{p}/", "0.4", "monthly", _trust_lastmod))
+urls.append(_u(f"{BASE}support/", "0.4", "monthly", _trust_lastmod))
 write_text("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
              + "\n".join(urls) + "\n</urlset>\n")
 

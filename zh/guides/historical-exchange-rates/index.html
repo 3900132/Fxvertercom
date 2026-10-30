@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>历史汇率——如何查询，何时用得上 | Fxverter</title>
+<meta name="description" content="报税、开票或做研究时需要过去某一天的汇率？本文讲解如何查找可靠的历史汇率：以各国央行的参考汇率为准、周末与节假日采用前一个营业日的惯例、不同数据来源为何彼此不一致，以及如何正确使用这些数据、保留出处，让模糊的记忆变成经得起审计的精确数字。">
+<link rel="canonical" href="https://fxverter.com/zh/guides/historical-exchange-rates/">
+<link rel="alternate" hreflang="en" href="https://fxverter.com/guides/historical-exchange-rates/">
+<link rel="alternate" hreflang="zh" href="https://fxverter.com/zh/guides/historical-exchange-rates/">
+<link rel="alternate" hreflang="de" href="https://fxverter.com/de/guides/historical-exchange-rates/">
+<link rel="alternate" hreflang="fr" href="https://fxverter.com/fr/guides/historical-exchange-rates/">
+<link rel="alternate" hreflang="es" href="https://fxverter.com/es/guides/historical-exchange-rates/">
+<link rel="alternate" hreflang="pt" href="https://fxverter.com/pt/guides/historical-exchange-rates/">
+<link rel="alternate" hreflang="ja" href="https://fxverter.com/ja/guides/historical-exchange-rates/">
+<link rel="alternate" hreflang="x-default" href="https://fxverter.com/guides/historical-exchange-rates/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "历史汇率——如何查询，何时用得上", "description": "报税、开票或做研究时需要过去某一天的汇率？本文讲解如何查找可靠的历史汇率：以各国央行的参考汇率为准、周末与节假日采用前一个营业日的惯例、不同数据来源为何彼此不一致，以及如何正确使用这些数据、保留出处，让模糊的记忆变成经得起审计的精确数字。", "author": {"@type": "Person", "name": "Seyyid Kadir"}, "publisher": {"@type": "Organization", "name": "Fxverter", "url": "https://fxverter.com/"}, "mainEntityOfPage": "https://fxverter.com/zh/guides/historical-exchange-rates/", "dateModified": "2026-10-30"}</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "← Fxverter — 货币换算器", "item": "https://fxverter.com/zh/"}, {"@type": "ListItem", "position": 2, "name": "全部指南", "item": "https://fxverter.com/zh/guides/"}, {"@type": "ListItem", "position": 3, "name": "历史汇率——如何查询，何时用得上"}]}
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💱%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0d0d14">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d0d14;--surface:#16161f;--surface2:#1e1e2a;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);--text:#eeeef5;--muted:#6868a0;--muted2:#9898c0;--teal:#5ecfb0;--syne:'Syne',sans-serif;--dm:'DM Sans',sans-serif;--shadow:0 24px 60px rgba(0,0,0,0.45)}
+html.theme-light{--bg:#f4f6fa;--surface:#ffffff;--surface2:#eef1f6;--border:rgba(13,13,20,0.10);--border2:rgba(13,13,20,0.18);--text:#1a1c26;--muted:#6b7192;--muted2:#4a5170;--teal:#14967a;--shadow:0 18px 44px rgba(13,20,40,0.14)}
+@media (prefers-color-scheme: light){:root:not(.theme-force-dark){--bg:#f4f6fa;--surface:#ffffff;--surface2:#eef1f6;--border:rgba(13,13,20,0.10);--border2:rgba(13,13,20,0.18);--text:#1a1c26;--muted:#6b7192;--muted2:#4a5170;--teal:#14967a;--shadow:0 18px 44px rgba(13,20,40,0.14)}}
+body{background:var(--bg);font-family:var(--dm);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1rem 1rem 3rem;font-size:1rem}
+a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
+.home{color:var(--muted2);font-size:0.75rem;margin-bottom:1rem}
+.home a{color:var(--muted2)}
+.cur-card{width:100%;max-width:560px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:1.6rem 1.7rem;box-shadow:0 24px 60px rgba(0,0,0,0.45)}
+.cur-head{display:flex;align-items:center;gap:0.9rem;margin-bottom:1rem}
+.cur-flag{font-size:2.6rem;line-height:1}
+.cur-head h1{font-family:var(--syne);font-size:1.6rem;font-weight:700;line-height:1.15}
+.cur-head .sub{color:var(--muted);font-size:0.82rem;margin-top:0.2rem}
+.facts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0.6rem;margin:1rem 0 1.2rem}
+.fact{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:0.7rem 0.9rem}
+.fact .k{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-family:var(--syne)}
+.fact .v{font-size:0.92rem;margin-top:0.15rem}
+.about{color:var(--muted2);font-size:0.86rem;line-height:1.65;margin-bottom:1.3rem}
+h2{font-family:var(--syne);font-size:1rem;font-weight:700;margin:1.3rem 0 0.6rem}
+.ratebox{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem;margin-bottom:1.2rem}
+.ratebox input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--syne);font-size:1.15em;font-weight:700;padding:0.6rem 0.8rem;outline:none}
+.ratebox input:focus{border-color:rgba(94,207,176,0.4)}
+.ratebox .out{font-family:var(--syne);font-size:1.3em;font-weight:700;color:var(--teal);margin-top:0.7rem;min-height:1.5em}
+.ratebox .err{color:#e87a9a;font-size:0.8rem;margin-top:0.5rem;display:none}
+table{width:100%;border-collapse:collapse;font-size:0.82rem}
+td,th{padding:0.45rem 0.5rem;border-bottom:1px solid var(--border);text-align:left}
+th{color:var(--muted);font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;font-family:var(--syne)}
+td.r,th.r{text-align:right}
+.status{color:var(--muted);font-size:0.72rem;margin-top:0.6rem}
+.links{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:1rem}
+.links a{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.28rem 0.75rem;font-size:0.72rem;color:var(--muted2)}
+.links a:hover{border-color:var(--teal);color:var(--teal);text-decoration:none}
+.disc{color:var(--muted);font-size:0.68rem;margin-top:1.4rem;max-width:560px;text-align:center}
+.trust-links{display:flex;flex-wrap:wrap;gap:0.3rem;justify-content:center;margin:1.1rem auto 0;max-width:560px;padding:0}
+.trust-links a{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.28rem 0.65rem;font-size:0.7rem;color:var(--muted2);text-decoration:none}
+.trust-links a:hover{border-color:var(--teal);color:var(--teal);text-decoration:none}
+.cur-article{margin-top:1.6rem;border-top:1px solid var(--border);padding-top:1.2rem;text-align:left}
+.cur-article p{color:var(--muted2);font-size:0.85rem;line-height:1.75;margin-bottom:0.7rem}
+.updstamp{color:var(--muted);font-size:0.72rem;margin-top:1rem}
+.cur-article ul{padding-left:1.15rem;margin:0 0 0.8rem}
+.cur-article li{color:var(--muted2);font-size:0.84rem;line-height:1.8}
+.cur-article details{border:1px solid var(--border);border-radius:10px;background:var(--surface2);margin-bottom:0.45rem}
+.cur-article summary{cursor:pointer;padding:0.55rem 0.8rem;font-weight:500;color:var(--text);font-size:0.82rem;list-style:none}
+.cur-article summary::-webkit-details-marker{display:none}
+.cur-article details p{padding:0 0.8rem 0.7rem;margin:0}
+.chart-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem;margin-bottom:1.2rem}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.25rem 0.5rem;margin-bottom:0.5rem}
+.chart-head .t{font-family:var(--syne);font-size:0.8rem;font-weight:700}
+.chart-head .d{font-size:0.68rem;color:var(--muted);margin-top:0.35rem}
+.chart-head .chg{font-size:0.75rem;font-weight:500}
+.chg.up{color:#e87a9a}.chg.down{color:#5ecfb0}
+html.theme-light .chg.up{color:#c74e70}html.theme-light .chg.down{color:#14967a}
+@media(prefers-color-scheme:light){:root:not(.theme-force-dark) .chg.up{color:#c74e70}:root:not(.theme-force-dark) .chg.down{color:#14967a}}
+.spark{width:100%;height:110px;display:block}
+.spark .ln{fill:none;stroke:var(--teal);stroke-width:2}
+.spark .area{fill:var(--teal);opacity:0.10;stroke:none}
+.spark text{fill:var(--muted);font-size:9px;font-family:'DM Sans',sans-serif}
+.rng{display:flex;gap:0.25rem;flex-shrink:0}
+.rngbtn{background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:0.14rem 0.5rem;font-family:var(--dm);font-size:0.65rem;color:var(--muted2);cursor:pointer;line-height:1.2}
+.rngbtn:hover{border-color:var(--teal);color:var(--teal)}
+.rngbtn.active{background:var(--teal);border-color:var(--teal);color:#fff}
+.trend-none{color:var(--muted);font-size:0.78rem;margin:0 0 1rem}
+.fxtheme{position:fixed;top:0.8rem;right:0.9rem;z-index:50;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0.3rem 0.55rem;color:var(--muted2);cursor:pointer;font-size:0.85rem;line-height:1}
+.fxtheme:hover{border-color:var(--teal);color:var(--teal)}
+@media(max-width:480px){.facts{grid-template-columns:1fr}}
+</style><style>
+.tools-bar{width:100%;max-width:560px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.4rem 0.5rem;margin-bottom:1rem}
+.tools-left{display:flex;gap:0.3rem;min-width:0}
+.tool-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.3rem 0.55rem;font-family:var(--dm);font-weight:500;color:var(--muted2);cursor:pointer;transition:all 0.15s;line-height:1;font-size:0.85rem}
+.tool-btn:hover{border-color:var(--border2);color:var(--text)}
+.tool-btn.ok{border-color:var(--teal);color:var(--teal)}
+.lang-sel{appearance:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.32rem 0.7rem;font-family:var(--dm);font-size:0.72rem;font-weight:500;color:var(--muted2);outline:none;cursor:pointer;max-width:150px;min-width:0;margin-inline-start:auto}
+.lang-sel:hover{border-color:var(--border2);color:var(--text)}
+.lang-sel option{background:#1e1e2a;color:#eeeef5}
+html.theme-light .lang-sel option{background:#ffffff;color:#1a1c26}
+@media (prefers-color-scheme: light){:root:not(.theme-force-dark) .lang-sel option{background:#ffffff;color:#1a1c26}}
+.fb-panel{display:none;width:100%;max-width:560px;margin:0 0 1rem;background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:1rem;box-shadow:0 18px 44px rgba(0,0,0,0.35)}
+.fb-panel.open{display:block}
+.fb-panel input[type="text"],.fb-panel input[type="email"],.fb-panel textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--dm);font-size:0.85rem;padding:0.55rem 0.8rem;margin-bottom:0.55rem;outline:none}
+.fb-panel input:focus,.fb-panel textarea:focus{border-color:var(--teal)}
+.fb-panel textarea{resize:vertical;min-height:70px}
+.fb-err{display:none;color:#e87a9a;font-size:0.78rem;margin-bottom:0.4rem}
+.fb-err a{color:#e87a9a;font-weight:600}
+.fb-panel button[type="submit"]{width:100%;background:var(--teal);border:none;border-radius:10px;color:#fff;font-family:var(--syne);font-weight:700;font-size:0.85rem;padding:0.6rem;cursor:pointer}
+.fb-panel button[type="submit"]:disabled{opacity:0.6;cursor:default}
+.fb-ok{display:none;text-align:center;color:var(--teal);font-family:var(--syne);font-weight:700;font-size:1rem;padding:0.8rem 0}
+.inst-banner{position:fixed;left:50%;bottom:1.1rem;transform:translate(-50%,130%);width:min(94vw,430px);display:flex;align-items:center;gap:0.9rem;background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:0.9rem 1rem;box-shadow:0 18px 44px rgba(0,0,0,0.35);z-index:80;transition:transform 0.35s ease,opacity 0.35s ease;opacity:0}
+html.theme-light .inst-banner{box-shadow:0 18px 44px rgba(13,20,40,0.14)}
+@media(prefers-color-scheme:light){:root:not(.theme-force-dark) .inst-banner{box-shadow:0 18px 44px rgba(13,20,40,0.14)}}
+.inst-banner.show{transform:translate(-50%,0);opacity:1}
+.inst-icon{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--teal),#2e8f78);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.inst-body{flex:1;min-width:0}
+.inst-title{font-family:var(--syne);font-weight:700;font-size:0.85rem;color:var(--text)}
+.inst-desc{color:var(--muted2);font-size:0.72rem;line-height:1.4;margin-top:0.15rem}
+.inst-actions{flex-shrink:0;display:flex;flex-direction:column;gap:0.4rem;align-items:stretch}
+.inst-go{background:var(--teal);border:none;border-radius:9px;padding:0.42rem 0.9rem;font-family:var(--syne);font-weight:700;font-size:0.72rem;color:#fff;cursor:pointer;white-space:nowrap}
+.inst-go:hover{filter:brightness(1.08)}
+.inst-go:disabled{opacity:0.6;cursor:default}
+.inst-later{background:none;border:none;padding:0.1rem;font-family:var(--dm);font-size:0.68rem;color:var(--muted);cursor:pointer}
+.inst-later:hover{color:var(--muted2)}
+.inst-ios{display:none;margin-top:0.45rem;color:var(--muted2);font-size:0.72rem;line-height:1.5}
+.inst-ios.show{display:block}
+.inst-ios .ios-tap{color:var(--teal);font-weight:600}
+@media(max-width:400px){.inst-icon{width:38px;height:38px;font-size:1.2rem}}
+</style>
+<script>
+(function () {
+  var mode = 'auto';
+  try { mode = localStorage.getItem('fxTheme') || 'auto'; } catch (e) {}
+  if (mode === 'light') document.documentElement.classList.add('theme-light');
+  if (mode === 'dark')  document.documentElement.classList.add('theme-force-dark');
+  window.__fxTheme = mode;
+})();
+</script>
+<script>
+function fxToggleTheme() {
+  var order = ['auto', 'light', 'dark'];
+  var next = order[(order.indexOf(window.__fxTheme || 'auto') + 1) % 3];
+  window.__fxTheme = next;
+  try { localStorage.setItem('fxTheme', next); } catch (e) {}
+  var root = document.documentElement;
+  root.classList.remove('theme-light', 'theme-force-dark');
+  if (next === 'light') root.classList.add('theme-light');
+  if (next === 'dark')  root.classList.add('theme-force-dark');
+  var btn = document.getElementById('fxThemeBtn');
+  if (btn) btn.textContent = next === 'light' ? '☀' : next === 'dark' ? '☾' : '◐';
+}
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c616c0616b1341d6b1e4930665891a63"}'></script>
+</head>
+<body>
+<div class="tools-bar"><div class="tools-left"><button type="button" class="tool-btn" id="fxThemeBtn" onclick="fxToggleTheme()" title="Theme">◐</button><button type="button" class="tool-btn" id="shareBtn" onclick="fxShare()" title="分享">⤴</button><button type="button" class="tool-btn" id="feedbackBtn" onclick="fxOpenFeedback()" title="意见反馈">✎</button><button type="button" class="tool-btn" id="installBtn" onclick="fxInstall()" title="安装应用" hidden>⤓</button></div><select class="lang-sel" id="langSel" onchange="fxLangGo(this.value)" aria-label="Language"><option value="en">English</option><option value="tr">Türkçe</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="pt">Português</option><option value="ru">Русский</option><option value="zh" selected>中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="tl">Filipino</option><option value="it">Italiano</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="uk">Українська</option><option value="sv">Svenska</option><option value="th">ไทย</option><option value="lo">ພາສາລາວ</option><option value="vi">Tiếng Việt</option><option value="el">Ελληνικά</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="da">Dansk</option></select></div>
+<div class="fb-panel" id="fbPanel"><form id="fbForm" onsubmit="fxSendFeedback(); return false;"><input type="text" id="fbName" maxlength="60" autocomplete="off" placeholder="姓名"><input type="email" id="fbEmail" maxlength="80" placeholder="邮箱（选填）"><textarea id="fbMsg" rows="4" maxlength="1000" placeholder="写下你的反馈…"></textarea><input type="checkbox" style="display:none" tabindex="-1" autocomplete="off"><div class="fb-err" id="fbErr"></div><button type="submit" id="fbSendBtn">发送反馈</button></form><div class="fb-ok" id="fbOk" style="display:none">✓ 反馈已发送——感谢！</div></div>
+<div class="inst-banner" id="instBanner" role="dialog" aria-labelledby="instTitleText" aria-describedby="instDescText" hidden><div class="inst-icon" aria-hidden="true">💱</div><div class="inst-body"><div class="inst-title" id="instTitleText">安装 Fxverter</div><div class="inst-desc" id="instDescText">添加到主屏幕，随时使用——离线也能用。</div><div class="inst-ios" id="instIosHint">点按分享按钮，然后选择「添加到主屏幕」。</div></div><div class="inst-actions"><button class="inst-go" id="instGoBtn" type="button" onclick="instGo()">安装</button><button class="inst-later" id="instLaterBtn" type="button" onclick="fxInstLater()">暂不安装</button></div></div>
+<script>const FX_PAGE = {"cur": "zh", "sub": "guides/historical-exchange-rates/", "base": "https://fxverter.com/", "root": "../../../"};
+const FX_T = {"share": "分享", "shared": "链接已复制！", "feedback": "意见反馈", "fbPlaceholder": "写下你的反馈…", "fbSend": "发送反馈", "fbOk": "✓ 反馈已发送——感谢！", "fbEmpty": "请先写下反馈内容。", "fbFail": "发送失败——请重试或直接发邮件给我们。", "install": "安装应用", "instTitle": "安装 Fxverter", "instDesc": "添加到主屏幕，随时使用——离线也能用。", "instBtn": "安装", "instLater": "暂不安装", "instIos": "点按分享按钮，然后选择「添加到主屏幕」。"};
+const FX_MAIL = {u: "hello", d: "fxverter.com"};
+function fxShare() {
+  const url = location.href.split('#')[0];
+  const done = () => { const b = document.getElementById('shareBtn'); if (!b) return; b.classList.add('ok'); b.title = FX_T.shared; setTimeout(() => { b.classList.remove('ok'); b.title = FX_T.share; }, 1400); };
+  if (navigator.share) { navigator.share({ title: document.title, url: url }).catch(() => {}); return; }
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done).catch(() => fxCopyFallback(url, done));
+  else fxCopyFallback(url, done);
+}
+function fxCopyFallback(text, done) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); done(); } catch (e) {}
+  document.body.removeChild(ta);
+}
+function fxOpenFeedback() {
+  const panel = document.getElementById('fbPanel');
+  if (!panel) return;
+  panel.classList.toggle('open');
+  if (panel.classList.contains('open')) {
+    const m = document.getElementById('fbMsg');
+    if (m) { m.placeholder = FX_T.fbPlaceholder; m.focus(); }
+  }
+}
+function fxSendFeedback() {
+  const name = document.getElementById('fbName').value.trim();
+  const email = document.getElementById('fbEmail').value.trim();
+  const message = document.getElementById('fbMsg').value.trim();
+  const err = document.getElementById('fbErr');
+  if (!message) { err.style.display = 'block'; err.textContent = FX_T.fbEmpty; return; }
+  err.style.display = 'none';
+  const btn = document.getElementById('fbSendBtn');
+  btn.disabled = true;
+  fetch('https://splitforms.com/api/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      access_key: '99f9b5e09c4b43b3a7eef1f22ff09722',
+      subject: 'Fxverter feedback',
+      name: name || 'anonymous',
+      email: email || '',
+      message: message
+    })
+  }).then(r => {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    document.getElementById('fbForm').style.display = 'none';
+    document.getElementById('fbOk').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('fbPanel').classList.remove('open');
+      document.getElementById('fbForm').style.display = '';
+      document.getElementById('fbOk').style.display = 'none';
+      document.getElementById('fbMsg').value = '';
+    }, 2500);
+  }).catch(() => {
+    err.style.display = 'block';
+    // plain-text message + a JS-assembled mailto (keeps the address out of static HTML)
+    var m = document.createElement('span');
+    var a = document.createElement('a');
+    a.href = 'mailto:' + FX_MAIL.u + '@' + FX_MAIL.d;
+    a.textContent = FX_MAIL.u + '@' + FX_MAIL.d;
+    m.textContent = FX_T.fbFail + ' ';
+    err.textContent = '';
+    err.appendChild(m); err.appendChild(a);
+  }).finally(() => { btn.disabled = false; });
+}
+function fxLangGo(c) {
+  if (c === FX_PAGE.cur) return;
+  try { sessionStorage.setItem('fxLangUI', c); } catch (e) {}
+  if (location.protocol.indexOf('http') !== 0) return; // offline use: nothing to switch
+  // same page in the chosen language, relative to the current origin;
+  // pages without a localized variant fall back to that language's home page
+  location.assign(location.origin + '/' + (c === 'en' ? '' : c + '/') + (FX_PAGE.sub || ''));
+}
+(function () {
+  // PWA install banner: shown on a 12h cycle for visitors who haven't
+  // installed the app. Browsers only fire beforeinstallprompt on their own
+  // heuristics (and iOS never fires it), so the banner is shown by us.
+  if (location.protocol.indexOf('http') !== 0) return;
+  var LS_KEY = 'fxInstLast', INTERVAL = 12 * 60 * 60 * 1000;
+  function isStandalone() {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  }
+  var deferred = null;
+  var btn = document.getElementById('installBtn');
+  var banner = document.getElementById('instBanner');
+  var iosShow = /iphone|ipad|ipod/i.test(navigator.userAgent) &&
+                /applewebkit/i.test(navigator.userAgent) && !/crios|fxios|edgios|opr[//]/i.test(navigator.userAgent);
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+    if (btn) { btn.hidden = false; btn.title = FX_T.install; }
+  });
+  function applyTexts() {
+    if (!banner) return;
+    banner.querySelector('#instTitleText').textContent = FX_T.instTitle;
+    banner.querySelector('#instDescText').textContent = FX_T.instDesc;
+    banner.querySelector('#instGoBtn').textContent = FX_T.instBtn;
+    banner.querySelector('#instLaterBtn').textContent = FX_T.instLater;
+    var h = banner.querySelector('#instIosHint');
+    h.textContent = '';
+    var i = FX_T.instIos.indexOf('Share');
+    if (i < 0) { h.textContent = FX_T.instIos; }
+    else {
+      h.appendChild(document.createTextNode(FX_T.instIos.slice(0, i)));
+      var s = document.createElement('span'); s.className = 'ios-tap'; s.textContent = 'Share';
+      h.appendChild(s);
+      h.appendChild(document.createTextNode(FX_T.instIos.slice(i + 5)));
+    }
+  }
+  function markShown() {
+    try { localStorage.setItem(LS_KEY, String(Date.now())); } catch (e) {}
+  }
+  function due() {
+    try { return Date.now() - Number(localStorage.getItem(LS_KEY) || 0) >= INTERVAL; } catch (e) { return false; }
+  }
+  function showBanner() {
+    if (!banner) return;
+    applyTexts();
+    banner.hidden = false;
+    requestAnimationFrame(function () { banner.classList.add('show'); });
+  }
+  window.fxHideInst = function () {
+    if (!banner) return;
+    banner.classList.remove('show');
+    setTimeout(function () { banner.hidden = true; }, 400);
+  };
+  window.fxInstLater = function () { window.fxHideInst(); markShown(); };
+  window.fxInstall = function () {
+    if (!deferred && !banner) return; // non-installable browser, nothing to offer
+    if (deferred) { showBanner(); return; } // native prompt available: open the banner
+    markShown();
+    showBanner();
+  };
+  window.instGo = function () {
+    markShown();
+    if (deferred) {
+      deferred.prompt();
+      deferred.userChoice.then(function (c) { deferred = null; if (c && c.outcome !== 'accepted') window.fxHideInst(); });
+      return;
+    }
+    if (iosShow) { var h = banner.querySelector('#instIosHint'); if (h) h.classList.add('show'); return; }
+    // no native prompt yet (e.g. fresh visit): wait briefly for beforeinstallprompt
+    var go = banner.querySelector('#instGoBtn');
+    if (go) { go.disabled = true; go.dataset.label = go.textContent; go.textContent = '…'; }
+    var t = setTimeout(function () { if (go) { go.disabled = false; go.textContent = go.dataset.label || '…'; } window.fxHideInst(); }, 8000);
+    var onEvt = function (e) {
+      clearTimeout(t); window.removeEventListener('beforeinstallprompt', onEvt);
+      e.preventDefault(); deferred = e;
+      if (go) { go.disabled = false; go.textContent = go.dataset.label || '…'; }
+      deferred.prompt();
+      deferred.userChoice.then(function () { deferred = null; });
+    };
+    window.addEventListener('beforeinstallprompt', onEvt);
+  };
+  window.addEventListener('appinstalled', function () {
+    deferred = null;
+    if (btn) btn.hidden = true;
+    window.fxHideInst();
+    try { localStorage.setItem(LS_KEY, 'installed'); } catch (e) {}
+  });
+  if (isStandalone()) return;
+  if (iosShow) { var h = banner && banner.querySelector('#instIosHint'); if (h) h.classList.add('show'); }
+  if (due()) {
+    setTimeout(function () {
+      if (deferred && !btn) return; // browser's own install UI is already available
+      showBanner(); markShown();
+    }, 4000);
+  }
+})();
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register(FX_PAGE.root + 'sw.js').catch(function () {});
+  });
+}
+(function () {
+  var btn = document.getElementById('fxThemeBtn');
+  if (btn && window.__fxTheme) btn.textContent = window.__fxTheme === 'light' ? '☀' : window.__fxTheme === 'dark' ? '☾' : '◐';
+})();</script>
+<div class="home"><a href="https://fxverter.com/zh/">← Fxverter — 货币换算器</a> · <a href="https://fxverter.com/zh/guides/">全部指南</a></div>
+<main class="cur-card">
+<h1>历史汇率——如何查询，何时用得上</h1>
+<article class="about" style="font-size:0.92rem;color:var(--text)">
+<p>汇率报价的是今天，但一些最重要的问题关于过去。给客户开票那天，美元兑欧元是多少？半年前订下那次旅行时，欧元花了多少？一种货币五年里究竟贬了多少？以下是如何正确查找和使用历史汇率。</p>
+<h2>你可能需要历史汇率的场合</h2>
+<ul><li><strong>报税</strong>：许多税务机关要求按交易当日（或年度平均汇率，视国家和税种而定）换算外币收入或收益。</li><li><strong>开票与记账</strong>：如果以外币开票，账簿按开票日的汇率记录金额，付款时的差额即汇兑损益。</li><li><strong>保险与理赔</strong>：海外损失通常按损失发生当日的汇率核定。</li><li><strong>研究与好奇</strong>：跨时期比较价格，只有用一致的汇率才有意义。</li></ul>
+<h2>从哪里获取可靠的历史汇率</h2>
+<p>使用最广的免费来源是<strong>央行参考汇率</strong>。欧洲央行公布约 30 种主要货币兑欧元的每日参考汇率，可追溯到 1999 年；许多国家的央行也公布自己的每日定价。Fxverter 的走势图正是建立在这类公开参考数据之上。</p>
+<p>挑选数据源时的几条经验：</p>
+<ul><li>整个计算<strong>使用同一个来源</strong>；混用来源会制造虚假的盈亏。</li><li>当心<strong>周末和节假日</strong>：参考汇率只在工作日发布。对周六的交易，多数惯例采用<strong>前一个工作日</strong>——先确认你的会计师或税务机关认可哪种惯例。</li><li>对实行<strong>官方盯住或多重汇率</strong>的货币，官方参考汇率可能与你实际支付的市价相去甚远。记下你用的是哪一个。</li><li>很冷门或很老的货币对，可能只存在<strong>经由第三种货币的交叉汇率</strong>（通常是美元或欧元）；这很正常，它们历来就是这样报价的。</li></ul>
+<h2>为什么不同来源对不上</h2>
+<p>在两个网站上查同一天，你常常会看到略有差异的数字。这很正常，原因有三：</p>
+<ul><li><strong>定价时点不同</strong>：欧洲央行参考汇率、伦敦下午四点定价、零售服务商的每日汇率，都叫“汇率”，却是在不同时点、按不同规则取的值。</li><li><strong>买价、卖价与中间价</strong>：历史序列通常是中间市场汇率，而你的小票上是含加价的客户汇率。</li><li><strong>平均窗口不同</strong>：“年度平均汇率”可以是每日汇率的简单平均，也可以是加权平均——结果略有差异。</li></ul>
+<p>对多数个人用途而言，差异很小。报税时，使用税务机关指定的来源；没有指定时，央行参考序列是站得住脚的默认选择。</p>
+<h2>正确读一张汇率表</h2>
+<p>一个网站显示 1 美元 = 0.92 欧元，另一个显示 1 欧元 = 1.087 美元——这是同一事实的两种写法。比较历史数据时，务必确认<strong>报价的方向</strong>以及哪种货币是基准。EUR/USD 上涨 10% 与 USD/EUR 上涨 10% 是完全不同的事件：前者是欧元升值，后者意味着美元下跌了将近整整 9.1%——因为取倒数之后的百分比并不对称。</p>
+<h2>长周期：历史能告诉你什么、不能告诉你什么</h2>
+<p>拉长到几年，货币走势图颇具戏剧性——新兴市场货币十年内可能对美元贬掉一半，而主要货币对在区间内震荡。三点提醒：</p>
+<ul><li><strong>过去的区间不是保证。</strong>那些“一直”在两个水平之间交易的货币对，曾多次突破区间——2022 年，EUR/USD 在高于平价二十年后跌到了平价。</li><li><strong>通胀比图表更重要。</strong>一种“币值稳定”的货币，如果国内物价翻了一倍，购买力仍然损失了一半。名义汇率和实际价值是两个问题。</li><li><strong>固定和管理汇率会礼貌地说谎。</strong>一条平坦的直线，可能意味着真正的稳定，也可能意味着黑市并不买账的管制汇率。对盯住汇率的货币，去找贬值新闻，别相信平坦的图。</li></ul>
+<h2>报税日期的实用流程</h2>
+<p>1. 记下确切的<strong>交易日期</strong>，以及你需要的<strong>货币对和方向</strong>。<br>2. 选定参考来源（税务机关或会计师偏好的那个，否则用央行序列）。<br>3. 如果那天是周末或节假日，按前一个工作日惯例处理。<br>4. 完成换算后，<strong>把来源、序列名称和日期的截图或笔记与凭证保存在一起</strong>。未来的你——或审计师——会想知道出处。</p>
+<p>历史汇率把模糊的记忆变成精确的数字。诀窍不在于找到数据，而在于使用同一个一致、可引用的来源，并写下你用的是哪一个。</p>
+</article>
+</main>
+<p class="disc">© 2026 Fxverter · <a href="https://fxverter.com/zh/">← Fxverter — 货币换算器</a></p>
+</body>
+</html>

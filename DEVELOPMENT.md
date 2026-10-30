@@ -1,13 +1,13 @@
 # Fxverter — 开发与内容维护指南
 
-> **当前状态（2026-09）**：本站曾被 Google AdSense 以"低价值内容"拒绝。已完成整改并通过 9 项终检：
-> 收录收缩（7 语言 en/zh/de/fr/es/pt/ja × 40 币种进搜索引擎，其余 noindex）、84 篇币种深度文章（12 旗舰币种 × 7 语言）、
-> 9 篇指南、35 个信任页（关于/隐私/条款/联系/反馈 × 7 语言）、支持页"赞助可乐"+ Creem 方案（creem-worker.js）、
-> llms.txt（GEO）、Service Worker v7。
-> **下一步**：① 部署上线（git push）→ ② 等 2–4 周重新抓取 → ③ 重新申请 AdSense → ④ 过审后加 ads.txt、补 28 个非旗舰币种文章、指南翻译。
+> **当前状态（2026-10 第三轮整改）**：在第二轮基础上再扩容——收录币种 40 → **56**（新增 UAH/QAR/KWD/MAD/BDT/LKR/KZT/GEL/AZN/ETB/GHS/KES/TZS/XOF/XAF，全部有深度文章 × 7 语言）、
+> 新增 **15 个货币对页面**（/currencies/usd-to-eur/ 等，7 语言，含构建时 ECB 快照汇率表）、指南 9 → **13 篇**（新增 PayPal/Wise/银行对比、留学汇学费、
+> 历史汇率查询、恶性通胀解读，全部翻译到 7 种收录语言）、全站页面补 **BreadcrumbList 结构化数据**、sitemap **lastmod 按源文件真实修改时间生成**、
+> noscript 提示语 29 语言本地化、修复 22 种非收录语言指南页**漏加 noindex** 的问题、sw v9。
+> **下一步**：① 部署上线（git push，跑一次 submit-indexnow.py）→ ② 等 2–4 周重新抓取 → ③ 重新申请 AdSense → ④ 过审后加广告代码；此后按季评估放开第二梯队语言（建议顺序 ko/ru/hi/ar/it/th，前提是先给该语言补深度文章）。
 > ⚠️ 大改动记得把 `sw.js` 缓存版本号 +1。改任何源文件后跑 `python build-lang-pages.py`。
 
-Fxverter 是一个纯静态多语言换汇工具站：首页（29 语言页，其中 7 种收录进搜索引擎）+ 141 个币种页（40 个收录，12 个旗舰币种有深度文章 × 7 语言）+ 9 篇指南 + 35 个信任页（关于/隐私/条款/联系/反馈 × 7 语言）+ 支持页，共 4200+ 个页面。**你日常只编辑 10 个源文件，其余页面全部由构建脚本自动生成。**
+Fxverter 是一个纯静态多语言换汇工具站：首页（29 语言页，其中 7 种收录进搜索引擎）+ 141 个币种页（56 个收录，56 个有深度文章 × 7 语言）+ 15 个货币对页 × 7 语言 + 13 篇指南 + 35 个信任页（关于/隐私/条款/联系/反馈 × 7 语言）+ 支持页，共 4300+ 个页面（sitemap 约 650 URL）。**你日常只编辑 10 个源文件，其余页面全部由构建脚本自动生成。**
 
 ---
 
@@ -84,9 +84,11 @@ description: 一句话摘要             ← meta description
 普通段落        → 变成 <p>
 ```
 
+当前共 13 篇。翻译放在 `content/guide_articles_<lang>.py`（前 9 篇的老文件）和 `content/guide_articles_b2_<lang>.py`（后 4 篇新指南：paypal-wise-vs-bank-rates / paying-tuition-abroad / historical-exchange-rates / hyperinflation-and-your-money，字典名 `GUIDE_L10N_B2`），构建脚本自动合并；某语言缺某篇翻译时，该语言不生成那一篇（索引页会指到英文版）。只有收录语言才有翻译版进 sitemap。
+
 ### 6. `content/site_config.py` — 收录策略（谁进搜索引擎）
 
-控制哪些页面允许被搜索引擎收录：`INDEXED_LANGS`（收录语言，当前 7 种：en/zh/de/fr/es/pt/ja）、`INDEXED_CURRENCIES`（收录币种，当前 40 个）、`ECB_SET`（有趋势图数据的币种）、`TRUST_PAGES`（信任页）。**不在清单里的页面照常生成、照常可访问，但会被加上 `noindex, follow` 并且不进 sitemap.xml。** 过审后扩语言/转正币种，只需往这两个清单里加代码再重新构建；hreflang、robots meta、sitemap 全部自动跟着变。改配置后构建脚本会校验币种代码是否存在，写错会直接报错退出。
+控制哪些页面允许被搜索引擎收录：`INDEXED_LANGS`（收录语言，当前 7 种：en/zh/de/fr/es/pt/ja）、`INDEXED_CURRENCIES`（收录币种，当前 56 个）、`ECB_SET`（有趋势图数据的币种）、`TRUST_PAGES`（信任页）。**不在清单里的页面照常生成、照常可访问，但会被加上 `noindex, follow` 并且不进 sitemap.xml。** 过审后扩语言/转正币种，只需往这两个清单里加代码再重新构建；hreflang、robots meta、sitemap 全部自动跟着变。改配置后构建脚本会校验币种代码是否存在，写错会直接报错退出。
 
 ### 7. `content/trust_l10n.py` — 信任页内容（About/隐私/条款/联系）
 
@@ -94,11 +96,22 @@ description: 一句话摘要             ← meta description
 
 ### 8. `content/currency_articles.py` — 币种深度文章
 
-旗舰币种页的长文（简史/驱动因素/实用场景/热门兑换对 + 3 条 FAQ，FAQ 同时输出 FAQPage 结构化数据）。**英文原文写在这里**（12 个币种：USD、EUR、GBP、JPY、CNY、CHF、CAD、AUD、TRY、INR、MXN、BRL）。给新币种写文章照 USD 的结构抄即可；只做英文、暂不做翻译时，不用动构建脚本。
+旗舰币种页的长文（简史/驱动因素/实用场景/热门兑换对 + 3 条 FAQ，FAQ 同时输出 FAQPage 结构化数据）。**英文原文写在这里**（41 个币种），第二批 15 个币种在 `content/currency_articles_b2_en.py`（UAH/QAR/KWD/MAD/BDT/LKR/KZT/GEL/AZN/ETB/GHS/KES/TZS/XOF/XAF）——构建脚本把两个文件合并，文件里统一用 `ARTICLES_B2` 字典名（b2 文件）或 `CURRENCY_ARTICLES`（主文件）。给新币种写文章照 USD 的结构抄即可；只做英文、暂不做翻译时，不用动构建脚本。
 
 ### 9. `content/currency_articles_l10n.py` — 币种文章翻译
 
-`ARTICLES_L10N[lang][code]` 镜像英文条目的结构（sections + faq）。构建脚本在某个语言的币种页上**只要找到对应翻译就渲染**，没有翻译就保持该语言原有的简短简介——所以翻译可以一种语言或一个币种地逐步加，不用动构建逻辑。已收录语言：zh（12 个币种全）。注意：内容字符串里的内嵌引号用中文弯引号“”，不要用 ASCII `"`（会破坏 Python 字符串）。
+`ARTICLES_L10N[lang][code]` 镜像英文条目的结构（sections + faq）。构建脚本在某个语言的币种页上**只要找到对应翻译就渲染**，没有翻译就保持该语言原有的简短简介——所以翻译可以一种语言或一个币种地逐步加，不用动构建逻辑。已收录语言：zh（41 个币种全）。第二批 15 个币种的翻译按语言放在 `content/currency_articles_b2_<lang>.py`（zh/de/fr/es/pt/ja，字典名 `ARTICLES_B2`），构建脚本自动合并。注意：内容字符串里的内嵌引号用中文弯引号“”，不要用 ASCII `"`（会破坏 Python 字符串）。
+
+### 9+. 货币对页面（/currencies/usd-to-eur/）— `content/pair_pages.py`
+
+"USD to EUR" 这类搜索意图的落地页，是全站最大的长尾流量来源。结构：
+
+- `PAIRS`：15 组配对列表（USD→EUR/GBP/JPY/CNY/INR/CAD/AUD/CHF/MXN/PHP、EUR→GBP/CHF/PLN、GBP→JPY、AUD→JPY），每对每种有翻译的语言各生成一页，URL `/currencies/usd-to-eur/`（语言版 `/zh/currencies/usd-to-eur/`）
+- `PAIR_UI`：每语言一组脚手架文案（换算器标签、快照说明、金额表头等）
+- `PAIR_CONTENT`：每语言 × 每配对的 title/description/h1/intro×2 段/FAQ×2；翻译按语言放 `content/pair_pages_l10n_<lang>.py`（字典 `PAIR_CONTENT_L10N` + `PAIR_UI_L10N`），没有翻译的语言自动不生成该语言版本，币种页上的配对链接也自动不出现
+- 构建时脚本会向 Frankfurter（ECB）请求一次快照汇率，生成"常见金额对照表"和"1 X = ? Y"参考行（带"参考汇率截至 {日期}"标注）；换算器本身始终拉实时汇率。构建机器离线时页面自动退化为纯实时换算，不会报错
+
+页面上已带 WebPage + FAQPage + BreadcrumbList 结构化数据；币种页的"Popular conversions"链接区会自动挂上本币种参与的所有配对页链接（内部互链）。**扩配对**：往 `PAIRS` 加一组 (from, to)，再在 `PAIR_CONTENT` 补 7 种语言的文案即可（注意 from/to 必须都在 ECB_SET 里，否则没有快照数据）。
 
 保存 → 跑 `python build-lang-pages.py` → 文章自动出现在 /guides/ 索引和 sitemap。删除 .md 文件即删除文章（记得重跑构建并删除已生成的对应目录，或直接留着也无害，但建议删干净）。
 
@@ -118,7 +131,7 @@ description: 一句话摘要             ← meta description
 | 上线捐赠档位 | 构建脚本顶部 `SUPPORT_TIERS` 填 Creem 的 checkout 链接 | 重跑构建 |
 | 添加致谢名单 | `content/supporters.py` 加一条 | 重跑构建 |
 | 换反馈渠道 | 全局搜索 `splitforms.com` 替换 | 重跑构建 |
-| 强制用户刷新缓存 | `sw.js` 里 `fxcc-v3` 改成 `v4` | 推送即可 |
+| 强制用户刷新缓存 | `sw.js` 里缓存版本号 +1（当前 `fxcc-v9`） | 推送即可 |
 
 ---
 
@@ -222,9 +235,9 @@ python submit-indexnow.py            # 把 sitemap 里全部收录页推送给�
 python submit-indexnow.py --dry-run  # 只看 payload 不发送
 ```
 
-所有权靠根目录的密钥文件 `ebad7e82a81a05f950421869b7058a56.txt`（内容 = 文件名，已在仓库里），部署上去即自动完成验证，必应站长平台的 IndexNow 面板无需任何配置。脚本把 sitemap 的 413 个 URL 一次性 POST 给 `api.indexnow.org`（同时路由到 Bing / Yandex / Seznam / Naver，单次上限 1 万条）。返回 200/202 即成功；403/422 说明密钥文件还没部署上去。大改版后尤其要跑——它能让必应尽快用新快照替换旧数据（比如"标题重复"这类基于旧爬取的告警会随之消除）。
+所有权靠根目录的密钥文件 `ebad7e82a81a05f950421869b7058a56.txt`（内容 = 文件名，已在仓库里），部署上去即自动完成验证，必应站长平台的 IndexNow 面板无需任何配置。脚本把 sitemap 里的全部 URL 一次性 POST 给 `api.indexnow.org`（同时路由到 Bing / Yandex / Seznam / Naver，单次上限 1 万条）。返回 200/202 即成功；403/422 说明密钥文件还没部署上去。大改版后尤其要跑——它能让必应尽快用新快照替换旧数据（比如"标题重复"这类基于旧爬取的告警会随之消除）。
 
-**统计**：Cloudflare Web Analytics 代码已内置在全部 175 页（token 已配置）。登录 [dash.cloudflare.com](https://dash.cloudflare.com) → Web Analytics 即可看到访问量、国家、来源。
+**统计**：Cloudflare Web Analytics 代码已内置在全部页面（token 已配置）。登录 [dash.cloudflare.com](https://dash.cloudflare.com) → Web Analytics 即可看到访问量、国家、来源。
 
 ---
 
