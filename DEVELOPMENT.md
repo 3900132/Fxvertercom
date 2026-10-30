@@ -1,13 +1,14 @@
 # Fxverter — 开发与内容维护指南
 
 > **当前状态（2026-10 第三轮整改）**：在第二轮基础上再扩容——收录币种 40 → **56**（新增 UAH/QAR/KWD/MAD/BDT/LKR/KZT/GEL/AZN/ETB/GHS/KES/TZS/XOF/XAF，全部有深度文章）、
-> 新增 **15 个货币对页面**（/currencies/usd-to-eur/ 等，7 语言，含构建时 ECB 快照汇率表）、指南 9 → **13 篇**（新增 PayPal/Wise/银行对比、留学汇学费、
-> 历史汇率查询、恶性通胀解读，全部翻译到 7 种收录语言）、全站页面补 **BreadcrumbList 结构化数据**、sitemap **lastmod 按源文件真实修改时间生成**、
+> 新增 **15 个货币对页面**（/currencies/usd-to-eur/ 等，13 种收录语言，含构建时 ECB 快照汇率表）、指南 9 → **13 篇**（新增 PayPal/Wise/银行对比、留学汇学费、
+> 历史汇率查询、恶性通胀解读，全部翻译到 13 种收录语言）、全站页面补 **BreadcrumbList 结构化数据**、sitemap **lastmod 按源文件真实修改时间生成**、
 > noscript 提示语 29 语言本地化、修复 22 种非收录语言指南页**漏加 noindex** 的问题、sw v9。
-> **第四轮：收录语言 7 → 13**（新增 ko/ru/hi/ar/it/th）——每种语言补齐完整内容包（56 篇币种文章 + 15 配对页 + 13 篇指南全翻译）后加入 INDEXED_LANGS 转正，sitemap 651 → 1209 URL。> **下一步**：① 部署上线（git push，跑一次 submit-indexnow.py）→ ② 等 2–4 周重新抓取 → ③ 重新申请 AdSense → ④ 过审后加广告代码；剩余 16 种语言（tr/id/ms/tl/nl/pl/uk/sv/lo/vi/el/bn/fa/cs/ro/da）按季照同样流程扩。
+> **第四轮：收录语言 7 → 13**（新增 ko/ru/hi/ar/it/th）——每种语言补齐完整内容包（56 篇币种文章 + 15 配对页 + 13 篇指南全翻译）后加入 INDEXED_LANGS 转正，sitemap 651 → 1209 URL。
+> **下一步**：① 部署上线（git push，跑一次 submit-indexnow.py）→ ② 等 2–4 周重新抓取 → ③ 重新申请 AdSense → ④ 过审后加广告代码；剩余 16 种语言（tr/id/ms/tl/nl/pl/uk/sv/lo/vi/el/bn/fa/cs/ro/da）按季照同样流程扩。
 > ⚠️ 大改动记得把 `sw.js` 缓存版本号 +1。改任何源文件后跑 `python build-lang-pages.py`。
 
-Fxverter 是一个纯静态多语言换汇工具站：首页（29 语言页，其中 13 种收录进搜索引擎）+ 141 个币种页（56 个收录，56 个有深度文章 × 13 语言）+ 15 个货币对页 × 13 语言 + 13 篇指南 + 35 个信任页（关于/隐私/条款/联系/反馈 × 13 语言）+ 支持页，共 4300+ 个页面（sitemap 1209 URL）。**你日常只编辑 10 个源文件，其余页面全部由构建脚本自动生成。**
+Fxverter 是一个纯静态多语言换汇工具站：首页（29 语言页，其中 13 种收录进搜索引擎）+ 141 个币种页（56 个收录，56 个有深度文章 × 13 语言）+ 15 个货币对页 × 13 语言 + 13 篇指南 + 信任页（关于/隐私/条款/联系/反馈 × 29 语言）+ 支持页（29 语言），共 4600+ 个页面（sitemap 1209 URL）。**你日常只编辑 10 个源文件，其余页面全部由构建脚本自动生成。**
 
 ---
 
@@ -20,7 +21,7 @@ index.html              ─┐                  /  +  tr/ zh/ ja/ … 28 个语�
 page_content.py          ├─ python         currencies/ ×141 + 索引页（收录规则见 site_config.py）
 content/ui_strings.py    │  build-         guides/ 文章页 + 索引
 content/currencies.py    │  lang-          support/ 支持页（文案覆盖在 trust_l10n.py）
-content/currency_*.py    │  pages.py       about/ privacy/ terms/ contact/ feedback/ ×7 语言
+content/currency_*.py    │  pages.py       about/ privacy/ terms/ contact/ feedback/ ×29 语言
 guides/*.md             ─┘                 sitemap.xml（只含收录页）
 ```
 
@@ -92,7 +93,7 @@ description: 一句话摘要             ← meta description
 
 ### 7. `content/trust_l10n.py` — 信任页内容（About/隐私/条款/联系）
 
-四个信任页 × 7 种收录语言的正文，以及两个覆盖文案：`privacyNote`（页脚隐私注记，含广告披露和隐私政策链接）和 `supportIntro`/`supportDesc`（支持页开头与描述——去掉了过时的"无广告"说法）。给新增收录语言写信任页内容时，照现有语言的 dict 结构补一个语言键即可；没写的语言构建时自动跳过。
+四个信任页的正文——本体 7 种收录语言 + 22 个 drop-in 扩展文件 `content/trust_l10n_<lang>.py`（共 29 种语言），以及两个覆盖文案：`privacyNote`（页脚隐私注记，含广告披露和隐私政策链接）和 `supportIntro`/`supportDesc`（支持页开头与描述——去掉了过时的"无广告"说法）。给新增收录语言写信任页内容时，照现有语言的 dict 结构补一个语言键即可；没写的语言构建时自动跳过。
 
 ### 8. `content/currency_articles.py` — 币种深度文章
 
@@ -111,7 +112,7 @@ description: 一句话摘要             ← meta description
 - `PAIR_CONTENT`：每语言 × 每配对的 title/description/h1/intro×2 段/FAQ×2；翻译按语言放 `content/pair_pages_l10n_<lang>.py`（字典 `PAIR_CONTENT_L10N` + `PAIR_UI_L10N`），没有翻译的语言自动不生成该语言版本，币种页上的配对链接也自动不出现
 - 构建时脚本会向 Frankfurter（ECB）请求一次快照汇率，生成"常见金额对照表"和"1 X = ? Y"参考行（带"参考汇率截至 {日期}"标注）；换算器本身始终拉实时汇率。构建机器离线时页面自动退化为纯实时换算，不会报错
 
-页面上已带 WebPage + FAQPage + BreadcrumbList 结构化数据；币种页的"Popular conversions"链接区会自动挂上本币种参与的所有配对页链接（内部互链）。**扩配对**：往 `PAIRS` 加一组 (from, to)，再在 `PAIR_CONTENT` 补 7 种语言的文案即可（注意 from/to 必须都在 ECB_SET 里，否则没有快照数据）。
+页面上已带 WebPage + FAQPage + BreadcrumbList 结构化数据；币种页的"Popular conversions"链接区会自动挂上本币种参与的所有配对页链接（内部互链）。**扩配对**：往 `PAIRS` 加一组 (from, to)，再在 `PAIR_CONTENT` 补 13 种收录语言的文案即可（注意 from/to 必须都在 ECB_SET 里，否则没有快照数据）。
 
 保存 → 跑 `python build-lang-pages.py` → 文章自动出现在 /guides/ 索引和 sitemap。删除 .md 文件即删除文章（记得重跑构建并删除已生成的对应目录，或直接留着也无害，但建议删干净）。
 
@@ -322,7 +323,7 @@ Creem 是 **Merchant of Record（记录商户）**：它作为转售方为每笔
 SUPPORTERS_API = "https://fxverter-creem.<你的子域>.workers.dev/supporters"
 ```
 
-重新构建。此时支持页（7 种收录语言）自动出现两样东西：
+重新构建。此时支持页（29 种语言）自动出现两样东西：
 
 - **名单墙从 API 实时渲染**：`/supporters` 返回的 JSON 会替换静态兜底名单（`content/supporters.py` 的内容仍留在 HTML 里作 SEO/无 JS 兜底）
 - **"已经支持了？认领你的名单"表单**：买家填**支付邮箱 + 展示名（可匿名）**提交 → Worker 核对该邮箱 30 天内确有 Creem 支付记录 → 名字进入名单 → 刷新页面即可见。不配置 `SUPPORTERS_API` 时这两样都不会出现，页面保持纯静态
@@ -361,7 +362,7 @@ SUPPORTERS = [
 
 ### 8. 反馈表单（splitforms）
 
-- 独立页 `/feedback/`（7 种收录语言）：表单直接铺在页面上，提交到 `https://splitforms.com/api/submit`（access_key 已内置），后台登录 splitforms.com 查看收件
+- 独立页 `/feedback/`（29 种语言）：表单直接铺在页面上，提交到 `https://splitforms.com/api/submit`（access_key 已内置），后台登录 splitforms.com 查看收件
 - 首页/二级页工具栏的 ✎ 按钮是内嵌面板，提交地址相同
 - 相关文案位置：反馈页在 `trust_l10n.py` 的 `FEEDBACK`；联系页"更快的方式"段落指向 `/feedback/`
 

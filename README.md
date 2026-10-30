@@ -16,7 +16,8 @@ A free, multilingual online currency converter that runs entirely in your browse
   - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) — 170+ currencies, CDN-hosted, zero CORS
 - ⚡ **Smart caching** — rates are fetched once per session per base currency; missing pairs fall back to another source automatically
 - 📲 **Installable app (PWA)** with a guided install banner — offered once every 12 hours until installed or dismissed (with native install prompt on Android/desktop and "Add to Home Screen" guidance on iOS); works offline after install with the last known rates
-- 📊 **Per-currency pages** (e.g. [USD](https://fxverter.com/currencies/usd/)) with 30/90-day trend charts, quick facts and a calculator — available in all 29 languages
+- 📊 **Per-currency pages** (e.g. [USD](https://fxverter.com/currencies/usd/)) with 30/90-day trend charts, quick facts, a calculator and — on all 56 indexed currencies — a written deep-dive profile (history, drivers, practice, FAQ) in 13 languages
+- 🔀 **Currency-pair pages** (e.g. [USD to EUR](https://fxverter.com/currencies/usd-to-eur/)) — live converter, reference-rate snapshot with common-amount tables in both directions, and pair-specific FAQ in 13 languages
 - 📚 **Plain-language exchange-rate guides** (e.g. [how exchange rates work](https://fxverter.com/guides/))
 - 🌓 Light / dark / auto **theme**, 3-level **font-size control** (A / A+ / A++) for accessibility
 - 🔖 Saved currency pairs, share button, in-page feedback form
@@ -31,7 +32,7 @@ A free, multilingual online currency converter that runs entirely in your browse
 
 ## 🛠️ Development
 
-Ten source files generate the whole site (4200+ static pages); after editing any of them, run the build once:
+Source files generate the whole site (4600+ static pages); after editing any of them, run the build once:
 
 ```bash
 python build-lang-pages.py
@@ -46,16 +47,18 @@ python build-lang-pages.py
 | `content/currencies.py` | Currency profiles: flag, country, symbol, minor unit, about text |
 | `guides/*.md` | Exchange-rate guide articles |
 | `content/site_config.py` | Indexation policy: which languages/currencies are search-indexed; everything else is noindexed |
-| `content/trust_l10n.py` | About / Privacy / Terms / Contact / Feedback pages + support-page copy (7 languages) |
-| `content/currency_articles.py` | Long-form flagship currency articles (English, 12 currencies) |
-| `content/currency_articles_l10n.py` | Translations of the currency articles (zh / de / fr / es / pt / ja) |
+| `content/trust_l10n.py` | About / Privacy / Terms / Contact / Feedback pages + support-page copy (7 languages + 22 drop-in `trust_l10n_<lang>.py` extensions) |
+| `content/currency_articles.py` + `content/currency_articles_b2_en.py` | Long-form currency articles (English, 56 currencies) |
+| `content/currency_articles_l10n.py` + `content/*_b1a_<lang>.py` / `*_b1b_<lang>.py` / `*_b2_<lang>.py` | Currency-article translations (13 promoted languages, drop-in files per language) |
+| `content/pair_pages.py` + `content/pair_pages_l10n_<lang>.py` | Currency-pair pages ("USD to EUR"): pair list, per-language copy and UI strings |
+| `content/guide_articles_*.py` | Guide-article translations (drop-in per language) |
 | `creem-worker.js` | Optional Cloudflare Worker: Creem webhook → automatic supporters wall (see DEVELOPMENT.md) |
 
 See `DEVELOPMENT.md` for the full workflow (build, deploy to GitHub Pages with the `fxverter.com` CNAME, PWA notes, checklist).
 
 ## 🌐 Language versions
 
-Each language has its own directory (`/tr/`, `/zh/`, `/ja/`, …, 29 in total) with fully translated static HTML, linked via `rel="alternate" hreflang` — the SEO/GEO-friendly setup for search engines and AI crawlers.
+Each language has its own directory (`/tr/`, `/zh/`, `/ja/`, …, 29 in total) with fully translated static HTML. The 13 promoted languages (EN ZH DE FR ES PT JA KO RU HI AR IT TH) are search-indexed and interlinked via `rel="alternate" hreflang` — the SEO/GEO-friendly setup for search engines and AI crawlers; the remaining 16 stay online (noindexed) until their deep content is written.
 
 **EN** English · **TR** Türkçe · **DE** Deutsch · **FR** Français · **ES** Español · **PT** Português · **RU** Русский · **ZH** 中文 · **JA** 日本語 · **KO** 한국어 · **AR** العربية · **HI** हिन्दी · **ID** Bahasa Indonesia · **MS** Bahasa Melayu · **TL** Filipino · **IT** Italiano · **NL** Nederlands · **PL** Polski · **UK** Українська · **SV** Svenska · **TH** ไทย · **LO** ພາສາລາວ · **VI** Tiếng Việt · **EL** Ελληνικά · **BN** বাংলা · **FA** فارسی · **CS** Čeština · **RO** Română · **DA** Dansk
 
@@ -79,7 +82,8 @@ All exchange rates are **indicative only** and sourced from free, open APIs. Do 
   - [Fawaz Currency API](https://github.com/fawazahmed0/exchange-api) — 170+ 种货币，CDN 分发，零 CORS 限制
 - ⚡ **智能缓存** — 每个会话每种基准货币只请求一次；某数据源缺少的货币对会自动切换到其他源获取
 - 📲 **可安装应用（PWA）** — 带引导式安装横幅，未安装时每 12 小时提醒一次（可关闭）；Android/桌面调起浏览器原生安装弹窗，iOS 显示"添加到主屏幕"引导；安装后离线可用，显示最后一次缓存的汇率
-- 📊 **币种详情页**（如 [人民币 CNY](https://fxverter.com/zh/currencies/cny/)）：30/90 天趋势图、币种资料、汇率计算器——29 种语言各自独立
+- 📊 **币种详情页**（如 [人民币 CNY](https://fxverter.com/zh/currencies/cny/)）：30/90 天趋势图、币种资料、汇率计算器——29 种语言各自独立；56 个收录币种均有深度长文（13 种语言）
+- 🔀 **货币对页**（如 [美元兑欧元](https://fxverter.com/zh/currencies/usd-to-eur/)）：实时换算器、快照汇率与双向常用金额表、货币对 FAQ——13 种收录语言
 - 📚 **汇率科普指南**（如[汇率是怎么定出来的](https://fxverter.com/zh/guides/)）
 - 🌓 浅色/深色/跟随系统**主题**，三档**字号调节**（A / A+ / A++）
 - 🔖 收藏常用货币对、分享按钮、页面内反馈表单
@@ -94,7 +98,7 @@ All exchange rates are **indicative only** and sourced from free, open APIs. Do 
 
 ### 🛠️ 开发说明
 
-十个源文件生成整站（4200+ 静态页面）；改完任意源文件后跑一次构建：
+源文件生成整站（4600+ 静态页面）；改完任意源文件后跑一次构建：
 
 ```bash
 python build-lang-pages.py
@@ -109,9 +113,11 @@ python build-lang-pages.py
 | `content/currencies.py` | 币种档案：国旗、国家、符号、辅币单位、介绍 |
 | `guides/*.md` | 汇率指南文章 |
 | `content/site_config.py` | 收录策略：哪些语言/币种进搜索引擎，其余 noindex |
-| `content/trust_l10n.py` | 关于/隐私/条款/联系/反馈页 + 支持页文案（7 种语言） |
-| `content/currency_articles.py` | 旗舰币种深度文章（英文，12 个币种） |
-| `content/currency_articles_l10n.py` | 币种文章翻译（中/德/法/西/葡/日） |
+| `content/trust_l10n.py` | 关于/隐私/条款/联系/反馈页 + 支持页文案（本体 7 种语言 + 22 个 drop-in 扩展） |
+| `content/currency_articles.py` + `content/currency_articles_b2_en.py` | 币种深度文章（英文，56 个币种） |
+| `content/currency_articles_l10n.py` + `content/*_b1a_<lang>.py` / `*_b1b_<lang>.py` / `*_b2_<lang>.py` | 币种文章翻译（13 种收录语言，每语言一个 drop-in 文件） |
+| `content/pair_pages.py` + `content/pair_pages_l10n_<lang>.py` | 货币对页（"USD 兑 EUR"）：配对清单、各语言文案与 UI 字符串 |
+| `content/guide_articles_*.py` | 指南文章翻译（每语言一个 drop-in 文件） |
 | `creem-worker.js` | 可选的 Cloudflare Worker：Creem 回调 → 自动支持者名单（见 DEVELOPMENT.md） |
 
 完整流程（构建、GitHub Pages 部署绑定 fxverter.com、PWA 说明、检查清单）见 `DEVELOPMENT.md`。
@@ -134,7 +140,7 @@ Tarayıcıda tamamen çalışan, ücretsiz ve çok dilli bir döviz çevirici. S
 
 **Kullanım:** [fxverter.com](https://fxverter.com) adresini ziyaret edin; tarayıcı Chrome/Edge/Safari ise "Yükle / Ana ekrana ekle" ile uygulamayı kurun (kurulumdan sonra çevrimdışı çalışır). Site 100% statiktir — repoyu klonlayıp herhangi bir statik barındırıcıda çalıştırabilirsiniz.
 
-**Geliştirme:** Kaynak dosyaları düzenledikten sonra tüm siteyi (4200+ sayfa) yeniden üretmek için bir kez çalıştırın: `python build-lang-pages.py`. Ayrıntılar için `DEVELOPMENT.md`.
+**Geliştirme:** Kaynak dosyaları düzenledikten sonra tüm siteyi (4600+ sayfa) yeniden üretmek için bir kez çalıştırın: `python build-lang-pages.py`. Ayrıntılar için `DEVELOPMENT.md`.
 
 **Yasal uyarı:** Tüm kurlar yalnızca **gösterge niteliğindedir** ve ücretsiz, açık API'lerden alınır. Finansal işlemler, banka transferleri veya resmi muhasebe için kullanmayın; bankanızla doğrulayın.
 
@@ -148,7 +154,7 @@ Ein kostenloser, mehrsprachiger Währungsrechner, der vollständig im Browser l�
 
 **Nutzung:** [fxverter.com](https://fxverter.com) besuchen; in Chrome/Edge/Safari über „Installieren / Zum Startbildschirm hinzufügen" als App installieren (danach offline nutzbar). Die Seite ist 100 % statisch — Repository klonen und auf jedem statischen Hoster betreiben.
 
-**Entwicklung:** Nach dem Bearbeiten der Quelldateien einmal `python build-lang-pages.py` ausführen, um die gesamte Website (4200+ Seiten) neu zu erzeugen. Details in `DEVELOPMENT.md`.
+**Entwicklung:** Nach dem Bearbeiten der Quelldateien einmal `python build-lang-pages.py` ausführen, um die gesamte Website (4600+ Seiten) neu zu erzeugen. Details in `DEVELOPMENT.md`.
 
 **Haftungsausschluss:** Alle Kurse sind **nur Richtwerte** aus freien, offenen APIs. Nicht für Finanztransaktionen, Banküberweisungen oder offizielle Buchhaltung verwenden — mit deiner Bank abstimmen.
 
@@ -162,7 +168,7 @@ Un convertisseur de devises gratuit et multilingue qui fonctionne entièrement d
 
 **Utilisation :** visitez [fxverter.com](https://fxverter.com) ; dans Chrome/Edge/Safari, installez l'application via « Installer / Ajouter à l'écran d'accueil » (fonctionne ensuite hors ligne). Le site est 100 % statique — clonez le dépôt et hébergez-le où vous voulez.
 
-**Développement :** après avoir modifié les fichiers sources, exécutez une fois `python build-lang-pages.py` pour régénérer tout le site (4200+ pages). Détails dans `DEVELOPMENT.md`.
+**Développement :** après avoir modifié les fichiers sources, exécutez une fois `python build-lang-pages.py` pour régénérer tout le site (4600+ pages). Détails dans `DEVELOPMENT.md`.
 
 **Avertissement :** tous les taux sont **indicatifs** et proviennent d'API publiques gratuites. À ne pas utiliser pour des transactions financières, virements bancaires ou comptabilité officielle — vérifiez avec votre banque.
 
@@ -176,7 +182,7 @@ Un conversor de divisas gratuito y multilingüe que funciona completamente en tu
 
 **Uso:** visita [fxverter.com](https://fxverter.com); en Chrome/Edge/Safari instala la app con «Instalar / Añadir a pantalla de inicio» (después funciona sin conexión). El sitio es 100 % estático — clona el repositorio y hazlo funcionar en cualquier alojamiento estático.
 
-**Desarrollo:** tras editar los archivos fuente, ejecuta una vez `python build-lang-pages.py` para regenerar todo el sitio (4200+ páginas). Detalles en `DEVELOPMENT.md`.
+**Desarrollo:** tras editar los archivos fuente, ejecuta una vez `python build-lang-pages.py` para regenerar todo el sitio (4600+ páginas). Detalles en `DEVELOPMENT.md`.
 
 **Aviso legal:** todos los tipos de cambio son **solo orientativos** y provienen de APIs públicas gratuitas. No los uses para transacciones financieras, transferencias bancarias ni contabilidad oficial — verifica con tu banco.
 
@@ -190,7 +196,7 @@ Un conversor de divisas gratuito y multilingüe que funciona completamente en tu
 
 **使い方：** [fxverter.com](https://fxverter.com) にアクセス。Chrome/Edge/Safari なら「インストール / ホーム画面に追加」でアプリとして導入できます（導入後はオフラインで動作）。サイトは 100% 静的 — リポジトリをクローンして任意の静的ホスティングで運用できます。
 
-**開発：** ソースファイルを編集したら `python build-lang-pages.py` を一度実行してサイト全体（4200+ ページ）を再生成。詳細は `DEVELOPMENT.md`。
+**開発：** ソースファイルを編集したら `python build-lang-pages.py` を一度実行してサイト全体（4600+ ページ）を再生成。詳細は `DEVELOPMENT.md`。
 
 **免責事項：** 表示されるレートは**参考値**であり、無料の公開 API からのものです。金融取引・銀行送金・正式な会計には使用しないでください。取引の前に銀行で確認してください。
 
@@ -204,7 +210,7 @@ Um conversor de moedas gratuito e multilíngue que funciona inteiramente no seu 
 
 **Como usar:** visite [fxverter.com](https://fxverter.com); no Chrome/Edge/Safari, instale o app via «Instalar / Adicionar à Tela de Início» (depois funciona offline). O site é 100% estático — clone o repositório e hospede onde quiser.
 
-**Desenvolvimento:** depois de editar os arquivos-fonte, execute uma vez `python build-lang-pages.py` para regenerar todo o site (4200+ páginas). Detalhes em `DEVELOPMENT.md`.
+**Desenvolvimento:** depois de editar os arquivos-fonte, execute uma vez `python build-lang-pages.py` para regenerar todo o site (4600+ páginas). Detalhes em `DEVELOPMENT.md`.
 
 **Aviso legal:** todas as taxas são **apenas indicativas**, de APIs públicas gratuitas. Não use para transações financeiras, transferências bancárias ou contabilidade oficial — confirme com seu banco.
 
