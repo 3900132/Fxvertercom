@@ -7,7 +7,7 @@ ABOUT_BATCH = {
  "fr": {
   "ARS": "Le peso argentin est émis par la Banque centrale d'Argentine. Des décennies d'inflation chronique ont sans cesse remodelé la monnaie, et les Argentins figurent parmi les plus grands détenteurs de dollars américains au monde.",
   "AZN": "Le manat azerbaïdjanais a été redénominé en 2006 et est émis par la Banque centrale d'Azerbaïdjan. Économie tirée par les hydrocarbures : le manat a été dévalué deux fois en 2015 quand le pétrole s'est effondré.",
-  "BGN": "Le lev bulgare est arrimé à l'euro à 1,95583 par un currency board depuis 1997. La Bulgarie a rejoint la zone euro le 1er janvier 2026 ; les bilans en levs restent échangeables auprès de la Banque nationale de Bulgarie.",
+  "BGN": "Le lev bulgare est arrimé à l'euro à 1,95583 par un currency board depuis 1997. La Bulgarie a rejoint la zone euro le 1er janvier 2026 ; les billets en levs restent échangeables auprès de la Banque nationale de Bulgarie.",
   "CLP": "Le peso chilien fluctue librement dans le cadre de ciblage d'inflation de la banque centrale. Le Chili exporte massivement cuivre et lithium : le peso suit le cycle industriel autant que la demande chinoise.",
   "ETB": "Le birr éthiopien est émis par la Banque nationale d'Éthiopie. En juillet 2024, le pays a mis fin à son régime administré de longue date et laissé flotter le birr — une réforme monétaire majeure pour l'Afrique.",
   "GEL": "Le lari géorgien a été introduit en octobre 1995, remplaçant la monnaie provisoire née de l'effondrement soviétique. La Banque nationale de Géorgie le laisse flotter ; tourisme et transferts de fonds croissent.",

@@ -20,7 +20,7 @@ TRUST_LANG = {
             ["h", "Điều làm nên sự khác biệt"],
             ["li", "Không cần tài khoản, không theo dõi — mọi phép quy đổi chạy ngay trong trình duyệt của bạn"],
             ["li", "Ba nguồn dữ liệu công khai có thể chuyển đổi: Frankfurter (tỷ giá tham chiếu của Ngân hàng Trung ương châu Âu), ExchangeRate-API và Fawaz Currency API"],
-            ["li", "40 đồng tiền chính với trang riêng: bảng quy đổi trực tiếp, biểu đồ xu hướng 30/90 ngày và hồ sơ tiền tệ"],
+            ["li", "56 đồng tiền chính với trang riêng: bảng quy đổi trực tiếp, biểu đồ xu hướng 30/90 ngày và hồ sơ tiền tệ"],
             ["li", "Các cẩm nang viết bằng ngôn ngữ đời thường, giải thích tỷ giá thực sự vận hành ra sao"],
             ["li", "Có thể cài đặt dưới dạng ứng dụng (PWA), vẫn hoạt động offline với các tỷ giá đã biết gần nhất"],
             ["h", "Về dữ liệu"],

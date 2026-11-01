@@ -72,18 +72,33 @@ except ImportError:
 # currencies, split over two files per language), batch-2 (15 additional
 # currencies) — every module is optional so the build works while a
 # language's translations are still being written
-_L10N_ART_LANGS = ("zh", "de", "fr", "es", "pt", "ja", "ko", "ru", "hi", "ar", "it", "th")
-for _l10n_lang in _L10N_ART_LANGS:
-    for _art_mod, _art_var in (
-            ("currency_articles_b1a_" + _l10n_lang, "ARTICLES_B1"),
-            ("currency_articles_b1b_" + _l10n_lang, "ARTICLES_B1"),
-            ("currency_articles_b2_" + _l10n_lang, "ARTICLES_B2")):
-        try:
-            _m2 = __import__("content." + _art_mod, fromlist=[_art_var])
-            ARTICLES_L10N.setdefault(_l10n_lang, {}).update(getattr(_m2, _art_var))
-        except ImportError:
-            pass
-_L10N_LANGS = ("zh", "de", "fr", "es", "pt", "ja", "ko", "ru", "hi", "ar", "it", "th")
+_L10N_ART_LANGS = ("zh", "de", "fr", "es", "pt", "ja", "ko", "ru", "hi", "ar", "it", "th", "tr", "id", "ms", "tl", "nl", "pl", "uk", "sv", "lo", "vi", "el", "bn", "fa", "cs", "ro", "da")
+# auto-discover article translation batches: any content/currency_articles_*_<lang>.py
+# file contributes ARTICLES_B1 (b1* batches) or ARTICLES_B2 to that language;
+# drop in new batch files (b1c, b1d, ...) without touching this script
+import glob as _glob
+for _art_path in sorted(_glob.glob(os.path.join(os.path.dirname(__file__), "content", "currency_articles_*.py"))):
+    _art_name = os.path.basename(_art_path)[:-3]
+    if _art_name in ("currency_articles", "currency_articles_l10n"):
+        continue
+    _art_lang = _art_name.rsplit("_", 1)[-1]
+    if _art_lang not in _L10N_ART_LANGS:
+        continue
+    if _art_name.startswith("currency_articles_b2_"):
+        _art_vars = ("ARTICLES_B2",)
+    elif _art_name.count("_") == 2:  # currency_articles_<lang>: the oldest files
+        _art_vars = ("ARTICLES_L10N",)
+    else:
+        _art_vars = ("ARTICLES_B1",)
+    try:
+        _m2 = __import__("content." + _art_name, fromlist=_art_vars)
+        for _art_var in _art_vars:
+            _data = getattr(_m2, _art_var, None)
+            if _data:
+                ARTICLES_L10N.setdefault(_art_lang, {}).update(_data)
+    except ImportError:
+        pass
+_L10N_LANGS = ("zh", "de", "fr", "es", "pt", "ja", "ko", "ru", "hi", "ar", "it", "th", "tr", "id", "ms", "tl", "nl", "pl", "uk", "sv", "lo", "vi", "el", "bn", "fa", "cs", "ro", "da")
 for _b2_lang in _L10N_LANGS:
     try:
         _gm2 = __import__("content.guide_articles_b2_" + _b2_lang, fromlist=["GUIDE_L10N_B2"])
@@ -189,8 +204,8 @@ META = {
         "C\u00f4ng c\u1ee5 chuy\u1ec3n \u0111\u1ed5i ti\u1ec1n t\u1ec7 tr\u1ef1c tuy\u1ebfn mi\u1ec5n ph\u00ed v\u1edbi t\u1ef7 gi\u00e1 tr\u1ef1c tuy\u1ebfn cho h\u01a1n 140 lo\u1ea1i ti\u1ec1n. Kh\u00f4ng c\u1ea7n API key, kh\u00f4ng c\u1ea7n \u0111\u0103ng k\u00fd, kh\u00f4ng theo d\u00f5i."),
  "el": ("\u039c\u03b5\u03c4\u03b1\u03c4\u03c1\u03bf\u03c0\u03ad\u03b1\u03c2 \u039d\u03bf\u03bc\u03b9\u03c3\u03bc\u03ac\u03c4\u03c9\u03bd \u2013 \u0396\u03c9\u03bd\u03c4\u03b1\u03bd\u03ad\u03c2 \u0399\u03c3\u03bf\u03c4\u03b9\u03bc\u03af\u03b5\u03c2 | Fxverter",
         "\u0394\u03c9\u03c1\u03b5\u03ac\u03bd online \u03bc\u03b5\u03c4\u03b1\u03c4\u03c1\u03bf\u03c0\u03ad\u03b1\u03c2 \u03bd\u03bf\u03bc\u03b9\u03c3\u03bc\u03ac\u03c4\u03c9\u03bd \u03bc\u03b5 \u03b6\u03c9\u03bd\u03c4\u03b1\u03bd\u03ad\u03c2 \u03b9\u03c3\u03bf\u03c4\u03b9\u03bc\u03af\u03b5\u03c2 \u03b3\u03b9\u03b1 \u03c0\u03ac\u03bd\u03c9 \u03b1\u03c0\u03cc 140 \u03bd\u03bf\u03bc\u03af\u03c3\u03bc\u03b1\u03c4\u03b1. \u03a7\u03c9\u03c1\u03af\u03c2 \u03ba\u03bb\u03b5\u03b9\u03b4\u03af API, \u03c7\u03c9\u03c1\u03af\u03c2 \u03b5\u03b3\u03b3\u03c1\u03b1\u03c6\u03ae, \u03c7\u03c9\u03c1\u03af\u03c2 \u03c0\u03b1\u03c1\u03b1\u03ba\u03bf\u03bb\u03bf\u03cd\u03b8\u03b7\u03c3\u03b7."),
- "bn": ("\u09ae\u09c1\u09a6\u09cd\u09b0\u09be \u09b0\u09c2\u09aa\u09be\u09a8\u09cd\u09a4\u0995\u0995\u09be\u09b0\u09c0 \u2013 \u09b2\u09be\u0987\u09ad \u09ac\u09bf\u09a8\u09bf\u09ae\u09af\u09bc \u09b9\u09be\u09b0 | Fxverter",
-        "\u09e7\u09ea\u0eec\u099f\u09bf\u09b0 \u09ac\u09c7\u09b6\u09bf \u09ae\u09c1\u09a6\u09cd\u09b0\u09be\u09b0 \u09b2\u09be\u0987\u09ad \u09ac\u09bf\u09a8\u09bf\u09ae\u09af\u09bc \u09b9\u09be\u09b0\u09b8\u09b9 \u09ab\u09cd\u09b0\u09bf \u0985\u09a8\u09b2\u09be\u0987\u09a8 \u09ae\u09c1\u09a6\u09cd\u09b0\u09be \u09b0\u09c2\u09aa\u09be\u09a8\u09cd\u09a4\u0995\u0995\u09be\u09b0\u09c0\u0964 \u0995\u09cb\u09a8\u09cb API \u0995\u09bf \u09a8\u09c7\u0987, \u09b8\u09be\u0987\u09a8-\u0986\u09aa \u09a8\u09c7\u0987, \u099f\u09cd\u09b0\u09cd\u09af\u09be\u0995\u09bf\u0982 \u09a8\u09c7\u0987\u0964"),
+ "bn": ("\u09ae\u09c1\u09a6\u09cd\u09b0\u09be \u09b0\u09c2\u09aa\u09be\u09a8\u09cd\u09a4\u09b0\u0995\u09be\u09b0\u09c0 \u2013 \u09b2\u09be\u0987\u09ad \u09ac\u09bf\u09a8\u09bf\u09ae\u09af\u09bc \u09b9\u09be\u09b0 | Fxverter",
+        "\u09e7\u09ea\u09ec\u099f\u09bf\u09b0 \u09ac\u09c7\u09b6\u09bf \u09ae\u09c1\u09a6\u09cd\u09b0\u09be\u09b0 \u09b2\u09be\u0987\u09ad \u09ac\u09bf\u09a8\u09bf\u09ae\u09af\u09bc \u09b9\u09be\u09b0\u09b8\u09b9 \u09ab\u09cd\u09b0\u09bf \u0985\u09a8\u09b2\u09be\u0987\u09a8 \u09ae\u09c1\u09a6\u09cd\u09b0\u09be \u09b0\u09c2\u09aa\u09be\u09a8\u09cd\u09a4\u09b0\u0995\u09be\u09b0\u09c0\u0964 \u0995\u09cb\u09a8\u09cb API \u0995\u09bf \u09a8\u09c7\u0987, \u09b8\u09be\u0987\u09a8-\u0986\u09aa \u09a8\u09c7\u0987, \u099f\u09cd\u09b0\u09cd\u09af\u09be\u0995\u09bf\u0982 \u09a8\u09c7\u0987\u0964"),
  "fa": ("\u062a\u0628\u062f\u06cc\u0644 \u0627\u0631\u0632 \u2013 \u0646\u0631\u062e \u0627\u0631\u0632 \u0644\u062d\u0638\u0647\u200c\u0627\u06cc | Fxverter",
         "\u0645\u0628\u062f\u0644 \u0627\u0631\u0632 \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0627\u06cc\u06af\u0627\u0646 \u0628\u0627 \u0646\u0631\u062e \u0627\u0631\u0632 \u0644\u062d\u0638\u0647\u200c\u0627\u06cc \u0628\u0631\u0627\u06cc \u0628\u06cc\u0634 \u0627\u0632 \u06f1\u06f4\u06f0 \u0627\u0631\u0632. \u0628\u062f\u0648\u0646 \u06a9\u0644\u06cc\u062f API\u060c \u0628\u062f\u0648\u0646 \u062b\u0628\u062a\u200c\u0646\u0627\u0645\u060c \u0628\u062f\u0648\u0646 \u0631\u062f\u06cc\u0627\u0628\u06cc."),
  "cs": ("P\u0159evodn\u00edk M\u011bn \u2013 Aktu\u00e1ln\u00ed Kurzy M\u011bn | Fxverter",
@@ -301,6 +316,10 @@ def build_section(code):
         f'  <p>{c["cur_intro"]}</p>\n'
         f'  <details id="curList">\n    <summary>{c["cur_summary"]}</summary>{CUR_HTML}\n  </details>\n'
         f'\n  <h3 id="faqTitle">{c["faq_h"]}</h3>{faq_items}\n'
+        # crawlable privacy line; build_lang_page swaps in the localized /
+        # advertising-aware version via id="privacyNote"
+        '\n  <p class="seo-disclaimer" lang="en">Privacy: this website uses no cookies and collects no personal data. '
+        'Anonymous, cookie-free visit statistics (page views and country) may be collected to improve the tool.</p>\n'
         "</section>"
     )
 langs, order = {}, []
@@ -1126,7 +1145,7 @@ def build_currency_page(code, en_name, lang="en"):
     pair_links = ""
     if lang in PAIR_CONTENT:
         _pl = " ".join(
-            f'<a href="{f.lower()}-to-{t.lower()}/">{f} → {t}</a>'
+            f'<a href="../{f.lower()}-to-{t.lower()}/">{f} → {t}</a>'
             for f, t in PAIRS if code in (f, t))
         if _pl:
             pair_links = f'<div class="links" aria-label="Popular conversions">{_pl}</div>'
@@ -1271,7 +1290,7 @@ def build_cur_index(lang="en"):
     else:
         hreflangs = ""
     return f"""<!DOCTYPE html>
-<html lang="{lang}">
+<html lang="{lang}"{' dir="rtl"' if lang in ('ar', 'fa') else ''}>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1432,7 +1451,7 @@ def build_pair_page(f, t, lang):
     cur_links = " ".join(
         f'<a href="../{c.lower()}/">{c}</a>' for c in (f, t))
     other_pairs = " ".join(
-        f'<a href="{ff.lower()}-to-{tt.lower()}/">{ff} → {tt}</a>'
+        f'<a href="../{ff.lower()}-to-{tt.lower()}/">{ff} → {tt}</a>'
         for ff, tt in PAIRS if (ff, tt) != (f, t))
     intro_head = U["pairIntroHead"].replace("{f}", fname).replace("{t}", tname)
     more_head = U.get("pairMorePairs", "More currency pairs")
@@ -1677,7 +1696,7 @@ def _guide_page(slug, lang, title, desc, sections):
         (title, None),
     ])
     return f"""<!DOCTYPE html>
-<html lang="{lang}">
+<html lang="{lang}"{' dir="rtl"' if lang in ('ar', 'fa') else ''}>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2047,7 +2066,7 @@ function fxSubmitFeedback(ev) {{
     C = CONTENT_UI.get(lang, CONTENT_UI["en"])
     h1 = T["title"].split(" | ")[0]
     return f"""<!DOCTYPE html>
-<html lang="{lang}">
+<html lang="{lang}"{' dir="rtl"' if lang in ('ar', 'fa') else ''}>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

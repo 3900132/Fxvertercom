@@ -19,7 +19,7 @@ TRUST_LANG = {
             ["h", "Apakah yang menjadikannya berbeza"],
             ["li", "Tiada akaun, tiada penjejakan — penukaran berjalan setempat dalam pelayar anda"],
             ["li", "Tiga sumber data awam yang boleh ditukar: Frankfurter (kadar rujukan Bank Pusat Eropah), ExchangeRate-API dan Fawaz Currency API"],
-            ["li", "40 mata wang utama dengan halaman tersendiri: jadual penukaran segera, carta trend 30/90 hari dan profil mata wang"],
+            ["li", "56 mata wang utama dengan halaman tersendiri: jadual penukaran segera, carta trend 30/90 hari dan profil mata wang"],
             ["li", "Panduan berbahasa mudah yang menerangkan bagaimana kadar pertukaran sebenarnya berfungsi"],
             ["li", "Boleh dipasang sebagai aplikasi (PWA) yang terus berfungsi luar talian dengan kadar terakhir yang diketahui"],
             ["h", "Mengenai data"],

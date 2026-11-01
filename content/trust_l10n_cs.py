@@ -19,7 +19,7 @@ TRUST_LANG = {
             ["h", "Čím se liší"],
             ["li", "Žádný účet, žádné sledování – převody běží lokálně ve vašem prohlížeči"],
             ["li", "Tři veřejné zdroje dat, mezi nimiž lze přepínat: Frankfurter (referenční kurzy Evropské centrální banky), ExchangeRate-API a Fawaz Currency API"],
-            ["li", "40 hlavních měn se samostatnými stránkami: převodní tabulky v reálném čase, grafy trendů za 30/90 dní a profily měn"],
+            ["li", "56 hlavních měn se samostatnými stránkami: převodní tabulky v reálném čase, grafy trendů za 30/90 dní a profily měn"],
             ["li", "Srozumitelní průvodci, kteří vysvětlují, jak směnné kurzy doopravdy fungují"],
             ["li", "Lze nainstalovat jako aplikaci (PWA), která i offline pokračuje s posledními známými kurzy"],
             ["h", "O datech"],

@@ -27,7 +27,7 @@
   "name": "Trinidad & Tobago Dollar (TTD) — Aktuelle valutakurser og valutaberegner | Fxverter",
   "description": "Aktuelle valutakurser for Trinidad & Tobago Dollar (TTD): omregn TTD til USD, EUR, GBP og 140+ andre valutaer med den gratis Fxverter-omregner. Kurser, fakta, beregner.",
   "inLanguage": "da",
-  "dateModified": "2026-10-31",
+  "dateModified": "2026-11-01",
   "isPartOf": {"@type": "WebSite", "name": "Fxverter", "url": "https://fxverter.com/"},
   "about": {"@type": "Thing", "name": "Trinidad & Tobago Dollar"}
 }
@@ -361,7 +361,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
   <div class="facts"><div class="fact"><div class="k">ISO</div><div class="v">TTD</div></div><div class="fact"><div class="k">♦</div><div class="v">TT$</div></div><div class="fact"><div class="k">🌍</div><div class="v">Trinidad & Tobago</div></div><div class="fact"><div class="k">¢</div><div class="v">100 cents</div></div></div>
-  <p class="about" itemprop="description" data-en-name="Trinidad & Tobago Dollar">Trinidad & Tobago Dollar er en af de 141 verdensvaluter, der understøttes af Fxverter — den gratis online valutaomregner. Fxverter viser aktuelle referenskurser for Trinidad & Tobago Dollar og 140 andre valutor, baseret på offentlige centralbankdata.</p>
+  <p class="about" itemprop="description" data-en-name="Trinidad & Tobago Dollar">Trinidad & Tobago Dollar er en af de 141 verdensvalutaer, der understøttes af Fxverter — den gratis online valutaomregner. Fxverter viser aktuelle referencerekser for Trinidad & Tobago Dollar og 140 andre valutaer, baseret på offentlige centralbankdata.</p>
   <h2>Omregn TTD</h2>
   <div class="ratebox">
     <input type="text" inputmode="decimal" id="amt" placeholder="Beløb i TTD" oninput="calc(this.value)">
@@ -436,7 +436,7 @@ let R = null;
   R = await rates();
   const s = document.getElementById('st');
   if (!R) { s.textContent = "Kurser midlertidigt utilgængelige."; return; }
-  s.textContent = "Referenzkurser indlæst";
+  s.textContent = "Referencerekser indlæst";
   const tb = document.getElementById('rt');
   for (const t of ["USD", "EUR", "GBP", "JPY", "CNY", "CHF", "TRY", "INR", "KRW", "AUD", "CAD", "MXN", "BRL", "ZAR", "SEK", "NOK", "NZD", "SGD", "HKD", "THB"]) {
     if (R[t] === undefined) continue;

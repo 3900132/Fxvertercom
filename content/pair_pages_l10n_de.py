@@ -249,7 +249,7 @@ PAIR_CONTENT_L10N = {
     # ───────────────────────── AUD → JPY ────────────────────────
     "AUD-JPY": {
         "title": "AUD in JPY — Wechselkurs, Umrechner & Risiko-Barometer",
-        "description": "Australische Dollar in japanische Yen umrechnen mit Live-Kursen: der heutige AUD/JPY-Wechselkurs, ein kostenloser Rechner, Betragstabellen und was diesen Risiko-Barometer bewegt.",
+        "description": "Australische Dollar in japanische Yen umrechnen mit Live-Kursen: der heutige AUD/JPY-Wechselkurs, ein kostenloser Rechner, Betragstabellen und was dieses Risiko-Barometer bewegt.",
         "h1": "AUD in JPY — australische Dollar in japanische Yen umrechnen",
         "intro": [
             "AUD/JPY ist der reinsten Form nach das Risiko-Barometer im Devisenmarkt. Der australische Dollar steht für globales Wachstum und Rohstoffnachfrage — vor allem chinesische Industrieanfrage —, während der Yen für Sicherheit steht. Läuft die Weltwirtschaft, klettert das Paar; bei Panik fällt es schneller als fast jeder andere große Kreuzkurs.",

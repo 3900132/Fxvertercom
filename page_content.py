@@ -357,7 +357,7 @@ CONTENT = {
     "sv": {
         "h2": "Om Fxverter",
         "p1": "Fxverter är en gratis online-valutaomvandlare med öppen källkod som körs helt i din webbläsare: aktuella kurser för 141 världsvalutor, utan API-nyckel, utan registrering, utan installation — öppna bara webbplatsen i din webbläsare och börja konvertera.",
-        "p2": "Kurserna kommer från tre offentliga källor du kan växla mellan när som helst: Frankfurter (ECB:s referenskurser), ExchangeRate-API och Fawaz Currency API. Kurserna cachas per session; 29 gränssnittsspråk identifieras automatiskt, inklusive höger-till-vänster-stöd för arabiska och persiska.",
+        "p2": "Kurserna kommer från tre offentliga källor du kan växla mellan när som helst: {F} (ECB:s referenskurser), {E} och {W}. Kurserna cachas per session; 29 gränssnittsspråk identifieras automatiskt, inklusive höger-till-vänster-stöd för arabiska och persiska.",
         "lh": "Språk & valutor",
         "lang_intro": "Gränssnittet finns på 29 språk:",
         "cur_intro": "Aktuella kurser för 141 valutor, sökbara direkt i rullgardinsmenyerna. Tillgängligheten beror på vald källa — saknade par hämtas automatiskt från en annan källa:",

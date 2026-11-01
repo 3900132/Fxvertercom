@@ -1,14 +1,16 @@
 # Fxverter — 开发与内容维护指南
 
-> **当前状态（2026-10 第三轮整改）**：在第二轮基础上再扩容——收录币种 40 → **56**（新增 UAH/QAR/KWD/MAD/BDT/LKR/KZT/GEL/AZN/ETB/GHS/KES/TZS/XOF/XAF，全部有深度文章）、
+> **当前状态（2026-11 第五/六轮：29 语全收录）**：收录语言 13 → **29**（tr/id/ms/tl/nl/pl/uk/sv/lo/vi/el/bn/fa/cs/ro/da 逐季补齐全内容包后全部转正——每种语言 56 篇深度文章 + 15 配对页 + 13 指南 + 57 币种介绍 + 辅币词表 + 支持页文案）；币种档案 141 全量、UAH 英文源事实错误修正、全站隐私注记（广告披露）覆盖 29 语、货币对页 3120 条 404 修复、ar/fa RTL 补全。
+> **上线前修复（2026-11）**：根页 hreflang 补齐至 29 语 + x-default（此前漏 22 语）；`TRUST_OVERRIDES["curFaq"]` 补 16 语，16 语 × 71 页的 FAQ 标题英文残留清零；el 信任页"七种语言"→29 与 browser 借词；tl 统一 "bangko sentral"（29 处）；30 个 .pyc 与 `_refresh_root_uistr.py` 移出 git 追踪（.gitignore 补 `_tmp_*`/`_refresh_*`）。sw v10。
+> **此前轮次**：收录币种 40 → **56**（新增 UAH/QAR/KWD/MAD/BDT/LKR/KZT/GEL/AZN/ETB/GHS/KES/TZS/XOF/XAF，全部有深度文章）、
 > 新增 **15 个货币对页面**（/currencies/usd-to-eur/ 等，13 种收录语言，含构建时 ECB 快照汇率表）、指南 9 → **13 篇**（新增 PayPal/Wise/银行对比、留学汇学费、
 > 历史汇率查询、恶性通胀解读，全部翻译到 13 种收录语言）、全站页面补 **BreadcrumbList 结构化数据**、sitemap **lastmod 按源文件真实修改时间生成**、
 > noscript 提示语 29 语言本地化、修复 22 种非收录语言指南页**漏加 noindex** 的问题、sw v9。
 > **第四轮：收录语言 7 → 13**（新增 ko/ru/hi/ar/it/th）——每种语言补齐完整内容包（56 篇币种文章 + 15 配对页 + 13 篇指南全翻译）后加入 INDEXED_LANGS 转正，sitemap 651 → 1209 URL。
-> **下一步**：① 部署上线（git push，跑一次 submit-indexnow.py）→ ② 等 2–4 周重新抓取 → ③ 重新申请 AdSense → ④ 过审后加广告代码；剩余 16 种语言（tr/id/ms/tl/nl/pl/uk/sv/lo/vi/el/bn/fa/cs/ro/da）按季照同样流程扩。
+> **下一步**：① git push 部署 → ② 跑一次 submit-indexnow.py 推送全量 sitemap → ③ 观察抓取/收录 → ④ AdSense 过审后加广告代码。
 > ⚠️ 大改动记得把 `sw.js` 缓存版本号 +1。改任何源文件后跑 `python build-lang-pages.py`。
 
-Fxverter 是一个纯静态多语言换汇工具站：首页（29 语言页，其中 13 种收录进搜索引擎）+ 141 个币种页（56 个收录，56 个有深度文章 × 13 语言）+ 15 个货币对页 × 13 语言 + 13 篇指南 + 信任页（关于/隐私/条款/联系/反馈 × 29 语言）+ 支持页（29 语言），共 4600+ 个页面（sitemap 1209 URL）。**你日常只编辑 10 个源文件，其余页面全部由构建脚本自动生成。**
+Fxverter 是一个纯静态多语言换汇工具站：首页（29 语言页，全部收录进搜索引擎）+ 141 个币种页（56 个收录，56 个有深度文章 × 29 语言）+ 15 个货币对页 × 29 语言 + 13 篇指南 × 29 语言 + 信任页（关于/隐私/条款/联系/反馈 × 29 语言）+ 支持页（29 语言），共 5100+ 个页面（sitemap 2697 URL）。**你日常只编辑 10 个源文件，其余页面全部由构建脚本自动生成。**
 
 ---
 
@@ -89,7 +91,7 @@ description: 一句话摘要             ← meta description
 
 ### 6. `content/site_config.py` — 收录策略（谁进搜索引擎）
 
-控制哪些页面允许被搜索引擎收录：`INDEXED_LANGS`（收录语言，当前 13 种：en/zh/de/fr/es/pt/ja/ko/ru/hi/ar/it/th）、`INDEXED_CURRENCIES`（收录币种，当前 56 个）、`ECB_SET`（有趋势图数据的币种）、`TRUST_PAGES`（信任页）。**不在清单里的页面照常生成、照常可访问，但会被加上 `noindex, follow` 并且不进 sitemap.xml。** 过审后扩语言/转正币种，只需往这两个清单里加代码再重新构建；hreflang、robots meta、sitemap 全部自动跟着变。改配置后构建脚本会校验币种代码是否存在，写错会直接报错退出。
+控制哪些页面允许被搜索引擎收录：`INDEXED_LANGS`（收录语言，当前全部 29 种）、`INDEXED_CURRENCIES`（收录币种，当前 56 个）、`ECB_SET`（有趋势图数据的币种）、`TRUST_PAGES`（信任页）。**不在清单里的页面照常生成、照常可访问，但会被加上 `noindex, follow` 并且不进 sitemap.xml。** 过审后扩语言/转正币种，只需往这两个清单里加代码再重新构建；hreflang、robots meta、sitemap 全部自动跟着变。改配置后构建脚本会校验币种代码是否存在，写错会直接报错退出。
 
 ### 7. `content/trust_l10n.py` — 信任页内容（About/隐私/条款/联系）
 
@@ -101,7 +103,7 @@ description: 一句话摘要             ← meta description
 
 ### 9. `content/currency_articles_l10n.py` — 币种文章翻译
 
-`ARTICLES_L10N[lang][code]` 镜像英文条目的结构（sections + faq）。构建脚本在某个语言的币种页上**只要找到对应翻译就渲染**，没有翻译就保持该语言原有的简短简介——所以翻译可以一种语言或一个币种地逐步加，不用动构建逻辑。已收录语言：zh（41 个币种全）。第二批 15 个币种的翻译按语言放在 `content/currency_articles_b2_<lang>.py`（zh/de/fr/es/pt/ja，字典名 `ARTICLES_B2`），构建脚本自动合并。注意：内容字符串里的内嵌引号用中文弯引号“”，不要用 ASCII `"`（会破坏 Python 字符串）。
+`ARTICLES_L10N[lang][code]` 镜像英文条目的结构（sections + faq）。**全部 29 种语言均有 56 篇全译**。加载器按文件名自动发现 `content/currency_articles_*_<lang>.py`（b1a/b1b/b1c…/b2 批次文件随意命名投放，b1* 读 `ARTICLES_B1`、b2 读 `ARTICLES_B2`、最老的 `currency_articles_<lang>.py` 读 `ARTICLES_L10N`），不用改构建逻辑。注意：内容字符串里的内嵌引号用弯引号“”，不要用 ASCII `"`（会破坏 Python 字符串）。
 
 ### 9+. 货币对页面（/currencies/usd-to-eur/）— `content/pair_pages.py`
 
@@ -112,7 +114,7 @@ description: 一句话摘要             ← meta description
 - `PAIR_CONTENT`：每语言 × 每配对的 title/description/h1/intro×2 段/FAQ×2；翻译按语言放 `content/pair_pages_l10n_<lang>.py`（字典 `PAIR_CONTENT_L10N` + `PAIR_UI_L10N`），没有翻译的语言自动不生成该语言版本，币种页上的配对链接也自动不出现
 - 构建时脚本会向 Frankfurter（ECB）请求一次快照汇率，生成"常见金额对照表"和"1 X = ? Y"参考行（带"参考汇率截至 {日期}"标注）；换算器本身始终拉实时汇率。构建机器离线时页面自动退化为纯实时换算，不会报错
 
-页面上已带 WebPage + FAQPage + BreadcrumbList 结构化数据；币种页的"Popular conversions"链接区会自动挂上本币种参与的所有配对页链接（内部互链）。**扩配对**：往 `PAIRS` 加一组 (from, to)，再在 `PAIR_CONTENT` 补 13 种收录语言的文案即可（注意 from/to 必须都在 ECB_SET 里，否则没有快照数据）。
+页面上已带 WebPage + FAQPage + BreadcrumbList 结构化数据；币种页的"Popular conversions"链接区会自动挂上本币种参与的所有配对页链接（内部互链）。**扩配对**：往 `PAIRS` 加一组 (from, to)，再在 `PAIR_CONTENT` 补各收录语言的文案即可（全部 29 语）（注意 from/to 必须都在 ECB_SET 里，否则没有快照数据）。
 
 保存 → 跑 `python build-lang-pages.py` → 文章自动出现在 /guides/ 索引和 sitemap。删除 .md 文件即删除文章（记得重跑构建并删除已生成的对应目录，或直接留着也无害，但建议删干净）。
 
@@ -132,7 +134,7 @@ description: 一句话摘要             ← meta description
 | 上线捐赠档位 | 构建脚本顶部 `SUPPORT_TIERS` 填 Creem 的 checkout 链接 | 重跑构建 |
 | 添加致谢名单 | `content/supporters.py` 加一条 | 重跑构建 |
 | 换反馈渠道 | 全局搜索 `splitforms.com` 替换 | 重跑构建 |
-| 强制用户刷新缓存 | `sw.js` 里缓存版本号 +1（当前 `fxcc-v9`） | 推送即可 |
+| 强制用户刷新缓存 | `sw.js` 里缓存版本号 +1（当前 `fxcc-v10`） | 推送即可 |
 
 ---
 
@@ -215,8 +217,9 @@ ABOUT_BATCH = {
 
 | 维度 | 已覆盖 | 未覆盖（回退英文 / 模板） |
 |---|---|---|
-| 辅币单位 | 20 语言 × 38 币种（含 ar/hi） | da、sv、el、ro、fa、bn、id（收录语言的辅币行已全覆盖） |
-| 专属介绍 | **13 收录语言 × 56 收录币种 = 728 条全覆盖**；另有 20 语言 × 38 币种（含 th） | 收录范围之外回退模板：cs、vi、da、sv、el、ro、lo |
+| 辅币单位 | **29 语言 × 38 币种全覆盖**（每语言一个 sub_languages_<lang>.py） | 无 |
+| 专属介绍 | **29 语言 × 57 币种 = 1653 条全覆盖** | 无 |
+| FAQ 标题（curFaq） | **29 语言全覆盖**（TRUST_OVERRIDES["curFaq"]） | 无 |
 
 要把任意一种拉满，向 `content/` 目录丢一个 `sub_languages_<lang>.py` 或 `about_batch_<lang>.py`，跑一次构建，结束。
 
@@ -264,7 +267,7 @@ python submit-indexnow.py --dry-run  # 只看 payload 不发送
 
 ## 五+、支持页（赞助可乐）+ Creem 收款配置教程
 
-支持页由 `build_support_page()`（build-lang-pages.py）生成。**所有文案、档位、认领表单标签都在 `content/trust_l10n.py` 的 `TRUST_OVERRIDES["support"]` 里（7 种收录语言各一份）**，不在 `content_ui.py` 里改。
+支持页由 `build_support_page()`（build-lang-pages.py）生成。**所有文案、档位、认领表单标签都在 `content/trust_l10n.py` 的 `TRUST_OVERRIDES["support"]` 里（29 种语言各一份）**，不在 `content_ui.py` 里改。
 
 ### 0. 合规前提（为什么是"名单产品"而不是"捐赠"）
 

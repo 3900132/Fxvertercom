@@ -16,7 +16,7 @@ TRUST_LANG = {
             ["h", "Co go wyróżnia"],
             ["li", "Bez konta i bez śledzenia – przeliczenia odbywają się lokalnie w twojej przeglądarce"],
             ["li", "Trzy przełączalne publiczne źródła danych: Frankfurter (kursy referencyjne Europejskiego Banku Centralnego), ExchangeRate-API oraz Fawaz Currency API"],
-            ["li", "40 głównych walut z osobnymi stronami: tabele przeliczeń na żywo, wykresy trendów 30/90 dni i profile walut"],
+            ["li", "56 głównych walut z osobnymi stronami: tabele przeliczeń na żywo, wykresy trendów 30/90 dni i profile walut"],
             ["li", "Przewodniki pisane prostym językiem, które wyjaśniają, jak kursy walutowe naprawdę działają"],
             ["li", "Da się zainstalować jako aplikacja (PWA), która nadal działa offline z ostatnimi znanymi kursami"],
             ["h", "Dane"],

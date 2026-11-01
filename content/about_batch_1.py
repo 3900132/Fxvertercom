@@ -71,7 +71,7 @@ ABOUT_BATCH = {
    "PHP": "Le peso philippin, émis par la banque centrale des Philippines, est la monnaie d'un pays qui reçoit d'importants flux d'argent de la part de ses travailleurs expatriés.",
    "VND": "Le dong vietnamien, émis par la banque d'État du Vietnam, est l'une des monnaies du monde à la plus faible valeur unitaire.",
    "LAK": "Le kip laotien, émis par la Banque centrale du Laos, est la monnaie officielle du pays, à la présence discrète sur le marché des changes.",
-   "PKR": "La roupie pakistanaise, émise par la Banque d'État du Pakistan, est la devise du cinquième pays le plus peuplé au monde, s'appuyant beaucoup sur les remes des travailleurs exilés.",
+   "PKR": "La roupie pakistanaise, émise par la Banque d'État du Pakistan, est la devise du cinquième pays le plus peuplé au monde, s'appuyant beaucoup sur les envois de fonds des travailleurs exilés.",
    "NGN": "Le naira nigérian, émis par la banque centrale du Nigeria, est la monnaie du pays le plus peuplé du Continent africain et dépend beaucoup du pétrole.",
    "EGP": "La livre égyptienne, émise par la banque centrale d'Égypte, est la monnaie du pays arabe le plus peuplé, avec le tourisme et le canal de Suez comme sources de devises.",
    "UAH": "La hryvnia ukrainienne, émise par la Banque nationale d'Ukraine, est la monnaie officielle de l'Ukraine, au régime de change flexible.",

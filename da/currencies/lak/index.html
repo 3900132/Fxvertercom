@@ -27,7 +27,7 @@
   "name": "Lao Kip (LAK) — Aktuelle valutakurser og valutaberegner | Fxverter",
   "description": "Aktuelle valutakurser for Lao Kip (LAK): omregn LAK til USD, EUR, GBP og 140+ andre valutaer med den gratis Fxverter-omregner. Kurser, fakta, beregner.",
   "inLanguage": "da",
-  "dateModified": "2026-10-31",
+  "dateModified": "2026-11-01",
   "isPartOf": {"@type": "WebSite", "name": "Fxverter", "url": "https://fxverter.com/"},
   "about": {"@type": "Thing", "name": "Lao Kip"}
 }
@@ -360,8 +360,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       <div class="sub">Valutaomregner – Aktuelle Valutakurser</div>
     </div>
   </div>
-  <div class="facts"><div class="fact"><div class="k">ISO</div><div class="v">LAK</div></div><div class="fact"><div class="k">♦</div><div class="v">₭</div></div><div class="fact"><div class="k">🌍</div><div class="v">Laos</div></div><div class="fact"><div class="k">¢</div><div class="v">100 att (not used)</div></div></div>
-  <p class="about" itemprop="description" data-en-name="Lao Kip">Lao Kip er en af de 141 verdensvaluter, der understøttes af Fxverter — den gratis online valutaomregner. Fxverter viser aktuelle referenskurser for Lao Kip og 140 andre valutor, baseret på offentlige centralbankdata.</p>
+  <div class="facts"><div class="fact"><div class="k">ISO</div><div class="v">LAK</div></div><div class="fact"><div class="k">♦</div><div class="v">₭</div></div><div class="fact"><div class="k">🌍</div><div class="v">Laos</div></div><div class="fact"><div class="k">¢</div><div class="v">100 att (præges ikke længere)</div></div></div>
+  <p class="about" itemprop="description">Laotiske kip udstedes af Bank of the Lao PDR og har været landets valuta siden 1955.</p>
   <h2>Omregn LAK</h2>
   <div class="ratebox">
     <input type="text" inputmode="decimal" id="amt" placeholder="Beløb i LAK" oninput="calc(this.value)">
@@ -436,7 +436,7 @@ let R = null;
   R = await rates();
   const s = document.getElementById('st');
   if (!R) { s.textContent = "Kurser midlertidigt utilgængelige."; return; }
-  s.textContent = "Referenzkurser indlæst";
+  s.textContent = "Referencerekser indlæst";
   const tb = document.getElementById('rt');
   for (const t of ["USD", "EUR", "GBP", "JPY", "CNY", "CHF", "TRY", "INR", "KRW", "AUD", "CAD", "MXN", "BRL", "ZAR", "SEK", "NOK", "NZD", "SGD", "HKD", "THB"]) {
     if (R[t] === undefined) continue;

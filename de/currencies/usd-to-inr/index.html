@@ -19,6 +19,22 @@
 <link rel="alternate" hreflang="ar" href="https://fxverter.com/ar/currencies/usd-to-inr/">
 <link rel="alternate" hreflang="it" href="https://fxverter.com/it/currencies/usd-to-inr/">
 <link rel="alternate" hreflang="th" href="https://fxverter.com/th/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="tr" href="https://fxverter.com/tr/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="id" href="https://fxverter.com/id/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="ms" href="https://fxverter.com/ms/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="tl" href="https://fxverter.com/tl/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="nl" href="https://fxverter.com/nl/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="pl" href="https://fxverter.com/pl/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="uk" href="https://fxverter.com/uk/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="sv" href="https://fxverter.com/sv/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="vi" href="https://fxverter.com/vi/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="el" href="https://fxverter.com/el/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="lo" href="https://fxverter.com/lo/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="bn" href="https://fxverter.com/bn/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="fa" href="https://fxverter.com/fa/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="cs" href="https://fxverter.com/cs/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="ro" href="https://fxverter.com/ro/currencies/usd-to-inr/">
+<link rel="alternate" hreflang="da" href="https://fxverter.com/da/currencies/usd-to-inr/">
 <link rel="alternate" hreflang="x-default" href="https://fxverter.com/currencies/usd-to-inr/">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="theme-color" content="#0d0d14">
@@ -40,7 +56,7 @@
   "name": "USD in INR — Wechselkurs, Umrechner &amp; was die Rupie bewegt",
   "description": "US-Dollar in indische Rupien umrechnen mit Live-Kursen: der heutige USD/INR-Wechselkurs, ein kostenloser Rechner, Betragstabellen und was die Rupie bewegt.",
   "inLanguage": "de",
-  "dateModified": "2026-10-31",
+  "dateModified": "2026-11-01",
   "isPartOf": {"@type": "WebSite", "name": "Fxverter", "url": "https://fxverter.com/"},
   "about": [
     {"@type": "Thing", "name": "US Dollar"},
@@ -188,9 +204,9 @@ function fxToggleTheme() {
 <body>
 <div class="tools-bar"><div class="tools-left"><button type="button" class="tool-btn" id="fxThemeBtn" onclick="fxToggleTheme()" title="Theme">◐</button><button type="button" class="tool-btn" id="shareBtn" onclick="fxShare()" title="Teilen">⤴</button><button type="button" class="tool-btn" id="feedbackBtn" onclick="fxOpenFeedback()" title="Feedback">✎</button><button type="button" class="tool-btn" id="installBtn" onclick="fxInstall()" title="App installieren" hidden>⤓</button></div><select class="lang-sel" id="langSel" onchange="fxLangGo(this.value)" aria-label="Language"><option value="en">English</option><option value="tr">Türkçe</option><option value="de" selected>Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="pt">Português</option><option value="ru">Русский</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="tl">Filipino</option><option value="it">Italiano</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="uk">Українська</option><option value="sv">Svenska</option><option value="th">ไทย</option><option value="lo">ພາສາລາວ</option><option value="vi">Tiếng Việt</option><option value="el">Ελληνικά</option><option value="bn">বাংলা</option><option value="fa">فارسی</option><option value="cs">Čeština</option><option value="ro">Română</option><option value="da">Dansk</option></select></div>
 <div class="fb-panel" id="fbPanel"><form id="fbForm" onsubmit="fxSendFeedback(); return false;"><input type="text" id="fbName" maxlength="60" autocomplete="off" placeholder="Name"><input type="email" id="fbEmail" maxlength="80" placeholder="E-Mail (optional)"><textarea id="fbMsg" rows="4" maxlength="1000" placeholder="Ihre Nachricht…"></textarea><input type="checkbox" style="display:none" tabindex="-1" autocomplete="off"><div class="fb-err" id="fbErr"></div><button type="submit" id="fbSendBtn">Feedback senden</button></form><div class="fb-ok" id="fbOk" style="display:none">✓ Feedback gesendet — vielen Dank!</div></div>
-<div class="inst-banner" id="instBanner" role="dialog" aria-labelledby="instTitleText" aria-describedby="instDescText" hidden><div class="inst-icon" aria-hidden="true">💱</div><div class="inst-body"><div class="inst-title" id="instTitleText">Fxverter installieren</div><div class="inst-desc" id="instDescText">Für schnellen Zugriff zum Startbildschirm hinzufügen — funktioniert offline.</div><div class="inst-ios" id="instIosHint">Tippe auf die Teilen-Schaltfläche und wähle dann „Zum Home-Bildschirm«.</div></div><div class="inst-actions"><button class="inst-go" id="instGoBtn" type="button" onclick="instGo()">Installieren</button><button class="inst-later" id="instLaterBtn" type="button" onclick="fxInstLater()">Jetzt nicht</button></div></div>
+<div class="inst-banner" id="instBanner" role="dialog" aria-labelledby="instTitleText" aria-describedby="instDescText" hidden><div class="inst-icon" aria-hidden="true">💱</div><div class="inst-body"><div class="inst-title" id="instTitleText">Fxverter installieren</div><div class="inst-desc" id="instDescText">Für schnellen Zugriff zum Startbildschirm hinzufügen — funktioniert offline.</div><div class="inst-ios" id="instIosHint">Tippe auf die Teilen-Schaltfläche und wähle dann „Zum Home-Bildschirm“.</div></div><div class="inst-actions"><button class="inst-go" id="instGoBtn" type="button" onclick="instGo()">Installieren</button><button class="inst-later" id="instLaterBtn" type="button" onclick="fxInstLater()">Jetzt nicht</button></div></div>
 <script>const FX_PAGE = {"cur": "de", "sub": "currencies/usd-to-inr/", "base": "https://fxverter.com/", "root": "../../../"};
-const FX_T = {"share": "Teilen", "shared": "Link kopiert!", "feedback": "Feedback", "fbPlaceholder": "Ihre Nachricht…", "fbSend": "Feedback senden", "fbOk": "✓ Feedback gesendet — vielen Dank!", "fbEmpty": "Bitte zuerst eine Nachricht schreiben.", "fbFail": "Senden fehlgeschlagen — bitte erneut versuchen oder direkt eine E-Mail schreiben.", "install": "App installieren", "instTitle": "Fxverter installieren", "instDesc": "Für schnellen Zugriff zum Startbildschirm hinzufügen — funktioniert offline.", "instBtn": "Installieren", "instLater": "Jetzt nicht", "instIos": "Tippe auf die Teilen-Schaltfläche und wähle dann „Zum Home-Bildschirm«."};
+const FX_T = {"share": "Teilen", "shared": "Link kopiert!", "feedback": "Feedback", "fbPlaceholder": "Ihre Nachricht…", "fbSend": "Feedback senden", "fbOk": "✓ Feedback gesendet — vielen Dank!", "fbEmpty": "Bitte zuerst eine Nachricht schreiben.", "fbFail": "Senden fehlgeschlagen — bitte erneut versuchen oder direkt eine E-Mail schreiben.", "install": "App installieren", "instTitle": "Fxverter installieren", "instDesc": "Für schnellen Zugriff zum Startbildschirm hinzufügen — funktioniert offline.", "instBtn": "Installieren", "instLater": "Jetzt nicht", "instIos": "Tippe auf die Teilen-Schaltfläche und wähle dann „Zum Home-Bildschirm“."};
 const FX_MAIL = {u: "hello", d: "fxverter.com"};
 function fxShare() {
   const url = location.href.split('#')[0];
@@ -385,7 +401,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="status" id="st">Kurse werden geladen…</div>
   </div>
   <h2>Aktueller Wechselkurs</h2>
-  <p class="updstamp" style="margin:-0.5rem 0 1.2rem">1 USD = 94.9500 INR · Referenzkurs vom 2026-10-31. Der Live-Umrechner oben ruft stets den neuesten Kurs ab — die Tabellen unten sind eine Momentaufnahme zum Erstellungszeitpunkt zur Orientierung.</p>
+  <p class="updstamp" style="margin:-0.5rem 0 1.2rem">1 USD = 94.9500 INR · Referenzkurs vom 2026-11-01. Der Live-Umrechner oben ruft stets den neuesten Kurs ab — die Tabellen unten sind eine Momentaufnahme zum Erstellungszeitpunkt zur Orientierung.</p>
   <h2>Gängige Beträge: USD in INR</h2>
 <table aria-label="USD to INR"><thead><tr><th>USD</th><th class="r">INR</th></tr></thead><tbody><tr><td>1.00 USD</td><td class="r">94.95 INR</td></tr><tr><td>5.00 USD</td><td class="r">474.75 INR</td></tr><tr><td>10.00 USD</td><td class="r">949.50 INR</td></tr><tr><td>25.00 USD</td><td class="r">2,374 INR</td></tr><tr><td>50.00 USD</td><td class="r">4,748 INR</td></tr><tr><td>100.00 USD</td><td class="r">9,495 INR</td></tr><tr><td>500.00 USD</td><td class="r">47,475 INR</td></tr><tr><td>1,000 USD</td><td class="r">94,950 INR</td></tr><tr><td>5,000 USD</td><td class="r">474,750 INR</td></tr></tbody></table>
 <h2>Gängige Beträge: INR in USD</h2>
@@ -403,7 +419,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <h2>Währungsseiten</h2>
   <div class="links" aria-label="Currency pages"><a href="../usd/">USD</a> <a href="../inr/">INR</a></div>
   <h2>Weitere Währungspaare</h2>
-  <div class="links" aria-label="Other pairs"><a href="usd-to-eur/">USD → EUR</a> <a href="usd-to-gbp/">USD → GBP</a> <a href="usd-to-jpy/">USD → JPY</a> <a href="usd-to-cny/">USD → CNY</a> <a href="usd-to-cad/">USD → CAD</a> <a href="usd-to-aud/">USD → AUD</a> <a href="usd-to-chf/">USD → CHF</a> <a href="usd-to-mxn/">USD → MXN</a> <a href="usd-to-php/">USD → PHP</a> <a href="eur-to-gbp/">EUR → GBP</a> <a href="eur-to-chf/">EUR → CHF</a> <a href="eur-to-pln/">EUR → PLN</a> <a href="gbp-to-jpy/">GBP → JPY</a> <a href="aud-to-jpy/">AUD → JPY</a></div>
+  <div class="links" aria-label="Other pairs"><a href="../usd-to-eur/">USD → EUR</a> <a href="../usd-to-gbp/">USD → GBP</a> <a href="../usd-to-jpy/">USD → JPY</a> <a href="../usd-to-cny/">USD → CNY</a> <a href="../usd-to-cad/">USD → CAD</a> <a href="../usd-to-aud/">USD → AUD</a> <a href="../usd-to-chf/">USD → CHF</a> <a href="../usd-to-mxn/">USD → MXN</a> <a href="../usd-to-php/">USD → PHP</a> <a href="../eur-to-gbp/">EUR → GBP</a> <a href="../eur-to-chf/">EUR → CHF</a> <a href="../eur-to-pln/">EUR → PLN</a> <a href="../gbp-to-jpy/">GBP → JPY</a> <a href="../aud-to-jpy/">AUD → JPY</a></div>
 </main>
 <p class="trust-links"><a href="https://fxverter.com/de/about/">Über uns</a><a href="https://fxverter.com/de/privacy/">Datenschutz</a><a href="https://fxverter.com/de/terms/">Nutzungsbedingungen</a><a href="https://fxverter.com/de/contact/">Kontakt</a><a href="https://fxverter.com/de/feedback/">Feedback</a><a href="https://fxverter.com/de/support/">♥ Unterstützen</a></p>
 <p class="disc">Kurse sind Richtwerte aus öffentlichen Quellen (EZB über Frankfurter, ExchangeRate-API) und werden täglich aktualisiert — vor Transaktionen mit der Bank abstimmen. © 2026 Fxverter · Währungsrechner · <a href="https://fxverter.com/de/">Fxverter</a></p>

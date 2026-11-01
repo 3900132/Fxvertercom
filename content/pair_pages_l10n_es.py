@@ -113,7 +113,7 @@ PAIR_CONTENT_L10N = {
         ],
         "faq": [
             ("¿Por qué al dólar canadiense lo llaman loonie?",
-             "Por el somormujo (loon) grabado en la moneda de un dólar introducida en 1987. El apodo prendió y hoy nombra a la propia moneda en la jerga de divisas, como en «el loonie se revalorizó hoy»."),
+             "Por el colimbo (loon) grabado en la moneda de un dólar introducida en 1987. El apodo prendió y hoy nombra a la propia moneda en la jerga de divisas, como en «el loonie se revalorizó hoy»."),
             ("¿De verdad afecta el precio del petróleo al USD/CAD?",
              "Sí, de forma visible. El crudo y sus derivados son la mayor categoría exportadora de Canadá, de modo que un petróleo al alza suele traer más dólares a Canadá y elevar al CAD. Los operadores tratan el par como una apuesta aproximada a los mercados energéticos, además de a los tipos de interés de los dos países."),
         ],

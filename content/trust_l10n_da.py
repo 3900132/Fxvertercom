@@ -12,7 +12,7 @@ TRUST_LANG = {
             ["h", "Hvad gør det anderledes"],
             ["li", "Ingen konto, ingen sporing – omregninger kører lokalt i din browser"],
             ["li", "Tre skiftbare offentlige datakilder: Frankfurter (Den Europæiske Centralbanks referencekurser), ExchangeRate-API og Fawaz Currency API"],
-            ["li", "40 store valutaer med egne sider: live-omregningstabeller, 30/90-dages trendgrafer og valutaprofiler"],
+            ["li", "56 store valutaer med egne sider: live-omregningstabeller, 30/90-dages trendgrafer og valutaprofiler"],
             ["li", "Guider i klart sprog, der forklarer, hvordan valutakurser reelt fungerer"],
             ["li", "Kan installeres som app (PWA), der fortsætter offline med de sidst kendte kurser"],
             ["h", "Dataene"],

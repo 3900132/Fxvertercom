@@ -27,7 +27,7 @@
   "name": "Fijian Dollar (FJD) — Aktuelle valutakurser og valutaberegner | Fxverter",
   "description": "Aktuelle valutakurser for Fijian Dollar (FJD): omregn FJD til USD, EUR, GBP og 140+ andre valutaer med den gratis Fxverter-omregner. Kurser, fakta, beregner.",
   "inLanguage": "da",
-  "dateModified": "2026-10-31",
+  "dateModified": "2026-11-01",
   "isPartOf": {"@type": "WebSite", "name": "Fxverter", "url": "https://fxverter.com/"},
   "about": {"@type": "Thing", "name": "Fijian Dollar"}
 }
@@ -361,7 +361,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
   <div class="facts"><div class="fact"><div class="k">ISO</div><div class="v">FJD</div></div><div class="fact"><div class="k">♦</div><div class="v">FJ$</div></div><div class="fact"><div class="k">🌍</div><div class="v">Fiji</div></div><div class="fact"><div class="k">¢</div><div class="v">100 cents</div></div></div>
-  <p class="about" itemprop="description" data-en-name="Fijian Dollar">Fijian Dollar er en af de 141 verdensvaluter, der understøttes af Fxverter — den gratis online valutaomregner. Fxverter viser aktuelle referenskurser for Fijian Dollar og 140 andre valutor, baseret på offentlige centralbankdata.</p>
+  <p class="about" itemprop="description" data-en-name="Fijian Dollar">Fijian Dollar er en af de 141 verdensvalutaer, der understøttes af Fxverter — den gratis online valutaomregner. Fxverter viser aktuelle referencerekser for Fijian Dollar og 140 andre valutaer, baseret på offentlige centralbankdata.</p>
   <h2>Omregn FJD</h2>
   <div class="ratebox">
     <input type="text" inputmode="decimal" id="amt" placeholder="Beløb i FJD" oninput="calc(this.value)">
@@ -436,7 +436,7 @@ let R = null;
   R = await rates();
   const s = document.getElementById('st');
   if (!R) { s.textContent = "Kurser midlertidigt utilgængelige."; return; }
-  s.textContent = "Referenzkurser indlæst";
+  s.textContent = "Referencerekser indlæst";
   const tb = document.getElementById('rt');
   for (const t of ["USD", "EUR", "GBP", "JPY", "CNY", "CHF", "TRY", "INR", "KRW", "AUD", "CAD", "MXN", "BRL", "ZAR", "SEK", "NOK", "NZD", "SGD", "HKD", "THB"]) {
     if (R[t] === undefined) continue;

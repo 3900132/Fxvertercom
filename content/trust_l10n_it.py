@@ -11,11 +11,11 @@ TRUST_LANG = {
         "sections": [
             ["p", "Fxverter è un convertitore di valute online gratuito e open source che funziona interamente nel tuo browser. Mostra tassi di cambio di riferimento per oltre 140 valute del mondo, non richiede né chiave API, né registrazione, né installazione – apri il sito e inizi a convertire."],
             ["h", "Perché l'abbiamo creato"],
-            ["p", "La maggior parte dei siti di conversione seppellisce il tasso vero sotto pop-up, muri di registrazione e solleciti a installare l'app. Volevamo il contrario: uno strumento veloce e privato che mostri per primo l'onesto tasso di riferimento medio di mercato e poi si faccia da parte. L'intero prodotto è una sola pagina statica che funziona su qualsiasi dispositivo, in sette lingue, e dopo l'installazione perfino offline."],
+            ["p", "La maggior parte dei siti di conversione seppellisce il tasso vero sotto pop-up, muri di registrazione e solleciti a installare l'app. Volevamo il contrario: uno strumento veloce e privato che mostri per primo l'onesto tasso di riferimento medio di mercato e poi si faccia da parte. L'intero prodotto è una sola pagina statica che funziona su qualsiasi dispositivo, in 29 lingue, e dopo l'installazione perfino offline."],
             ["h", "Cosa lo rende diverso"],
             ["li", "Nessun account, nessun tracciamento – le conversioni avvengono in locale nel tuo browser"],
             ["li", "Tre fonti dati pubbliche selezionabili: Frankfurter (tassi di riferimento della Banca Centrale Europea), ExchangeRate-API e la Fawaz Currency API"],
-            ["li", "40 valute principali con pagine dedicate: tabelle di conversione in tempo reale, grafici dell'andamento a 30/90 giorni e profili delle valute"],
+            ["li", "56 valute principali con pagine dedicate: tabelle di conversione in tempo reale, grafici dell'andamento a 30/90 giorni e profili delle valute"],
             ["li", "Guide in linguaggio semplice che spiegano come funzionano davvero i tassi di cambio"],
             ["li", "Installabile come app (PWA) che continua a funzionare offline con gli ultimi tassi noti"],
             ["h", "I dati"],

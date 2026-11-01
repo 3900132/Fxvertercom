@@ -60,11 +60,11 @@ TRUST["en"] = {
         "sections": [
             ("p", "Fxverter is a free, open-source online currency converter that runs entirely in your browser. It shows reference exchange rates for over 140 world currencies, requires no API key, no sign-up and no installation — you open the website and start converting."),
             ("h", "Why we built it"),
-            ("p", "Most converter sites bury the actual rate under pop-ups, sign-up walls and app-install nagging. We wanted the opposite: a fast, private tool that shows the honest mid-market reference rate first and gets out of the way. The whole product is one static page that works on any device, in seven languages, even offline after installation."),
+            ("p", "Most converter sites bury the actual rate under pop-ups, sign-up walls and app-install nagging. We wanted the opposite: a fast, private tool that shows the honest mid-market reference rate first and gets out of the way. The whole product is one static page that works on any device, in 29 languages, even offline after installation."),
             ("h", "What makes it different"),
             ("li", "No account, no tracking — conversions run locally in your browser"),
             ("li", "Three switchable public data sources: Frankfurter (European Central Bank reference rates), ExchangeRate-API and the Fawaz Currency API"),
-            ("li", "40 major currencies with dedicated pages: live conversion tables, 30/90-day trend charts and currency profiles"),
+            ("li", "56 major currencies with dedicated pages: live conversion tables, 30/90-day trend charts and currency profiles"),
             ("li", "Plain-language guides that explain how exchange rates actually work"),
             ("li", "Installable as an app (PWA) that keeps working offline with the last known rates"),
             ("h", "The data"),
@@ -147,11 +147,11 @@ TRUST["zh"] = {
         "sections": [
             ("p", "Fxverter 是一个完全在浏览器中运行的免费开源货币换算器。它展示 140 多种世界货币的参考汇率，无需 API 密钥、无需注册、无需安装——打开网页就能换算。"),
             ("h", "为什么做这个站"),
-            ("p", "大多数换算网站用弹窗、注册墙和装 App 提醒把真正的汇率埋在底下。我们想做相反的东西：一个快速、私密的工具，把诚实的中间市场参考汇率放在第一位，其余一律不打扰。整个产品就是一个静态页面，任何设备都能用，支持 7 种语言，安装为应用后离线也能用。"),
+            ("p", "大多数换算网站用弹窗、注册墙和装 App 提醒把真正的汇率埋在底下。我们想做相反的东西：一个快速、私密的工具，把诚实的中间市场参考汇率放在第一位，其余一律不打扰。整个产品就是一个静态页面，任何设备都能用，支持 29 种语言，安装为应用后离线也能用。"),
             ("h", "它有什么不同"),
             ("li", "无需账号、无追踪——换算全部在你自己的浏览器中完成"),
             ("li", "三个可切换的公开数据源：Frankfurter（欧洲央行参考汇率）、ExchangeRate-API 和 Fawaz Currency API"),
-            ("li", "40 种主流货币各有独立页面：实时换算表、30/90 天趋势图和货币档案"),
+            ("li", "56 种主流货币各有独立页面：实时换算表、30/90 天趋势图和货币档案"),
             ("li", "用大白话解释汇率究竟怎么运作的科普指南"),
             ("li", "可安装为应用（PWA），离线也能用最后一次缓存的汇率"),
             ("h", "关于数据"),
@@ -234,11 +234,11 @@ TRUST["de"] = {
         "sections": [
             ("p", "Fxverter ist ein kostenloser Open-Source-Währungsrechner, der vollständig in deinem Browser läuft. Er zeigt Referenzwechselkurse für über 140 Währungen — ohne API-Schlüssel, ohne Anmeldung, ohne Installation: Website öffnen, umrechnen."),
             ("h", "Warum es Fxverter gibt"),
-            ("p", "Die meisten Rechner-Seiten begraben den eigentlichen Kurs unter Pop-ups, Anmelde-Aufforderungen und App-Werbebanner. Wir wollten das Gegenteil: ein schnelles, privates Tool, das zuerst den ehrlichen Mid-Market-Referenzkurs zeigt und sonst nichts will. Das ganze Produkt ist eine statische Seite, die auf jedem Gerät läuft, in sieben Sprachen — und nach der Installation sogar offline."),
+            ("p", "Die meisten Rechner-Seiten begraben den eigentlichen Kurs unter Pop-ups, Anmelde-Aufforderungen und App-Werbebanner. Wir wollten das Gegenteil: ein schnelles, privates Tool, das zuerst den ehrlichen Mid-Market-Referenzkurs zeigt und sonst nichts will. Das ganze Produkt ist eine statische Seite, die auf jedem Gerät läuft, in 29 Sprachen — und nach der Installation sogar offline."),
             ("h", "Was es anders macht"),
             ("li", "Kein Konto, kein Tracking — Umrechnungen laufen lokal in deinem Browser"),
             ("li", "Drei umschaltbare öffentliche Datenquellen: Frankfurter (EZB-Referenzkurse), ExchangeRate-API und die Fawaz Currency API"),
-            ("li", "40 wichtige Währungen mit eigenen Seiten: Live-Umrechnungstabellen, 30/90-Tage-Charts und Währungsprofile"),
+            ("li", "56 wichtige Währungen mit eigenen Seiten: Live-Umrechnungstabellen, 30/90-Tage-Charts und Währungsprofile"),
             ("li", "Verständliche Ratgeber, die erklären, wie Wechselkurse wirklich entstehen"),
             ("li", "Als App installierbar (PWA), die offline mit den letzten bekannten Kursen weiterarbeitet"),
             ("h", "Die Daten"),
@@ -321,11 +321,11 @@ TRUST["fr"] = {
         "sections": [
             ("p", "Fxverter est un convertisseur de devises en ligne gratuit et open source qui fonctionne entièrement dans votre navigateur. Il affiche des taux de change de référence pour plus de 140 devises, sans clé API, sans inscription ni installation — vous ouvrez le site et vous convertissez."),
             ("h", "Pourquoi nous l'avons créé"),
-            ("p", "La plupart des sites de conversion enterrent le vrai taux sous les pop-ups, les murs d'inscription et les relances d'installation d'application. Nous voulions l'inverse : un outil rapide et privé qui montre d'abord le taux de référence du marché interbancaire, sans rien demander en échange. Tout le produit tient en une page statique qui fonctionne sur n'importe quel appareil, en sept langues — et même hors ligne après installation."),
+            ("p", "La plupart des sites de conversion enterrent le vrai taux sous les pop-ups, les murs d'inscription et les relances d'installation d'application. Nous voulions l'inverse : un outil rapide et privé qui montre d'abord le taux de référence du marché interbancaire, sans rien demander en échange. Tout le produit tient en une page statique qui fonctionne sur n'importe quel appareil, en 29 langues — et même hors ligne après installation."),
             ("h", "Ce qui le rend différent"),
             ("li", "Aucun compte, aucun suivi — les conversions s'exécutent localement dans votre navigateur"),
             ("li", "Trois sources publiques commutables : Frankfurter (taux de référence de la BCE), ExchangeRate-API et Fawaz Currency API"),
-            ("li", "40 grandes devises avec une page dédiée : tables de conversion en direct, graphiques 30/90 jours et profils de devise"),
+            ("li", "56 grandes devises avec une page dédiée : tables de conversion en direct, graphiques 30/90 jours et profils de devise"),
             ("li", "Des guides en langage clair qui expliquent comment les taux de change fonctionnent vraiment"),
             ("li", "Installable comme application (PWA) qui continue de fonctionner hors ligne avec les derniers taux connus"),
             ("h", "Les données"),
@@ -408,11 +408,11 @@ TRUST["es"] = {
         "sections": [
             ("p", "Fxverter es un conversor de divisas en línea gratuito y de código abierto que funciona totalmente en tu navegador. Muestra tasas de cambio de referencia para más de 140 divisas, sin clave API, sin registro ni instalación — abres el sitio y empiezas a convertir."),
             ("h", "Por qué lo creamos"),
-            ("p", "La mayoría de los sitios de conversión entierran la tasa real bajo ventanas emergentes, muros de registro y avisos de instalación de apps. Queríamos lo contrario: una herramienta rápida y privada que muestre primero la tasa de referencia del mercado interbancario, sin pedir nada a cambio. Todo el producto es una página estática que funciona en cualquier dispositivo, en siete idiomas — e incluso sin conexión tras instalarla."),
+            ("p", "La mayoría de los sitios de conversión entierran la tasa real bajo ventanas emergentes, muros de registro y avisos de instalación de apps. Queríamos lo contrario: una herramienta rápida y privada que muestre primero la tasa de referencia del mercado interbancario, sin pedir nada a cambio. Todo el producto es una página estática que funciona en cualquier dispositivo, en 29 idiomas — e incluso sin conexión tras instalarla."),
             ("h", "Qué lo hace diferente"),
             ("li", "Sin cuenta y sin seguimiento — las conversiones se ejecutan en tu propio navegador"),
             ("li", "Tres fuentes públicas conmutables: Frankfurter (tasas de referencia del Banco Central Europeo), ExchangeRate-API y la Fawaz Currency API"),
-            ("li", "40 divisas principales con página propia: tablas de conversión en vivo, gráficos de 30/90 días y perfiles de divisa"),
+            ("li", "56 divisas principales con página propia: tablas de conversión en vivo, gráficos de 30/90 días y perfiles de divisa"),
             ("li", "Guías en lenguaje sencillo que explican cómo funcionan realmente los tipos de cambio"),
             ("li", "Instalable como app (PWA) que sigue funcionando sin conexión con las últimas tasas conocidas"),
             ("h", "Los datos"),
@@ -495,11 +495,11 @@ TRUST["pt"] = {
         "sections": [
             ("p", "O Fxverter é um conversor de moedas on-line gratuito e de código aberto que funciona inteiramente no seu navegador. Ele mostra taxas de câmbio de referência para mais de 140 moedas, sem chave de API, sem cadastro e sem instalação — você abre o site e começa a converter."),
             ("h", "Por que criamos"),
-            ("p", "A maioria dos sites de conversão enterra a taxa real sob pop-ups, barreiras de cadastro e insistentes pedidos de instalação de aplicativo. Queríamos o oposto: uma ferramenta rápida e privada que mostra primeiro a taxa de referência do mercado interbancário e não pede nada em troca. O produto inteiro é uma página estática que funciona em qualquer aparelho, em sete idiomas — e até offline depois de instalada."),
+            ("p", "A maioria dos sites de conversão enterra a taxa real sob pop-ups, barreiras de cadastro e insistentes pedidos de instalação de aplicativo. Queríamos o oposto: uma ferramenta rápida e privada que mostra primeiro a taxa de referência do mercado interbancário e não pede nada em troca. O produto inteiro é uma página estática que funciona em qualquer aparelho, em 29 idiomas — e até offline depois de instalada."),
             ("h", "O que o torna diferente"),
             ("li", "Sem conta e sem rastreamento — as conversões rodam no seu próprio navegador"),
             ("li", "Três fontes públicas comutáveis: Frankfurter (taxas de referência do Banco Central Europeu), ExchangeRate-API e a Fawaz Currency API"),
-            ("li", "40 moedas principais com página própria: tabelas de conversão em tempo real, gráficos de 30/90 dias e perfis de moeda"),
+            ("li", "56 moedas principais com página própria: tabelas de conversão em tempo real, gráficos de 30/90 dias e perfis de moeda"),
             ("li", "Guias em linguagem simples que explicam como os câmbios realmente funcionam"),
             ("li", "Instalável como app (PWA) que continua funcionando offline com as últimas taxas conhecidas"),
             ("h", "Os dados"),
@@ -582,11 +582,11 @@ TRUST["ja"] = {
         "sections": [
             ("p", "Fxverter はブラウザ上だけで動く、無料のオープンソース通貨コンバーターです。140 以上の世界通貨の参考為替レートを表示し、API キーも登録もインストールも不要——サイトを開けばすぐ換算できます。"),
             ("h", "なぜ作ったのか"),
-            ("p", "ほとんどの換算サイトは、ポップアップや登録の壁、アプリ導入の催促の下に本当のレートを埋めています。私たちはその逆を作りたかった——誠実なミッドマーケットの参考レートを真っ先に見せて、あとは何も求めない、速くてプライバシーに配慮したツールです。製品全体が 1 枚の静的ページで、7 か国語、どんなデバイスでも動き、インストール後はオフラインでも使えます。"),
+            ("p", "ほとんどの換算サイトは、ポップアップや登録の壁、アプリ導入の催促の下に本当のレートを埋めています。私たちはその逆を作りたかった——誠実なミッドマーケットの参考レートを真っ先に見せて、あとは何も求めない、速くてプライバシーに配慮したツールです。製品全体が 1 枚の静的ページで、29 か国語、どんなデバイスでも動き、インストール後はオフラインでも使えます。"),
             ("h", "他と違うところ"),
             ("li", "アカウント不要・トラッキングなし——換算はあなたのブラウザ内で完結します"),
             ("li", "切り替え可能な 3 つの公開データソース：Frankfurter（欧州中央銀行の参考レート）、ExchangeRate-API、Fawaz Currency API"),
-            ("li", "主要 40 通貨に専用ページ：リアルタイム換算表、30/90 日のトレンドチャート、通貨プロフィール"),
+            ("li", "主要 56 通貨に専用ページ：リアルタイム換算表、30/90 日のトレンドチャート、通貨プロフィール"),
             ("li", "為替レートの仕組みを平易な言葉で解説するガイド"),
             ("li", "アプリ（PWA）としてインストールでき、オフラインでも最後の既知レートで動作"),
             ("h", "データについて"),
@@ -1034,4 +1034,652 @@ TRUST_OVERRIDES["curFaq"] = {
     "ar": "الأسئلة الشائعة",
     "it": "Domande frequenti",
     "th": "คำถามที่พบบ่อย",
+    "tr": "Sıkça sorulan sorular",
+    "id": "Pertanyaan yang sering diajukan",
+    "ms": "Soalan lazim",
+    "tl": "Mga madalas itanong",
+    "nl": "Veelgestelde vragen",
+    "pl": "Często zadawane pytania",
+    "uk": "Часті запитання",
+    "sv": "Vanliga frågor",
+    "vi": "Câu hỏi thường gặp",
+    "el": "Συχνές ερωτήσεις",
+    "lo": "ຄຳຖາມທີ່ພົບເລື້ອຍ",
+    "bn": "সাধারণ প্রশ্ন",
+    "fa": "سوالات متداول",
+    "cs": "Často kladené otázky",
+    "ro": "Întrebări frecvente",
+    "da": "Ofte stillede spørgsmål",
 }
+
+
+# ═══════════════════════════════════════════════════════════════
+# Round-5 extension: ads-aware support & privacy copy for the six
+# languages promoted in round 4 (ko/ru/hi/ar/it/th). Until now these
+# six fell back to the pre-advertising texts in content_ui/page_meta,
+# which still claimed "no ads" — contradicting their own privacy pages.
+# Same structures as the seven canonical languages above.
+# ═══════════════════════════════════════════════════════════════
+
+TRUST_OVERRIDES["supportIntro"].update({
+    "ko": "Fxverter는 무료이며 계정도 추적도 없습니다. 몇 번의 환율 확인에 도움이 되었다면 콜라 한 캔 사 주는 건 어떨까요: 모든 후원금은 도메인·서버·지속적인 개발에 쓰입니다. 결제는 Creem이 기록 판매자(merchant of record)로 처리하며, 결제 데이터는 이 사이트가 아니라 Creem이 다룹니다.",
+    "ru": "Fxverter бесплатен — без аккаунтов и слежки. Если он помог вам перевести пару курсов, угостите нас колой: каждый взнос идёт на домен, серверы и дальнейшую разработку. Платежи обрабатывает Creem в качестве merchant of record — ваши платёжные данные обрабатывает Creem, а не этот сайт.",
+    "hi": "Fxverter मुफ़्त है — न खाता, न ट्रैकिंग। अगर इसने आपकी कुछ दरें बदलने में मदद की, तो हमें एक कोला दिला दें: हर योगदान डोमेन, सर्वर और निरंतर विकास में लगता है। भुगतान Creem के ज़रिए merchant of record के रूप में संसाधित होता है — आपका भुगतान डेटा इस वेबसाइट नहीं, Creem संभालता है।",
+    "ar": "Fxverter مجاني — بلا حسابات ولا تتبّع. إذا ساعدك في تحويل سعر أو سعرين، أكرمنا بعلبة كولا: كل مساهمة تذهب إلى النطاق والخوادم والتطوير المستمر. تُعالَج المدفوعات عبر Creem بصفته التاجر المسجّل (merchant of record) — بيانات الدفع يديرها Creem لا هذا الموقع.",
+    "it": "Fxverter è gratuito — senza account e senza tracciamento. Se ti ha aiutato a convertire un tasso o due, offrici una Coca: ogni contributo va a dominio, server e sviluppo continuo. I pagamenti sono elaborati da Creem in qualità di merchant of record — i tuoi dati di pagamento sono gestiti da Creem, non da questo sito.",
+    "th": "Fxverter ใช้ฟรี — ไม่มีบัญชี ไม่มีการติดตาม ถ้าช่วยคุณแปลงอัตราได้ไม่กี่ครั้ง ชวนเราดื่มโค้กสักกระป๋อง: ทุกการสนับสนุนนำไปใช้กับโดเมน เซิร์ฟเวอร์ และการพัฒนาต่อ การชำระเงินดำเนินการโดย Creem ในฐานะผู้ขายผู้บันทึกรายการ (merchant of record) — ข้อมูลการชำระเงินของคุณถูกจัดการโดย Creem ไม่ใช่เว็บไซต์นี้",
+})
+
+TRUST_OVERRIDES["supportDesc"].update({
+    "ko": "Fxverter 지원하기: 무료로 사용할 수 있고 계정도 추적도 없습니다. 후원이 빠르고 무료이며 독립적인 상태를 지켜 줍니다; 결제는 Creem이 처리합니다.",
+    "ru": "Поддержите Fxverter: бесплатно — без аккаунта и слежки. Взносы сохраняют его быстрым, бесплатным и независимым; платежи через Creem.",
+    "hi": "Fxverter को सहयोग करें: मुफ़्त — न खाता, न ट्रैकिंग। योगदान इसे तेज़, मुफ़्त और स्वतंत्र रखते हैं; भुगतान Creem से।",
+    "ar": "ادعم Fxverter: مجاني — بلا حساب ولا تتبّع. المساهمات تبقيه سريعًا ومجانيًا ومستقلًا؛ المدفوعات عبر Creem.",
+    "it": "Sostieni Fxverter: gratuito — senza account, senza tracciamento. I contributi lo mantengono veloce, gratuito e indipendente; pagamenti via Creem.",
+    "th": "สนับสนุน Fxverter: ใช้ฟรี — ไม่มีบัญชี ไม่มีการติดตาม การสนับสนุนช่วยให้เร็ว ฟรี และเป็นอิสระ; ชำระเงินผ่าน Creem",
+})
+
+TRUST_OVERRIDES["privacyNote"].update({
+    "ko": "개인정보 보호: 쿠키가 필요 없고 개인 데이터를 수집하지 않습니다. 익명의 쿠키 없는 방문 통계(페이지뷰와 국가)가 수집될 수 있습니다. 이 사이트는 광고를 표시할 수 있습니다 — 자세한 내용은 <a href=\"{base}ko/privacy/\">개인정보 처리방침</a>을 참고하세요.",
+    "ru": "Приватность: cookie не требуются, персональные данные не собираются. Могут собираться анонимные статистические данные о посещениях без cookie (просмотры страниц и страна). Сайт может показывать рекламу — см. <a href=\"{base}ru/privacy/\">Политику конфиденциальности</a>.",
+    "hi": "प्राइवेसी: कुकी की ज़रूरत नहीं है और न ही कोई व्यक्तिगत डेटा इकट्ठा होता है। बिना कुकी के अनाम विज़िट आँकड़े (पेज व्यू और देश) इकट्ठा हो सकते हैं। यह साइट विज्ञापन दिखा सकती है — विवरण के लिए <a href=\"{base}hi/privacy/\">प्राइवेसी पॉलिसी</a> देखें।",
+    "ar": "الخصوصية: لا حاجة إلى ملفات تعريف الارتباط ولا تُجمَع أي بيانات شخصية. قد تُجمَع إحصاءات زيارات مجهولة وخالية من الكوكيز (مشاهدات الصفحات والبلد). قد يعرض الموقع إعلانات — راجع <a href=\"{base}ar/privacy/\">سياسة الخصوصية</a>.",
+    "it": "Privacy: nessun cookie richiesto e nessun dato personale raccolto. Possono essere raccolte statistiche di visita anonime e senza cookie (visualizzazioni di pagina e paese). Il sito può mostrare pubblicità — vedi la <a href=\"{base}it/privacy/\">Informativa sulla privacy</a>.",
+    "th": "ความเป็นส่วนตัว: ไม่ต้องใช้คุกกี้และไม่เก็บข้อมูลส่วนบุคคล อาจมีการเก็บสถิติการเข้าชมแบบไม่ระบุตัวตนและไม่ใช้คุกกี้ (การเข้าชมหน้าเว็บและประเทศ) เว็บไซต์อาจแสดงโฆษณา — ดู<a href=\"{base}th/privacy/\">นโยบายความเป็นส่วนตัว</a>",
+})
+
+TRUST_OVERRIDES["support"].update({
+    "ko": {
+        "headline": "♥ 콜라 한 캔 사 주기",
+        "choose": "한 잔 사 주기",
+        "perk": "이것은 기부가 아니라 작은 디지털 감사 선물입니다: 등급을 하나 고르시면 이름(한 줄 메시지 선택 가능)이 아래 지지자 명단에 영구히 올라갑니다 — 원하시면 익명으로도 가능합니다.",
+        "tiers": [("콜라 한 캔", "$2", ""), ("6캔 팩", "$9", ""), ("한 상자", "$29", "")],
+        "note": "Creem 결제 링크를 준비 중입니다 — 지금 바로 후원하시려면 <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>으로 메일 주세요.",
+        "claim": {
+            "title": "이미 후원하셨나요? 명단에 등록하세요",
+            "name": "표시할 이름",
+            "message": "한 줄 메시지(선택)",
+            "email": "결제 시 사용한 이메일",
+            "anon": "익명으로 표시",
+            "send": "내 이름 등록하기",
+            "ok": "✓ 등록 완료 — 페이지를 새로 고침하면 보입니다.",
+            "fail": "결제를 확인하지 못했습니다 — hello@fxverter.com으로 메일 주세요.",
+            "nopaid": "해당 이메일로 결제 기록을 아직 찾지 못했습니다.",
+            "needEmail": "결제에 사용한 이메일을 입력해 주세요.",
+            "anonLabel": "익명",
+        },
+    },
+    "ru": {
+        "headline": "♥ Угостите нас колой",
+        "choose": "Выберите угощение",
+        "perk": "Это не пожертвование, а небольшое цифровое «спасибо»: выберите уровень — и ваше имя (с необязательной строкой) навсегда появится в списке сторонников ниже — или анонимно, если хотите.",
+        "tiers": [("Банка колы", "$2", ""), ("Упаковка из шести банок", "$9", ""), ("Целый ящик", "$29", "")],
+        "note": "Платёжные ссылки Creem ещё настраиваются — хотите поддержать прямо сейчас? Напишите на <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Уже поддержали? Займите место в списке",
+            "name": "Отображаемое имя",
+            "message": "Сообщение в одну строку (необязательно)",
+            "email": "Эл. почта, указанная при оплате",
+            "anon": "Указать меня анонимно",
+            "send": "Заявить о себе",
+            "ok": "✓ Вы в списке — обновите страницу, чтобы увидеть.",
+            "fail": "Не удалось подтвердить платёж — напишите на hello@fxverter.com.",
+            "nopaid": "Платёж по этому адресу пока не найден.",
+            "needEmail": "Введите адрес, с которого платили.",
+            "anonLabel": "Анонимно",
+        },
+    },
+    "hi": {
+        "headline": "♥ हमें एक कोला दिलाएँ",
+        "choose": "एक राउंड चुनें",
+        "perk": "यह दान नहीं, एक छोटा डिजिटल धन्यवाद है: कोई भी स्तर चुनें — आपका नाम (चाहें तो एक-पंक्ति का संदेश) नीचे समर्थकों की दीवार पर स्थायी रूप से दिखेगा — चाहें तो गुमनाम रूप से।",
+        "tiers": [("कोला का एक कैन", "$2", ""), ("छह कैन का पैक", "$9", ""), ("पूरा क्रेट", "$29", "")],
+        "note": "Creem चेकआउट लिंक तैयार हो रहे हैं — अभी सहयोग करना चाहें? <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a> पर ईमेल करें।",
+        "claim": {
+            "title": "पहले से सहयोग किया है? अपनी जगह दर्ज करें",
+            "name": "प्रदर्शित होने वाला नाम",
+            "message": "एक-पंक्ति का संदेश (वैकल्पिक)",
+            "email": "चेकआउट पर इस्तेमाल ईमेल",
+            "anon": "मुझे गुमनाम रूप से दिखाएँ",
+            "send": "मेरी एंट्री दर्ज करें",
+            "ok": "✓ आप दीवार पर हैं — देखने के लिए पेज रीफ़्रेश करें।",
+            "fail": "भुगतान सत्यापित नहीं हो सका — hello@fxverter.com पर ईमेल करें।",
+            "nopaid": "इस ईमेल से मेल खाता भुगतान अभी नहीं मिला।",
+            "needEmail": "कृपया वही ईमेल दर्ज करें जिससे भुगतान किया था।",
+            "anonLabel": "गुमनाम",
+        },
+    },
+    "ar": {
+        "headline": "♥ أكرمنا بعلبة كولا",
+        "choose": "اختر ضيافة",
+        "perk": "هذه ليست تبرعًا، بل شكر رقمي صغير: اختر إحدى الفئات وسيظهر اسمك (مع سطر رسالة اختياري) في جدار الداعمين أدناه بشكل دائم — أو بشكل مجهول إن فضّلت.",
+        "tiers": [("علبة كولا", "$2", ""), ("عبوة من ست علب", "$9", ""), ("صندوق كامل", "$29", "")],
+        "note": "روابط الدفع عبر Creem قيد الإعداد — تريد الدعم الآن؟ راسلنا على <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "هل دعمت سابقًا؟ احجز مكانك",
+            "name": "الاسم المعروض",
+            "message": "رسالة من سطر واحد (اختياري)",
+            "email": "البريد الإلكتروني المستخدم عند الدفع",
+            "anon": "اعرضني بشكل مجهول",
+            "send": "أكّد تسجيلي",
+            "ok": "✓ أنت على الجدار — حدّث الصفحة لتراه.",
+            "fail": "لم نتمكن من التحقق من الدفع — راسل hello@fxverter.com.",
+            "nopaid": "لم نعثر بعد على دفعة مطابقة لهذا البريد.",
+            "needEmail": "أدخل البريد الإلكتروني الذي دفعت به.",
+            "anonLabel": "مجهول",
+        },
+    },
+    "it": {
+        "headline": "♥ Offrici una Coca",
+        "choose": "Scegli cosa offrire",
+        "perk": "Non è una donazione, ma un piccolo grazie digitale: scegli un livello e il tuo nome (con un facoltativo messaggio di una riga) resta per sempre nella bacheca dei sostenitori qui sotto — oppure in forma anonima, se preferisci.",
+        "tiers": [("Una lattina di Coca", "$2", ""), ("Un pack da sei", "$9", ""), ("Una cassa intera", "$29", "")],
+        "note": "I link di pagamento Creem sono in preparazione — vuoi sostenere subito? Scrivi a <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Hai già sostenuto? Rivendica il tuo posto",
+            "name": "Nome visualizzato",
+            "message": "Messaggio di una riga (facoltativo)",
+            "email": "Email usata al pagamento",
+            "anon": "Elenca come anonimo",
+            "send": "Rivendica la mia posizione",
+            "ok": "✓ Sei sulla bacheca — aggiorna la pagina per vederlo.",
+            "fail": "Impossibile verificare il pagamento — scrivi a hello@fxverter.com.",
+            "nopaid": "Nessun pagamento trovato per questa email.",
+            "needEmail": "Inserisci l'email con cui hai pagato.",
+            "anonLabel": "Anonimo",
+        },
+    },
+    "th": {
+        "headline": "♥ ชวนเราดื่มโค้ก",
+        "choose": "เลี้ยงสักรอบ",
+        "perk": "นี่ไม่ใช่การบริจาค แต่เป็นของขอบคุณดิจิทัลชิ้นเล็ก: เลือกแพ็กเกจแล้วชื่อของคุณ (พร้อมข้อความสั้น ๆ ถ้าต้องการ) จะปรากฏบนกำแพงผู้สนับสนุนด้านล่างแบบถาวร — หรือจะไม่ระบุตัวตนก็ได้",
+        "tiers": [("โค้ก 1 กระป๋อง", "$2", ""), ("แพ็ก 6 กระป๋อง", "$9", ""), ("ทั้งลัง", "$29", "")],
+        "note": "ลิงก์ชำระเงินผ่าน Creem กำลังจัดเตรียม — อยากสนับสนุนตอนนี้เลย? ส่งอีเมลมาที่ <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>",
+        "claim": {
+            "title": "สนับสนุนไปแล้ว? อ้างสิทธิ์ชื่อของคุณ",
+            "name": "ชื่อที่แสดง",
+            "message": "ข้อความสั้น ๆ (ไม่บังคับ)",
+            "email": "อีเมลที่ใช้ชำระเงิน",
+            "anon": "แสดงเป็นผู้ไม่ประสงค์ออกนาม",
+            "send": "ยืนยันรายชื่อของฉัน",
+            "ok": "✓ คุณอยู่บนกำแพงแล้ว — รีเฟรชหน้าเพื่อดู",
+            "fail": "ยืนยันการชำระเงินไม่สำเร็จ — ส่งอีเมลมาที่ hello@fxverter.com",
+            "nopaid": "ยังไม่พบรายการชำระเงินที่ตรงกับอีเมลนี้",
+            "needEmail": "กรุณากรอกอีเมลที่ใช้ชำระเงิน",
+            "anonLabel": "ไม่ประสงค์ออกนาม",
+        },
+    },
+})
+
+
+# ═══════════════════════════════════════════════════════════════
+# Round-6 promotion: Turkish (tr) joins the indexed languages.
+# Same ads-aware support/privacy copy structure as the round-5 block.
+# ═══════════════════════════════════════════════════════════════
+
+TRUST_OVERRIDES["supportIntro"].update({
+    "tr": "Fxverter \u00fccretsizdir \u2014 hesap yok, takip yok. Birka\u00e7 kurdun \u00e7evrilmesine yard\u0131mc\u0131 olduysa bize bir kola \u0131smarlay\u0131n: her katk\u0131 alan ad\u0131na, sunuculara ve s\u00fcrekli geli\u015ftirmeye gider. \u00d6demeler, kay\u0131t tutan sat\u0131c\u0131 (merchant of record) olarak Creem \u00fczerinden i\u015flenir \u2014 \u00f6deme verilerinizi bu site de\u011fil, Creem y\u00f6netir.",
+})
+
+TRUST_OVERRIDES["supportDesc"].update({
+    "tr": "Fxverter\u2019i destekleyin: \u00fccretsiz \u2014 hesap yok, takip yok. Katk\u0131lar onu h\u0131zl\u0131, \u00fccretsiz ve ba\u011f\u0131ms\u0131z tutar; \u00f6demeler Creem \u00fczerinden.",
+})
+
+TRUST_OVERRIDES["privacyNote"].update({
+    "tr": "Gizlilik: \u00e7erez gerekmez ve ki\u015fisel veri toplanmaz. Anonim, \u00e7erezsiz ziyaret istatistikleri (sayfa g\u00f6r\u00fcnt\u00fcleme ve \u00fclke) toplanabilir. Site reklam g\u00f6sterebilir \u2014 ayr\u0131nt\u0131lar i\u00e7in <a href=\"{base}tr/privacy/\">Gizlilik Politikas\u0131</a> sayfas\u0131na bak\u0131n.",
+})
+
+TRUST_OVERRIDES["support"].update({
+    "tr": {
+        "headline": "\u2665 Bize bir kola \u0131smarlay\u0131n",
+        "choose": "Bir tur \u0131smarla",
+        "perk": "Bu bir ba\u011f\u0131\u015f de\u011fil, k\u00fc\u00e7\u00fck bir dijital te\u015fekk\u00fcrd\u00fcr: bir paket se\u00e7in; ad\u0131n\u0131z (iste\u011fe ba\u011fl\u0131 tek sat\u0131rl\u0131k mesajla) a\u015fa\u011f\u0131daki destek\u00e7iler listesine kal\u0131c\u0131 olarak eklenir \u2014 isterseniz anonim olarak.",
+        "tiers": [("Bir kutu kola", "$2", ""), ("Alt\u0131l\u0131 paket", "$9", ""), ("Koca bir kasa", "$29", "")],
+        "note": "Creem \u00f6deme ba\u011flant\u0131lar\u0131 haz\u0131rlan\u0131yor \u2014 hemen destek olmak ister misiniz? <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a> adresine yaz\u0131n.",
+        "claim": {
+            "title": "Zaten destek verdiniz mi? Ad\u0131n\u0131z\u0131 ekleyin",
+            "name": "G\u00f6r\u00fcnen ad",
+            "message": "Tek sat\u0131rl\u0131k mesaj (iste\u011fe ba\u011fl\u0131)",
+            "email": "\u00d6demede kullan\u0131lan e-posta",
+            "anon": "Anonim olarak listele",
+            "send": "Kayd\u0131m\u0131 ekle",
+            "ok": "\u2713 Listedesiniz \u2014 g\u00f6rmek i\u00e7in sayfay\u0131 yenileyin.",
+            "fail": "\u00d6deme do\u011frulanamad\u0131 \u2014 hello@fxverter.com adresine yaz\u0131n.",
+            "nopaid": "Bu e-postaya ait bir \u00f6deme kayd\u0131 hen\u00fcz bulunamad\u0131.",
+            "needEmail": "L\u00fctfen \u00f6demede kulland\u0131\u011f\u0131n\u0131z e-postay\u0131 girin.",
+            "anonLabel": "Anonim",
+        },
+    },
+})
+
+
+# ═══════════════════════════════════════════════════════════════
+# Round-6 promotion: Indonesian (id) joins the indexed languages.
+# ═══════════════════════════════════════════════════════════════
+
+TRUST_OVERRIDES["supportIntro"].update({
+    "id": "Fxverter gratis digunakan \u2014 tanpa akun, tanpa pelacakan. Jika pernah membantu Anda mengonversi beberapa kurs, traktir kami satu kola: setiap kontribusi digunakan untuk domain, server, dan pengembangan berkelanjutan. Pembayaran diproses oleh Creem selaku merchant of record \u2014 data pembayaran Anda dikelola oleh Creem, bukan oleh situs ini.",
+})
+
+TRUST_OVERRIDES["supportDesc"].update({
+    "id": "Dukung Fxverter: gratis \u2014 tanpa akun, tanpa pelacakan. Kontribusi menjaganya tetap cepat, gratis, dan independen; pembayaran melalui Creem.",
+})
+
+TRUST_OVERRIDES["privacyNote"].update({
+    "id": "Privasi: tidak perlu kuki dan tidak ada data pribadi yang dikumpulkan. Statistik kunjungan anonim tanpa kuki (tampilan halaman dan negara) dapat dikumpulkan. Situs ini dapat menampilkan iklan \u2014 lihat <a href=\"{base}id/privacy/\">Kebijakan Privasi</a>.",
+})
+
+TRUST_OVERRIDES["support"].update({
+    "id": {
+        "headline": "\u2665 Traktir kami satu kola",
+        "choose": "Traktir satu ronde",
+        "perk": "Ini bukan donasi, melainkan ucapan terima kasih digital kecil: pilih salah satu paket, dan nama Anda (dengan pesan satu baris opsional) tercantum permanen di dinding pendukung di bawah \u2014 atau anonim, jika Anda mau.",
+        "tiers": [("Satu kaleng kola", "$2", ""), ("Paket enam kaleng", "$9", ""), ("Sekardus penuh", "$29", "")],
+        "note": "Tautan pembayaran Creem sedang disiapkan \u2014 ingin mendukung sekarang? Kirim surel ke <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Sudah mendukung? Klaim tempat Anda",
+            "name": "Nama yang ditampilkan",
+            "message": "Pesan satu baris (opsional)",
+            "email": "Email yang dipakai saat membayar",
+            "anon": "Cantumkan saya secara anonim",
+            "send": "Klaim daftar saya",
+            "ok": "\u2713 Anda ada di dinding \u2014 muat ulang halaman untuk melihatnya.",
+            "fail": "Tidak dapat memverifikasi pembayaran \u2014 surel ke hello@fxverter.com.",
+            "nopaid": "Belum ada pembayaran yang cocok untuk email ini.",
+            "needEmail": "Masukkan email yang Anda pakai untuk membayar.",
+            "anonLabel": "Anonim",
+        },
+    },
+})
+
+
+# ═══════════════════════════════════════════════════════════════
+# Round-6 promotion: Malay (ms), Filipino (tl), Dutch (nl) join the
+# indexed languages.
+# ═══════════════════════════════════════════════════════════════
+
+TRUST_OVERRIDES["supportIntro"].update({
+    "ms": "Fxverter percuma digunakan \u2014 tiada akaun, tiada penjejakan. Jika ia pernah membantu anda menukar beberapa kadar, belanja kami secawan kola: setiap sumbangan digunakan untuk domain, pelayan dan pembangunan berterusan. Pembayaran diproses oleh Creem selaku peniaga rekod (merchant of record) \u2014 data pembayaran anda dikendalikan oleh Creem, bukan oleh tapak web ini.",
+    "tl": "Libreng gamitin ang Fxverter \u2014 walang account, walang tracking. Kung nakatulong ito sa ilang conversion mo, bumili kami ng isang Coke: ang bawat kontribusyon ay pambayad sa domain, server at tuloy-tuloy na development. Ang mga bayad ay ipoproseso ng Creem bilang merchant of record \u2014 ang payment data mo ay hina-handle ng Creem, hindi ng website na ito.",
+    "nl": "Fxverter is gratis te gebruiken \u2014 geen account, geen tracking. Als het je aan een paar koersen heeft geholpen, trakteer ons op een cola: elke bijdrage gaat naar domein, servers en verdere ontwikkeling. Betalingen worden verwerkt door Creem als merchant of record \u2014 je betaalgegevens worden door Creem behandeld, niet door deze website.",
+})
+
+TRUST_OVERRIDES["supportDesc"].update({
+    "ms": "Sokong Fxverter: percuma \u2014 tiada akaun, tiada penjejakan. Sumbangan mengekalkannya pantas, percuma dan bebas; pembayaran melalui Creem.",
+    "tl": "Suportahan ang Fxverter: libre \u2014 walang account, walang tracking. Pinapanatili ng mga kontribusyon itong mabilis, libre at independyente; bayad via Creem.",
+    "nl": "Steun Fxverter: gratis \u2014 geen account, geen tracking. Bijdragen houden het snel, gratis en onafhankelijk; betalingen via Creem.",
+})
+
+TRUST_OVERRIDES["privacyNote"].update({
+    "ms": "Privasi: tiada kuki diperlukan dan tiada data peribadi dikumpul. Statistik lawatan tanpa nama dan tanpa kuki (paparan halaman dan negara) mungkin dikumpul. Tapak web ini mungkin memaparkan iklan \u2014 lihat <a href=\"{base}ms/privacy/\">Dasar Privasi</a>.",
+    "tl": "Privacy: walang kinakailangang cookie at walang personal na data na kinokolekta. Maaaring mangolekta ng anonymous, cookie-free na istatistika ng pagbisita (page views at bansa). Maaaring magpakita ng advertising ang site \u2014 tingnan ang <a href=\"{base}tl/privacy/\">Privacy Policy</a>.",
+    "nl": "Privacy: geen cookies nodig en er worden geen persoonlijke gegevens verzameld. Anonieme, cookievrije bezoekstatistieken (paginaweergaven en land) kunnen worden verzameld. De website kan advertenties tonen \u2014 zie het <a href=\"{base}nl/privacy/\">Privacybeleid</a>.",
+})
+
+TRUST_OVERRIDES["support"].update({
+    "ms": {
+        "headline": "\u2665 Belanja kami secawan kola",
+        "choose": "Belanja satu pusingan",
+        "perk": "Ini bukan derma \u2014 ia ucapan terima kasih digital yang kecil: pilih satu pakej, dan nama anda (dengan mesej satu baris pilihan) tersenarai secara kekal di dinding penyokong di bawah \u2014 atau secara tanpa nama, jika anda mahu.",
+        "tiers": [("Secawan kola", "$2", ""), ("Pakej enam tin", "$9", ""), ("Sepeti penuh", "$29", "")],
+        "note": "Pautan pembayaran Creem sedang disediakan \u2014 mahu menyokong sekarang? E-mel ke <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Sudah menyokong? Tuntut tempat anda",
+            "name": "Nama paparan",
+            "message": "Mesej satu baris (pilihan)",
+            "email": "E-mel yang digunakan semasa bayar",
+            "anon": "Senaraikan saya secara tanpa nama",
+            "send": "Tuntut senarai saya",
+            "ok": "\u2713 Anda sudah di dinding \u2014 muat semula untuk melihatnya.",
+            "fail": "Tidak dapat mengesahkan pembayaran \u2014 e-mel ke hello@fxverter.com.",
+            "nopaid": "Belum ada pembayaran yang sepadan untuk e-mel ini.",
+            "needEmail": "Masukkan e-mel yang anda gunakan untuk membayar.",
+            "anonLabel": "Tanpa nama",
+        },
+    },
+    "tl": {
+        "headline": "\u2665 Bumili kayo ng Coke",
+        "choose": "Pumili ng isang round",
+        "perk": "Hindi ito donation \u2014 maliit na digital na pasasalamat ito: pumili ng tier, at ang pangalan mo (na may opsyonal na one-line message) ay permanente nang nakalista sa supporters wall sa ibaba \u2014 o anonymous, kung gusto mo.",
+        "tiers": [("Isang lata ng Coke", "$2", ""), ("Six-pack", "$9", ""), ("Buong crate", "$29", "")],
+        "note": "Inaayos pa ang mga Creem checkout link \u2014 gusto mo nang suportahan ngayon? Mag-email sa <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Nakadeposit na? I-claim ang slot mo",
+            "name": "Display name",
+            "message": "One-line message (opsyonal)",
+            "email": "Email na ginamit sa checkout",
+            "anon": "Ilagay ako bilang anonymous",
+            "send": "I-claim ang listing ko",
+            "ok": "\u2713 Nasa wall ka na \u2014 i-refresh para makita.",
+            "fail": "Hindi ma-verify ang bayad \u2014 mag-email sa hello@fxverter.com.",
+            "nopaid": "Wala pang tumugmang bayad para sa email na ito.",
+            "needEmail": "Ilagay ang email na ginamit mo sa pagbabayad.",
+            "anonLabel": "Anonymous",
+        },
+    },
+    "nl": {
+        "headline": "\u2665 Trakteer ons op een cola",
+        "choose": "Trakteer een ronde",
+        "perk": "Dit is geen donatie, maar een klein digitaal dankje: kies een pakket en je naam (met een optionele regel) staat permanent op de supporterswand hieronder \u2014 of anoniem, als je wilt.",
+        "tiers": [("Een blikje cola", "$2", ""), ("Een sixpack", "$9", ""), ("Een hele krat", "$29", "")],
+        "note": "De Creem-betaallinks worden ingesteld \u2014 wil je nu steunen? Mail naar <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Al gesteund? Claim je plekje",
+            "name": "Weergavenaam",
+            "message": "E\u00e9n regel bericht (optioneel)",
+            "email": "E-mail gebruikt bij de betaling",
+            "anon": "Vermeld me anoniem",
+            "send": "Mijn vermelding claimen",
+            "ok": "\u2713 Je staat op de wand \u2014 verversen om te zien.",
+            "fail": "Kon de betaling niet verifi\u00ebren \u2014 mail naar hello@fxverter.com.",
+            "nopaid": "Nog geen betaling gevonden voor deze e-mail.",
+            "needEmail": "Vul de e-mail in waarmee je betaald hebt.",
+            "anonLabel": "Anoniem",
+        },
+    },
+})
+
+
+# ═══════════════════════════════════════════════════════════════
+# Round-6 promotion: Polish (pl), Ukrainian (uk), Swedish (sv) join the
+# indexed languages.
+# ═══════════════════════════════════════════════════════════════
+
+TRUST_OVERRIDES["supportIntro"].update({
+    "pl": "Fxverter jest darmowy — bez konta i bez \u015bledzenia. Je\u015fli pom\u00f3g\u0142 ci przewalutowa\u0107 kilka kwot, postaw nam kaw\u0119... a w\u0142a\u015bciwie col\u0119: ka\u017cda wp\u0142ata idzie na domen\u0119, serwery i dalszy rozw\u00f3j. P\u0142atno\u015bci obs\u0142uguje Creem jako merchant of record \u2014 twoje dane p\u0142atnicze przetwarza Creem, nie ta strona.",
+    "uk": "Fxverter безкоштовний — без акаунтів і стеження. Якщо він допоміг вам конвертувати кілька курсів, пригоствуйте нас колою: кожен внесок іде на домен, сервери та подальший розвиток. Платежі обробляє Creem як merchant of record — ваші платіжні дані обробляє Creem, а не цей сайт.",
+    "sv": "Fxverter \u00e4r gratis att anv\u00e4nda \u2014 inget konto, ingen sp\u00e5rning. Om den hj\u00e4lpt dig v\u00e4xla ett par kurs erbjuder du oss g\u00e4rna en cola: varje bidrag g\u00e5r till dom\u00e4nen, servrarna och fortsatt utveckling. Betalningar hanteras av Creem som merchant of record \u2014 dina betaluppgifter hanteras av Creem, inte av denna webbplats.",
+})
+
+TRUST_OVERRIDES["supportDesc"].update({
+    "pl": "Wesprzyj Fxverter: bezp\u0142atny — bez konta i bez \u015bledzenia. Wp\u0142aty utrzymuj\u0105 go szybkim, darmowym i niezale\u017cnym; p\u0142atno\u015bci przez Creem.",
+    "uk": "Підтримайте Fxverter: безкоштовно — без акаунта і стеження. Внески тримають його швидким, безкоштовним і незалежним; платежі через Creem.",
+    "sv": "St\u00f6d Fxverter: gratis \u2014 inget konto, ingen sp\u00e5rning. Bidragen h\u00e5ller den snabb, gratis och oberoende; betalningar via Creem.",
+})
+
+TRUST_OVERRIDES["privacyNote"].update({
+    "pl": "Prywatno\u015b\u0107: nie s\u0105 wymagane ciasteczka i nie zbieramy danych osobowych. Anonimowe statystyki odwiedzin bez ciasteczek (wy\u015bwietlenia stron i kraj) mog\u0105 by\u0107 zbierane. Strona mo\u017ce wy\u015bwietla\u0107 reklamy — zobacz <a href=\"{base}pl/privacy/\">Polityk\u0119 prywatno\u015bci</a>.",
+    "uk": "Приватність: cookie не потрібні, персональні дані не збираються. Можуть збиратися анонімні статистичні дані про відвідування без cookie (перегляди сторінок і країна). Сайт може показувати рекламу — див. <a href=\"{base}uk/privacy/\">Політику конфіденційності</a>.",
+    "sv": "Integritet: inga cookies kr\u00e4vs och inga personuppgifter samlas in. Anonym, cookiefri bes\u00f6ksstatistik (sidvisningar och land) kan samlas in. Webbplatsen kan visa reklam \u2014 se <a href=\"{base}sv/privacy/\">integritetspolicyn</a>.",
+})
+
+TRUST_OVERRIDES["support"].update({
+    "pl": {
+        "headline": "\u2665 Postaw nas col\u0119",
+        "choose": "Postaw kolejk\u0119",
+        "perk": "To nie darowizna, a ma\u0142e cyfrowe podzi\u0119kowanie: wybierz pakiet, a twoje imi\u0119 (z opcjonaln\u0105 jednolinijkow\u0105 wiadomo\u015bci\u0105) trafi na sta\u0142e na list\u0119 wspieraj\u0105cych poni\u017cej — lub anonimowo, je\u015bli wolisz.",
+        "tiers": [("Puszka coli", "$2", ""), ("Sześciopak", "$9", ""), ("Ca\u0142a skrzynka", "$29", "")],
+        "note": "Linki p\u0142atno\u015bci Creem s\u0105 w przygotowaniu — chcesz wesprze\u0107 ju\u017c teraz? Napisz na <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Ju\u017c wspierasz? Zarezerwuj swoje miejsce",
+            "name": "Nazwa wy\u015bwietlana",
+            "message": "Jednolinijkowa wiadomo\u015b\u0107 (opcjonalnie)",
+            "email": "E-mail u\u017cyty przy p\u0142atno\u015bci",
+            "anon": "Wymie\u0144 mnie anonimowo",
+            "send": "Zg\u0142o\u015b sw\u00f3j wpis",
+            "ok": "\u2713 Jeste\u015b na li\u015bcie — od\u015bwie\u017c, aby zobaczy\u0107.",
+            "fail": "Nie uda\u0142o si\u0119 potwierdzi\u0107 p\u0142atno\u015bci — napisz na hello@fxverter.com.",
+            "nopaid": "Nie znaleziono jeszcze p\u0142atno\u015bci dla tego e-maila.",
+            "needEmail": "Podaj e-mail, kt\u00f3rym p\u0142aci\u0142e\u015b.",
+            "anonLabel": "Anonimowo",
+        },
+    },
+    "uk": {
+        "headline": "\u2665 Пригоствуйте нас колою",
+        "choose": "Пригоствуйте за рахунок",
+        "perk": "Це не пожертва, а невелика цифрова подяка: оберіть рівень — і ваше ім'я (з необов'язковим рядком) назавжди з'явиться у списку прихильників нижче — або анонімно, якщо хочете.",
+        "tiers": [("Банка коли", "$2", ""), ("Упаковка з шести", "$9", ""), ("Цілий ящик", "$29", "")],
+        "note": "Платіжні посилання Creem ще налаштовуються — хочете підтримати прямо зараз? Напишіть на <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Вже підтримали? Займіть місце у списку",
+            "name": "Ім'я для показу",
+            "message": "Повідомлення в один рядок (необов'язково)",
+            "email": "Ел. пошта, вказана при оплаті",
+            "anon": "Вказати мене анонімно",
+            "send": "Заявити про себе",
+            "ok": "\u2713 Ви у списку — оновіть сторінку, щоб побачити.",
+            "fail": "Не вдалося підтвердити платіж — напишіть на hello@fxverter.com.",
+            "nopaid": "Платежу за цією адресою поки не знайдено.",
+            "needEmail": "Введіть адресу, з якої платили.",
+            "anonLabel": "Анонімно",
+        },
+    },
+    "sv": {
+        "headline": "\u2665 Bjud oss p\u00e5 en cola",
+        "choose": "Bjud en runda",
+        "perk": "Detta \u00e4r inte en donation, utan ett litet digitalt tack: v\u00e4lj ett paket och ditt namn (med ett valfritt meddelande p\u00e5 en rad) listas permanent p\u00e5 supporterv\u00e4ggen nedan \u2014 eller anonymt, om du f\u00f6redrar.",
+        "tiers": [("En burk cola", "$2", ""), ("En sexpack", "$9", ""), ("En hel l\u00e5da", "$29", "")],
+        "note": "Creems betall\u00e4nkar f\u00f6rbereds \u2014 vill du st\u00f6dja redan nu? Maila till <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Redan st\u00f6tt? Ans\u00f6k om din plats",
+            "name": "Visningsnamn",
+            "message": "Meddelande p\u00e5 en rad (valfritt)",
+            "email": "E-post anv\u00e4nd vid betalning",
+            "anon": "Lista mig anonymt",
+            "send": "Ans\u00f6k om min notering",
+            "ok": "\u2713 Du \u00e4r p\u00e5 v\u00e4ggen \u2014 uppdatera sidan f\u00f6r att se.",
+            "fail": "Kunde inte verifiera betalningen \u2014 maila hello@fxverter.com.",
+            "nopaid": "Ingen matchande betalning hittad f\u00f6r denna e-post \u00e4nnu.",
+            "needEmail": "Ange e-posten du betalade med.",
+            "anonLabel": "Anonymt",
+        },
+    },
+})
+
+
+# ═══════════════════════════════════════════════════════════════
+# Round-6 finale: Lao (lo), Vietnamese (vi), Bengali (bn), Persian (fa),
+# Czech (cs), Romanian (ro), Danish (da) join the indexed languages —
+# all 29 interface languages are now fully promoted.
+# ═══════════════════════════════════════════════════════════════
+
+TRUST_OVERRIDES["supportIntro"].update({
+    "lo": "Fxverter ໃຊ້ຟຣີ — ບໍ່ມີບັນຊີ, ບໍ່ມີການຕິດຕາມ. ຖ້າມັນຊ່ວຍທ່ານແປງອັດຕາໄດ້ບໍ່ດົນ, ຊື້ໂຄລາໃຫ້ພວກເຮົາແທ່ງໜຶ່ງ: ທຸກການສະໜັບສະໜູນໄປສູ່ຊື່ໂດເມນ, ເຊີບເວີ ແລະ ການພັດທະນາຕໍ່ເນື່ອງ. ການຈ່າຍເງິນດຳເນີນໂດຍ Creem ໃນຖານະຜູ້ຂາຍບັນທຶກ (merchant of record) — ຂໍ້ມູນການຈ່າຍເງິນຂອງທ່ານ Creem ເປັນຜູ້ຄຸ້ມຄອງ, ບໍ່ແມ່ນເວັບໄຊນີ້.",
+    "vi": "Fxverter miễn phí sử dụng — không tài khoản, không theo dõi. Nếu nó từng giúp bạn quy đổi vài tỷ giá, mời chúng tôi một lon Coca: mỗi đóng góp dành cho tên miền, máy chủ và phát triển liên tục. Thanh toán do Creem xử lý với tư cách merchant of record — dữ liệu thanh toán của bạn do Creem quản lý, không phải website này.",
+    "bn": "Fxverter ব্যবহার করা ফ্রি — কোনো অ্যাকাউন্ট নেই, ট্র্যাকিং নেই। কয়েকটি হার রূপান্তরে সাহায্য করলে আমাদের একটি কোকা কিনে দিন: প্রতিটি অবদান যায় ডোমেইন, সার্ভার ও চলমান উন্নয়নে। পেমেন্ট প্রসেস করে Creem, merchant of record হিসেবে — আপনার পেমেন্ট ডেটা এই ওয়েবসাইট নয়, Creem সামলায়।",
+    "fa": "استفاده از Fxverter رایگان است — بدون حساب، بدون ردیابی. اگر در تبدیل چند نرخ کمکتان کرده، یک نوشابه مهمان ما کنید: هر کمک به دامنه، سرورها و توسعه مستمر می‌رود. پرداخت‌ها توسط Creem به‌عنوان merchant of record انجام می‌شود — داده‌های پرداخت شما را Creem مدیریت می‌کند، نه این وب‌سایت.",
+    "cs": "Fxverter je zdarma — bez \u00fa\u010dtu a bez sledov\u00e1n\u00ed. Pokud v\u00e1m pomohl p\u0159ev\u00e9st p\u00e1r kurz\u016f, dop\u0159ejte n\u00e1m colu: ka\u017ed\u00fd p\u0159\u00edsp\u011bvek jde na dom\u00e9nu, servery a dal\u0161\u00ed rozvoj. Platby zpracov\u00e1v\u00e1 Creem jako merchant of record \u2014 va\u0161e platebn\u00ed \u00fadaje zpracov\u00e1v\u00e1 Creem, nikoli tato str\u00e1nka.",
+    "ro": "Fxverter este gratuit de folosit — f\u0103r\u0103 cont, f\u0103r\u0103 urm\u0103rire. Dac\u0103 te-a ajutat s\u0103 converte\u015fti c\u00e2teva cursuri, trateaz\u0103-ne la o cola: fiecare contribuție merge pe domeniu, servere și dezvoltare continu\u0103. Pl\u0103țile sunt procesate de Creem ca merchant of record \u2014 datele tale de plat\u0103 sunt gestionate de Creem, nu de acest site.",
+    "da": "Fxverter er gratis at bruge \u2014 ingen konto, ingen sporing. Hvis den har hjulpet dig med at omregne et par kurser, giver du os gerne en cola: hver bidrag g\u00e5r til dom\u00e6net, serverne og fortsat udvikling. Betalinger h\u00e5ndteres af Creem som merchant of record \u2014 dine betalingsdata h\u00e5ndteres af Creem, ikke af dette website.",
+})
+
+TRUST_OVERRIDES["supportDesc"].update({
+    "lo": "ສະໜັບສະໜູນ Fxverter: ຟຣີ — ບໍ່ມີບັນຊີ, ບໍ່ມີການຕິດຕາມ. ການສະໜັບສະໜູນຊ່ວຍໃຫ້ມັນໄວ, ຟຣີ ແລະ ເປັນເອກະລາດ; ຈ່າຍຜ່ານ Creem.",
+    "vi": "Ủng hộ Fxverter: miễn phí — không tài khoản, không theo dõi. Đóng góp giữ nó nhanh, miễn phí và độc lập; thanh toán qua Creem.",
+    "bn": "Fxverter-কে সমর্থন করুন: ফ্রি — অ্যাকাউন্ট নেই, ট্র্যাকিং নেই। অবদান একে দ্রুত, ফ্রি ও স্বাধীন রাখে; পেমেন্ট Creem-এর মাধ্যমে।",
+    "fa": "از Fxverter حمایت کنید: رایگان — بدون حساب، بدون ردیابی. کمک‌ها آن را سریع، رایگان و مستقل نگه می‌دارند؛ پرداخت از طریق Creem.",
+    "cs": "Podpo\u0159te Fxverter: zdarma — bez \u00fa\u010dtu, bez sledov\u00e1n\u00ed. P\u0159\u00edsp\u011bvky ho udr\u017euj\u00ed rychl\u00fd, bezplatn\u00fd a nez\u00e1visl\u00fd; platby p\u0159es Creem.",
+    "ro": "Susține Fxverter: gratuit — f\u0103r\u0103 cont, f\u0103r\u0103 urm\u0103rire. Contribuțiile îl mențin rapid, gratuit și independent; plăți via Creem.",
+    "da": "St\u00f8t Fxverter: gratis \u2014 ingen konto, ingen sporing. Bidrag holder den hurtig, gratis og uafh\u00e6ngig; betalinger via Creem.",
+})
+
+TRUST_OVERRIDES["privacyNote"].update({
+    "lo": "ຄວາມເປັນສ່ວນຕົວ: ບໍ່ຕ້ອງການ cookie ແລະ ບໍ່ເກັບກຳຂໍ້ມູນສ່ວນບຸກຄົນ. ສະຖິຕິການເຂົ້າຊົມແບບນິລະນາມ ບໍ່ມີ cookie (ການເບິ່ງໜ້າ ແລະ ປະເທດ) ອາດຖືກເກັບກຳ. ເວັບໄຊນີ້ອາດສະແດງໂຄສະນາ — ເບິ່ງ <a href=\"{base}lo/privacy/\">ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ</a>.",
+    "vi": "Quyền riêng tư: không cần cookie và không thu thập dữ liệu cá nhân. Số liệu truy cập ẩn danh không cookie (lượt xem trang và quốc gia) có thể được thu thập. Trang web có thể hiển thị quảng cáo — xem <a href=\"{base}vi/privacy/\">Chính sách quyền riêng tư</a>.",
+    "bn": "গোপনীয়তা: কুকির প্রয়োজন নেই এবং কোনো ব্যক্তিগত ডেটা সংগ্রহ করা হয় না। নাম-গোপন, কুকি-মুক্ত ভিজিট পরিসংখ্যান (পেজ ভিউ ও দেশ) সংগ্রহ হতে পারে। সাইটটি বিজ্ঞাপন দেখাতে পারে — দেখুন <a href=\"{base}bn/privacy/\">গোপনীয়তা নীতি</a>।",
+    "fa": "حریم خصوصی: نیازی به کوکی نیست و هیچ داده شخصی جمع‌آوری نمی‌شود. آمار بازدید ناشناس و بدون کوکی (بازدید صفحه و کشور) ممکن است جمع‌آوری شود. این سایت ممکن است تبلیغ نمایش دهد — ببینید <a href=\"{base}fa/privacy/\">سیاست حریم خصوصی</a>.",
+    "cs": "Soukrom\u00ed: cookies nejsou vy\u017eadov\u00e1ny a osobn\u00ed \u00fadaje se nesb\u00edraj\u00ed. Anonymn\u00ed statistiky n\u00e1v\u0161t\u011bv bez cookies (zobrazen\u00ed str\u00e1nek a zem\u011b) mohou b\u00fdt shroma\u017e\u010fov\u00e1ny. Str\u00e1nka m\u016f\u017ee zobrazovat reklamy — viz <a href=\"{base}cs/privacy/\">Z\u00e1sady ochrany osobn\u00edch \u00fadaj\u016f</a>.",
+    "ro": "Confidențialitate: nu sunt necesare cookie-uri și nu se colectează date personale. Statistici anonime de vizitare, fără cookie-uri (vizualizări de pagini și țară) pot fi colectate. Site-ul poate afișa reclame — vezi <a href=\"{base}ro/privacy/\">Politica de confidențialitate</a>.",
+    "da": "Privatliv: ingen cookies er n\u00f8dvendige og ingen persondata indsamles. Anonym, cookiefri bes\u00f8gsstatistik (sidevisninger og land) kan indsamles. Webstedet kan vise reklamer — se <a href=\"{base}da/privacy/\">privatlivspolitikken</a>.",
+})
+
+TRUST_OVERRIDES["support"].update({
+    "lo": {
+        "headline": "\u2665 ຊື້ໂຄລາໃຫ້ພວກເຮົາ",
+        "choose": "ຊື້ໜຶ່ງຮອບ",
+        "perk": "ນີ້ບໍ່ແມ່ນການບິຈາກ, ແຕ່ເປັນຄຳຂອບໃຈດິຈິຕອລນ້ອຍໆ: ເລືອກແພັກເກັດໜຶ່ງ ແລະ ຊື່ຂອງທ່ານ (ພ້ອມຂໍ້ຄວາມໜຶ່ງແຖວ ຖ້າຕ້ອງການ) ຈະປາກົດຖາວອນໃນກຳແພງຜູ້ສະໜັບສະໜູນຂ້າງລຸ່ມ — ຫຼື ແບບນິລະນາມ ຖ້າທ່ານຕ້ອງການ.",
+        "tiers": [("ໂຄລາໜຶ່ງກະປ໋ອງ", "$2", ""), ("ແພັກ 6 ກະປ໋ອງ", "$9", ""), ("ໃສ່ເຕັມແກັດ", "$29", "")],
+        "note": "ລິ້ງການຊຳລະເງິນ Creem ກຳລັງຕັ້ງຄ່າ — ຢາກສະໜັບສະໜູນດຽວນີ້? ຂຽນເມລ໌ໄປທີ່ <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "ສະໜັບສະໜູນແລ້ວ? ຢືນຢັນບ່ອນຂອງທ່ານ",
+            "name": "ຊື່ສະແດງ",
+            "message": "ຂໍ້ຄວາມໜຶ່ງແຖວ (ເລືອກໄດ້)",
+            "email": "ອີເມວທີ່ໃຊ້ຕອນຈ່າຍ",
+            "anon": "ລະບຸຂ້ອຍແບບນິລະນາມ",
+            "send": "ຢືນຢັນລາຍຊື່ຂອງຂ້ອຍ",
+            "ok": "\u2713 ທ່ານຢູ່ໃນກຳແພງແລ້ວ — ຣີເຟຣຊເພື່ອເບິ່ງ.",
+            "fail": "ຢືນຢັນການຈ່າຍເງິນບໍ່ສຳເລັດ — ຂຽນເມລ໌ hello@fxverter.com.",
+            "nopaid": "ຍັງບໍ່ພົບການຈ່າຍເງິນທີ່ກົງກັບອີເມວນີ້.",
+            "needEmail": "ກະລຸນາໃສ່ອີເມວທີ່ທ່ານໃຊ້ຈ່າຍ.",
+            "anonLabel": "ນິລະນາມ",
+        },
+    },
+    "vi": {
+        "headline": "\u2665 Mời chúng tôi một lon Coca",
+        "choose": "Mời một vòng",
+        "perk": "Đây không phải quyên góp, mà là lời cảm ơn số nhỏ: chọn một gói, tên bạn (kèm lời nhắn một dòng tùy chọn) sẽ được liệt kê vĩnh viễn trên tường người ủng hộ bên dưới — hoặc ẩn danh, nếu bạn muốn.",
+        "tiers": [("Một lon Coca", "$2", ""), ("Lốc sáu lon", "$9", ""), ("Cả thùng", "$29", "")],
+        "note": "Liên kết thanh toán Creem đang được thiết lập — muốn ủng hộ ngay? Gửi thư tới <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Đã ủng hộ? Nhận chỗ của bạn",
+            "name": "Tên hiển thị",
+            "message": "Lời nhắn một dòng (tùy chọn)",
+            "email": "Email dùng khi thanh toán",
+            "anon": "Liệt kê tôi ẩn danh",
+            "send": "Nhận mục của tôi",
+            "ok": "\u2713 Bạn đã có mặt trên tường — tải lại trang để xem.",
+            "fail": "Không thể xác minh thanh toán — gửi thư tới hello@fxverter.com.",
+            "nopaid": "Chưa tìm thấy thanh toán khớp với email này.",
+            "needEmail": "Nhập email bạn đã dùng để thanh toán.",
+            "anonLabel": "Ẩn danh",
+        },
+    },
+    "bn": {
+        "headline": "\u2665 আমাদের একটি কোকা কিনে দিন",
+        "choose": "এক রাউন্ড কিনুন",
+        "perk": "এটি দান নয়, ছোট এক ডিজিটাল ধন্যবাদ: একটি প্যাক বেছে নিন, আপনার নাম (ঐচ্ছিক এক-লাইনের বার্তাসহ) নিচের সমর্থকদের প্রাচীরে স্থায়ীভাবে তালিকাভুক্ত হবে — চাইলে নাম-গোপনেও।",
+        "tiers": [("এক ক্যান কোকা", "$2", ""), ("ছয় ক্যানের প্যাক", "$9", ""), ("পুরো ক্রেট", "$29", "")],
+        "note": "Creem চেকআউট লিংক প্রস্তুত হচ্ছে — এখনই সমর্থন করতে চান? ইমেল করুন <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "ইতিমধ্যে সমর্থন করেছেন? আপনার জায়গা দাবি করুন",
+            "name": "প্রদর্শিত নাম",
+            "message": "এক-লাইনের বার্তা (ঐচ্ছিক)",
+            "email": "পেমেন্টে ব্যবহৃত ইমেল",
+            "anon": "আমাকে নাম-গোপনে তালিকাভুক্ত করুন",
+            "send": "আমার এন্ট্রি দাবি করুন",
+            "ok": "\u2713 আপনি প্রাচীরে আছেন — দেখতে রিফ্রেশ করুন।",
+            "fail": "পেমেন্ট যাচাই করা গেল না — ইমেল করুন hello@fxverter.com.",
+            "nopaid": "এই ইমেলের জন্য এখনো কোনো মিলে যাওয়া পেমেন্ট পাওয়া যায়নি।",
+            "needEmail": "যে ইমেল দিয়ে পেমেন্ট করেছেন তা দিন।",
+            "anonLabel": "নাম-গোপন",
+        },
+    },
+    "fa": {
+        "headline": "\u2665 برایمان نوشابه مهمان کنید",
+        "choose": "یک دور مهمان کنید",
+        "perk": "این کمک مالی نیست، بلکه تشکر دیجیتال کوچکی است: یک بسته را انتخاب کنید و نام شما (با یک پیام یک‌خطی اختیاری) برای همیشه در دیوار حامیان زیر فهرست می‌شود — یا ناشناس، اگر ترجیح می‌دهید.",
+        "tiers": [("یک قوطی نوشابه", "$2", ""), ("بسته شش‌تایی", "$9", ""), ("یک جعبه کامل", "$29", "")],
+        "note": "لینک‌های پرداخت Creem در حال راه‌اندازی است — می‌خواهید همین حالا حمایت کنید؟ به <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a> ایمیل بزنید.",
+        "claim": {
+            "title": "قبلاً حمایت کرده‌اید؟ جای خود را ثبت کنید",
+            "name": "نام نمایشی",
+            "message": "پیام یک‌خطی (اختیاری)",
+            "email": "ایمیل استفاده‌شده در پرداخت",
+            "anon": "مرا ناشناس فهرست کن",
+            "send": "ثبت فهرست من",
+            "ok": "\u2713 شما روی دیوار هستید — برای دیدن، صفحه را تازه‌سازی کنید.",
+            "fail": "تأیید پرداخت ممکن نشد — به hello@fxverter.com ایمیل بزنید.",
+            "nopaid": "هنوز پرداخت منطبقی برای این ایمیل پیدا نشده.",
+            "needEmail": "ایمیلی را که با آن پرداخت کرده‌اید وارد کنید.",
+            "anonLabel": "ناشناس",
+        },
+    },
+    "cs": {
+        "headline": "\u2665 Dopřejte nám colu",
+        "choose": "Zapla\u0165te kolo",
+        "perk": "Toto nen\u00ed dar, ale mal\u00e9 digit\u00e1ln\u00ed pod\u011bkov\u00e1n\u00ed: vyberte bal\u00ed\u010dek a va\u0161e jm\u00e9no (s voliteln\u00fdm jedn\u00e1\u0159\u00e1dkov\u00fdm vzkazem) se trvale objev\u00ed na zdi podporovatel\u016f n\u00ed\u017ee — nebo anonymn\u011b, chcete-li.",
+        "tiers": [("Plechovka coly", "$2", ""), ("\u0160estipack", "$9", ""), ("Cel\u00e1 bedna", "$29", "")],
+        "note": "Platebn\u00ed odkazy Creem se p\u0159ipravuj\u00ed — chcete podpo\u015fit hned? Napi\u0161te na <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "U\u017e podporujete? Rezervujte si sv\u00e9 m\u00edsto",
+            "name": "Zobrazovan\u00e9 jm\u00e9no",
+            "message": "Jedno\u0159\u00e1dkov\u00fd vzkaz (voliteln\u00e9)",
+            "email": "E-mail pou\u017eit\u00fd p\u0159i platb\u011b",
+            "anon": "Uve\u010ft m\u011b anonymn\u011b",
+            "send": "Rezervovat sv\u016fj z\u00e1pis",
+            "ok": "\u2713 Jsme na zdi \u2014 obnovte str\u00e1nku, abyste to vid\u011bli.",
+            "fail": "Platbu se nepoda\u0159ilo ov\u011b\u0159it \u2014 napi\u0161te na hello@fxverter.com.",
+            "nopaid": "Pro tento e-mail zat\u00edm nebyla nalezena \u017e\u00e1dn\u00e1 platba.",
+            "needEmail": "Zadejte e-mail, kter\u00fdm jste platili.",
+            "anonLabel": "Anonymn\u011b",
+        },
+    },
+    "ro": {
+        "headline": "\u2665 Tratează-ne la o cola",
+        "choose": "Tratează o rundă",
+        "perk": "Nu este o donație, ci un mic mulțumire digitală: alege un pachet, iar numele tău (cu un mesaj opțional de un rând) apare permanent pe peretele susținătorilor de mai jos — sau anonim, dacă preferi.",
+        "tiers": [("O cutie de cola", "$2", ""), ("Un pachet de șase", "$9", ""), ("O ladă întreagă", "$29", "")],
+        "note": "Linkurile de plată Creem sunt în pregătire — vrei să sprijini acum? Scrie la <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Ai susținut deja? Revendică-ți locul",
+            "name": "Numele afișat",
+            "message": "Mesaj de un rând (opțional)",
+            "email": "Emailul folosit la plată",
+            "anon": "Listează-mă anonim",
+            "send": "Revendică intrarea mea",
+            "ok": "\u2713 Ești pe perete — reîmprospătează pentru a vedea.",
+            "fail": "Nu am putut verifica plata — scrie la hello@fxverter.com.",
+            "nopaid": "Încă nu a fost găsită o plată potrivită pentru acest email.",
+            "needEmail": "Introdu emailul cu care ai plătit.",
+            "anonLabel": "Anonim",
+        },
+    },
+    "da": {
+        "headline": "\u2665 Giv os en cola",
+        "choose": "Giv en runde",
+        "perk": "Dette er ikke en donation, men et lille digitalt tak: v\u00e6lg en pakke, og dit navn (med en valgfri besked p\u00e5 \u00e9n linje) listes permanent p\u00e5 supporterv\u00e6ggen nedenfor \u2014 eller anonymt, hvis du foretr\u00e6kker det.",
+        "tiers": [("En d\u00e5se cola", "$2", ""), ("En sixpack", "$9", ""), ("En hel kasse", "$29", "")],
+        "note": "Creems betalingslinks klarg\u00f8res \u2014 vil du st\u00f8tte med det samme? Skriv til <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Allerede st\u00f8ttet? G\u00f8r krav p\u00e5 din plads",
+            "name": "Vist navn",
+            "message": "Besked p\u00e9n linje (valgfri)",
+            "email": "E-mail brugt ved betaling",
+            "anon": "N\u00e6vnt mig anonymt",
+            "send": "G\u00f8r krav p\u00e5 min notering",
+            "ok": "\u2713 Du er p\u00e5 v\u00e6ggen \u2014 genindl\u00e6s for at se det.",
+            "fail": "Kunne ikke verificere betalingen \u2014 skriv til hello@fxverter.com.",
+            "nopaid": "Ingen matchende betaling fundet for denne e-mail endnu.",
+            "needEmail": "Angiv den e-mail, du betalte med.",
+            "anonLabel": "Anonymt",
+        },
+    },
+})
+
+
+# ─── Greek (el) support/privacy overrides (missed in the vi/el batch) ───
+
+TRUST_OVERRIDES["supportIntro"].update({
+    "el": "Το Fxverter είναι δωρεάν — χωρίς λογαριασμό, χωρίς παρακολούθηση. Αν σας βοήθησε να μετατρέψετε μερικές ισοτιμίες, κερασμένум μας ένα κόλα: κάθε συνεισφορά πηγαίνει στον τομέα, τους διακομιστές και τη συνεχή ανάπτυξη. Οι πληρωμές διεκπεραιώνονται από την Creem ως merchant of record — τα στοιχεία πληρωμής σας διαχειρίζεται η Creem, όχι αυτός ο ιστότοπος.",
+})
+
+TRUST_OVERRIDES["supportDesc"].update({
+    "el": "Υποστηρίξτε το Fxverter: δωρεάν — χωρίς λογαριασμό, χωρίς παρακολούθηση. Οι συνεισφορές το κρατούν γρήγορο, δωρεάν και ανεξάρτητο· πληρωμές μέσω Creem.",
+})
+
+TRUST_OVERRIDES["privacyNote"].update({
+    "el": "Απόρρητο: δεν απαιτούνται cookies και δεν συλλέγονται προσωπικά δεδομένα. Μπορούν να συλλέγονται ανώνυμα στατιστικά επισκέψεων χωρίς cookies (προβολές σελίδων και χώρα). Ο ιστότοπος μπορεί να εμφανίζει διαφημίσεις — δείτε την <a href=\"{base}el/privacy/\">Πολιτική Απορρήτου</a>.",
+})
+
+TRUST_OVERRIDES["support"].update({
+    "el": {
+        "headline": "♥ Κερασμένум μας ένα κόλα",
+        "choose": "Κερασμένум έναν γύρο",
+        "perk": "Δεν είναι δωρεά — είναι ένα μικρό ψηφιακό ευχαριστώ: επιλέξτε πακέτο και το όνομά σας (με προαιρετικό μήνυμα ενός στίχου) εμφανίζεται μόνιμα στον τοίχο υποστηρικτών παρακάτω — ή ανώνυμα, αν προτιμάτε.",
+        "tiers": [("Ένα κουτί κόλα", "$2", ""), ("Συσκευασία έξι", "$9", ""), ("Ολόκληρο κιβώτιο", "$29", "")],
+        "note": "Οι σύνδεσμοι πληρωμής Creem ετοιμάζονται — θέλετε να στηρίξετε τώρα; Γράψτε στο <a href=\"mailto:hello@fxverter.com\">hello@fxverter.com</a>.",
+        "claim": {
+            "title": "Υποστηρίξατε ήδη; Διεκδικήστε τη θέση σας",
+            "name": "Εμφανιζόμενο όνομα",
+            "message": "Μήνυμα ενός στίχου (προαιρετικό)",
+            "email": "Email που χρησιμοποιήθηκε στην πληρωμή",
+            "anon": "Αναφέρατε με ανώνυμα",
+            "send": "Διεκδίκηση της καταχώρισής μου",
+            "ok": "✓ Είστε στον τοίχο — ανανεώστε για να το δείτε.",
+            "fail": "Δεν ήταν δυνατή η επαλήθευση της πληρωμής — γράψτε στο hello@fxverter.com.",
+            "nopaid": "Δεν βρέθηκε ακόμη πληρωμή για αυτό το email.",
+            "needEmail": "Εισάγετε το email με το οποίο πληρώσατε.",
+            "anonLabel": "Ανώνυμα",
+        },
+    },
+})

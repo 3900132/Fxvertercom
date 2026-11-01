@@ -16,7 +16,7 @@ TRUST_LANG = {
             ["h", "Wat het anders maakt"],
             ["li", "Geen account, geen tracking — omrekeningen draaien lokaal in je browser"],
             ["li", "Drie wisselbare openbare bronnen: Frankfurter (referentiekoersen van de Europese Centrale Bank), ExchangeRate-API en de Fawaz Currency API"],
-            ["li", "40 grote valuta's met eigen pagina's: live omrekentabellen, trendgrafieken over 30/90 dagen en valutaprofielen"],
+            ["li", "56 grote valuta's met eigen pagina's: live omrekentabellen, trendgrafieken over 30/90 dagen en valutaprofielen"],
             ["li", "Gidsen in gewone taal die uitleggen hoe wisselkoersen echt werken"],
             ["li", "Te installeren als app (PWA) die offline blijft werken met de laatst bekende koersen"],
             ["h", "De gegevens"],

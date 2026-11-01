@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+_tmp_*
+_refresh_*
